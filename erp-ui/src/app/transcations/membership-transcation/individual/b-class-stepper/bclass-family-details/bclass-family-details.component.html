@@ -1,0 +1,175 @@
+<div class="col-12 bg-label-colorfull">
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">individual(class-B)</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">Rajasekhar</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">B.E/B.tech</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">9789978956</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <h6 class="sub-heading">{{'ERP.FAMILY_DETAILS' | translate}}<span class="admission-text">(Admission
+        number:&nbsp;123456789)</span></h6>
+
+        <div class="flex justify-content-between py-2">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                 <!-- <div class="main-heading mt-1">{{'ERP.CASTE' | translate}}</div> -->
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                </span>
+                            </div>
+                        </div>
+    
+                        <p-button (click)="Add()" label="Add" icon="fa fa-plus" iconPos="left"
+                            id="add_btn" > </p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="globel-border-top-color"></div>
+
+            <p-table #dt [value]="commomCategory" dataKey="id" editMode="row"
+            styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>{{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}} </th>
+                        <th>{{'ERP.SURNAME' | translate}}</th>
+                        <th>{{'ERP.NAME' | translate}}</th>
+                        <th>{{'ERP.DATE_OF_BIRTH' | translate}}</th>
+                        <th>{{'ERP.AGE' | translate}}</th>
+                        <th>{{'ERP.QUALIFICATON' | translate}}</th>
+                        <th>{{'ERP.AADHAR_NUMBER' | translate}}</th>
+                        <th>{{'ERP.MOBILE_NUMBER' | translate}}</th>
+                        <th>{{'ERP.UPLOAD_DOCUMENT' | translate}}</th>
+                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                        <!-- <th>Land</th> -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-commomCategory let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="commomCategory">
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="commomCategory.Relationshipwithmember">
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.Relationshipwithmember}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="commomCategory.Surname">
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.Surname}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="commomCategory.Name">
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.Name}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="commomCategory.DateOfBirth">
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.DateOfBirth}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="statusList" [(ngModel)]="commomCategory.Age"
+                                        optionLabel="name" placeholder="Select"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.Age}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="statusList" [(ngModel)]="commomCategory.Qualification"
+                                        optionLabel="name" placeholder="Select"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.Qualification}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="statusList" [(ngModel)]="commomCategory.AadharNumber"
+                                        optionLabel="name" placeholder="Select"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.AadharNumber}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="statusList" [(ngModel)]="commomCategory.MobileNumber"
+                                        optionLabel="name" placeholder="Select"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.MobileNumber}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="statusList" [(ngModel)]="commomCategory.UploadDocument"
+                                        optionLabel="name" placeholder="Select"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{commomCategory.UploadDocument}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                    
+                        <td>
+                            <div class="global-action-btn flex align-items-center justify-content-center">
+                                <p-button *ngIf="!editing" pInitEditableRow (click)="onRowEditInit()"  class='action-edit' label="{{'ERP.EDIT' | translate}}" ></p-button>
+                                <p-button *ngIf="editing"  pSaveEditableRow (click)="onRowEditSave()"class="action-save" label="{{'ERP.SAVE'|translate }}"></p-button>
+                                <p-button *ngIf="editing"  pCancelEditableRow (click)="onRowEditCancel()" class="action-delete"  label="{{'ERP.CANCEL'|translate }}"></p-button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+   
+
+    </div>
+    
+
+
+
+
+

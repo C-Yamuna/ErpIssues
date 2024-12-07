@@ -1,0 +1,118 @@
+
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'TERMDEPOSITSTRANSACTION.GENERAL_CONFIGURATION' | translate}}</h6>
+  
+        <form [formGroup]="generalconfigform">
+            <div class="mt-n1 bg-label-colorfull">
+                <div class="row g-3 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.PRODUCT_NAME' | translate}}</label>
+                        
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                [(ngModel)]="generalConfigModel.name">
+                            <p-message severity="error" text="Enter Valid Name"
+                                *ngIf="!generalconfigform.controls['name'].valid && generalconfigform.controls['name'].dirty">
+                            </p-message>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 pt-4">
+                        <div class="form-label d-flex">
+                        <p-checkbox [binary]="true" inputId="binary" formControlName="isParent"
+                        [(ngModel)]="generalConfigModel.isSpecialScheme"></p-checkbox>
+                        <span class="ml-2" for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.IS_SPECIAL_SCHEME' | translate}}</span>
+                    </div>
+                </div> -->
+
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.IS_SPECIAL_SCHEME' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist"   placeholder="select" 
+                        formControlName="isSpecialScheme" [(ngModel)]="generalConfigModel.isSpecialScheme"></p-dropdown>
+                    </div>
+                </div> 
+                 </div>  
+                 <div class="row g-3 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.MIN_DEPOSIT_AMOUNT' | translate}}</label>
+                        <div>
+                            <p-inputNumber id="bunit_txt_name" formControlName="minDepositAmount"
+                                [(ngModel)]="generalConfigModel.minDepositAmount" mode="currency" inputId="currency-india" currency="INR"
+                                locale="en-IN" (keyup)="checkForAmount()" styleClass="currency"> </p-inputNumber>
+                            <p-message severity="error" text="Enter Valid Amount"
+                                *ngIf="!generalconfigform.controls['minDepositAmount'].valid && generalconfigform.controls['minDepositAmount'].dirty">
+                            </p-message>
+                        </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.MAX_DEPOSIT_AMOUNT' |
+                                translate}}
+                            </label>
+                      
+                        <p-inputNumber id="bunit_txt_name" formControlName="maxDepositAmount"
+                            [(ngModel)]="generalConfigModel.maxDepositAmount" mode="currency" inputId="currency-india"
+                            currency="INR" locale="en-IN" (keyup)="checkForAmount()"> </p-inputNumber>
+            
+                        <p-message severity="error" text="Enter Valid Amount"
+                            *ngIf="!generalconfigform.controls['maxDepositAmount'].valid && generalconfigform.controls['maxDepositAmount'].dirty">
+                        </p-message>
+                    </div>
+                    </div>
+            
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.MIN_TENURE' | translate}}
+                            </label>
+                        
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="minTenure"
+                                [(ngModel)]="generalConfigModel.minTenure" pKeyFilter="int" (keyup)="checkForAmount()">
+                            <p-message severity="error" text="Enter Valid Tenure"
+                                *ngIf="!generalconfigform.controls['minTenure'].valid && generalconfigform.controls['minTenure'].dirty">
+                            </p-message>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.MAX_TENURE' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="maxTenure"
+                                [(ngModel)]="generalConfigModel.maxTenure" pKeyFilter="int" (keyup)="checkForAmount()">
+                            <p-message severity="error" text="Enter Valid Tenure"
+                                *ngIf="!generalconfigform.controls['maxTenure'].valid && generalconfigform.controls['maxTenure'].dirty">
+                            </p-message>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                        <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.IS_AUTO_RENEWAL' | translate}}</label>
+                            <p-dropdown [options]="isSpecialSchemelist"   placeholder="select" 
+                            formControlName="isAutoRenewal" [(ngModel)]="generalConfigModel.isAutoRenewal"></p-dropdown>
+                        </div>
+                    </div> 
+            
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.EFFECTIVE_START_DATE' |
+                                translate}}
+                            </label>
+                      
+                        <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true"
+                            yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                            id="work_flow_start_date" [(ngModel)]="generalConfigModel.effectiveStartDate"
+                            [minDate]="minDate"></p-calendar>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+    </form>
+  
+    
+</div>

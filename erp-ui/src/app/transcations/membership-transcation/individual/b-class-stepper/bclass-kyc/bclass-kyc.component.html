@@ -1,0 +1,178 @@
+<div class="col-12">
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">individual(class-B)</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">Rajasekhar</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">B.E/B.tech</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">9789978956</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12"></div>
+    
+
+    <div class="col-12">
+
+        <h6 class="sub-heading">{{'ERP.KYC' | translate}}<span class="admission-text">(Admission
+            number:&nbsp;123456789)</span></h6>
+            <div class="col-12">
+       
+
+            <div class="border p-3 col-12">
+                <p-button icon="fa fa-plus" label="{{'ADD ANOTHER DOCUMENT' | translate}}"  [disabled]="" (click)="addDocument()"></p-button>
+                <div class="col-12">
+                
+                    <div class="row g-3">
+                
+                
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                           
+                            <div class="stepper-kyc-card p-3 mb-2" *ngFor="let row of proofDocumentList">
+                                <div class="row" *ngIf="showDocumentPreview">
+                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document TypeName</h6>
+                                            <p class="label-input-text">{{ row.name }}
+                                            </p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Number</h6>
+                                            <p class="label-input-text">{{ nameAsPerDocument }}</p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Name As Per Document</h6>
+                                            <p class="label-input-text">{{ documentNumber }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 justify-content-end">
+                                        <div class="text-right">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn" (click)="toggleDocumentForm(row)"
+                                                [disabled]=""></p-button>
+                                            <p-button icon="fa fa-trash" class="kyc-edit-btn"></p-button>
+                                        </div>
+                        
+                                        <div class="col-12 stepperkyc-image">
+                                            <div class="col-12 text-right" *ngFor="let img of row.name">
+                                                <div class="col-12 p-0"
+                                                    *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="{{img.imageValue}}" class="upload-img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-12 global-border bg-label-colorfull p-3 pt-4" *ngIf="showDocumentForm2">
+                        
+                                <div class="p-grid p-fluid">
+                                    <div class="p-col-12">
+                                        <label for="documentType2">{{'ERP.DOCUMENT_TYPE' | translate}}</label>
+                                        <p-dropdown id="documentType2" [options]="documentTypes" optionLabel="name"
+                                            placeholder="Select Document Type"></p-dropdown>
+                                    </div>
+                                    <div class="p-col-12">
+                                        <label for="nameAsPerDocument2">{{'ERP.NAME_AS_PER_DOCUMENT' | translate}}</label>
+                                        <input id="nameAsPerDocument2" type="text" />
+                                    </div>
+                                    <div class="p-col-12">
+                                        <label for="documentNumber2">{{'ERP.DOCUMENT_NUMBER' | translate}}</label>
+                                        <input id="documentNumber2" type="text" />
+                                    </div>
+                                    <div class="p-col-12">
+                                        <div class="form-label">
+                                            <span> {{'ERP.UPLOAD_DOCUMENT' |translate}}</span>
+                                            <div class="uplodad-style align-items-center">
+                                    
+                                                <p-fileUpload #fileUpload name="myfile[]" id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                                    accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"  formContralName="fileUpload">
+                                                </p-fileUpload>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-col-12">
+                                        <div class="justify-content-end d-flex">
+                                            <p-button type="button" label="Save"  (click)="save2()"></p-button>
+                                            <p-button type="button" label="Hide"  (click)="toggleDocumentForm2()"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                        
+                
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mt-3 p-3 pt-4 global-border bg-label-colorfull"
+                            *ngIf="showDocumentForm">
+                        
+                            <div class="p-grid ">
+                                <div class="p-col-12">
+                                    <label for="documentType">{{'ERP.DOCUMENT_TYPE' | translate}}</label>
+                                    <p-dropdown id="documentType" [options]="documentTypes" optionLabel="name"
+                                        placeholder="Select Document Type"></p-dropdown>
+                                </div>
+                                <div class="p-col-12">
+                                    <label for="documentNumber">{{'ERP.DOCUMENT_NUMBER' | translate}}</label>
+                                    <input id="documentNumber" type="text" />
+                                </div>
+                                <div class="p-col-12">
+                                    <label for="nameAsPerDocument">{{'ERP.NAME_AS_PER_DOCUMENT' | translate}}</label>
+                                    <input id="nameAsPerDocument" type="text" />
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="form-label">
+                                        <span> {{'ERP.UPLOAD_DOCUMENT' |translate}}</span>
+                                        <div class="uplodad-style align-items-center">
+                                
+                                            <p-fileUpload #fileUpload name="myfile[]" id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                                accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"  formContralName="fileUpload">
+                                            </p-fileUpload>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="justify-content-end d-flex">
+                                        <p-button type="button" label="Cancel" (click)="cancel()"></p-button>
+                                        <p-button type="button" label="Save" (click)="save()"></p-button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                       
+
+
+                </div>
+            </div>
+          
+
+      
+
+    </div>
+</div>

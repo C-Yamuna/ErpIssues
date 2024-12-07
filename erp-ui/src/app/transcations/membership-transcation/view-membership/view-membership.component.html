@@ -1,0 +1,2239 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.MEMBERSHIP' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'ERP.VIEW' | translate}}</div>
+            <!-- <div class="justify-content-end view-popup-top">
+                <p-button label="{{'ERP.RENEWAL_ACCOUNTS' | translate}}" [outlined]="true" badge="1"
+                    class="top-badge-btn btn-outline-0"></p-button>
+                <p-button label="{{'ERP.MATURED_ACCOUNTS' | translate}}" [outlined]="true" badge="3"
+                    class="top-badge-btn btn-outline-0"></p-button>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Individual view screen -->
+    <div class="col-12 p-0" *ngIf="selectedMemberType == 'Individual'">
+        <div class="row">
+            <!-- Leftside card -->
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 left-sidecard">
+                <div class="col-12 basic-view side-card-style">
+                    <div class="col-12 inner-border">
+                        <div class="side-card-header-border">
+                            <div class="row">
+                                <div class="col-10 py-0">
+                        <h6 class="side-card-header">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+                    </div>
+                    <div class="col-2 py-0" *ngIf="editbtn">
+                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                        (click)="editMembershipDetails(memberBasicDetailsModel,0)"></p-button>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Admission No & Image-part -->
+                            <div class="col-xl-12 col-lg-12 col-md-3 col-sm-4 col-xs-4">
+                                <!-- <div class="col-12 pic-sig-status">
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <img src="assets/images/avatar-table.png" class="image-user">
+                                        <p class="active-status"></p>
+                                        <img src="assets/images/sign.png" class="image-sign">
+                                    </div>
+                                    </div> -->
+                                    <div class="col-12 pic-sig-status">
+                                        <div class="d-flex justify-content-start px-3 py-0 mb-2" *ngIf ="photoCopyFlag">
+                                            <div class="px-0" *ngFor="let img of memberBasicDetailsModel.multipartFileListForPhotoCopy">
+                                                <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="{{img.imageValue}}" class="image-user">
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="assets\images\pdf.png" class="image-user">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <p class="active-status"></p>
+                                            <div class="px-0" *ngFor="let img of memberBasicDetailsModel.multipartFileListForsignatureCopyPath">
+                                                <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="{{img.imageValue}}" class="image-sign">
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="assets\images\pdf.png" class="image-sign">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-center mb-4" *ngIf ="!photoCopyFlag">
+                                        <div>
+                                            <img src="assets/images/no-image.jpg" class="image-user">
+                                        </div>
+                                        <p class="active-status"></p>
+                                        <div>
+                                            <img src="assets/images/no-image.jpg" class="image-sign">
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                                    <p class="font-semibold text-break">{{memberBasicDetailsModel.admissionNumber}}</p>
+                                </div>
+                                <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.NAME' | translate}}</span>
+                                    <p class="font-semibold text-break"><span class="border-bottom">{{memberBasicDetailsModel.name}}</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-8 col-xs-8 mt-2">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-id-card-o"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.memberTypeName}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.admissionDateVal}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.DATE_OF_BIRTH' | translate}}&{{'ERP.AGE' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.memDobVal}}&nbsp;&{{ memberBasicDetailsModel.age }}</p>
+
+
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-phone-square"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.CONTACT' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.mobileNumber}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-envelope"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.EMAIL' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.emailId}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.AADHAR' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.aadharNumber}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.PAN' | translate}}</p>
+                                        <p class="label-input-text">{{memberBasicDetailsModel.panNumber}}</p>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <div class="col-10 d-flex p-0">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-check-circle-o"></i></span>
+                                        <div>
+                                        <p class="label-view text-fontwt">{{'ERP.KYC' | translate}}</p>
+                                        <p class="label-input-text">Approved</p>
+                                    </div>
+                                        </div>
+                                    <div class="col-2 kyc-done icon-size text-right"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+                                    </div>
+                                  
+                                    <div class="col-12 color-light justify-content-end text-right">
+                                        <a class="fst-italic text-light cursor-pointer" (click)="onClickMemberIndividualMoreDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 right-sidecard">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="d-flex">
+                                                <span class="card-icon"><i class="fa fa-id-badge"></i></span>
+                                                <h6 class="sub-heading">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" *ngIf="editbtn">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                (click)="editMembershipDetails(memberBasicDetailsModel,0)"></p-button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.MARITAL_STATUS' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.maritalStatusName}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.relationTypeName}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.RELATION_NAME' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.relativeName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.QUALIFICATION' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.qualificationName}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.OCCUPATION' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.occupationName}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.CASTE' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.casteName}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ht-3rem">
+                                            <h6 class="label-view">{{'ERP.COMMUNITYS' | translate}}</h6>
+                                            <p class="label-input-text">{{memberBasicDetailsModel.communityName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div> -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-podcast"></i></span>
+                                                    <h6 class="sub-heading">{{'ERP.KYC' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editMembershipDetails(memberBasicDetailsModel,1)"></p-button>
+                        
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let document of kycGridList ; let i = index">
+                                                    <div class="stepper-kyc-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                                            <div class="card-leftbody">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Type</h6>
+                                                                <p class="label-input-text">{{document.kycDocumentTypeName}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Number</h6>
+                                                                <p class="label-input-text">{{document.documentNumber}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Name As Per Document</h6>
+                                                                <p class="label-input-text docname-texteclipse">{{document.nameAsPerDocument}}</p>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                                            <div class="kycview-done icon-size text-right"><i class="fa fa-check-circle mr-0" aria-hidden="true"></i></div>
+                                                            <div class="col-12 px-0">
+                                                                <div class="col-12 px-0" *ngFor="let img of document.multipartFileList">
+                                                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                        <a href="{{img.imageValue}}">
+                                                                            <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-user-o"></i></span>
+                                                    <h6 class="sub-heading">{{'MEMBERSHIP_TRANSACTION.COMMUNICATION' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editMembershipDetails(memberBasicDetailsModel,2)"></p-button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <h6 class="super-sub-heading mt-1">{{'ERP.REGISTERED' | translate}}</h6>
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.stateName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.districtName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.subDistrictName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.villageName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.address1}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberCommunicationDetailsModel.pinCode}}
+                                                            </p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                 
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                            <div class="row">
+                                                                <h6 class="super-sub-heading mt-1">{{'ERP.PERMANENT' | translate}}</h6>
+                                                            
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentStateName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentSubDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentVillageName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentAddress1}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberCommunicationDetailsModel.permanentPinCode}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 view-table">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-location-arrow"></i></span>
+                                        <h6 class="sub-heading">{{'ERP.LAND_DETAILS' | translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editMembershipDetails(memberBasicDetailsModel,3)"></p-button>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+                                    <p-table [columns]="memberLandDetails" [value]="memberLandDetailsList" dataKey="id"
+                                        selectionMode="single" [rows]="5" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false"
+                                        [paginator]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th>{{'ERP.PASSBOOK_NUMBER' | translate}}</th>
+                                                <th> {{'ERP.SURVEY_NO' | translate}}</th>
+                                                <th>{{'ERP.LAND_IN_ACRS' | translate}}</th>
+                                                <th>{{'ERP.LAND_IN_CENTS' | translate}}</th>
+                                                <th>{{'ERP.SOIL_TYPE' | translate}}</th>
+                                                <th>{{'ERP.WATER_SOURCE_TYPE' | translate}}</th>
+                                                <th>{{'ERP.FILE' | translate}}</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-memberLandDetailsModel let-editing="editing" let-ri="rowIndex">
+                                            <tr [pEditableRow]="memberLandDetailsModel">
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{memberLandDetailsModel.passbookNumber}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{memberLandDetailsModel.surveyNumber}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{memberLandDetailsModel.landInUnits}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{memberLandDetailsModel.landInSubUnits}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                      <ng-template pTemplate="output">
+                                                        {{memberLandDetailsModel.soilTypeName}}
+                                                      </ng-template>
+                                                    </p-cellEditor>
+                                                  </td>
+                                                  <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{ memberLandDetailsModel.waterSourceName }}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                        
+                                                <!-- File Upload Cell Editor -->
+                                               
+                                                <td>
+                                                    <p-cellEditor class="table-uploadfilestyle">
+                                                        <ng-template pTemplate="output">
+                                                            <div class="d-flex pt-1"  *ngFor="let img of memberLandDetailsModel.multipleFilesList">
+                                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                                            height="22"></a>
+                                                                </div> 
+                                                                <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                                    <a href="{{img.imageValue}}">
+                                                                        <img src="assets\images\pdf.png" class="image-user">
+                                                                    </a>
+                                                                </div> 
+                                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                    {{img.fileName}}</div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-user-o"></i></span>
+                                                    <h6 class="sub-heading">{{'ERP.NOMINEE' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editMembershipDetails(memberBasicDetailsModel,4)"></p-button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="stepper-nominee-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <h6 class="super-sub-heading mt-1">{{'ERP.NOMINEE' | translate}}</h6>
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+                                                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex align-items-center">
+                                                                    <div class="card-leftbody">
+                                                                    <div class="row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.TYPE_OF_NOMINEE' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeTypeName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.RELATIONSHIP_WITH_MEMBER' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.relationTypeName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.NAME' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.AADHAR_NUMBER' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeAadharNumber}}</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.MOBILE_NUMBER' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeMobileNumber}}</p>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.EMAIL' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeEmailId}}
+                                                            </p>
+                                                        </div>
+                                                        <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.UPLOAD_FILE' | translate}}</h6>
+                                                            <p class="label-input-text">{{memberNomineeDetailsModel.nomineeFilePath}}</p>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                    </div>
+                                                   
+                                            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                                                <div class="col-12 px-0">
+                                                    <div class="px-0" *ngFor="let img of memberNomineeDetailsModel.multipartFileList">
+                                                        <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                                            <a href="{{img.imageValue}}">
+                                                                <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                            <a href="{{img.imageValue}}">
+                                                                <img src="assets\images\pdf.png" class="pdf-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    <!-- <div class="col-lg-3 col-md-5 col-sm-5 justify-content-end">
+                                                            
+                                                        <div class="col-12 pdf-image">
+                                                                    <div class="col-12 text-center">
+                                                                        <img src="assets/images/pdf.png" class="uploadpdf-img">
+                                                            </div>
+                                                            </div>
+                                                    </div> -->
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngIf="guardainEnableFlag">
+                                                    <div class="stepper-nominee-card p-3 mb-2">
+                                                            <div class="row">
+                                                                <h6 class="super-sub-heading mt-1">{{'ERP.GUARDIAN' | translate}}</h6>
+                                                            
+                                                        <!-- <div class="col-6" *ngIf="editbtn">
+                                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                            (click)="editMembershipDetails(memberBasicDetailsModel,4)"></p-button>
+                                                        </div> -->
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+                                                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex align-items-center">
+                                                                    <div class="card-leftbody">
+                                                                    <div class="row">
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.TYPE_OF_GUARDAIN' | translate}}</h6>
+                                                                    <p class="label-input-text">
+                                                                        {{memberGuardianDetailsDetailsModel.guardianTypeName}}</p>
+                                                                </div>
+                                                            
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}</h6>
+                                                                    <p class="label-input-text">
+                                                                        {{memberGuardianDetailsDetailsModel.relationshipTypeName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.NAME' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberGuardianDetailsDetailsModel.guardianName}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.AADHAR_NUMBER' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberGuardianDetailsDetailsModel.guardianAadharNumber}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'ERP.MOBILE_NUMBER' | translate}}</h6>
+                                                                    <p class="label-input-text">{{memberGuardianDetailsDetailsModel.guardianMobileNumber}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                                    <h6 class="label-view">{{'ERP.EMAIL' | translate}}</h6>
+                                                                    <p class="label-input-text">
+                                                                        {{memberGuardianDetailsDetailsModel.guardianEmailId}}</p>
+                                                                </div>
+                                                                <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.UPLOAD_FILE' | translate}}</h6>
+                                                                    <p class="label-input-text">
+                                                                        {{memberGuardianDetailsDetailsModel.kycFilePath}}</p>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                                                            <div class="col-12 px-0">
+                                                                <div class="px-0" *ngFor="let img of memberGuardianDetailsDetailsModel.multipartsFileList">
+                                                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                                                        <a href="{{img.imageValue}}">
+                                                                            <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                                        <a href="{{img.imageValue}}">
+                                                                            <img src="assets\images\pdf.png" class="pdf-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-lg-3 col-md-5 col-sm-5 justify-content-end">
+                                                            <div class="col-12 pdf-image">
+                                                                        <div class="col-12 text-center">
+                                                                            <img src="assets/images/pdf.png" class="uploadpdf-img">
+                                                                </div>
+                                                                </div>
+                                                        </div> -->
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 view-table">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-clone"
+                                        ></i></span>
+                                        <h6 class="sub-heading">{{'ERP.FAMILY_DETAILS' | translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editMembershipDetails(memberBasicDetailsModel,5)"></p-button>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+                                    <p-table [columns]="memberFamilyDetails" [value]="membershipFamilyDetailsList"
+                                        dataKey="id" selectionMode="single" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                                        [paginator]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th>{{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}</th>
+                                                <th>{{'ERP.SURNAME' | translate}}</th>
+                                                <th>{{'ERP.NAME' | translate}}</th>
+                                                <th>{{'ERP.DATE_OF_BIRTH' | translate}}</th>
+                                                <th>{{'ERP.AGE' | translate}}</th>
+                                                <th>{{'ERP.QUALIFICATON' | translate}}</th>
+                                                <th>{{'ERP.AADHAR_NUMBER' | translate}}</th>
+                                                <th>{{'ERP.MOBILE_NUMBER' | translate}}</th>
+                                                <th>{{'ERP.UPLOAD_DOCUMENT' | translate}}</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                                            <tr [pEditableRow]="rowData">
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">
+                                                    {{rowData.relationTypeName}}
+                                                  </ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.surname}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.name}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.dob}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.age}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">
+                                                    {{rowData.qualificationName}}
+                                                  </ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.aadharNumber}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                              <td>
+                                                <p-cellEditor>
+                                                  <ng-template pTemplate="output">{{rowData.mobileNumber}}</ng-template>
+                                                </p-cellEditor>
+                                              </td>
+                                            <td>
+                                              <p-cellEditor class="table-uploadfilestyle">
+                                                  <ng-template pTemplate="output">
+                                                      <div class="d-flex pt-1"  *ngFor="let img of rowData.multipleFilesList">
+                                                          <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                              <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                                      height="22"></a>
+                                                          </div> 
+                                                          <div class="col-12 p-0" *ngIf="img.fileType =='pdf'">
+                                                            <a href="{{img.imageValue}}">
+                                                                <img src="assets\images\pdf.png" class="image-user">
+                                                            </a>
+                                                        </div> 
+                                                          <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                              {{img.fileName}}</div>
+                                                      </div>
+                                                  </ng-template>
+                                              </p-cellEditor>
+                                          </td>
+                                           </tr>
+                                          </ng-template>
+                                    </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 view-table">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-map-o"
+                                        ></i></span>
+                                        <h6 class="sub-heading">{{'ERP.ASSET_DETAILS' | translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editMembershipDetails(memberBasicDetailsModel,6)"></p-button>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+                                    <p-table [columns]="memberAssetDetails" [value]="membershipAssetsDetailsList"
+                                        dataKey="id" selectionMode="single" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                                        [paginator]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th>{{'MEMBERSHIPCONFIG.ASSET_TYPE' | translate}}</th>
+                                                <th>{{'MEMBERSHIPCONFIG.ASSET_NAME' | translate}}</th>
+                                                <th>{{'MEMBERSHIPCONFIG.REGISTERED_NO' | translate}}</th>
+                                                <th>{{'MEMBERSHIPCONFIG.REGISTERED_DATE' | translate}}</th>
+                                                <th>{{'MEMBERSHIPCONFIG.INITIAL_VALUE' | translate}}</th>
+                                                <th> {{'MEMBERSHIPCONFIG.CURRENT_VALUE' | translate}}</th>
+                                                <th>{{'MEMBERSHIPCONFIG.DEPRECIATION_PERCENTAGE' | translate}}</th>
+                                                <th>{{'ERP.FILE' | translate}}</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                                            <tr [pEditableRow]="rowData">
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">
+                                                            {{rowData.assetTypeName}}
+                                                        </ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                            
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.assetName}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.registeredNumber}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.registeredDate}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.initialValue}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.currentValue}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor>
+                                                        <ng-template pTemplate="output">{{rowData.depreciationPercentage}}</ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                                <td>
+                                                    <p-cellEditor class="table-uploadfilestyle">
+                                                        <ng-template pTemplate="output">
+                                                            <div  class="d-flex pt-1" *ngFor="let img of rowData.multipartFileList">
+                                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                                            height="22"></a>
+                                                                </div>  
+                                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                    {{img.fileName}}</div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-cellEditor>
+                                                </td>
+                                               
+                                               
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-scrollPanel> 
+
+                <div class="col-12 viewbottom-footer icon-size">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 mt-4">
+                            <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top" ></p-button>
+                            <p-button  icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Status</h6>
+                            <p class="status-style statusactive">Approved</p>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Remarks</h6>
+                            <p class="label-input-text">Successfully Completed</p>
+                        </div>
+                         -->
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-8 mt-4">
+                            <div class="d-flex justify-content-end">
+                            <p-button (click)="back()" label="BACK"></p-button>
+                            <p-button *ngIf="isShowSubmit" label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group view screen -->
+     <div class="col-12 p-0" *ngIf="selectedMemberType == 'Group'">
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 left-sidecard">
+                <div class="col-12 basic-view side-card-style">
+                    <div class="col-12 inner-border">
+                        <div class="side-card-header-border">
+                            <div class="row">
+                                <div class="col-10 py-0">
+                        <h6 class="side-card-header">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+                    </div>
+                    <div class="col-2 py-0" *ngIf="editbtn">
+                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                    (click)="editGroupDetails(memberGroupBasicDetails,0)"></p-button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <!-- Admission No & Image-part -->
+                        <div class="col-xl-12 col-lg-12 col-md-3 col-sm-4 col-xs-4">
+                            <div class="col-12 pic-sig-status">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <img src="assets/images/avatar-table.png" class="image-user">
+                                    <p class="active-status"></p>
+                                    <img src="assets/images/sign.png" class="image-sign">
+                                </div>
+                                </div>
+                            <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                                    <p class="font-semibold text-break">{{memberGroupBasicDetails.admissionNumber}}</p>
+                                </div>
+                                <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.NAME' | translate}}</span>
+                                    <p class="font-semibold text-break"><span class="border-bottom">{{memberGroupBasicDetails.name}}</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-8 col-xs-8 mt-2">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-id-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.memberTypeName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.admissionDateVal}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.REGISTERED_DATE' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.registrationDateVal}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-id-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.POC_NAME' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.pocName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-phone-square"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.POC_MOBILE_NO' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.pocNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.PAN' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.panNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.TAN' | translate}}</p>
+                                            <p class="label-input-text">{{memberGroupBasicDetails.tanNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <div class="col-10 d-flex p-0">
+                                            <span class="basicdata-icons icon-size"><i class="fa fa-check-circle-o"></i></span>
+                                            <div>
+                                                <p class="label-view text-fontwt">{{'ERP.KYC' | translate}}</p>
+                                                <p class="label-input-text">Approved</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 kyc-done icon-size text-right"><i class="fa fa-check-circle"
+                                                aria-hidden="true"></i></div>
+                                    </div>
+                                    <div class="col-12 color-light justify-content-end text-right">
+                                        <a class="fst-italic text-light cursor-pointer" (click)="viewMoreGroupDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 right-sidecard">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-podcast"></i></span>
+                                                    <h6 class="sub-heading">{{'ERP.KYC' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editGroupDetails(memberGroupBasicDetails,2)"></p-button>
+                        
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let document of groupKycGridList ; let i = index">
+                                                    <div class="stepper-kyc-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                                            <div class="card-leftbody">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Type</h6>
+                                                                <p class="label-input-text">{{document.kycDocumentTypeName}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Number</h6>
+                                                                <p class="label-input-text">{{document.documentNumber}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Name As Per Document</h6>
+                                                                <p class="label-input-text docname-texteclipse">{{document.nameAsPerDocument}}</p>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                                            <div class="kycview-done icon-size text-right"><i class="fa fa-check-circle mr-0" aria-hidden="true"></i></div>
+                                                                
+                                                            <div class="col-12 px-0">
+                                                                <div class="col-12 px-0" *ngFor="let img of document.multipartFileList">
+                                                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                        <a href="{{img.imageValue}}">
+                                                                            <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                               
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-user-o"></i></span>
+                                                    <h6 class="sub-heading">{{'MEMBERSHIP_TRANSACTION.COMMUNICATION' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editGroupDetails(memberGroupBasicDetails,1)"></p-button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <h6 class="super-sub-heading mt-1">{{'ERP.REGISTERED' | translate}}</h6>
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.stateName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.districtName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.subDistrictName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.villageName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.address1}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                            <p class="label-input-text">{{groupCommunicationModel.pincode}}
+                                                            </p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                 
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                            <div class="row">
+                                                                <h6 class="super-sub-heading mt-1">{{'ERP.PERMANENT' | translate}}</h6>
+                                                            
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentStateName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentSubDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentVillageName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentAddress1}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                                    <p class="label-input-text">{{groupCommunicationModel.permanentPincode}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" >
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-male"></i></span>
+                                        <h6 class="sub-heading">{{'MEMBERSHIPCONFIG.PROMOTER_DETAILS' | translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editGroupDetails(memberGroupBasicDetails,0)"></p-button>
+                                </div>
+                            </div>
+    
+                            <div class="globel-border-top-color"></div>
+                            <p-table [columns]="memberPromoterDetails" [value]="groupPromoterList" dataKey="id"
+                            selectionMode="single" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                            [paginator]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <!-- <th *ngFor="let col of memberPromoterDetails">
+                                        {{col.header | translate}}
+                                    </th> -->
+                                    <th>{{'ERP.SURNAME' | translate}}</th>
+                                    <th>{{'ERP.NAME' | translate}}</th>
+                                    <th>{{'ERP.TYPE_OF_OPERATOR' | translate}}</th>
+                                    <th>{{'MEMBERSHIP_TRANSACTION.AUTHORIZED_SIGNATORY' | translate}}</th>
+                                    <th>{{'ERP.DATE_OF_BIRTH' | translate}}</th>
+                                    <th>{{'ERP.AGE' | translate}}</th>
+                                    <th>{{'ERP.GENDER' | translate}}</th>
+                                    <th>{{'ERP.MARITAL_STATUS' | translate}}</th>
+                                    <th>{{'ERP.MOBILE_NUMBER' | translate}}</th>
+                                    <th>{{'ERP.EMAIL' | translate}}</th>
+                                    <th>{{'ERP.AADHAR_NUMBER' | translate}}</th>
+                                    <th> {{'ERP.START_DATE' | translate}}</th>
+                                    <th> {{'ERP.UPLOAD_IMAGE' | translate}}</th>
+                                    <th> {{'ERP.UPLOAD_SIGNATURE' | translate}}</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-promoterDetailsModel let-editing="editing"
+                            let-ri="rowIndex">
+                            <tr [pEditableRow]="promoterDetailsModel">
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">{{promoterDetailsModel.surname}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">{{promoterDetailsModel.name}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">
+                                            {{promoterDetailsModel.operatorTypeName}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">
+                                            {{promoterDetailsModel.authorizedSignatoryName}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.dob}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">{{promoterDetailsModel.age}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.genderTypeName}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.maritalStatusName}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.mobileNumber}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.emailId}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.aadharNumber}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template
+                                            pTemplate="output">{{promoterDetailsModel.startDate}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">
+                                            <div class="d-flex pt-1"  *ngFor="let img of promoterDetailsModel.multipartFileListForPhotoCopy">
+                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                            height="22"></a>
+                                                </div>  
+                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="output">
+                                            <div class="d-flex pt-1"  *ngFor="let img of promoterDetailsModel.multipartFileListForsignatureCopyPath">
+                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                            height="22"></a>
+                                                </div>  
+                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                               
+                            </tr>
+                        </ng-template>
+                        </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-scrollPanel>
+                <div class="col-12 viewbottom-footer icon-size">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 mt-4">
+                            <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top" ></p-button>
+                            <p-button  icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Status</h6>
+                            <p class="status-style statusactive">Approved</p>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Remarks</h6>
+                            <p class="label-input-text">Successfully Completed</p>
+                        </div> -->
+                        
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-8 mt-4">
+                            <div class="d-flex justify-content-end">
+                            <p-button (click)="back()" label="BACK"></p-button>
+                            <p-button *ngIf="isShowSubmit" label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12"></div>
+            </div>
+        </div>
+     </div>
+
+    <!----Institution view screen-->
+        <div class="col-12 p-0" *ngIf="selectedMemberType == 'Institution'">
+            <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 left-sidecard">
+                <div class="col-12 basic-view side-card-style">
+                    <div class="col-12 inner-border">
+                        <div class="side-card-header-border">
+                            <div class="row">
+                                <div class="col-10 py-0">
+                        <h6 class="side-card-header">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+                    </div>
+                    <div class="col-2 py-0" *ngIf="editbtn">
+                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                        (click)="editInstitutionDetails(institutionBasicDetailsModel,0)"></p-button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <!-- Admission No & Image-part -->
+                            <div class="col-xl-12 col-lg-12 col-md-3 col-sm-4 col-xs-4">
+                                <div class="col-12 pic-sig-status">
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <img src="assets/images/avatar-table.png" class="image-user">
+                                        <p class="active-status"></p>
+                                        <img src="assets/images/sign.png" class="image-sign">
+                                    </div>
+                                    </div>
+                                <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                                    <p class="font-semibold text-break">{{institutionBasicDetailsModel.admissionNumber}}</p>
+                                </div>
+                                <div class="text-center min-h-50px">
+                                    <span class="text-fontwt">{{'ERP.NAME' | translate}}</span>
+                                    <p class="font-semibold text-break"><span
+                                            class="border-bottom">{{institutionBasicDetailsModel.name}}</span>
+                                    </p>
+                                </div>
+                            </div>
+            
+                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-8 col-xs-8 mt-3">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-id-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.memberTypeName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.admissionDateVal}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-calendar"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.REGISTERED_DATE' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.registrationDateVal}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-id-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.POC_NAME' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.pocName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-phone-square"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.POC_MOBILE_NO' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.pocNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.PAN' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.panNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <span class="basicdata-icons icon-size"><i class="fa fa-address-card-o"></i></span>
+                                        <div>
+                                            <p class="label-view text-fontwt">{{'ERP.TAN' | translate}}</p>
+                                            <p class="label-input-text">{{institutionBasicDetailsModel.tanNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                        <div class="col-10 d-flex p-0">
+                                            <span class="basicdata-icons icon-size"><i class="fa fa-check-circle-o"></i></span>
+                                            <div>
+                                                <p class="label-view text-fontwt">{{'ERP.KYC' | translate}}</p>
+                                                <p class="label-input-text">Approved</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 kyc-done icon-size text-right"><i class="fa fa-check-circle"
+                                                aria-hidden="true"></i></div>
+                                    </div>
+                                    <div class="col-12 color-light justify-content-end text-right">
+                                        <a class="fst-italic text-light cursor-pointer" (click)="viewMoreInstitutionDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 right-sidecard">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-podcast"></i></span>
+                                                    <h6 class="sub-heading">{{'ERP.KYC' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editInstitutionDetails(institutionBasicDetailsModel,2)"></p-button>
+                        
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let document of institutionKycList ; let i = index">
+                                                    <div class="stepper-kyc-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                                            <div class="card-leftbody">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Type</h6>
+                                                                <p class="label-input-text">{{document.kycDocumentTypeName}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Document Number</h6>
+                                                                <p class="label-input-text">{{document.documentNumber}}</p>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                <h6 class="label-view">Name As Per Document</h6>
+                                                                <p class="label-input-text">{{document.nameAsPerDocument}}</p>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                                            <div class="kycview-done icon-size text-right"><i class="fa fa-check-circle mr-0" aria-hidden="true"></i></div>
+                                                                
+                                                            <div class="col-12 px-0">
+                                                                <div class="col-12 px-0" *ngFor="let img of document.multipartFileList">
+                                                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                        <a href="{{img.imageValue}}">
+                                                                            <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                               
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-user-o"></i></span>
+                                                    <h6 class="sub-heading">{{'MEMBERSHIP_TRANSACTION.COMMUNICATION' | translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editInstitutionDetails(institutionBasicDetailsModel,1)"></p-button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-0">
+                                            <div class="row g-3">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                    <div class="row">
+                                                        <h6 class="super-sub-heading mt-1">{{'ERP.REGISTERED' | translate}}</h6>
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.stateName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.districtName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.subDistrictName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.villageName}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.address1}}</p>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                            <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                            <p class="label-input-text">{{instituteCommunicationModel.pinCode}}
+                                                            </p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                 
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="nominee-card p-3 mb-2">
+                                                            <div class="row">
+                                                                <h6 class="super-sub-heading mt-1">{{'ERP.PERMANENT' | translate}}</h6>
+                                                            
+                                                        <div class="col-12">
+                                                            <div class="row mt-2">
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.STATES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentStateName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.DISTRICTS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.SUB_DISTRICT' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentSubDistrictName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.VILLAGES' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentVillageName}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.ADDRESS' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentAddress1}}</p>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-6 min-h-50px">
+                                                                    <h6 class="label-view">{{'MEMBERSHIP_TRANSACTION.PINCODE' | translate}}</h6>
+                                                                    <p class="label-input-text">{{instituteCommunicationModel.permanentPinCode}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-male"></i></span>
+                                        <h6 class="sub-heading">{{'MEMBERSHIPCONFIG.PROMOTER_DETAILS' | translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editInstitutionDetails(institutionBasicDetailsModel,0)"></p-button>
+                                </div>
+                            </div>
+    
+                            <div class="globel-border-top-color"></div>
+                            <p-table [columns]="memberPromoterDetails" [value]="institutePromoterList" dataKey="id"
+                                    selectionMode="single" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                                    [paginator]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <!-- <th *ngFor="let col of memberPromoterDetails">
+                                                {{col.header | translate}}
+                                            </th> -->
+                                            <th>{{'ERP.SURNAME' | translate}}</th>
+                                            <th>{{'ERP.NAME' | translate}}</th>
+                                            <th>{{'ERP.TYPE_OF_OPERATOR' | translate}}</th>
+                                            <th>{{'MEMBERSHIP_TRANSACTION.AUTHORIZED_SIGNATORY' | translate}}</th>
+                                            <th>{{'ERP.DATE_OF_BIRTH' | translate}}</th>
+                                            <th>{{'ERP.AGE' | translate}}</th>
+                                            <th>{{'ERP.GENDER' | translate}}</th>
+                                            <th>{{'ERP.MARITAL_STATUS' | translate}}</th>
+                                            <th>{{'ERP.MOBILE_NUMBER' | translate}}</th>
+                                            <th>{{'ERP.EMAIL' | translate}}</th>
+                                            <th>{{'ERP.AADHAR_NUMBER' | translate}}</th>
+                                            <th>{{'ERP.START_DATE' | translate}}</th>
+                                            <th> {{'ERP.UPLOAD_IMAGE' | translate}}</th>
+                                            <th> {{'ERP.UPLOAD_SIGNATURE' | translate}}</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-institutePromoterDetails let-editing="editing"
+                                    let-ri="rowIndex">
+                                    <tr [pEditableRow]="institutePromoterDetails">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.surname}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">{{institutePromoterDetails.name}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">
+                                                    {{institutePromoterDetails.operatorTypeName}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">
+                                                    {{institutePromoterDetails.authorizedSignatoryName}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.dob}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">{{institutePromoterDetails.age}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.genderTypeName}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.maritalStatusName}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.mobileNumber}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.emailId}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.aadharNumber}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+    
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template
+                                                    pTemplate="output">{{institutePromoterDetails.startDate}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">
+                                                    <div class="d-flex pt-1"  *ngFor="let img of institutePromoterDetails.multipartFileListForPhotoCopy">
+                                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                                    height="22"></a>
+                                                        </div>  
+                                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            {{img.fileName}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="output">
+                                                    <div  *ngFor="let img of institutePromoterDetails.multipartFileListForsignatureCopyPath">
+                                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                                    height="22"></a>
+                                                        </div>  
+                                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            {{img.fileName}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        
+                                    </tr>
+                                </ng-template>
+                                </p-table>
+
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+                </p-scrollPanel>
+                <div class="col-12 viewbottom-footer icon-size">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 mt-4">
+                            <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top" ></p-button>
+                            <p-button  icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+                        </div>
+                        <!-- <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Status</h6>
+                            <p class="status-style statusactive">Approved</p>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 ht-3rem">
+                            <h6 class="label-view">Remarks</h6>
+                            <p class="label-input-text">Successfully Completed</p>
+                        </div>
+                         -->
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-8 mt-4">
+                            <div class="d-flex justify-content-end">
+                            <p-button (click)="back()" label="BACK"></p-button>
+                            <p-button *ngIf="isShowSubmit" label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12"></div>
+            </div>
+
+        </div>
+     </div>
+</div>     
+
+<p-dialog header="More Basic Details" [(visible)]="membreIndividualFlag" [style]="{ width: '70vw' }" >
+    <div class="popup-basic-details">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                    <div class="d-flex justify-content-start px-3 py-0 mb-2" *ngIf ="photoCopyFlag">
+                        <div class="px-0" *ngFor="let img of memberBasicDetailsModel.multipartFileListForPhotoCopy">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="image-user">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="image-user">
+                                </a>
+                            </div>
+                        </div>
+                        <p class="active-status"></p>
+                        <div class="px-0" *ngFor="let img of memberBasicDetailsModel.multipartFileListForsignatureCopyPath">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="image-sign">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="image-sign">
+                                </a>
+                            </div>
+                        </div>
+                </div> 
+                <div class="d-flex justify-content-center mb-4" *ngIf ="!photoCopyFlag">
+                    <div>
+                        <img src="assets/images/no-image.jpg" class="image-user">
+                    </div>
+                    <p class="active-status"></p>
+                    <div>
+                        <img src="assets/images/no-image.jpg" class="image-sign">
+                    </div>
+                </div>
+               
+            </div>
+            <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                    <img src="assets/images/avatar-table.png" class="image-user">
+                    <p class="active-status"></p>
+                    <img src="assets/images/sign.png" class="image-sign">
+                </div>
+                </div> -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="fw-semibold">{{ memberBasicDetailsModel.memberTypeName }}&nbsp;({{ memberBasicDetailsModel.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.SURNAME' | translate}}</span>
+                    <p class="fw-semibold">{{ memberBasicDetailsModel.surname}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.NAME' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.DATE_OF_BIRTH' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.memDobVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.AGE' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.age}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.GENDER' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.genderName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MARITAL_STATUS' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.maritalStatusName}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.RELATION_WITH_APPLICANT' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.relationTypeName}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.RELATIVE_NAME' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.relativeName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.QUALIFICATION' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.qualificationName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.OCCUPATION' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.occupationName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.AADHAR' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.aadharNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.PAN' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.panNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.CONTACT' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.mobileNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.EMAIL' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.emailId }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.CASTE' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.casteName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.COMMUNITYS' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.communityName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.admissionNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" >
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MANAGEMENT_COMMITTE_RESOLUTION_NO' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.mcrNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-label">
+                    <span class="fw-light">{{'ERP.MCR_DOCUMENT_TYPE' | translate}}</span>
+                    <!-- <div class="uplodad-style align-items-center"> -->
+                    <!-- <p class="fw-semibold">{{memberBasicDetailsModel.mcrDocumentCopy }}</p> -->
+                    <div class="col-12 d-flex p-0" *ngFor="let img of memberBasicDetailsModel.multipartFileListForMCRCopyPath">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse pl-2" pTooltip="{{img.fileName}}" tooltipPosition="bottom">{{img.fileName}}</div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                    
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.admissionDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_FEE' | translate}}</span>
+                    <p class="fw-semibold">{{memberBasicDetailsModel.admissionFee}}</p>
+                </div>
+            </div>
+            </div>
+            </div>
+</p-dialog>
+<p-dialog header="More Basic Details" [(visible)]="memberGroupBasicDetailsFlag" [style]="{ width: '70vw' }" >
+    <div class="popup-basic-details">
+        <div class="row">
+            <!-- <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="col-12 px-0">
+                    <div class="px-0" *ngFor="let img of memberGroupBasicDetails.multipartFileListForsignatureCopyPath">
+                        <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                            <a href="{{img.imageValue}}">
+                                <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                            <a href="{{img.imageValue}}">
+                                <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="px-0" *ngFor="let img of memberGroupBasicDetails.multipartFileListForsignatureCopyPath">
+                        <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                            <a href="{{img.imageValue}}">
+                                <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                            <a href="{{img.imageValue}}">
+                                <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                            </a>
+                        </div>
+                    </div>
+            </div>
+            </div> -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                    <img src="assets/images/avatar-table.png" class="image-user">
+                    <p class="active-status"></p>
+                    <img src="assets/images/sign.png" class="image-sign">
+                </div>
+                </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="fw-semibold">{{ memberGroupBasicDetails.memberTypeName }}&nbsp;({{ memberGroupBasicDetails.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.NAME' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.name}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.REGISTERED_NO' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.registrationNumber}}</p>
+                </div>
+            </div>
+           
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.REGISTERED_DATE' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.registrationDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.admissionDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.POC_NAME' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.pocName}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.POC_MOBILE_NO' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.pocNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.PAN' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.panNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.TAN' | translate}}</span>
+                    <p class="fw-semibold">{{memberGroupBasicDetails.tanNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.GST' | translate}}</span>
+                    <p class="fw-semibold">{{ memberGroupBasicDetails.gstNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</p-dialog>
+<p-dialog header="More Basic Details" [(visible)]="memberInstitutionBasicDetailsFlag" [style]="{ width: '70vw' }" >
+    <div class="popup-basic-details">
+        <div class="row">
+            <!-- <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="col-12 px-0">
+                    <div class="px-0" *ngFor="let img of institutionBasicDetailsModel.multipartFileListForPhotoCopy">
+                        <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                            <a href="{{img.imageValue}}">
+                                <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                            <a href="{{img.imageValue}}">
+                                <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="px-0" *ngFor="let img of institutionBasicDetailsModel.multipartFileListForPhotoCopy">
+                        <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                            <a href="{{img.imageValue}}">
+                                <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                            <a href="{{img.imageValue}}">
+                                <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                            </a>
+                        </div>
+                    </div>
+            </div>
+            </div> -->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                    <img src="assets/images/avatar-table.png" class="image-user">
+                    <p class="active-status"></p>
+                    <img src="assets/images/sign.png" class="image-sign">
+                </div>
+                </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="fw-semibold">{{ institutionBasicDetailsModel.memberTypeName }}&nbsp;({{ institutionBasicDetailsModel.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.NAME' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.REGISTERED_NO' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.registrationNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.REGISTERED_DATE' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.registrationDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.admissionDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.POC_NAME' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.pocName}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.POC_MOBILE_NO' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.pocNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.PAN' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.panNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.TAN' | translate}}</span>
+                    <p class="fw-semibold">{{institutionBasicDetailsModel.tanNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.GST' | translate}}</span>
+                    <p class="fw-semibold">{{ institutionBasicDetailsModel.gstNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</p-dialog>
+

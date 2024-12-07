@@ -1,0 +1,90 @@
+
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs"></p-messages> 
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'ERP.SUB_DISTRICT' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="subDistrictForm">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span> {{'ERP.COUNTRY' | translate}}</label>
+                                <p-dropdown [options]="countrylist" placeholder="Select" formControlName="countryCode"
+                                (onChange)="getAllstatesByCountryId(subdistrictModel.countryId)" 
+                                    [(ngModel)]="subdistrictModel.countryId"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                                <p-dropdown [options]="stateListData" placeholder="Select" formControlName="stateName"
+                                (onChange)="getAllDistrictsByStateId(subdistrictModel.stateId)" 
+                                    [(ngModel)]="subdistrictModel.stateId"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                                <p-dropdown [options]="districtListData" placeholder="Select" formControlName="districtName"
+                                    [(ngModel)]="subdistrictModel.districtId"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'ERP.NAME' | translate}}</label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                    [(ngModel)]="subdistrictModel.name">
+                                    <p-message severity="error" text="Enter Valid Name"
+                                    *ngIf="!subDistrictForm.controls['name'].valid && subDistrictForm.controls['name'].dirty">
+                                  </p-message>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label>{{'ERP.CODE' | translate}}</label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="code"
+                                    [(ngModel)]="subdistrictModel.code">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label>{{'ERP.SHORT' | translate}}</label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="shortCode"
+                                    [(ngModel)]="subdistrictModel.shortCode">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label>{{'ERP.GOI' | translate}}</label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="govtCode"
+                                    [(ngModel)]="subdistrictModel.govtCode">
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'ERP.STATUS' | translate}}</label>
+                                <p-dropdown [options]="statusList" placeholder="Select" formControlName="statusName"
+                                    [(ngModel)]="subdistrictModel.status"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!subDistrictForm.valid" *ngIf='!isEdit'
+        (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!subDistrictForm.valid" *ngIf='isEdit'
+        (click)="addOrUpdate()"> </p-button>
+</div>
+

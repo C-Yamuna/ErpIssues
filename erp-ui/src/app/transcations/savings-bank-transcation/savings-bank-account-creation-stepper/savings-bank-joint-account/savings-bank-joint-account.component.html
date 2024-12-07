@@ -1,0 +1,128 @@
+
+    <div class="col-12">
+        <h6 class="sub-heading">{{'ERP.ADD_JOINT_HOLDERS_SECONDARY' | translate}}</h6>
+        <div class="stepper-top-section-strip">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.PRODUCT_NAME' | translate}}</span>
+                        <p class="mb-0">{{productName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.ACCOUNT_TYPE' | translate}}</span>
+                        <p class="mb-0">{{accountType}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.MIN_BALANCE' | translate}}</span>
+                        <p class="mb-0">{{minBalence}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.ACCOUNT_OPENING_DATE' | translate}}</span>
+                        <p class="mb-0">{{accountOpeningDateVal}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <div class="col-12"></div>
+
+       
+          
+         
+                <form [formGroup]="jointAccountForm" id="exit_types_form">
+                
+                   
+                    <div class="mt-n1 bg-label-colorfull">
+                        <div class="row g-3">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                                <label>{{'ERP.JOINT_HOLDER_ADMISSION_NUMBER' | translate}}</label>
+                
+                                <p-multiSelect [options]="admissionNumberList" [(ngModel)]="selectedAdmissionNumberList"
+                                    placeholder="Select admission Number" optionLabel="label" formControlName="admissionNumber" [showClear]="true"
+                                    (onChange)="onSelectionChange($event)" (onClear)="onClear($event)" />
+                                
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                                <label>{{'ERP.NO_OF_JOINT_HOLDERS' | translate}}</label>
+                                <input formControlName="noOfJointHolders" type="text" pInputText [(ngModel)]="numberOfJointHolders" [disabled]="true" />
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="col-12"></div>
+                
+                    <h6 class="sub-heading">{{'ERP.SECONDARY_ACCOUNT_HOLDER_DETAILS' | translate}} </h6>
+                    
+                    <div class="col-12 p-3 mem-details-stripbox">
+                        <div class="col-auto rounded bg-white mb-2" *ngFor="let jointHolderDetails of jointHolderDetailsList">
+                            <div class="d-flex">
+                                <div class="col">
+                                    <img class="mem-details-stripimage" src="assets/images/avata2r-table.png" alt="secondaryholder-image" />
+                                </div>
+                                <div class="col"></div>
+                                <div class="w-100 mt-1 mb-2 h-90p">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.ADMISSION_NO' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.admissionNumber}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.NAME' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.memberTypeName}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.CLASS' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.memberClass}}</p>
+                                            </div>
+                                        </div>  
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.ADMISSION_DATE' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.admissionDateVal}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.AADHAR_NO' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.aadharNumber}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.PAN_NUMBER' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.panNumber}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                            <div class="col">
+                                                <span>{{'ERP.KYC' | translate}}</span>
+                                                <p class="font-semibold text-break m-0">{{jointHolderDetails.isKycApproved}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </form>
+       
+       
+    </div>

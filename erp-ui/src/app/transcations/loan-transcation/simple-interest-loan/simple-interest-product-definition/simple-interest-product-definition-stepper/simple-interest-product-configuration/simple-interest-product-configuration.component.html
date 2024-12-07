@@ -1,0 +1,165 @@
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'LOANS.PRODUCT_CONFIGURATION' | translate}}</h6>
+        <form [formGroup]="productionDefinitionForm">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.PRODUCT_NAME' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.name">
+                    <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!productionDefinitionForm.controls['name'].valid && productionDefinitionForm.controls['name'].dirty">
+                    </p-message>
+                </div>
+            </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.MIN_AMOUNT' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="eligibleMInAmount"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.eligibleMInAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()"> </p-inputNumber>
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productionDefinitionForm.controls['eligibleMInAmount'].valid && productionDefinitionForm.controls['eligibleMInAmount'].dirty">
+                    </p-message>
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.MAX_AMOUNT' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="eligibleMaxAmount"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.eligibleMaxAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()"> </p-inputNumber>
+
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productionDefinitionForm.controls['eligibleMaxAmount'].valid && productionDefinitionForm.controls['eligibleMaxAmount'].dirty">
+                    </p-message>
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.MIN_LOAN_PERIOD_IN_MONTHS' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="minLoanPeriod"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.minLoanPeriod" (keyup)="checkForAmount()">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.MAX_LOAN_PERIOD_IN_MONTHS' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="maxLoanPeriod"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.maxLoanPeriod" (keyup)="checkForAmount()">
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username">{{'LOANS.DEMAND_ALERT_DAYS' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="demandAlertDays"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.demandAlertDays"> </p-inputNumber>
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username">{{'LOANS.DEFAULTER_ALERT_DAYS' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="defaulterAlertDays"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.defaulterAlertDays"> </p-inputNumber>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'LOANS.MAX_LOAN_ACCOUNTS_ALLOWED' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                        formControlName="maxLoanAccountsAllowed"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.maxLoanAccountsAllowed">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'LOANS.LINK_SHARE_CAPITAL_APPLICABLE' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="loanLinkedshareCapitalApplicable"
+                            [(ngModel)]="simpleInterestProductDefinitionModel.loanLinkedshareCapitalApplicable"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username">{{'LOANS.NO_GUARANTORS_REQUIRED' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="noOfGuarantorsRequired"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.noOfGuarantorsRequired"> </p-inputNumber>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'LOANS.IS_INSURANCE_APPLICABLE' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="isInsuranceAppicable"
+                            [(ngModel)]="simpleInterestProductDefinitionModel.isInsuranceAppicable"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 custom-inputnumber">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.MIN_DAYS_FOR_RENEWAL' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="minDaysForRenewel"
+                        [(ngModel)]="simpleInterestProductDefinitionModel.minDaysForRenewel"> </p-inputNumber>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label> <span class="red">*</span>{{'LOANS.REPAYMENT_FREQUENCY' | translate}}</label>
+                        <p-dropdown [options]="interestPostingFrequencyList" placeholder="Select"
+                            formControlName="interestPostingFrequency"
+                            [(ngModel)]="simpleInterestProductDefinitionModel.interestPostingFrequency"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'LOANS.NOMINEE_IS_REQUIRED' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="nomineeRequired"
+                            [(ngModel)]="simpleInterestProductDefinitionModel.nomineeRequired"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'LOANS.COLLATERAL_TYPE' | translate}}</label>
+                    <p-multiSelect [options]="siProdCollateralsConfigDTOList" [(ngModel)]="selectedCollateralIds"
+                        optionLabel="label" optionValue="value"  placeholder="Please Select"
+                        [showClear]="false" formControlName="collateraltypes"
+                        (onChange)="onCollateralChange($event)"></p-multiSelect>
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'LOANS.EFFECTIVE_START_DATE' | translate}}
+                        </label>
+                    <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true"
+                        yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                        id="work_flow_start_date" [(ngModel)]="simpleInterestProductDefinitionModel.effectiveStartDate"
+                        [minDate]="minDate"></p-calendar>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,95 @@
+
+    <div class="col-12">
+       
+        <div class="stepper-top-section-strip">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.PRODUCT' | translate}}</span>
+                        <p class="mb-0">{{saoLoanApplicatonModel.saoProductName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.OPERATION_TYPE' | translate}}</span>
+                        <p class="mb-0">{{saoLoanApplicatonModel.operationTypeName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}}</span>
+                        <p class="mb-0">{{saoLoanApplicatonModel.accountNumber}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'ERP.REQUEST_AMOUNT' | translate}}</span>
+                        <p class="mb-0">{{saoLoanApplicatonModel.requestedAmount}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12"></div>
+        <h6 class="sub-heading">{{'ERP.GUARANTOR_DETAILS' | translate}}</h6>
+        <!-- <h6 class="sub-heading">{{'ERP.GUARANTOR_DETAILS' | translate}}<span class="admission-text">(Admission
+            Number:&nbsp;{{admissionNumber}})</span></h6> -->
+        <form [formGroup]="guarantorform" id="exit_types_form">
+            <div class="mt-n1 bg-label-colorfull">
+                <div class="row g-3">
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <label for="number"> {{'ERP.ADMISSION_NUMBER' | translate}} </label>
+                        <p-multiSelect [options]="allTypesOfmembershipList" [(ngModel)]="selectedMembers"
+                            optionLabel="label" optionValue="value" placeholder="Select"  [showClear]="false" (onClear)="onClear($event)"
+                            (onChange)="OnChangeAdmissionNumber(selectedMembers)" formControlName="admissionNo">
+                        </p-multiSelect>
+                
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12" *ngIf="selectedMembers.length > 0">
+                            <label for="noguarantors">{{ 'ERP.NO_OF_GUARANTORS' | translate }}</label>
+                            <input formControlName="noOfJointHolders" type="text" pInputText value="{{selectedMembers.length }}" [disabled]="true" placeholder="Enter No of Guarantors"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-2"></div>
+            <div  class="col-12 p-3 mem-details-stripbox" *ngIf="selectedList.length > 0">
+                <div class="col-auto rounded bg-white mb-2" *ngFor="let member of selectedList">
+                    <div class="d-flex">
+                        <div class="col">
+                        <img class="mem-details-stripimage" src="assets/images/avata2r-table.png" alt="secondaryholder-image" />
+                        </div>
+                        <div class="col"></div>
+                        <div class="w-100 mt-1 mb-2 h-90p">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                    <div class="col">
+                                    <span>{{ 'ERP.NAME' | translate }}</span>
+                                    <p class="font-semibold text-break m-0">{{ member.name }}</p>
+                                </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                    <div class="col">
+                                    <span>{{ 'ERP.CONTACT' | translate }}</span>
+                                    <p class="font-semibold text-break m-0">{{ member.mobileNumber }}</p>
+                                </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                    <div class="col">
+                                    <span>{{ 'ERP.AADHAR_NUMBER' | translate }} </span>
+                                    <p class="font-semibold text-break m-0">{{ member.aadharNumber }}</p>
+                                </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                    <div class="col">
+                                    <span>{{ 'ERP.EMAIL' | translate }}</span>
+                                    <p class="font-semibold text-break m-0">{{ member.email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+

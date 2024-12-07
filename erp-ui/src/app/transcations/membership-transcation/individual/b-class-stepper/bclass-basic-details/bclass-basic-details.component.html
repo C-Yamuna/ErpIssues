@@ -1,0 +1,168 @@
+<div class="col-12">
+    <h6 class="sub-heading">Individual (B - Class)</h6>
+        <form [formGroup]="basicdetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+                <div class="row g-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.MEMBER_TYPE' | translate}}</label>
+                          
+                                <p-dropdown id="bunit_txt_status" placeholder="operations" [filter]="true"
+                                    [options]="operationslist" [(ngModel)]="operations"
+                                    (onChange)="navigateToInfoDetails($event)"></p-dropdown>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.SURNAME' | translate}}
+                            </label>
+                        
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+            
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.NAME' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.DATE_OF_BIRTH' | translate}}
+                            </label>
+                        
+                        <p-calendar [showIcon]="true"></p-calendar>
+                    </div>
+            
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-sm-6 col-xs-6">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.AGE' | translate}}
+                            </label>
+                       
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.GENDER' | translate}}</label>
+                           
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.MARITAL_STATUS' | translate}}</label>
+                            
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}</label>
+                            
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.RELATION_NAME' | translate}}
+                            </label>
+                        
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.QUALIFICATON' | translate}}</label>
+                            
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.OCCUPATION' | translate}}</label>
+                           
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.AADHAR_NUMBER' | translate}}
+                            </label>
+                       
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.PAN_NUMBER' | translate}}
+                            </label>
+                        
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.MOBILE_NUMBER' | translate}}r
+                            </label>
+                        
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.EMAIL' | translate}}
+                            </label>
+                        
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="email">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.CASTE' | translate}}</label>
+                            
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label>{{'ERP.COMMUNITYS' | translate}}</label>
+                            
+                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"> {{'ERP.ADMISSION_DATE' | translate}}
+                            </label>
+                        
+                        <p-calendar [showIcon]="true"></p-calendar>
+                    </div>
+            
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'ERP.ADMISSION_FEE' | translate}}
+                            </label>
+                       
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                    </div>
+                    </div>
+                </div>
+            
+            
+            </div>
+        </form>
+    
+</div>

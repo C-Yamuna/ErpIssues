@@ -1,0 +1,110 @@
+
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs"></p-messages> 
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'ERP.SOCIETY' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="pacsdetailsform">
+            <div class="col-12">
+            <div class="col-12">
+                <div class="row mt-n1">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.NAME' | translate}}</label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" 
+                        formControlName="name"
+                        [(ngModel)]="pacsdetailsModel.name">
+                        <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!pacsdetailsform.controls['name'].valid && pacsdetailsform.controls['name'].dirty">
+                      </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'ERP.PACS_CODE' | translate}}</label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" 
+                        formControlName="pacsCode"
+                        [(ngModel)]="pacsdetailsModel.pacsCode">
+        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.REGISTERED_NAME' | translate}}</label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" 
+                        formControlName="regName"
+                        [(ngModel)]="pacsdetailsModel.regName">
+                        <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!pacsdetailsform.controls['regName'].valid && pacsdetailsform.controls['regName'].dirty">
+                      </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label> <span class="red">*</span>{{'ERP.REGISTERED_DATE' | translate}}</label>
+                        <p-calendar [showIcon]="true"  [yearNavigator]="true" yearRange="1970:2050"
+                [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" 
+                 formControlName="regDate"
+                [(ngModel)]="pacsdetailsModel.regDate"></p-calendar>
+                    </div>
+                </div>
+            
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                        <p-dropdown [options]="statelist" placeholder="Select" 
+                        formControlName="stateName"(onChange)="getAlldistrictsByStateId(pacsdetailsModel.stateId)" 
+                        [(ngModel)]="pacsdetailsModel.stateId" ></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                        <p-dropdown [options]="districtlist" placeholder="Select" 
+                        formControlName="districtName" (onChange)="getAllSubDistrictsByDistrictId(pacsdetailsModel.districtId)"
+                        [(ngModel)]="pacsdetailsModel.districtId" ></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.SUB_DISTRICTS' | translate}}</label>
+                        <p-dropdown [options]="subdistrictlist" placeholder="Select" 
+                        formControlName="subDistrictName"(onChange)="getAllVillagesBySubDistrictId(pacsdetailsModel.subDistrictId)"
+                        [(ngModel)]="pacsdetailsModel.subDistrictId" ></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}}</label>
+                        <p-dropdown [options]="villagelist" placeholder="Select" 
+                        formControlName="villageName"
+                        [(ngModel)]="pacsdetailsModel.villageId" ></p-dropdown>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+             
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.STATUS' | translate}}</label>
+                        <p-dropdown [options]="statusList" placeholder="Select" 
+                        formControlName="status"
+                        [(ngModel)]="pacsdetailsModel.status
+                        " ></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!pacsdetailsform.valid" *ngIf='!isEdit'
+        (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!pacsdetailsform.valid" *ngIf='isEdit'
+        (click)="addOrUpdate()"> </p-button>
+</div>

@@ -1,0 +1,93 @@
+{
+  
+  "/demand_deposits_api": {
+    "target": "http://192.168.1.248:8079/ERPDemandDeposits",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/demand_deposits_api": ""
+    }
+  },
+  "/loans_api": {
+    "target": "http://192.168.1.248:8079/ERPLoans",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/loans_api": ""
+    }
+  },
+  "/membership_api": {
+    "target": "http://192.168.1.248:8079/ERPMembership",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/membership_api": ""
+    }
+  },
+  "/term_deposits_api": {
+    "target": "http://192.168.1.248:8079/ERPTermDeposits",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/term_deposits_api": ""
+    }
+  },
+  "/cash_counter_api": {
+    "target": "http://192.168.1.248:8079/ERPCashCounter",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/cash_counter_api": ""
+    }
+  },
+  "/agent_management_api": {
+    "target": "http://192.168.1.248:8079/ERPAgentManagement",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/agent_management_api": ""
+    }
+  },
+  "/borrowing_api": {
+    "target": "http://192.168.1.248:8079/ERPBorrowings",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/borrowing_api": ""
+    }
+  },
+  "/daily_deposits_api": {
+    "target": "http://192.168.1.248:8079/ERPDailyDeposits",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/daily_deposits_api": ""
+    }
+  },
+  "/investments_api": {
+    "target": "http://192.168.1.248:8079/ERPInvestments",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/investments_api": ""
+    }
+  },
+  "/lockers_api": {
+    "target": "http://192.168.1.248:8079/ERPLockers",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/lockers_api": ""
+    }
+  }
+}

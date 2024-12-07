@@ -1,0 +1,149 @@
+<div class="col-12">
+    <form [formGroup]="communicationForm" id="exit_types_form">
+        <h6 class="sub-heading">{{'ERP.COMMUNICATION' | translate}}<span class="admission-text">(Application
+                number:&nbsp;501)</span></h6>
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <h6 class="super-sub-heading">Registered</h6>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.STATE' | translate}}</label>
+                                        <p-dropdown [options]="stateListData" placeholder="Select"
+                                            (onChange)="getAlldistrictsByStateId(agentCommunicationModel.stateId,true)"
+                                            formControlName="stateId"
+                                            [(ngModel)]="agentCommunicationModel.stateId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.DISTRICT' | translate}}</label>
+                                        <p-dropdown [options]="districtListData" placeholder="Select"
+                                            formControlName="districtId"
+                                            (onChange)="getAllSubDistrictsByDistrictId(agentCommunicationModel.districtId,true)"
+                                            [(ngModel)]="agentCommunicationModel.districtId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.MANDAL/TESHIL' | translate}}</label>
+                                        <p-dropdown [options]="subDistrictListData" placeholder="Select"
+                                            formControlName="subDistrictId"
+                                            (onChange)="getAllVillagesBySubDistrictId(agentCommunicationModel.subDistrictId,true)"
+                                            [(ngModel)]="agentCommunicationModel.subDistrictId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</label>
+                                        <p-dropdown [options]="villageListData" placeholder="Select"
+                                            formControlName="villageId"
+                                            [(ngModel)]="agentCommunicationModel.villageId"></p-dropdown>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.ADDRESS1' | translate}}</label>
+                                        <textarea type="text" class="form-control" pInputTextarea
+                                            formControlName="address1" (keyup)="RegAddressToComAddress()" 
+                                            [(ngModel)]="agentCommunicationModel.address1"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.PINCODE' | translate}}</label>
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" (keyup)="RegAddressToComAddress()" 
+                                            formControlName="pinCode" [(ngModel)]="agentCommunicationModel.pinCode">
+                                            <p-message severity="error" text="Enter Valid Pin Code"
+                                            *ngIf="!communicationForm.controls['pinCode'].valid && communicationForm.controls['pinCode'].dirty">
+                                            </p-message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                        <h6 class="super-sub-heading">{{'AGENT_DETAILS_TRANSACTION.PERMANENT' | translate}}</h6>
+                        <div class="grid mr-3">
+                            <p-inputSwitch formControlName="checked" formControlName="isSameAddress"
+                                [(ngModel)]="agentCommunicationModel.isSameAddress"
+                                (click)="sameAsPerAddr(agentCommunicationModel.isSameAddress)"></p-inputSwitch>
+                            <p class="pl-1 m-0">{{'AGENT_DETAILS_TRANSACTION.SAME_AS_REGISTERED_ADDRESS' | translate}}
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.STATES' | translate}}</label>
+                                        <p-dropdown [options]="premanentStateList" placeholder="Select"
+                                            [disabled]="sameAsPermanentAddress" formControlName="permanentStateId"
+                                            (onChange)="getAllPermanentDistrictsByStateId(agentCommunicationModel.permanentStateId,true)"
+                                            [(ngModel)]="agentCommunicationModel.permanentStateId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.DISTRICTS' | translate}}</label>
+                                        <p-dropdown [options]="permanentDistrictList" placeholder="Select"
+                                            [disabled]="sameAsPermanentAddress" formControlName="permanentDistrictId"
+                                            (onChange)="getAllPermanentSubDistrictByDistrictId(agentCommunicationModel.permanentDistrictId,true)"
+                                            [(ngModel)]="agentCommunicationModel.permanentDistrictId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.MANDAL/TESHIL' | translate}}</label>
+                                        <p-dropdown [options]="permanentSubDistrictList" placeholder="Select"
+                                            [disabled]="sameAsPermanentAddress" formControlName="permanentSubDistrictId"
+                                            (onChange)="getAllPermanentVillagesBySubDistrictId(agentCommunicationModel.permanentSubDistrictId,true)"
+                                            [(ngModel)]="agentCommunicationModel.permanentSubDistrictId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</label>
+                                        <p-dropdown [options]="permanentVillageList" placeholder="Select"
+                                            [disabled]="sameAsPermanentAddress" formControlName="permanentVillageId"
+                                            (onChange)="getPermanentVillage(agentCommunicationModel.permanentVillageId)"
+                                            [(ngModel)]="agentCommunicationModel.permanentVillageId"></p-dropdown>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.ADDRESS1' | translate}}</label>
+                                        <textarea type="text" class="form-control" pInputTextarea
+                                            [disabled]="sameAsPermanentAddress" formControlName="permanentAddress1"
+                                            [(ngModel)]="agentCommunicationModel.permanentAddress1" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.PINCODE' | translate}}</label>
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                            formControlName="permanentPinCode" [disabled]="sameAsPermanentAddress"
+                                            [(ngModel)]="agentCommunicationModel.permanentPinCode" placeholder="Enter Pincode">
+                                            <p-message severity="error" text="Enter Valid Pin Code"
+                                            *ngIf="!communicationForm.controls['permanentPinCode'].valid && communicationForm.controls['permanentPinCode'].dirty">
+                                </p-message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

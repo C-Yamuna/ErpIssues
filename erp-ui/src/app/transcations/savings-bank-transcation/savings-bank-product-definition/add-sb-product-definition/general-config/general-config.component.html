@@ -1,0 +1,145 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'DEMANDDEPOSITS.GENERAL_CONFIGURATION' | translate}}</h6>
+        <form [formGroup]="generalconfigform">
+            <div class="mt-n1  bg-label-colorfull">
+        <div class="row g-3 mb-3">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.PRODUCT_NAME' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="productname" [(ngModel)]="generalConfigModel.productName">
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'DEMANDDEPOSITS.MIN_DEPOSIT_AMOUNT_FOR_ACCOUNT_OPEN' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="mindepositamountforaccountopen"  [(ngModel)]="generalConfigModel.minDepositAmountForAccountOpen">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['mindepositamountforaccountopen'].valid && generalconfigform.controls['mindepositamountforaccountopen'].dirty">
+            </p-message>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'DEMANDDEPOSITS.MIN_MAINTAIN_BALANCE_IN_ACCOUNT' | translate}} 
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="minmaintainbalanceinaccount"  [(ngModel)]="generalConfigModel.minBalanceMaintainInAccount">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['minmaintainbalanceinaccount'].valid && generalconfigform.controls['minmaintainbalanceinaccount'].dirty">
+            </p-message>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.PENALITY_FOR_NOT_MAINTAINING_MIN_BALANCE' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="minimumBalancePenalty" [(ngModel)]="generalConfigModel.minimumBalancePenalty">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['minimumBalancePenalty'].valid && generalconfigform.controls['minimumBalancePenalty'].dirty">
+            </p-message>
+            </div>
+            </div>
+        <!-- </div>
+       
+        <div class="row g-3 mb-3"> -->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.ACCOUNT_INACTIVATION_PERIOD_IN_DAYS' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="accInactiveDays" [(ngModel)]="generalConfigModel.accInactiveDays">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['accInactiveDays'].valid && generalconfigform.controls['accInactiveDays'].dirty">
+            </p-message>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.ACCOUNT_DORMANT_PERIOD_IN_DAYS' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="accDormantDays" [(ngModel)]="generalConfigModel.accDormantDays">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['accDormantDays'].valid && generalconfigform.controls['accDormantDays'].dirty">
+            </p-message>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'DEMANDDEPOSITS.INTEREST_POSTING_REQUIRED' | translate}}</label>
+                    <p-dropdown [options]="intPostingRequiredList" placeholder="select"
+                        formControlName="isInterestPostingAllowed"
+                        [(ngModel)]="generalConfigModel.isInterestPostingAllowed"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'DEMANDDEPOSITS.IS_CHEQUE_BOOK_ISSUING_ALLOWED' | translate}}</label>
+                    <p-dropdown [options]="intPostingRequiredList" placeholder="select"
+                        formControlName="isCheckBookIssuingAllowed"
+                        [(ngModel)]="generalConfigModel.isCheckBookIssuingAllowed"></p-dropdown>
+                </div>
+            </div>
+        <!-- </div>
+
+        <div class="row g-3 mb-3"> -->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'DEMANDDEPOSITS.IS_CHEQUE_BOOK_OPERATIONS_ALLOWED' | translate}}</label>
+                    <p-dropdown [options]="intPostingRequiredList" placeholder="select"
+                        formControlName="isChequeBookOperationsAllowed"
+                        [(ngModel)]="generalConfigModel.isChequeBookOperationsAllowed"></p-dropdown>
+                </div>
+            </div>
+          
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'DEMANDDEPOSITS.IS_DEBIT_CARD_ISSUING_ALLOWED' | translate}}</label>
+                    <p-dropdown [options]="intPostingRequiredList" placeholder="select"
+                        formControlName="isDebitCardIssuingAllowed"
+                        [(ngModel)]="generalConfigModel.isDebitCardIssuingAllowed"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'DEMANDDEPOSITS.MIN_BALANCE_MAINTAIN_WITH_CHEQUE' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="minBalMaintainWithCheque" [(ngModel)]="generalConfigModel.minBalMaintainWithCheque">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['minBalMaintainWithCheque'].valid && generalconfigform.controls['minBalMaintainWithCheque'].dirty">
+            </p-message>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'DEMANDDEPOSITS.MIN_BALANCE_MAINTAIN_WITHOUT_CHEQUE' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                formControlName="minBalMaintainWithoutCheque" [(ngModel)]="generalConfigModel.minBalMaintainWithoutCheque">
+                <p-message severity="error" text="Enter Valid Numbers"
+                *ngIf="!generalconfigform.controls['minBalMaintainWithoutCheque'].valid && generalconfigform.controls['minBalMaintainWithoutCheque'].dirty">
+            </p-message>
+                </div>
+            </div>
+        <!-- </div>
+
+        <div class="row g-3 mb-3"> -->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span> {{'DEMANDDEPOSITS.EFFECTIVE_START_DATE' | translate}}</label>
+                    <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true" yearRange="1970:2050"
+  [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" 
+  [(ngModel)]="generalConfigModel.effectiveStartDate" [minDate]="minDate"></p-calendar>
+                </div>
+            </div>
+        </div>
+       </div>
+    </form>
+    </div>

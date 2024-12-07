@@ -1,0 +1,229 @@
+<div class="col-12 bg-label-colorfull">
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">individual(class-B)</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">Rajasekhar</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">B.E/B.tech</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">9789978956</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <h6 class="sub-heading">{{'ERP.NOMINEE_DETAILS' | translate}}<span class="admission-text">(Admission
+        number:&nbsp;123456789)</span></h6>
+
+        <div class="col-12 p-0">
+            <div class="col-12 p-0">
+                <div class="row g-3">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                            <div class="form-label">
+                                <label>{{'ERP.TYPE_OF_NOMINEE' | translate}}</label>
+                               
+                                    <p-dropdown optionLabel="name" placeholder="Select"></p-dropdown>
+                               
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4 py-0">
+                            <h6 class="super-sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                        </div>
+                        <div class="col-12 global-border p-3">
+                        <form [formGroup]="nomineeForm">
+                            <div class="col-12">
+                                <div class="row g-3">
+                            
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label>{{'ERP.RELATIONSHIP_TYPE' | translate}}</label>
+                                           
+                                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.NAMES' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                            
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.AADHAR_NUMBER' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                            
+                            
+                            
+                            
+                            
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.MOBILE_NUMBER' | translate}}
+                                            </label>
+                                       
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.EMAIL' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="email">
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <span class=""> {{'ERP.UPLOAD_DOCUMENT' | translate}} </span>
+                                            <div class="uplodad-style align-items-center">
+                                                <p-fileUpload #fileUpload class=""  name="demo[]" chooseLabel=" " url="https://www.primefaces.org/cdn/api/upload.php"
+                                                    accept="image/*" [auto]="true" formContralName="fileUpload"></p-fileUpload>
+    
+                                                    <div class="col-12 d-flex p-1 contant-body" *ngFor="let img">
+                                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                            <a href="{{img.imageValue}}">
+                                                                <img src="{{img.imageValue}}">
+                                                            </a>
+                                                        </div>&nbsp;&nbsp;
+                                                        <div class="text-ellipse" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            {{img.fileName}}
+                                                        </div>
+                                                    </div>
+                                                   
+                                            </div>
+                                    </div>
+                                    </div>
+                            
+                            
+                            
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                            <div class="form-label">
+                                <label>{{'ERP.TYPE_OF_GUARDIAN' | translate}}</label>
+                               
+                                    <p-dropdown optionLabel="name" placeholder="Select"></p-dropdown>
+                               
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4 py-0">
+                            <h6 class="super-sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                        </div>
+                        <div class="col-12 global-border p-3">
+                        <form [formGroup]="nomineeForm">
+                            <div class="col-12">
+                                <div class="row g-3">
+                        
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label>{{'ERP.RELATIONSHIP_TYPE' | translate}}</label>
+                                           
+                                                <p-dropdown optionLabel="name" placeholder="Select member type"></p-dropdown>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.NAMES' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.AADHAR_NUMBER' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                        
+                        
+                        
+                        
+                        
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.MOBILE_NUMBER' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label for="username">{{'ERP.EMAIL' | translate}}
+                                            </label>
+                                        
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="email">
+                                    </div>
+                                    </div>
+                        
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <span class=""> {{'ERP.UPLOAD_DOCUMENT' | translate}} </span>
+                                            <div class="uplodad-style align-items-center">
+                                                <p-fileUpload #fileUpload class=""  name="demo[]" chooseLabel=" " url="https://www.primefaces.org/cdn/api/upload.php"
+                                                    accept="image/*" [auto]="true" formContralName="fileUpload"></p-fileUpload>
+    
+                                                    <div class="col-12 d-flex p-1 contant-body" *ngFor="let img">
+                                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                            <a href="{{img.imageValue}}">
+                                                                <img src="{{img.imageValue}}">
+                                                            </a>
+                                                        </div>&nbsp;&nbsp;
+                                                        <div class="text-ellipse" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                            {{img.fileName}}
+                                                        </div>
+                                                    </div>
+                                                   
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                        
+                        
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+</div>

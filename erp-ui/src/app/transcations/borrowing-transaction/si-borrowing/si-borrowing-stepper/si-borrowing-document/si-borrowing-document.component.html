@@ -1,0 +1,224 @@
+<div class="col-12">
+               
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'BORROWINGSTRANSACTIONS.FINANCIAL_BANK_TYPE' | translate}}</span>
+                    <p class="mb-0">{{siborrowingAccountDetailsModel.financiarBankTypeName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'BORROWINGSTRANSACTIONS.DCCB_BORROWING_ACCOUNT_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{siborrowingAccountDetailsModel.accountNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'BORROWINGSTRANSACTIONS.REQUESTED_AMOUNT' | translate}}</span>
+                    <p class="mb-0">{{siborrowingAccountDetailsModel.requestedAmount}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'BORROWINGSTRANSACTIONS.REQUESTED_DATE' | translate}}</span>
+                    <p class="mb-0">{{siborrowingAccountDetailsModel.requestedDate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-12"></div>
+    <h6 class="sub-heading">{{'BORROWINGSTRANSACTIONS.BORROWING_DOCUMENTS' | translate}}</h6>
+
+    <div class="col-12 px-0">
+       <form [formGroup]="borrowingdocumentform" id="exit_types_form">
+                <p-button icon="fa fa-plus" label="{{'ADD ANOTHER DOCUMENT' | translate}}" (click)="addDocument($event)"
+                    [disabled]="buttonDisbled" *ngIf="showAddButton" class="kyc-btnm-0"></p-button>
+                    <div class="col-12 p-0 pt-2">
+                        <div class="row g-3">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let document of documentList ; let i = index">
+                                <div class="stepper-kyc-card p-3 mb-2" *ngIf="editIndex != i || editDocumentOfKycFalg">
+                                    <!-- view card -->
+                                    <div class="row">
+                                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                                <div class="card-leftbody">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                    <h6 class="label-view">{{'BORROWINGSTRANSACTIONS.DOCUMENT_TYPE_NAME' | translate}}</h6>
+                                                    <p class="label-input-text">{{document.documentTypeName}}
+                                                    </p>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                    <h6 class="label-view">{{'BORROWINGSTRANSACTIONS.DOCUMENT_NUMBER' | translate}}</h6>
+                                                    <p class="label-input-text">{{document.documentNumber}}</p>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                    <h6 class="label-view">{{ 'BORROWINGSTRANSACTIONS.NAME_AS_PER_DOCUMENT' | translate }}</h6>
+                                                    <p class="label-input-text docname-texteclipse">{{document.nameAsPerDocument}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                                <div class="text-right">
+                                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn"
+                                                        (click)="toggleEditForm(i ,document)" [disabled]="editButtonDisable"></p-button>
+                                                        <p-button icon="fa fa-trash" class="kyc-edit-btn ml-3" (click)="deletDilogBox(document)"></p-button>
+                                                </div>
+                                                        
+                                                    <div class="col-12 px-0">
+                                                        <div class="col-12 px-0" *ngFor="let img of document.multipleFilesList">
+                                                            <div class="col-12 p-0"
+                                                                *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                                                <a href="{{img.imageValue}}">
+                                                                    <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                                <a href="{{img.imageValue}}">
+                                                                    <img src="assets\images\pdf.png" class="pdf-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                       
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <!-- Edit form -->
+                                    <div class="col-12 global-border bg-label-colorfull p-3" *ngIf="editIndex === i  && !editDocumentOfKycFalg">
+                                    <div class="row g-3 mt-n1">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-label">
+                                            <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.DOCUMENT_TYPE' | translate}}</label>
+                                            <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="documentType"
+                                                [options]="docTypeList" id="documentType" (onChange)="kycModelDuplicateCheck(siBorrowingDocumentModel.documentType)" [(ngModel)]="siBorrowingDocumentModel.documentType">
+                                            </p-dropdown>
+                                        </div>
+                                    </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-label">
+                                            <label>{{'BORROWINGSTRANSACTIONS.DOCUMENT_NUMBER' | translate}}</label>
+                                            <input id="documentNumber" type="text" pInputText formControlName="documentNumber"
+                                                [(ngModel)]="siBorrowingDocumentModel.documentNumber" placeholder="Enter Document Number">
+                                                <p-message severity="error" text="Enter Valid Doc Number"
+                                                *ngIf="!borrowingdocumentform.controls['documentNumber'].valid && borrowingdocumentform.controls['documentNumber'].dirty">
+                                            </p-message>
+                                        </div>
+                                    </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-label">
+                                            <label>{{'BORROWINGSTRANSACTIONS.NAME_AS_PER_DOCUMENT' | translate}}</label>
+                                            <input id="nameAsPerDocument" type="text" pInputText formControlName="nameAsPerDocument"
+                                                [(ngModel)]="siBorrowingDocumentModel.nameAsPerDocument" placeholder="Enter Name As Per Document">
+                                        </div>
+                                    </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-label">
+                                            <span class="">{{ 'BORROWINGSTRANSACTIONS.UPLOAD_DOCUMENT' | translate }} </span>
+                                            <div class="uplodad-style align-items-center">
+                                                <!-- Upload Button Column -->
+        
+                                                <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                                    chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                                                    accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true" (onRemove)="fileRemoveEvent()"
+                                                    (onSelect)="imageUploader($event,fileUpload)"
+                                                   >
+                                                </p-fileUpload>
+                                                <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of siBorrowingDocumentModel.multipleFilesList">
+                                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                                                    </div>
+                                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                        {{img.fileName}}</div>
+                                                    
+                                                </div>
+                                            </div>
+                                            </div>
+        
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <div class="justify-content-end d-flex">
+                                                <p-button label="{{'cancle' | translate}}" (onClick)="editCancle()"></p-button>
+                                                <p-button label="{{'save' | translate}}" [disabled]="!borrowingdocumentform.valid"
+                                                    (onClick)="editsave(siBorrowingDocumentModel)"></p-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!-- add form -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngIf="addDocumentOfKycFalg">
+                            <div class="col-12 p-3 global-border bg-label-colorfull">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-label">
+                                    <label>{{ 'BORROWINGSTRANSACTIONS.DOCUMENT_TYPE' | translate }}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="documentType"
+                                        [options]="docTypeList" id="documentType" (onChange)="kycModelDuplicateCheck(siBorrowingDocumentModel.documentType)" [(ngModel)]="siBorrowingDocumentModel.documentType">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-label">
+                                    <label>{{ 'BORROWINGSTRANSACTIONS.DOCUMENT_NUMBER' | translate }}</label>
+                                    <input id="documentNumber" type="text" pInputText formControlName="documentNumber"
+                                        [(ngModel)]="siBorrowingDocumentModel.documentNumber" placeholder="Enter Document Number">
+                                        <p-message severity="error" text="Enter Valid Doc Number"
+                                        *ngIf="!borrowingdocumentform.controls['documentNumber'].valid && borrowingdocumentform.controls['documentNumber'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-label">
+                                    <label>{{ 'BORROWINGSTRANSACTIONS.NAME_AS_PER_DOCUMENT' | translate }}</label>
+                                    <input id="nameAsPerDocument" type="text" pInputText formControlName="nameAsPerDocument"
+                                        [(ngModel)]="siBorrowingDocumentModel.nameAsPerDocument" placeholder="Enter Name As Per Document">
+                                </div>
+                            </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-label">
+                                    <span> {{'BORROWINGSTRANSACTIONS.UPLOAD_DOCUMENT' |translate}}</span>
+                                    <div class="uplodad-style align-items-center">
+    
+                                        <p-fileUpload #fileUpload name="myfile[]" id="apply-leave_fileUp_attach"
+                                            chooseLabel=" " name="file" accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                                            (onSelect)="imageUploader($event,fileUpload)" formContralName="fileUpload">
+                                        </p-fileUpload>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="justify-content-end d-flex">
+                                        <p-button  label="{{'cancle' | translate}}" (click)="cancel()"></p-button>
+                                        <p-button  [disabled]="!borrowingdocumentform.valid" label="{{'save' | translate}}"
+                                            (click)="saveDocument(siBorrowingDocumentModel)"></p-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+    
+        <p class="text-center popup-header">{{'ERP.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'ERP.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+  
+    </div>
+    <div class="col-12 text-center p-2">
+            <p-button pRipple class="yes-button" label="{{'ERP.DELETE' | translate}}" (click)="submitDelete()"></p-button>
+            <p-button pRipple class="no-button" label="{{'ERP.CANCEL' | translate}}" (click)="cancelForDialogBox()"></p-button>
+    </div>
+  </p-dialog>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="col-12">
+    <form [formGroup]="agentDetailsForm" id="exit_types_form">
+        <h6 class="sub-heading">Agent Details<span class="admission-text">(Application number:&nbsp;501)</span></h6>
+        <div class="mt-n1 bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.AGENT_TYPE' | translate}}</label>
+                        <p-dropdown [options]="agentList" placeholder="Select" formControlName="agentType"
+                            [(ngModel)]="agentDetailsModel.agentType"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.TASK_TYPE' | translate}}</label>
+                        <p-dropdown [options]="taskList" placeholder="Select" formControlName="taskType"
+                            [(ngModel)]="agentDetailsModel.taskType"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                    <label>{{'AGENT_DETAILS_TRANSACTION.COLLECTION_TYPE' | translate}}</label>
+                        <p-dropdown [options]="collectionList" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

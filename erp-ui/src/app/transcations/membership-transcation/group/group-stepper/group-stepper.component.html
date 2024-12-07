@@ -1,0 +1,56 @@
+<!-- <div class="p-4">
+    <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
+</div> -->
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.MEMBERSHIP_CREATION' | translate}}</div>
+            <!-- <div class="justify-content-end view-popup-top">
+                <p-button label="{{'ERP.RENEWAL_ACCOUNTS' | translate}}" [outlined]="true" badge="1"
+                    class="top-badge-btn btn-outline-0"></p-button>
+                <p-button label="{{'ERP.MATURED_ACCOUNTS' | translate}}" [outlined]="true" badge="3"
+                    class="top-badge-btn btn-outline-0"></p-button>
+            </div> -->
+        </div>
+    </div>
+
+   
+    <div class="col-12 p-0 mt-2">
+        <p-tabMenu [model]="items" [activeItem]="items[activeIndex]"  styleClass="tab-menu-style"></p-tabMenu>
+</div>
+
+ 
+    <div class="col-12 bg-card min-hight65 mt-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="col-12 btn-footer ">
+    <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+            
+                <p-button  *ngIf="activeIndex==0" label="{{'ERP.BACK'|translate }}"
+                (click)="back()"></p-button>
+
+                <p-button *ngIf="activeIndex>0 &&  activeIndex<=2"
+                label="{{'ERP.PREVIOUS'|translate }} " (click)="prevStep(activeIndex)" icon="fa fa-chevron-left" iconPos="left"></p-button>
+
+                <p-button  *ngIf=" activeIndex<=2" label="{{'ERP.CANCEL'|translate }}"
+                (click)="cancel(activeIndex)"></p-button>
+            
+
+                <p-button *ngIf="(activeIndex!=2 && activeIndex<2)" 
+                label="{{'ERP.SAVE_AND_ NEXT'|translate }}" (click)="nextStep(activeIndex)" icon="fa fa-chevron-right" iconPos="right"  [disabled]="buttonDisbled"></p-button>
+               
+                <p-button *ngIf="activeIndex==2" 
+                label="{{'ERP.SAVE_AND_PREVIEW'|translate }}" (click)="submit(activeIndex)" icon="fa fa-chevron-right" iconPos="right"  [disabled]="buttonDisbled"></p-button>
+
+                <!-- <p-button *ngIf="activeIndex==2" 
+                label="SAVE" (click)="save()"></p-button> -->
+
+           
+    </div>
+
+  
+</div>
+<div class="col-12"></div>

@@ -1,0 +1,83 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'TERMDEPOSITS.FORM_TYPES' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+    <form [formGroup]="termdeposittypeform">
+        <div class="col-12">
+            <div class="col-12">
+        <div class="row mt-n1">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">
+                        <span class="red">*</span>{{'TERMDEPOSITS.NAME' | translate}}
+                    </label>
+                
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                [(ngModel)]="termDepositTypesModel.name">
+                <p-message severity="error" text="Enter Valid Name"
+                *ngIf="!termdeposittypeform.controls['name'].valid && termdeposittypeform.controls['name'].dirty">
+              </p-message>
+            </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 uplodad-style align-items-center">
+                <div class="form-label">
+                    <span for="username">{{'TERMDEPOSITS.TEMPLATE_PATH' | translate}}
+                    </span>
+                <!-- <p-button icon="pi pi-plus" class="p-2" ></p-button>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text"  > -->
+                <!-- Upload Button Column -->
+                <p-fileUpload #fileUpload class="" name="myfile[]" chooseLabel=" "
+                id="apply-leave_fileUp_attach" name="file" accept=".png,.jpg,.jpeg,.pdf"
+                formContralName="fileUpload">
+                </p-fileUpload>
+                <!-- Uploaded Files Display Column -->
+                <div  *ngFor="let img ">
+                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                        <a href="{{img.imageValue}}">
+                            <img src="{{img.imageValue}}">
+                        </a>
+                    </div>&nbsp;&nbsp;
+                    <div class="text-ellipse" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                        {{img.fileName}}
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="code">
+                        {{'TERMDEPOSITS.DESCRIPTION' | translate}}
+                    </label>
+
+                <textarea type="text" class="form-control" pInputTextarea formControlName="description"
+                [(ngModel)]="termDepositTypesModel.description" ></textarea>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="code">
+                        <span class="red">*</span>{{'TERMDEPOSITS.STATUS' | translate}}
+                    </label>
+                
+                <p-dropdown placeholder="Select" [options]="statusList" formControlName="statusName"
+                [(ngModel)]="termDepositTypesModel.status"  ></p-dropdown>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]= "!termdeposittypeform.valid" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]= "!termdeposittypeform.valid" *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>
+

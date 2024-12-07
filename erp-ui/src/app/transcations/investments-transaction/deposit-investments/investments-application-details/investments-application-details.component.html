@@ -1,0 +1,154 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'ERP.APPLICATION_DETAILS' | translate}}</h6>
+        <form [formGroup]="applicationDetailsForm" id="exit_types_form">
+            <div class="mt-n1 bg-label-colorfull">
+                    <div class="row g-3">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</label>
+                                <p-dropdown [options]="productListData" placeholder="Select" formControlName="productName"
+                                    (onChange)="onChangeProduct()"
+                                    [(ngModel)]="investmentApplicationDetailsModel.productId"></p-dropdown>
+                                    <p-message severity="error" text="Enter Valid Name"
+                                    *ngIf="!applicationDetailsForm.controls['productName'].valid && applicationDetailsForm.controls['productName'].dirty">
+                                </p-message>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' | translate}}</label>
+                                <input type="text" formControlName="bankName" [(ngModel)]="investmentApplicationDetailsModel.bankName"
+                                    [disabled]=true placeholder="Enter Bank Name" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.ACCOUNT_NUMBER' | translate}}</label>
+                                <input type="text" pInputText formControlName="accountNumber" placeholder="Enter Account Number"
+                                    [(ngModel)]="investmentApplicationDetailsModel.accountNumber" pKeyFilter="alphanum"/>
+                                    <p-message severity="error" text="Enter Valid Account Number"
+                                    *ngIf="!applicationDetailsForm.controls['accountNumber'].valid && applicationDetailsForm.controls['accountNumber'].dirty">
+                                </p-message>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-0">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_AMOUNT' | translate}}</label>
+                                <input type="text" pInputText formControlName="depositAmount" placeholder="Enter Amount"
+                                    [(ngModel)]="investmentApplicationDetailsModel.depositAmount" pKeyFilter="num"/>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.ROI' | translate}}</label>
+                                <input type="text" pInputText  formControlName="roi" placeholder="Enter ROI"
+                                    [(ngModel)]="investmentApplicationDetailsModel.roi" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_DATE' | translate}}</label>
+                                <p-calendar [showIcon]="true" formControlName="depositDate" dateFormat="{{orgnizationSetting.calendar}}"
+                                    [(ngModel)]="investmentApplicationDetailsModel.depositDate" placeholder="Enter DD/MM/YYYY"></p-calendar>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_TYPE' | translate}}</label>
+                                <p-dropdown [options]="depositTypeList" placeholder="Select" formControlName="depositName"
+                                    [(ngModel)]="investmentApplicationDetailsModel.depositType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label>{{'INVESTMENTS_TRANSACTIONS.TENURE_IN_YEARS' | translate}}</label>
+                                <input type="text" pInputText formControlName="tenureInYears" placeholder="Enter Tenure (In Years)"
+                                    [(ngModel)]="investmentApplicationDetailsModel.tenureInYears" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label>{{'INVESTMENTS_TRANSACTIONS.TENURE_IN_MONTHS' | translate}}</label>
+                                <input type="text" pInputText formControlName="tenureInMonths" placeholder="Enter Tenure (In Months)"
+                                    [(ngModel)]="investmentApplicationDetailsModel.tenureInMonths" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label>{{'INVESTMENTS_TRANSACTIONS.TENURE_IN_DAYS' | translate}}</label>
+                                <input type="text" pInputText formControlName="tenureInDays" placeholder="Enter Tenure (In Days)"
+                                    [(ngModel)]="investmentApplicationDetailsModel.tenureInDays" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MATURITY_DATE' | translate}}</label>
+                                <p-calendar [showIcon]="true" formControlName="maturityDate" placeholder="Enter Maturity Date"
+                                    dateFormat="{{orgnizationSetting.calendar}}"
+                                    [(ngModel)]="investmentApplicationDetailsModel.maturityDate"></p-calendar>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MATURITY_INTEREST_AMOUNT' | translate}}</label>
+                                <input type="text" pInputText formControlName="maturityInterest" placeholder="Enter Maturity Interest Amount"
+                                    [(ngModel)]="investmentApplicationDetailsModel.maturityInterest" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MATURITY_AMOUNT' | translate}}</label>
+                                <input type="text" pInputText formControlName="maturityAmount" placeholder="Enter Maturity Amount"
+                                    [(ngModel)]="investmentApplicationDetailsModel.maturityAmount" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.INTEREST_PAYMENT_FREQUENCY' | translate}}</label>
+                                <p-dropdown [options]="interestPaymentFrequencyList" placeholder="Select"
+                                    formControlName="interestOrInstallmentFrequencyName"
+                                    [(ngModel)]="investmentApplicationDetailsModel.interestOrInstallmentFrequency"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <span class=""> {{ 'ERP.UPLOAD_DOCUMENT' | translate }} </span>
+                                <div class="uplodad-style align-items-center">
+                                    <!-- Upload Button Column -->
+                                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                        id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg"
+                                        (onRemove)="fileRemoveEvent()"
+                                        (onSelect)="imageUploader($event,fileUpload)">
+                                    </p-fileUpload>
+                                    <div  class="col-12  d-flex p-1 contant-body" *ngFor="let img of investmentApplicationDetailsModel.multipartFileList">
+                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                    height="22"></a>
+                                        </div>  
+                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            {{img.fileName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="grid mr-3 mt-3">
+                                <p-inputSwitch formControlName="isAutoRenewal"
+                                    [(ngModel)]="investmentApplicationDetailsModel.isAutoRenewal" class="ml-2"></p-inputSwitch>
+                                    <p class="pl-2 m-0">{{'INVESTMENTS_TRANSACTIONS.AUTO_RENEWAL' | translate}}</p> 
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="form-label">
+                            <label>{{'INVESTMENTS_TRANSACTIONS.AUTO_RENEWAL_TYPE' | translate}}</label>
+                                <p-dropdown [options]="autoRenewalTypeList" placeholder="Select" formControlName="autoRenewalType"
+                                    [(ngModel)]="investmentApplicationDetailsModel.autoRenewalType"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </form>
+</div>

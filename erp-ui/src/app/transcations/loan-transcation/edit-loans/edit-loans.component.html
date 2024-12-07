@@ -1,0 +1,179 @@
+<div class="grid">
+    <div class="left-account-details col-2 border">
+        <div class=" ">{{'ERP.ACCOUNT_DETAILS' | translate}}</div>
+        <div class="col-12 border-top color-light"></div>
+        <form> 
+            <div class="col-12" >
+                <span>{{'ERP.APPLICATION_NUMBER' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+            </div>
+            <div class="col-12">
+                <div class="d-flex">
+                    <img class="image" src="assets/images/people.jpg" alt=""/>
+                    <img class="image"src="assets/images/sign.png" alt="" />
+                </div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.NAME' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.ACCOUNT_NUMBER' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.PRODUCT' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.SANCTIONED_AMOUNT' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.PRINCIPAL_AMOUNT' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.DISBURSEMENT_AMOUNT' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="col-12" >
+                <span>{{'ERP.OUTSTANDING_AMOUNT' | translate}}</span>
+                <p class="font-semibold text-break"></p>
+                <div class="col-2 border-top color-light"></div>
+            </div>
+            <div class="field grid col-12">
+                <div class="col-6" >
+                    <span>{{'ERP.DUE_DATE' | translate}}</span>
+                    <p class="font-semibold text-break">_ _</p>
+                    <div class="col-2 border-top color-light"></div>
+                </div>
+                <div class="col-6" >
+                    <span>{{'ERP.UNITS' | translate}}</span>
+                    <p class="font-semibold text-break">_ _</p>
+                    <div class="col-2 border-top color-light"></div>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end" >
+                <span class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                <div class="col-6 border-bottom color-light">More details</div>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-10">
+        <div class="card col-12 m-1">
+            <div class="p-2 text-warning">{{'ERP.COLLECTION' | translate}}</div>
+            <div class="field grid">
+                <div class="col-3">
+                    <span>{{'ERP.CHARGES_FORECLOSURE' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+                <div class="col-3">
+                    <span>{{'ERP.DUE_AS_ON_DATE' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+                <div class="col-3">
+                    <span>{{'ERP.COLLECTION_AMOUNT' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+                <div class="col-1">
+                    <span>{{'ERP.TRANSACTION_DATE' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+                <div class="col-2">
+                    <span>{{'ERP.REPAYMENT_MODES' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+            </div>
+            <div class="field grid">
+                <div class="col-3">
+                    <span>{{'ERP.REFERENCE_NUMBER' | translate}}</span>
+                    <p class="font-semibold text-break"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 card m-1">
+            <div class="col-12">
+                <div class="justify-content-between">
+                    <div class="p-2 text-warning">{{'ERP.COLLECTION_DETAILS' | translate}}</div>
+                    <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+                        <div class="d-flex justify-content-end ">
+                            <div class="grid">
+                                <div class="col-6">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search"></i>
+                                        <input type="text" pInputText class="searchbox"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="border-top pb-2"></div>
+                <div class="col-12 p-0">
+                    <span class="col-12 bigData-table p-0">
+                    <p-table [value]="collectionDetails"   dataKey="id" selectionMode="single"
+                        [rowsPerPageOptions]="[5,10,20]" [rows]="5" [paginator]="true" [pageLinks]="1" [responsive]="true"
+                        rowExpandMode="single">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>{{'ERP.UNITS_NO' | translate}}</th>
+                                <th>{{'ERP.COLLECTION_DATE' | translate}}</th>
+                                <th>{{'ERP.COLLECTION_AMOUNT' | translate}}</th>
+                                <th>{{'ERP.COLLECTION_CHARGES' | translate}}</th>
+                                <th>{{'ERP.COLLECTOION_INTEREST' | translate}}</th>
+                                <th>{{'ERP.COLLECTION_PRINCIPAL' | translate}}</th>
+                                <th>{{'ERP.STATUS' | translate}}</th>
+                                <th>{{'ERP.ACTION' | translate}}</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-accountType>
+                            <tr>
+                                <td>{{ collectionDetails.UnitsNo}}</td>
+                                <td>{{ collectionDetails.CollectionDate }}</td>
+                                <td>{{ collectionDetails.CollectionAmount }}</td>
+                                <td>{{ collectionDetails.CollectionCharges }}</td>
+                                <td>{{ collectionDetails.CollectionInterest}}</td>
+                                <td>{{ collectionDetails.CollectionPrincipal}}</td>
+                                <td>{{ collectionDetails.Status}}</td>
+                                <td >
+                                    <div class="global-action-btn flex align-items-center justify-content-center">
+                                        <p-button label="View"></p-button>
+                                    </div>
+                                </td>                
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 margtop-3rem"></div>
+        </div>
+        <div class="field grid col-12 d-flex">
+            <div class="col-3 d-flex">
+                <p-button><i class="fa fa-download" aria-hidden="true"></i></p-button>
+                <p-button><i class="fa fa-print" aria-hidden="true"></i></p-button>   
+            </div>
+            <div class="col-3">
+                <span>{{'ERP.STATUS' | translate}}</span>
+                <p class="font-semibold text-break">---</p>
+            </div>
+            <div class="col-3">
+                <span>{{'ERP.REMARKS' | translate}}</span>
+                <p class="font-semibold text-break">----</p>
+            </div>
+            <div class="col-3 flex justify-content-end gap-2">
+                <p-button label="Back"></p-button>
+                <p-button label="Submit"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

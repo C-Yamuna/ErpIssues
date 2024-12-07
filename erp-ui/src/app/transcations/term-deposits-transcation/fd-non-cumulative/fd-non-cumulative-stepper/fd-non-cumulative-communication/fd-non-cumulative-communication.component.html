@@ -1,0 +1,172 @@
+<div class="col-12">
+    <form [formGroup]="communicationForm">
+        <h6 class="sub-heading">{{'ERP.COMMUNICATION' | translate}}<span class="admission-text">(Admission
+                number:&nbsp;{{admissionNumber}})</span></h6>
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <h6 class="super-sub-heading">Registered</h6>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+
+                                        <p-dropdown [filter]="true" [options]="statesList" placeholder="Select"
+                                            formControlName="stateName"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.stateId"
+                                            (onChange)="getAllDistrictsByStateId(fdNonCumulativeCommunicationModel.stateId,true)"></p-dropdown>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+
+                                        <p-dropdown [filter]="true" [options]="districtsList" placeholder="Select"
+                                            formControlName="districtId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.districtId"
+                                            (onChange)="getAllMandalsByDistrictId(fdNonCumulativeCommunicationModel.districtId,true)"></p-dropdown>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}} </label>
+
+                                        <p-dropdown [filter]="true" [options]="mandalsList" placeholder="Select"
+                                            formControlName="subDistrictId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.subDistrictId"
+                                            (onChange)="getAllVillagesByMandalId(fdNonCumulativeCommunicationModel.subDistrictId,true)"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}} </label>
+
+                                        <p-dropdown [filter]="true" [options]="villageList" placeholder="Select"
+                                            formControlName="villageId"
+                                            (onChange)='getVillage(fdNonCumulativeCommunicationModel.villageId)'
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.villageId"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.ADDRESS' | translate}}</label>
+                                        <textarea type="text" class="form-control" pInputTextarea placeholder="House No., Door No., Landmark..etc"
+                                            formControlName="address1" (keyup)="RegAddressToComAddress()"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.address1"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label for="username"><span class="red">*</span>{{'ERP.PINCODE' | translate}}
+                                        </label>
+
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                            formControlName="pinCode" placeholder="Enter Pincode"
+                                            (keyup)="RegAddressToComAddress()"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.pinCode">
+                                        <p-message severity="error" text="Enter Valid pinCode"
+                                            *ngIf="!communicationForm.controls['pinCode'].valid && communicationForm.controls['pinCode'].dirty">
+                                        </p-message>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <!-- <div class="col-12"> -->
+                    <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                        <h6 class="super-sub-heading">{{'ERP.PERMANENT' | translate}}</h6>
+                        <div class="grid mr-3 d-flex">
+                            <p-inputSwitch formControlName="isSameAddress"
+                                [(ngModel)]="fdNonCumulativeCommunicationModel.isSameAddress"
+                                (click)="sameAsPerAddr(fdNonCumulativeCommunicationModel.isSameAddress)"></p-inputSwitch>
+                            <p class="pl-1 m-0">{{'ERP.SAME_AS_REGISTERED_ADDRESS' | translate}}</p>
+
+                        </div>
+                    </div>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+
+                                        <p-dropdown [options]="permanentStatesList" placeholder="Select"
+                                            formControlName="permanentStateId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentStateId"
+                                            (onChange)='getAllPermanentDistrictsByStateId(fdNonCumulativeCommunicationModel.permanentStateId,true)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+
+                                        <p-dropdown [options]="permenentDistrictList" placeholder="Select "
+                                            formControlName="permanentDistrictId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentDistrictId"
+                                            (onChange)='getAllPermanentMandalsByDistrictId(fdNonCumulativeCommunicationModel.permanentDistrictId,true)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span> {{'ERP.MANDAL/TESHIL' | translate}}</label>
+
+                                        <p-dropdown [options]="permenentSubDistrictList"
+                                            placeholder="{{'ERP.SELECT' | translate}}"
+                                            formControlName="permanentSubDistrictId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentSubDistrictId"
+                                            (onChange)='getAllPermanentVillagesByMandalId(fdNonCumulativeCommunicationModel.permanentSubDistrictId,true)'></p-dropdown>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}} </label>
+
+                                        <p-dropdown [options]="permenentVillageList" placeholder="Select "
+                                            formControlName="permanentVillageId"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentVillageId"
+                                            (onChange)='getPermanentVillage(fdNonCumulativeCommunicationModel.permanentVillageId)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label for="code"><span class="red">*</span>
+                                            {{'ERP.ADDRESS' | translate}}
+                                        </label>
+
+                                        <textarea type="text" class="form-control" pInputTextarea
+                                            formControlName="permanentAddress1"
+                                            placeholder="House No., Door No., Landmark..etc"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentAddress1"
+                                            [disabled]="sameAsPermanentAddress"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                        <label for="username"><span class="red">*</span>{{'ERP.PINCODE' | translate}}
+                                        </label>
+
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                            placeholder="Enter Pincode" formControlName="permanentPinCode"
+                                            [(ngModel)]="fdNonCumulativeCommunicationModel.permanentPinCode">
+                                        <p-message severity="error" text="Enter Valid pinCode"
+                                            *ngIf="!communicationForm.controls['permanentPinCode'].valid && communicationForm.controls['permanentPinCode'].dirty">
+                                        </p-message>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+
+</div>

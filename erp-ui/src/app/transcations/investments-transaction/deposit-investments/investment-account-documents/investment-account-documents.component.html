@@ -1,0 +1,338 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</span>
+                <p class="mb-0">{{investmentApplicationDetailsModel.productName}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' | translate}}</span>
+                <p class="mb-0">{{investmentApplicationDetailsModel.bankName}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'INVESTMENTS_TRANSACTIONS.ACCOUNT_NUMBER' | translate}}</span>
+                <p class="mb-0">{{investmentApplicationDetailsModel.accountNumber}}</p>
+            </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_DATE' | translate}}</span>
+                <p class="mb-0">{{investmentApplicationDetailsModel.depositDate}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+
+
+    <h6 class="sub-heading">{{'INVESTMENTS_TRANSACTIONS.INVESTMENT_ACCOUNT_DOCUMENTS' | translate}}<span
+            class="admission-text">(Application Number:&nbsp;)</span></h6>
+    <!-- <form [formGroup]="investmentAccountDocumentsForm" id="exit_types_form">
+        <div class="bg-card bg-label-colorfull">
+            <div class="flex justify-content-between py-2">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="main-heading mt-1">{{'INVESTMENTS_TRANSACTIONS.CASTE' | translate}}</div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end search-input-style">
+                            <div class="input-group search-box d-flex justify-content-end">
+                                <div class="search">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search global-search-icon"></i>
+                                        <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                    </span>
+                                </div>
+                            </div>
+        
+                            <p-button (click)="addAccountDocuments()" label="{{ 'ADD' | translate }}" icon="fa fa-plus" iconPos="left"
+                                id="bunit_bt_submit" [disabled]="addButton"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="globel-border-top-color"></div>
+
+            <p-table #dt [value]="investmentAccountDocumentsList" dataKey="id" editMode="row"
+                styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+                [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single"
+                [globalFilterFields]="['requiredDocTypeId', 'requiredDocNumber', 'requiredDocPath', 'remarks']">
+               
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.DOCUMENT_TYPES' | translate}}</th>
+                        <th><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.DOCUMENT_NO' | translate}}</th>
+                        <th>{{'INVESTMENTS_TRANSACTIONS.FILE_PATH' | translate}}</th>
+                        <th>{{'INVESTMENTS_TRANSACTIONS.STATUS' | translate}}</th>
+                        <th class="width-15em">{{'INVESTMENTS_TRANSACTIONS.ACTION' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="rowData">
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="documentTypeList" formControlName="requiredDocTypeName"
+                                        [(ngModel)]="rowData.requiredDocTypeId" placeholder="select" [appendTo]="'body'"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{rowData.requiredDocTypeName}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" formControlName="requiredDocNumber"
+                                        [(ngModel)]="rowData.requiredDocNumber">
+                                </ng-template>
+                                <ng-template pTemplate="output">{{rowData.requiredDocNumber}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <div class="uplodad-style align-items-center">
+                                    <p-fileUpload #fileUpload chooseLabel=" " name="docFilesList[]"
+                                        accept=".png,.jpg,.jpeg,.pdf"
+                                        (onUpload)="imageUploader($event,fileUpload)"></p-fileUpload>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{rowData.requiredDocPath}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <div class="global-action-btn flex align-items-center justify-content-center">
+                                <p-button label="{{ 'SAVE' | translate }}" *ngIf="editing"[disabled]="!investmentAccountDocumentsForm.valid" (click)="addOrUpdateAccountDocuments(rowData)" pSaveEditableRow id="prj_stakehlder_bt_cancel"  class="action-save">
+                                </p-button>
+                                <p-button label="{{ 'CANCEL' | translate }}" *ngIf="editing" pCancelEditableRow id="prj_stakehlder_bt_cancel" class="action-cancel"  (click)="cancelAccountDocuments()">
+                                </p-button>
+                                <p-button label="{{ 'EDIT' | translate }}" *ngIf="!editing" pInitEditableRow (click)="editAccountDocumentsRow(rowData)"  id="prj_stakehlder_bt_edit"class='action-edit' [disabled]="editDeleteDisable">
+                                </p-button>
+                                <p-button label="{{ 'DELETE' | translate }}"   *ngIf="!editing" (click)="deleteAccountDocuments(rowData)" class='action-delete' [disabled]="editDeleteDisable">
+                                </p-button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <div class="col-12 margtop-3rem"></div>
+
+        </div>
+    </form> -->
+    <div class="col-12 px-0">
+    <form [formGroup]="investmentAccountDocumentsForm" id="exit_types_form">
+        <p-button icon="fa fa-plus" label="{{ 'INVESTMENTS_TRANSACTIONS.ADD_ANOTHER_DOCUMENT' | translate}}"
+            (click)="addAccountDocuments($event)" [disabled]="buttonDisabled" *ngIf="showAddButton" class="kyc-btnm-0"></p-button>
+        <div class="col-12 p-0 pt-2">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let document of investmentAccountDocumentsList ; let i = index">
+                    <div class="stepper-kyc-card p-3 mb-2" *ngIf="editIndex != i || editDocumentOfKycFalg">
+                        <!-- view card -->
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                <div class="card-leftbody">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">Document TypeName</h6>
+                                        <p class="label-input-text">{{document.requiredDocTypeName}}
+                                        </p>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">Document Number</h6>
+                                        <p class="label-input-text">{{document.requiredDocNumber}}</p>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">Name As Per Document</h6>
+                                        <p class="label-input-text docname-texteclipse">{{document.nameAsPerDocument}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                <div class="text-right">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn"
+                                        (click)="toggleEditForm(i ,document)"
+                                        [disabled]="editButtonDisable"></p-button>
+                                    <p-button icon="fa fa-trash" class="kyc-edit-btn ml-3"
+                                        (click)="deletDilogBox(document)"></p-button>
+                                </div>
+
+                                <div class="col-12 px-0">
+                                    <div class="col-12 px-0" *ngFor="let img of document.multipleFilesList">
+                                        <div class="col-12 p-0"
+                                            *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                            <a href="{{img.imageValue}}">
+                                                <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit form -->
+                    <div class="col-12 global-border bg-label-colorfull p-3"
+                        *ngIf="editIndex === i  && !editDocumentOfKycFalg">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>Document Type</label>
+                                    <p-dropdown placeholder="{{'INVESTMENTS_TRANSACTIONS.SELECT'| translate}}"
+                                        formControlName="requiredDocTypeName" [options]="documentTypeList"
+                                        id="requiredDocTypeId"
+                                        (onChange)="documentDuplicateCheck(investmentAccountDocumentsModel.requiredDocTypeId)"
+                                        [(ngModel)]="investmentAccountDocumentsModel.requiredDocTypeId">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <label>Document Number</label>
+                                    <input id="requiredDocNumber" type="text" pInputText
+                                        formControlName="requiredDocNumber"
+                                        [(ngModel)]="investmentAccountDocumentsModel.requiredDocNumber"
+                                        placeholder="Enter Document Number">
+                                    <p-message severity="error" text="Enter Valid Doc Number"
+                                        *ngIf="!investmentAccountDocumentsForm.controls['requiredDocNumber'].valid && investmentAccountDocumentsForm.controls['requiredDocNumber'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <label>Name As Per Document</label>
+                                    <input id="nameAsPerDocument" type="text" pInputText
+                                        formControlName="nameAsPerDocument"
+                                        [(ngModel)]="investmentAccountDocumentsModel.nameAsPerDocument"
+                                        placeholder="Enter Name As Per Document">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <span class="">{{ 'INVESTMENTS_TRANSACTIONS.UPLOAD_DOCUMENT' | translate }} </span>
+                                    <div class="uplodad-style align-items-center">
+                                        <!-- Upload Button Column -->
+
+                                        <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                            chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                                            accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                                            (onRemove)="fileRemoveEvent()"
+                                            (onSelect)="imageUploader($event,fileUpload)">
+                                        </p-fileUpload>
+                                        <div class="col-12  d-flex p-1 contant-body"
+                                            *ngFor="let img of investmentAccountDocumentsModel.multipleFilesList">
+                                            <div
+                                                *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                        height="22"></a>
+                                            </div>
+                                            <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}"
+                                                tooltipPosition="bottom">
+                                                {{img.fileName}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <div class="justify-content-end d-flex">
+                                    <p-button label="{{'INVESTMENTS_TRANSACTIONS.CANCEL' | translate}}"
+                                        (onClick)="editCancel()"></p-button>
+                                    <p-button label="{{'INVESTMENTS_TRANSACTIONS.SAVE' | translate}}"
+                                        [disabled]="!investmentAccountDocumentsForm.valid"
+                                        (onClick)="editSaveAccountDocuments(investmentAccountDocumentsModel)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- add form -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+                    *ngIf="addDocumentOfKycFalg">
+                    <div class="col-12 p-3 global-border bg-label-colorfull">
+                    <div class="row g-3 mt-n1">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                                <label>Document Type</label>
+                                <p-dropdown placeholder="{{'INVESTMENTS_TRANSACTIONS.SELECT'| translate}}"
+                                    formControlName="requiredDocTypeName" [options]="documentTypeList"
+                                    id="requiredDocTypeId"
+                                    (onChange)="documentDuplicateCheck(investmentAccountDocumentsModel.requiredDocTypeId)"
+                                    [(ngModel)]="investmentAccountDocumentsModel.requiredDocTypeId">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                                <label>Document Number</label>
+                                <input id="requiredDocNumber" type="text" pInputText formControlName="requiredDocNumber"
+                                    [(ngModel)]="investmentAccountDocumentsModel.requiredDocNumber"
+                                    placeholder="Enter Document Number">
+                                <p-message severity="error" text="Enter Valid Doc Number"
+                                    *ngIf="!investmentAccountDocumentsForm.controls['requiredDocNumber'].valid && investmentAccountDocumentsForm.controls['requiredDocNumber'].dirty">
+                                </p-message>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                                <label>Name As Per Document</label>
+                                <input id="nameAsPerDocument" type="text" pInputText formControlName="nameAsPerDocument"
+                                    [(ngModel)]="investmentAccountDocumentsModel.nameAsPerDocument"
+                                    placeholder="Enter Name As Per Document">
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                                <span> {{'INVESTMENTS_TRANSACTIONS.UPLOAD_DOCUMENT' |translate}}</span>
+                                <div class="uplodad-style align-items-center">
+
+                                    <p-fileUpload #fileUpload name="myfile[]" id="apply-leave_fileUp_attach"
+                                        chooseLabel=" " name="file" accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                                        (onSelect)="imageUploader($event,fileUpload)" formContralName="fileUpload">
+                                    </p-fileUpload>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="justify-content-end d-flex">
+                                <p-button label="{{'INVESTMENTS_TRANSACTIONS.CANCEL' | translate}}" (click)="cancel()"></p-button>
+                                <p-button [disabled]="!investmentAccountDocumentsForm.valid"
+                                    label="{{'INVESTMENTS_TRANSACTIONS.SAVE' | translate}}"
+                                    (click)="saveAccountDocuments(investmentAccountDocumentsModel)"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+
+        <p class="text-center popup-header">{{'INVESTMENTS_TRANSACTIONS.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'INVESTMENTS_TRANSACTIONS.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' |
+            translate}}</p>
+
+    </div>
+    <div class="col-12 text-center p-2">
+        <p-button pRipple class="yes-button" label="{{'INVESTMENTS_TRANSACTIONS.DELETE' | translate}}"
+            (click)="submitDelete()"></p-button>
+        <p-button pRipple class="no-button" label="{{'INVESTMENTS_TRANSACTIONS.CANCEL' | translate}}"
+            (click)="cancelForDialogBox()"></p-button>
+    </div>
+</p-dialog>

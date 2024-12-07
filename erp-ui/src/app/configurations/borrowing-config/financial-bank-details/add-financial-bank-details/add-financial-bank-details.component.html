@@ -1,0 +1,80 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'BORROWINGSCONFIG.FINANCIAL_BANK_TYPES' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+                <form [formGroup]="financialbankdetailsform">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <div class="row mt-n1">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'BORROWINGSCONFIG.BANK_NAME' | translate}}</label>
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="bankname"
+                                            [(ngModel)]="financialBankDetailsModel.bankName">
+                                            <p-message severity="error" text="Enter Valid Name"
+                                            *ngIf="!financialbankdetailsform.controls['bankname'].valid && financialbankdetailsform.controls['bankname'].dirty">
+                                          </p-message>
+                                </div>
+                            </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'BORROWINGSCONFIG.IFSC_CODE' | translate}}</label>
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="ifsccode"
+                                            [(ngModel)]="financialBankDetailsModel.ifscCode">
+                                            <p-message severity="error" text="Enter Valid Name"
+                                            *ngIf="!financialbankdetailsform.controls['ifsccode'].valid && financialbankdetailsform.controls['ifsccode'].dirty">
+                                          </p-message>
+                                </div>
+                            </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'BORROWINGSCONFIG.BRANCH_NAME' | translate}}</label>
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="branchName"
+                                            [(ngModel)]="financialBankDetailsModel.branchName">
+                                            <p-message severity="error" text="Enter Valid Name"
+                                            *ngIf="!financialbankdetailsform.controls['branchName'].valid && financialbankdetailsform.controls['branchName'].dirty">
+                                          </p-message>
+                                </div>
+                            </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label>{{'BORROWINGSCONFIG.ADDRESS' | translate}}</label>
+                                        <textarea type="text" class="form-control" pInputTextarea formControlName="address" maxlength="40"
+                                            [(ngModel)]="financialBankDetailsModel.address" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label>{{'BORROWINGSCONFIG.DESCRIPTION' | translate}}</label>
+                                        <textarea type="text" maxlength="150" class="form-control" pInputTextarea formControlName="description"
+                                            ></textarea>
+                                </div>
+                                </div>
+                        
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'BORROWINGSCONFIG.STATUS' | translate}}</label>
+                                        <p-dropdown [options]="statusList" placeholder="Select" formControlName="status"
+                                            [(ngModel)]="financialBankDetailsModel.status"></p-dropdown>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+            </form>
+
+</div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!financialbankdetailsform.valid" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!financialbankdetailsform.valid" *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>
+
+

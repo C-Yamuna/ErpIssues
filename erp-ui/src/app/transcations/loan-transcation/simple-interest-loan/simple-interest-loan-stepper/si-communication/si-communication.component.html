@@ -1,0 +1,142 @@
+<div class="col-12">
+    <form [formGroup]="communicationForm" id="exit_types_form">
+        <h6 class="sub-heading">{{'ERP.COMMUNICATION' | translate}}<span class="admission-text">(Admission
+                number:&nbsp;{{admissionNumber}})</span></h6>
+
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+
+                    <h6 class="super-sub-heading">Registered</h6>
+
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="state"
+                                        [options]="statesList" [(ngModel)]="siLoanCommunicationModel.stateId"
+                                        (onChange)="onChangeState(siLoanCommunicationModel.stateId)"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="district"
+                                        [options]="districtsList" [(ngModel)]="siLoanCommunicationModel.districtId"
+                                        (onChange)='onChangeDistrict(siLoanCommunicationModel.districtId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="mandal"
+                                        [options]="mandalsList" [(ngModel)]="siLoanCommunicationModel.subDistrictId"
+                                        (onChange)='onChangeMandal(siLoanCommunicationModel.subDistrictId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="village"
+                                        [options]="villageList" [(ngModel)]="siLoanCommunicationModel.villageId"
+                                        (onChange)='onChangeVillage(siLoanCommunicationModel.villageId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label>{{'ERP.ADDRESS1' | translate}}</label>
+                                    <textarea type="text" class="form-control" pInputTextarea formControlName="regesteredAddressOne"
+                                        (keyup)="appendPinCodeToPermanent()"
+                                        [(ngModel)]="siLoanCommunicationModel.address1" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.PINCODE' | translate}}</label>
+                                    <input pInputText type="text" formControlName="pinCode"
+                                        (keyup)="appendPinCodeToPermanent()" placeholder="Enter Pincode"
+                                        [(ngModel)]="siLoanCommunicationModel.pinCode"
+                                        [disabled]="sameAsPermanentAddress">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                        <h6 class="super-sub-heading">{{'ERP.PERMANENT' | translate}}</h6>
+                        <div class="grid mr-3 d-flex">
+                            <p-inputSwitch formControlName="checked"
+                                [(ngModel)]="siLoanCommunicationModel.isSameAddress"
+                                (click)="sameAsPerAddr()"></p-inputSwitch>
+                            <p class="pl-1 m-0">{{'ERP.SAME_AS_REGISTERED_ADDRESS' | translate}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                        formControlName="permanentState" [options]="statesList"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentStateId"
+                                        (onChange)='onChangePermanentState(siLoanCommunicationModel.permanentStateId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                        formControlName="permanentDistrict" [options]="permanentDistrictList"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentDistrictId"
+                                        (onChange)='onChangePermanentDistrict(siLoanCommunicationModel.permanentDistrictId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                        formControlName="permanentSubDistrict" [options]="permanentMandalsList"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentSubDistrictId"
+                                        (onChange)='onChangePermanentSubDistrict(siLoanCommunicationModel.permanentSubDistrictId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                        formControlName="permanentVillage" [options]="permanentVillagesList"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentVillageId"
+                                        (onChange)='onChangePermanentVillage(siLoanCommunicationModel.permanentVillageId)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label>{{'ERP.ADDRESS1' | translate}}</label>
+                                    <textarea type="text" class="form-control" pInputTextarea formControlName="permanentAddressOne"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentAddress1" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.PINCODE' | translate}}</label>
+                                    <input pInputText type="text" formControlName="permanentPinCode"
+                                        [disabled]="sameAsPermanentAddress" placeholder="Enter Pincode"
+                                        [(ngModel)]="siLoanCommunicationModel.permanentPinCode">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,227 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="stepper-top-section-strip">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.PRODUCT_NAME' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.productName}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.MIN_BALANCE_FOR_ACCOUNT_OPEN' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.minDepositAmountForAccountOpen}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.ACCOUNT_INACTIVATION_PERIOD_IN_DAYS' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.accInactiveDays}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.EFFECTIVE_START_DATE' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.effectiveStartDate}}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-12"></div>
+<form [formGroup]="servicechargesform" id="exit_types_form">
+        <div class="flex justify-content-between py-2">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="sub-heading mt-1">{{'DEMANDDEPOSITS.SERVICE_CHARGES' | translate}}</div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end search-input-style">
+                            <div class="input-group search-box d-flex justify-content-end">
+                                <div class="search">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search global-search-icon"></i>
+                                        <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                        placeholder="Search" class="searchbox"
+                                        #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                                    </span>
+                                </div>
+                            </div>
+    
+                            <p-button (click)="addServiceCharges()" label="Add" icon="fa fa-plus" iconPos="left"
+                                id="add_btn" [disabled]="addButton"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <div class="globel-border-top-color"></div>
+                <p-table #dt  [value]="servicechargesModelList" dataKey="id" editMode="row"styleClass="p-datatable-striped" 
+                [paginator]="true" [pageLinks]="1" [rows]="10" [showJumpToPageDropdown]="true"
+                [showPageLinks]="false" [responsive]="true" rowExpandMode="single"
+                [globalFilterFields]="['serviceTypeName','serviceCharges','chargesNotApplicableCount','chargesCollectionFrequency',
+                'sgstPercentage','sgstAmount','cgstPercentage','cgstAmount','igstPercentage','igstAmount','effectiveStartDate','effectiveEndDate']">
+              
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_TYPE' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_CHARGES' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CHARGES_NOT_APPLICABLE_COUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_CHARGES_COLLECTION_FREQUENCY' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SGST_AMOUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CGST_AMOUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.IGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.IGST_AMOUNT' | translate}}</th>
+                            <th class="width-15em">{{'DEMANDDEPOSITS.ACTION' | translate}}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                        <tr [pEditableRow]="rowData">
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <p-dropdown [options]="servicetypeList" formControlName="serviceTypeName" 
+                                        [(ngModel)]="rowData.serviceTypeId" [appendTo]="'body'" (onChange)="servicetypeDuplicateCheck(rowData.serviceTypeId)"
+                                            placeholder="select"></p-dropdown>
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.serviceTypeName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="serviceCharges"
+                                        [(ngModel)]="rowData.serviceCharges">
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.serviceCharges}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="chargesNotApplicableCount"
+                                        [(ngModel)]="rowData.chargesNotApplicableCount">
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.chargesNotApplicableCount}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <p-dropdown [options]="servicetchargescollectionList" formControlName="chargesCollectionFrequency" 
+                                        [(ngModel)]="rowData.chargesCollectionFrequency" [appendTo]="'body'"
+                                            placeholder="select"></p-dropdown>
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.chargesCollectionFrequencyName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="sgstPercentage"
+                                        [(ngModel)]="rowData.sgstPercentage">
+                                        <p-message severity="error" text="Enter Valid Numbers"
+                                        *ngIf="!servicechargesform.controls['sgstPercentage'].valid && servicechargesform.controls['sgstPercentage'].dirty">
+                                      </p-message>
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.sgstPercentage}}
+                                    </ng-template>
+                                   
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="sgstAmount"
+                                        [(ngModel)]="rowData.sgstAmount">
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.sgstAmount}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="cgstPercentage"
+                                        [(ngModel)]="rowData.cgstPercentage">
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.cgstPercentage}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="cgstAmount"
+                                        [(ngModel)]="rowData.cgstAmount">
+                                        <p-message severity="error" text="Enter Valid Numbers"
+                                        *ngIf="!servicechargesform.controls['cgstAmount'].valid && servicechargesform.controls['cgstAmount'].dirty">
+                                      </p-message>
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.cgstAmount}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="igstPercentage"
+                                        [(ngModel)]="rowData.igstPercentage">
+                                        <p-message severity="error" text="Enter Valid Numbers"
+                                        *ngIf="!servicechargesform.controls['igstPercentage'].valid && servicechargesform.controls['igstPercentage'].dirty">
+                                      </p-message>
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.igstPercentage}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="igstAmount"
+                                        [(ngModel)]="rowData.igstAmount">
+                                    </ng-template>
+                                    <ng-template
+                                        pTemplate="output">{{rowData.igstAmount}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                             
+                          
+                          
+                            <td>
+                                <div class="global-action-btn global-action-btn flex align-items-center justify-content-center">
+                                <p-button *ngIf="editing"  [disabled]="!servicechargesform.valid" (click)="addOrUpdateServiceCharges(rowData)" pSaveEditableRow
+                                    id="prj_stakehlder_bt_cancel" label="{{'ERP.SAVE'|translate }}"
+                                    class="action-save">
+                                </p-button>
+                                <p-button *ngIf="editing" pCancelEditableRow id="prj_stakehlder_bt_cancel"  
+                                    class="action-delete" (click)="cancelServiceCharges()" label="{{'ERP.CANCEL'|translate }}">
+                                </p-button>
+                                <p-button *ngIf="!editing" pInitEditableRow (click)="ediServiceChargesRow(rowData)"
+                                   [disabled]="editDeleteDisable" label="{{'ERP.EDIT' | translate}}"
+                                    id="prj_stakehlder_bt_edit" class='action-edit'></p-button>
+                                </div>
+        
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+        <div class="col-12 margtop-3rem"></div>
+
+</form>
+</div>

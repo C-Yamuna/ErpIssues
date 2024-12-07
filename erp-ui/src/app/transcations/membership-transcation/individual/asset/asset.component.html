@@ -1,0 +1,233 @@
+<div class="col-12">
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">{{ memberBasicDetailsModel.memberTypeName }}&nbsp;({{
+                        memberBasicDetailsModel.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.GENDER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.genderName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.QUALIFICATON' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.qualificationName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.mobileNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.aadharNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    
+    <form [formGroup]="assertForm" id="proj_stakeholder_form">
+        <div class="flex justify-content-between py-2">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                <h6 class="sub-heading mt-1">{{'ERP.ASSET_DETAILS' | translate}}<span class="admission-text">(Admission number:&nbsp;{{memberBasicDetailsModel.admissionNumber}})</span></h6>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                </span>
+                            </div>
+                        </div>
+
+                        <p-button (click)="onRowEditSave()" label="Add" icon="fa fa-plus" iconPos="left"
+                            id="add_btn" [disabled]="addButton"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="globel-border-top-color"></div>
+        <p-table #dt [columns]="assetsColumns" [value]="memberShipAssertDetailsList" dataKey="id" editMode="row"
+        styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+        [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single"
+            [globalFilterFields]="['assetTypeName','assetName','registeredNumber','registeredDate','initialValue','currentValue','depreciationPercentage']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.ASSET_TYPE' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.ASSET_NAME' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.REGISTERED_NO' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.REGISTERED_DATE' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.INITIAL_VALUE' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.CURRENT_VALUE' | translate}}</th>
+                    <th><span class="red">*</span> {{'MEMBERSHIPCONFIG.DEPRECIATION_PERCENTAGE' | translate}}</th>
+                    <th>{{'ERP.FILE' | translate}}</th>
+                    <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                    <!-- <th>Land</th> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="rowData">
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="assetsList" placeholder="select" formControlName="assetTypeId"
+                                    [(ngModel)]="rowData.assetTypeId"
+                                    id="edit_category_status_dropdown_category" [appendTo]="'body'" (onChange)="onChangeAssert()"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.assetTypeName}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.assetName"
+                                    formControlName="assetName">
+                                    <p-message severity="error" text="Enter Valid Asset Name"
+                                    *ngIf="!assertForm.controls['assetName'].valid && assertForm.controls['assetName'].dirty">
+                                </p-message>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.assetName}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.registeredNumber"
+                                    formControlName="registeredNumber">
+                                    <p-message severity="error" text="Enter Valid Registered Number"
+                                    *ngIf="!assertForm.controls['registeredNumber'].valid && assertForm.controls['registeredNumber'].dirty">
+                                </p-message>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.registeredNumber}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <!-- <input pInputText type="text" [(ngModel)]="rowData.registeredDate" formControlName="registeredDate"> -->
+                                <p-calendar formControlName="registeredDate" [showIcon]="true"
+                                    dateFormat="{{orgnizationSetting.calendar}}"
+                                    [(ngModel)]="rowData.registeredDateVal" [appendTo]="'body'">
+                                </p-calendar>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.registeredDateVal}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.initialValue"
+                                    formControlName="initialValue">
+                                    <p-message severity="error" text="Enter Valid Initial Value"
+                                    *ngIf="!assertForm.controls['initialValue'].valid && assertForm.controls['initialValue'].dirty">
+                                </p-message>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.initialValue}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.currentValue"
+                                    formControlName="currentValue">
+                                    <p-message severity="error" text="Enter Valid Current Value"
+                                    *ngIf="!assertForm.controls['currentValue'].valid && assertForm.controls['currentValue'].dirty">
+                                </p-message>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.currentValue}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.depreciationPercentage"
+                                    formControlName="depreciationPercentage">
+                                    <p-message severity="error" text="Enter Valid Depreciation Percentage"
+                                    *ngIf="!assertForm.controls['depreciationPercentage'].valid && assertForm.controls['depreciationPercentage'].dirty">
+                                </p-message>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.depreciationPercentage}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor class="table-uploadfilestyle">
+                            <ng-template pTemplate="input">
+                                <div class="uplodad-style align-items-center">
+    
+                                    <p-fileUpload #fileUpload name="myfile[]" id="apply-leave_fileUp_attach"
+                                        chooseLabel=" " name="file" accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true" (onRemove)="fileRemoveEvent(rowData)"
+                                        (onSelect)="fileUploader($event,fileUpload,rowData)" formContralName="fileUpload">
+                                    </p-fileUpload>
+                                </div>
+                                <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of rowData.multipartFileList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>  
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+
+                               
+
+                                <!-- Uploaded Files Display Column -->
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <div  class="d-flex pt-1" *ngFor="let img of rowData.multipartFileList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>  
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                   
+                    <td>
+                        <div class="global-action-btn flex align-items-center justify-content-center">
+                        <p-button *ngIf="editing"  [disabled]="!assertForm.valid" (click)="saveOrUpdateAssetsDetails(rowData)" pSaveEditableRow
+                            id="prj_stakehlder_bt_cancel" label="{{'ERP.SAVE'|translate }}"
+                            class="action-save">
+                        </p-button>
+                        <p-button *ngIf="editing" pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                            class="action-delete" (click)="onRowEditCancel()" label="{{'ERP.CANCEL'|translate }}">
+                        </p-button>
+                        <p-button *ngIf="!editing" pInitEditableRow (click)="editVillageRow(rowData)"
+                           [disabled]="editDeleteDisable" label="{{'ERP.EDIT' | translate}}"
+                            id="prj_stakehlder_bt_edit" class='action-edit'></p-button>
+                        </div>
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+   
+        <div class="col-12 margtop-3rem"></div>
+    </form>
+</div>
+

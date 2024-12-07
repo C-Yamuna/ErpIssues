@@ -1,0 +1,205 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'ERP.APPLICATION_DETAILS' | translate}}</h6>
+    
+            <form [formGroup]="applicationForm">
+                <div class="mt-n1  bg-label-colorfull">
+                    <div class="row g-3">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-label">
+                                <label><span class="red">*</span>{{'DEMANDDEPOSITS.PRODUCT_TYPE' | translate}}</label>
+                                    <p-dropdown [options]="applicationList" placeholder="{{'ERP.SELECT' | translate}}" formControlName="productType"
+                                        [(ngModel)]="savingBankApplicationModel.productId" (onChange)="productOnChange($event)">
+                                    </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'ERP.ACCOUNT_TYPE' | translate}}</label>
+                                <p-dropdown [options]="accountList" placeholder="{{'ERP.SELECT' | translate}}"
+                                    formControlName="accountType" [disabled]="applicationType" (onChange)="onChangeAccountTypes($event)"
+                                    [(ngModel)]="savingBankApplicationModel.accountTypeId">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-12" *ngIf="productInfoFalg">
+                        <p-button (click)="showDialog()" label="productInfo"></p-button>
+                    </div> -->
+
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-label">
+                            <label>{{'ERP.ACCOUNT_NUMBER' | translate}}</label>
+                                <input pInputText type="text" formControlName="accountNumber"
+                                    [(ngModel)]="savingBankApplicationModel.accountNumber" placeholder="Enter Account Number">
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-label">
+                            <label>{{'ERP.MINIMUM_BALANCE_REQUIRED' | translate}}</label>
+                                <input pInputText id="state_txt_name" type="text"
+                                    formControlName="minimumBalenceRequired" placeholder="Enter Minimum Balance Required"
+                                    [(ngModel)]="productDefinitionModel.minimumBalancePenalty" [disabled]="isDisabled">
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-label">
+                            <label>{{'ERP.ACCOUNT_OPENING_DATE' | translate}}</label>
+                                <p-calendar formControlName="accountOpeningDate" [showIcon]="true"
+                                    [dateFormat]="orgnizationSetting.calendar" placeholder="DD/MM/YYYY"
+                                    [(ngModel)]="savingBankApplicationModel.accountOpeningDateVal">
+                                </p-calendar>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          
+            <div class="col-12 bg-white shadow-sm mt-4 rounded" *ngIf="productInfoFalg">
+                <div class="col-12" >
+                    <div class="col-12  icon-size">
+                        <div class="d-flex">
+                            
+                            <h6 class="sub-heading"><span class="card-icon mr-2"><i class="fa fa-smile-o"></i></span> {{'DEMANDDEPOSITS.PRODUCT_DETAILS' | translate}}</h6>
+                        </div>
+                    </div>
+                        <!-- <h6 class="sub-heading icon-size"><span class="card-icon pr-2"><i class="fa fa-info"></i></span>{{'DEMANDDEPOSITS.PRODUCT_DETAILS' | translate}}</h6> -->
+                        <div class="row mt-n1 g-3 p-2">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'DEMANDDEPOSITS.PRODUCT_NAME' | translate}}</span>
+                                    <p class="label-input-text">{{productDefinitionModel.productName}}</p>
+                                    </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.productName">
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.ACC_INACTIVE_DAYS' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.accInactiveDays}}</p>
+                            </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.accInactiveDays">
+            
+                                                    </div> -->
+                            </div>
+                            <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="productInfoFalg">
+                                    <p-button (click)="showDialog()" label="productInfo"></p-button>
+                                </div> -->
+            
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.IS_INTEREST_POSTING_ALLOWED' | translate}} </span>
+                                <p class="label-input-text">{{productDefinitionModel.isInterestPostingAllowed}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.isInterestPostingAllowed">
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.IS_CHECKBOOK_ISSUINGS_ALLOWED' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.isCheckBookIssuingAllowed}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText id="state_txt_name" type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.isCheckBookIssuingAllowed"
+                                                            [disabled]="isDisabled">
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.IS_DEBIT_CARD_ISSUEING_ALLOWED' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.isDebitCardIssuingAllowed}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.isDebitCardIssuingAllowed">
+            
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.IS_CHEQUE_BOOK_OPERATIONS_ALLOWED' |
+                                    translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.isChequeBookOperationsAllowed}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.isChequeBookOperationsAllowed">
+            
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.MINIMUM_BALENCE_PENALITY' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.minimumBalancePenalty}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.minimumBalancePenalty">
+            
+                                                    </div> -->
+                            </div>
+                            <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                                    <label>{{'DEMANDDEPOSITS.MINIMUM_BALENCE_PENALITY' | translate}}</label>
+                                                    <p class="m-0">{{productDefinitionModel.minimumBalancePenalty}}</p>
+                                                    <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.minimumBalancePenalty">
+            
+                                                    </div>
+                                                </div> -->
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.MIN_BAL_MAITAIN_WITH_CHEQUE' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.minBalMaintainWithCheque}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.minBalMaintainWithCheque">
+            
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.MIN_BAL_MAITAIN_WITHOUT_CHEQUE' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.minBalMaintainWithoutCheque}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.minBalMaintainWithoutCheque">
+            
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.MIN_BAL_MAITAIN_WITHOUT_CHEQUE' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.minBalMaintainWithoutCheque}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.minBalMaintainWithoutCheque">
+            
+                                                    </div> -->
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                <span class="label-view">{{'DEMANDDEPOSITS.REMARKS' | translate}}</span>
+                                <p class="label-input-text">{{productDefinitionModel.remarks}}</p>
+                                </div>
+                                <!-- <div>
+                                                        <input pInputText type="text" [disabled]="true"
+                                                            [(ngModel)]="productDefinitionModel.remarks">
+            
+                                                    </div> -->
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+</div>

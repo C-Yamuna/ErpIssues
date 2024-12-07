@@ -1,0 +1,345 @@
+<div class="container-fluid mt-5">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3 style="color: brown;">{{'ERP.LOANS' | translate}} > {{'ERP.CLOSURE' | translate}}</h3>
+        </div>
+        <div>
+            <p-button label="Application" icon="pi pi-download"></p-button>
+        </div>
+    </div>
+    <div class="field grid row">
+        <!-- <div class="row"> -->
+        <div class="col-2 border element" style="background-color: rgb(98, 147, 238);">
+            <div class="p-2 pb-2">{{'ERP.ACCOUNT_DETAILS' | translate}}</div>
+            <div class="col-12 border-top color-light"></div>
+            <form class="pt-2">
+                <div class="person-image justify-content-center">
+                    <div class="d-flex">
+                        <img src="assets/download.jpeg" style="align-items: center; " alt="person" />
+                        <img src="assets/download.png" style="align-items: center;" alt="signature" />
+                    </div>
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="font-semibold text-break">Donthamshetty Bhaskar </p>
+
+                </div>
+                <div class="col-12  p-2">
+                    <span>{{'ERP.APPLICATION_NUMBER' | translate}}</span>
+                    <p class="font-semibold text-break">556657</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.PRODUCT' | translate}} </span>
+                    <p class="font-semibold text-break">KCC Loans</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.SANCTIONED_AMOUNT' | translate}} </span>
+                    <p class="font-semibold text-break">30,00,000</p>
+
+                </div>
+
+                <div class="field grid col-12 p-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <span>{{'ERP.DISBURSEMENT' | translate}}</span>
+                            <p class="font-semibold text-break">10,00,00,000 </p>
+
+                        </div>
+                        <div class="col-6">
+                            <span>{{'ERP.UNITS_NO' | translate}}</span>
+                            <p class="font-semibold text-break">1 </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.DISBURSEMENT_DUE_AMOUNT' | translate}} </span>
+                    <p class="font-semibold text-break">10,00,000</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.NEXT_DISBURSEMENT_DATE' | translate}} </span>
+                    <p class="font-semibold text-break">15/04/2024</p>
+
+                </div>
+                <div class="field grid   p-2">
+                    <div class="col-6">
+                        <span>{{'ERP.LOAN_APPROVED_DATE' | translate}}</span>
+                        <p class="font-semibold text-break">12/05/2023 </p>
+
+                    </div>
+                    <div class="col-6">
+                        <span>{{'ERP.LOAN_DUE_DATE' | translate}}</span>
+                        <p class="font-semibold text-break"> 13/05/2024 </p>
+
+                    </div>
+                </div>
+                <div class="float-end">
+                    <span class="text-success"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                    <div class="col-6">{{'ERP.MORE_DETAILS' | translate}}</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-8 p-1">
+            <div class="col-12 pb-3">
+                <p-progressBar [value]="100"></p-progressBar>
+            </div>
+            <p-card>
+
+                <div class="col-12">
+
+                    <h3>{{'ERP.ACCOUNT_DETAILS' | translate}}</h3>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3">
+                            <p>{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+
+
+                            <h6 id="accountNumber">577568787</h6>
+                        </div>
+
+                        <div class="col-3">
+                            <p>{{'ERP.APPLICATION_TYPE' | translate}}</p>
+
+                            <h6 id="applicationType">FD non-cumulative</h6>
+                        </div>
+
+
+                        <div class="col-3">
+                            <p for="productType">{{'ERP.PRODUCT_TYPE' | translate}}</p>
+
+
+                            <h6 id="productType">product-1 FD non-cumulative</h6>
+                        </div>
+                        <div class="col-3">
+                            <p for="interestRate">{{'ERP.RATE_OF_INTEREST' | translate}}</p>
+
+                            <h6 id="interestRate">5%</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 pt-1">
+                    <div class="row">
+                        <div class="col-3">
+                            <p>{{'ERP.DEPOSIT_DATE' | translate}}</p>
+
+
+                            <h6 id="accountNumber">02/02/2023</h6>
+                        </div>
+
+                        <div class="col-3">
+                            <p>{{'ERP.OPERATION_TYPE' | translate}}</p>
+
+                            <h6 id="applicationType">Single</h6>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-12 pt-1">
+                    <div class="row">
+                        <div class="col-3">
+                            <p>{{'ERP.MATURITY_DATE' | translate}}</p>
+
+
+                            <h6 id="accountNumber">12/12/2024</h6>
+                        </div>
+
+                        <div class="col-3">
+                            <p>{{'ERP.DEPOSIT_AMOUNT' | translate}}</p>
+
+                            <h6 id="applicationType">10,000</h6>
+                        </div>
+
+
+                        <div class="col-3">
+                            <p for="productType">{{'ERP.MATURITY_AMOUNT' | translate}}</p>
+
+
+                            <h6 id="productType">20,000</h6>
+                        </div>
+                        <div class="col-3">
+                            <p for="interestRate">{{'ERP.INTEREST_PAYMENT_FREQUENCY' | translate}}</p>
+
+                            <h6 id="interestRate">Half-Yearly</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 pt-1">
+                    <div class="row">
+                        <div class="col-3">
+                            <p>{{'ERP.TENURE_IN_MONTHS' | translate}}</p>
+
+
+                            <h6 id="accountNumber">24</h6>
+                        </div>
+
+                        <div class="col-3">
+                            <p>{{'ERP.AUTO_RENEWAL' | translate}}</p>
+
+                            <h6 id="applicationType">No</h6>
+                        </div>
+
+
+                        <div class="col-3">
+                            <p for="productType">{{'ERP.UPLOAD_DOCUMENT' | translate}}</p>
+
+
+                            <h6 id="productType"></h6>
+                        </div>
+
+                    </div>
+                </div>
+
+            </p-card>
+
+            <p-card>
+                <p-tabView>
+                    <p-tabPanel header="Disbursement History">
+
+                        <p-card header="Disbursement Details">
+                            <div class="field grid">
+                                <div class="col-3">
+                                    <p>{{'ERP.DATE' | translate}}</p>
+                                    <h6>22/04/2023</h6>
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.TRANSACTION_TYPE' | translate}}</p>
+                                    <h6>Deposit</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.TRANSACTION_MODES' | translate}}</p>
+                                    <h6>Cash</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.DEPOSIT_AMOUNT' | translate}}</p>
+                                    <h6>100000.00</h6>
+
+                                </div>
+
+
+                            </div>
+
+                        </p-card>
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Transaction History">
+
+                        <p-card header="Depost Details">
+                            <div class="field grid">
+                                <div class="col-3">
+                                    <p>{{'ERP.DEPOSIT_DATE' | translate}}</p>
+                                    <h6>22/04/2023</h6>
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.TRANSACTION_TYPE' | translate}}</p>
+                                    <h6>Deposit</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.TRANSACTION_MODES' | translate}}</p>
+                                    <h6>Cash</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <p>{{'ERP.DEPOSIT_AMOUNT' | translate}}</p>
+                                    <h6>100000.00</h6>
+
+                                </div>
+
+
+                            </div>
+
+                        </p-card>
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Graphical View">
+                    </p-tabPanel>
+
+
+                </p-tabView>
+            </p-card>
+        </div>
+        
+            <div class="col-2">
+                <p-card>
+                    <div class="col-12">
+                        <div class="p-2 pb-2" style="border-bottom: 0.5px solid blue;">{{'ERP.CLOSURE_DETAILS' | translate}}</div>
+
+
+                        <div>
+                            <label for="username">{{'ERP.CLOSURE_DATE' | translate}}
+                            </label>
+                            <p-calendar [showIcon]="true" [disabled]="true"
+                                [ngClass]="{'disabled-input': true}"></p-calendar>
+                        </div>
+                        <div>
+                        <label for="interestAmount">{{'ERP.MATURITY_AMOUNT' | translate}}</label>
+                        <input id="interestAmount" type="number" [ngClass]="{'disabled-input': true}" disabled>
+                    </div>
+                        <div>
+                            <label for="username">{{'ERP.TRANSACTION_DATE' | translate}}
+                            </label>
+                            <p-calendar [showIcon]="true" [disabled]="true"
+                                [ngClass]="{'disabled-input': true}"></p-calendar>
+                        </div>
+                        <div>
+                            <label for="interestAmount">{{'ERP.TRANSACTION_TYPE' | translate}}</label>
+                            <input id="interestAmount" type="number" [ngClass]="{'disabled-input': true}" disabled>
+                        </div>
+                        <div>
+                            <label for="interestAmount">{{'ERP.TRANSACTION_MODES' | translate}}</label>
+                            <input id="interestAmount" type="number" [ngClass]="{'disabled-input': true}" disabled>
+                        </div>
+
+
+
+
+
+                        <div class="field-row ">
+                            <label for="username">{{'ERP.SIGNED_COPY_UPLOAD' | translate}}
+                            </label>
+                            <div class="d-flex">
+                                <p-fileUpload mode="basic" name="demo[]"
+                                    url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
+                                    [auto]="true"></p-fileUpload>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <label for="username">{{'ERP.REMARKS' | translate}}
+                            </label>
+
+                            <textarea type="text" class="form-control" pInputTextarea placeholder="Enter Remarks Here"></textarea>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </p-card>
+                <div class="col-12">
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <p-button label="Back" (click)="back()"></p-button>
+                        <p-button label="Cancel"></p-button>
+                        <p-button label="Submit"></p-button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+    <div class="main-heading mt-1 justify-content-start"> {{'CASH_COUNTER_TRANSACTIONS.CASH_COUNTER' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'CASH_COUNTER_TRANSACTIONS.VIEW' | translate}}</div>
+</div>
+</div>
+<div class="col-12 bg-card mt-1">
+    <div class="col-12">
+        <div class="bg-label-colorfull">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                    <h6 class="label-view">{{'CASH_COUNTER_TRANSACTIONS.PACS' |translate}}</h6> 
+                     <p class="label-input-text">{{ cashcounterModel.pacsId}}</p>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                    <h6 class="label-view">{{'CASH_COUNTER_TRANSACTIONS.BRANCH' |translate}}</h6> 
+                     <p class="label-input-text">{{ cashcounterModel.branchId}}</p>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                    <h6 class="label-view">{{'CASH_COUNTER_TRANSACTIONS.NAME' |translate}}</h6> 
+                    <p class="label-input-text">{{ cashcounterModel.counterName}}</p>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                    <h6 class="label-view">{{'CASH_COUNTER_TRANSACTIONS.EFFECTIVE_START_DATE' |translate}}</h6> 
+                    <p class="label-input-text">{{ cashcounterModel.effectiveStartDate}}</p>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                    <h6 class="label-view">{{'CASH_COUNTER_TRANSACTIONS.EFFECTIVE_END_DATE' |translate}}</h6> 
+                    <p class="label-input-text">{{ cashcounterModel.effectiveEndDate}}</p>
+                </div>
+            </div>
+      </div>
+      </div>
+      </div>
+
+      <div class="col-12 btn-footer px-0">
+        <div class="col-12 d-flex justify-content-end px-0 mt-1 group-button-bottom">
+            <p-button label="{{'CASHIERCONFIG.BACK' | translate}}" (click)="navigateToBack()" id="add_btn"></p-button> 
+            </div>
+        </div>
+</div>

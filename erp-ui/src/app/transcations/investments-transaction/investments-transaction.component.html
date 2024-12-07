@@ -1,0 +1,176 @@
+
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'INVESTMENTS_TRANSACTIONS.INVESTMENTS' | translate}}</div>
+            <!-- <div class="justify-content-end view-popup-top">
+                <p-button label="{{'ERP.RENEWAL_ACCOUNTS' | translate}}" [outlined]="true" badge="1" class="top-badge-btn"></p-button>
+                <p-button label="{{'ERP.MATURED_ACCOUNTS' | translate}}" [outlined]="true" badge="3" class="top-badge-btn"></p-button>
+            </div> -->
+        </div>
+        <div class="col-12 summary-carousel ">
+            <div class="main-summary">
+                <span class="box-text-summary">Summary</span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-12 p-0 filter-button">
+                        <p-button icon="pi pi-filter" label="SEARCH FILTER" (click)="onChange()"></p-button>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end search-input-style">
+                            <div class="input-group search-box d-flex justify-content-end">
+                                <div class="search">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search global-search-icon"></i>
+                                        <!-- <input type="text" pInputText class="searchbox" placeholder="Search" /> -->
+                                        <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                            placeholder="Search" class="searchbox" #searchInput
+                                            (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                                        <!-- <span><i class="fa fa-search"></i></span> -->
+                                    </span>
+                                </div>
+                            </div>
+        
+                            <!-- <p-dropdown [options]="membershiplist" [(ngModel)]="addmembership" [filter]="true"
+                                    placeholder="+ ADD MEMBER" icon="fa fa-plus" iconPos="left" id="bunit_txt_status"
+                                    styleClass="application-dropdown" (onChange)="navigateToInfoDetails($event)"></p-dropdown> -->
+        
+        
+                            <!-- <p-toast></p-toast> -->
+        
+                            <p-dropdown placeholder="New Investment" [filter]="true" [options]="investmentList"
+                                (onChange)="addNewInvestments($event)" [(ngModel)]="selectedInvestment"
+                                class="application-dropdown"></p-dropdown>
+        
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flter-section start -->
+   <div class="col-12 p-0" *ngIf="showForm">
+    <div class="col-12 global-border search-filter-open">
+          <div class="row p-2 pt-0">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.ACCOUNT_NUMBER' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Account Number">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Name">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Aadhar Number">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.PAN_NUMBER' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter PAN Number">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.MOBILE_NUMBER' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Mobile Number">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}
+                    </label>
+                <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Village">
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end pt-4 pr-2">
+                <p-button label="Apply" (click)="onChange()"></p-button>
+            </div>
+          </div>
+      </div>
+  </div>
+  <!-- Flter-section End -->
+
+    <div class="globel-border-top-color"></div>
+        <p-table #dt [value]="gridListData" [columns]="columns" dataKey="id" selectionMode="single"
+        [rows]="5" [paginator]="true" [pageLinks]="1" [responsive]="true"
+            rowExpandMode="single" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false">
+            <ng-template pTemplate="header">
+                <tr>
+                    <!-- <th> </th> -->
+                    <!-- <th *ngFor="let col of columns">
+                        {{col.header | translate}}
+                    </th> -->
+                    <th>{{'INVESTMENTS_TRANSACTIONS.ACCOUNT_NUMBER_SHARES_CERTIFICATE_NO' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_TYPE' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_AMOUNT_EACH_SHARE_AMOUNT' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.ROI' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_DATE_PURCHASE_DATE' | translate}}</th>
+                    <th>{{'INVESTMENTS_TRANSACTIONS.STATUS' | translate}}</th>
+                    <th class="width-15em">{{'INVESTMENTS_TRANSACTIONS.ACTION' | translate}}</th>
+                </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-investmentApplicationDetails>
+                <tr [pSelectableRow]="rowData">
+                    <!-- <td><img src="./../assets/images/person.jpg" class="image" /></td>
+
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td> -->
+                    <td>
+                        <div class="d-block">
+                            <!-- <span class="status-circle"></span> -->
+                            <span><img class="table-circle-image" src="assets/images/avata2r-table.png" /></span>
+                            <span class="account-number-style" (click)="editNewInvestments(rowData)">{{
+                                rowData.accountNumber }}</span>
+                        </div>
+                    </td>
+                    <td>{{rowData.productName}}</td>
+                    <td>{{rowData.bankName}}</td>
+                    <td>{{rowData.depositName}}</td>
+                    <td>{{rowData.depositAmount}}</td>
+                    <td>{{rowData.roi ? rowData.roi : '--' }}</td>
+                    <td>{{ rowData.depositDate}}</td>
+                    <td>{{rowData.statusName}}</td>
+                    <td>
+                        <div class="global-action-btn flex align-items-center justify-content-center">
+                            <p-button class="action-view" label="View" (click)="viewNewInvestments(rowData)"></p-button>
+                            <p-dropdown id="bunit_txt_status" placeholder="operations" [filter]="true"
+                                [options]="investmentOperationsList" [(ngModel)]="operations" class="action-operation"
+                                (onChange)="navigateToInfoDetails($event,rowData)" [appendTo]="'body'"></p-dropdown>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="status-counts">
+            <span class="active-div">
+                <span class="status-circle active"></span>ACTIVE : {{ activeStatusCount }}
+            </span>
+            <span class="inactive-div">
+                <span class="status-circle inactive"></span>INACTIVE: {{ inactiveStatusCount }}
+            </span>
+    </div>
+        <div class="col-12 margtop-3rem"></div>
+    </div>

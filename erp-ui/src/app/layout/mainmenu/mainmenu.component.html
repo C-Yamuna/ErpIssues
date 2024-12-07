@@ -1,0 +1,197 @@
+<p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+
+<!-- Nav Bar -->
+
+<nav class="navbar nav-bar-header fixed-top nav-bg-image">
+  <div class="col-12 p-0">
+
+    <div class="d-flex align-items-start">
+      <!-- org logo and title start -->
+      <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-xs-4 d-flex">
+        <i class="navbar-toggler fa fa-bars border-0 text-primary-emphasis" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" *ngIf="!isAdminRole"></i>
+          <!-- Responsive Bars Start-->
+          <i class="navbar-toggler fa fa-bars border-0 text-primary-emphasis dis-bars" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar1" *ngIf="isAdminRole"></i>
+        <div class="navbar-brand">
+          <!-- Responsive Bars End-->
+          <img src="assets/images/intellect original.png" class="nav-logo">
+        </div>
+      </div>
+      <!-- org logo and title End -->
+       
+      <!-- PACS nname with address start -->
+      <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-xs-6 p-0 navbar-responsive-padding-address">
+        <div class="d-inline-flex">
+        <div class="justify-content-start pacs-img">
+          <i class="fa fa-university" aria-hidden="true"></i>
+        </div>
+        <div class="justify-content-start pacs-name-address">
+          <p class="m-0  pacs-name-style">Hyderabad&nbsp;Branch</p>
+          <p class="m-0 pacs-address-header">PACS Code: 25645</p>
+        </div>
+      </div>
+      </div>
+      <!-- PACS nname with address End -->
+
+      <!-- Notification and language and profile start -->
+      <div class="col-xl-5 col-lg-4 col-md-4 col-sm-2 col-xs-2 pull-right p-0 dis-none-rightside">
+        <form class="d-flex justify-content-end" role="search">
+          <div class="justify-content-end  d-flex right-prfile-language">
+            <ul class="nav nav-pills">
+              <li class="nav-item notification-bell">
+                <i class="fa fa-bell" pBadge [value]="'9'"></i>
+              </li>
+              <li class="nav-item laguage-dropdown">
+                <div class="inline-flex">
+                  <span><i class="fa fa-globe"></i></span>
+                  <p-dropdown [options]="Translates" [(ngModel)]="translateLang"
+                    (onChange)="languageChange(translateLang)">
+                    <!-- <ng-template let-item pTemplate="selectedItem">
+                      <span class="{{item.icon}}"></span> &nbsp;
+                      <span class="size-14">{{item.label}}</span>
+                    </ng-template> -->
+                    <ng-template let-car pTemplate="item">
+                      <div class="">
+                        <div class="">{{car.label}}</div>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+                </div>
+              </li>
+              <li class="nav-item profile-dropdown">
+                <div class="inline-flex">
+                  <span><i class="fa fa-user-circle"></i></span>
+                  <p-dropdown [options]="profilesList" [(ngModel)]="userProfile"
+                    (onChange)="profileChange(userProfile)">
+                    <!-- <ng-template let-item pTemplate="selectedItem">
+                      <span class="{{item.icon}}"></span>&nbsp;
+                    </ng-template> -->
+                    <ng-template let-car pTemplate="item">
+                      <div class="">
+                        <span class="{{car.icon}}"></span>&nbsp;&nbsp;
+                        <span class="">{{car.label}}</span>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
+      <!-- Notification and language and profile end -->
+
+      <!-- Responsive Notification and language and profile start -->
+      <div class="col-xl-5 col-lg-4 col-md-4 col-sm-2 col-xs-2 pull-right p-0 dis-none-responsiverightside navbar-responsive-notification-padding">
+        <form class="d-flex justify-content-end" role="search">
+          <div class="justify-content-end  d-flex right-prfile-language">
+            <!-- <ul class="nav nav-pills">
+              <li class="nav-item notification-bell">
+                <i class="fa fa-bell" pBadge [value]="'9'"></i>
+              </li>
+            </ul> -->
+            <div class="responsive-header">
+              <p-button pRipple icon="fa fa-ellipsis-v" (click)="menu.toggle($event)"></p-button>
+              <p-tieredMenu #menu [model]="itemsHeader" [popup]="true"></p-tieredMenu>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Responsive Notification and language and profile end -->
+ </div>
+  </div>
+    <!-- Transaction Side menu start -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" *ngIf="!isAdminRole">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Intellect</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <p-panelMenu [model]="items" styleClass="transaction-sidemenu"></p-panelMenu>
+          </li>
+        </ul>
+        <!-- <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+    <!-- Transaction Side menu end -->
+
+</nav>
+
+
+
+<div class="col-12 responsive-575px">
+  <div class="grid">
+  <!-- Master side menu start -->
+      <div class="col-2 master-sidemunu dis-sidemenu" *ngIf="isAdminRole">
+        <p-panelMenu [model]="items"></p-panelMenu>
+      </div>
+      <div class="offset-2"></div>
+  <!-- Master side menu end -->
+
+  <!-- Responsive Master sidemenu start -->
+  <div class="offcanvas offcanvas-start dis-responsivesidemenu" tabindex="-1" id="offcanvasNavbar1" aria-labelledby="offcanvasNavbarLabel" *ngIf="isAdminRole">
+    <div class="offcanvas-header">
+       <img src="assets/images/intellect original.png" class="nav-logo">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body master-sidemunu pt-1">
+          <p-panelMenu [model]="items"></p-panelMenu>
+      <!-- <form class="d-flex mt-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+  <!-- Responsive Master sidemenu End -->
+
+  <!-- Admin Data -->
+    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 adminmain-data-div" *ngIf="isAdminRole">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-12 footer-div"></div>
+  </div>
+
+    <!-- Transaction Data -->
+      <div class="col-12 transactionmain-data-div" *ngIf="!isAdminRole">
+        <router-outlet></router-outlet>
+        <div class="col-12 footer-div"></div>
+        <div  class="speeddial-tooltip-demo">
+          <p-toast></p-toast>
+          <p-speedDial [model]="tooltipItems" styleClass="speeddial-left" direction="up" showIcon="pi pi-reddit"></p-speedDial>
+      </div>
+      </div>
+      
+        
+  
+    </div>
+    <!-- 360 degree view button in transaction -->
+    <div class="flex align-items-center justify-content-center">
+      <p-button class="overallview-btn" label="360° View" *ngIf="!isAdminRole"></p-button>
+      
+
+      <p-button class="theme-btn" (click)="showTheam()">Theme Colors</p-button>
+      <p-dialog [(visible)]="display" [modal]="false" [closable]="true" header="Choose Theme" [style]="{width: '12vw'}">
+        <ul class="list-group list-group-horizontal justify-content-center">
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-orange cursor-pointer" (click)="toggleTheme('white')"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-secondary cursor-pointer"  (click)="toggleTheme('dark')"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-success-4da882 cursor-pointer" (click)="toggleTheme('green')"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-warning cursor-pointer"></div></li>
+        </ul>
+        <ul class="list-group list-group-horizontal justify-content-center mt-2">
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-danger cursor-pointer"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-warning-subtle cursor-pointer"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-primary cursor-pointer"></div></li>
+          <li class="list-group-item p-1 border m-1 "><div class="wh-30 bg-info-subtle cursor-pointer"></div></li>
+        </ul>
+      </p-dialog>
+
+      </div>
+    <!-- 360 degree view button in transaction -->
+    
+    

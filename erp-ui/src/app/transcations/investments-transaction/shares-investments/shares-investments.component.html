@@ -1,0 +1,97 @@
+
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'INVESTMENTS_TRANSACTIONS.INVESTMENTS' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'INVESTMENTS_TRANSACTIONS.SHARES' | translate}}</div>
+        </div>
+    </div>
+    <div class="col-12 bg-card min-hight65 mt-1">
+        <div class="col-12">
+    <form [formGroup]="sharesInvestmentsForm" id="exit_types_form">
+        <div class="bg-card bg-label-colorfull">
+            <h6 class="sub-heading">Share Details<span class="admission-text">(Application Number :&nbsp;501)</span></h6>
+            <div class="row g-3">
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</label>
+                        <p-dropdown [options]="productListData" placeholder="Select" formControlName="productName"
+                        (onChange)="onChangeProduct()"  [(ngModel)]="sharesInvestmentsModel.productId"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' | translate}}</label>
+                        <input type="text" formControlName="bankName" [(ngModel)]="sharesInvestmentsModel.bankName" placeholder="Enter Institution Name"/>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.BRANCH' | translate}}</label>
+                        <input type="text" formControlName="branchName" [(ngModel)]="sharesInvestmentsModel.branchName" placeholder="Enter Branch"/>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.PURCHASE_DATE' | translate}}</label>
+                        <p-calendar [showIcon]="true"  formControlName="sharesPurchasedDate" placeholder="Enter Purchase Date"
+                        [(ngModel)]="sharesInvestmentsModel.sharesPurchasedDate"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.SHARES_CERTIFICATE_NO' | translate}}</label>
+                        <input type="text" pInputText placeholder="Please Enter Surname" formControlName="shareCertificateNumber"
+                            [(ngModel)]="sharesInvestmentsModel.shareCertificateNumber" placeholder="Enter Shares Certificate Number" />
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.NO_OF_SHARES_PURCHASED' | translate}}</label>
+                        <input type="text" pInputText placeholder="Please Enter Name" formControlName="noOfSharesPurchased"
+                            [(ngModel)]="sharesInvestmentsModel.noOfSharesPurchased" placeholder="Enter Number of Shares Purchase" />
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.EACH_SHARE_AMOUNT' | translate}}</label>
+                        <input type="text" pInputText placeholder="Please Enter Name" formControlName="eachShareAmount"
+                            [(ngModel)]="sharesInvestmentsModel.eachShareAmount" placeholder="Enter Each Share Amount" />
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <span class=""> {{ 'ERP.UPLOAD_DOCUMENT' | translate }} </span>
+                        <div class="uplodad-style align-items-center">
+                            <!-- Upload Button Column -->
+                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg"
+                                (onRemove)="fileRemoveEvent()"
+                                (onSelect)="imageUploader($event,fileUpload)">
+                            </p-fileUpload>
+                            <div class="col-12  d-flex p-1 contant-body"
+                                *ngFor="let img of sharesInvestmentsModel.multipartFileList">
+                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                            height="22"></a>
+                                </div>
+                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                    {{img.fileName}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+<div class="col-12 btn-footer">
+    <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+    <p-button label="Cancel" (click)="navigateToBack()"></p-button>
+    <p-button label="Submit" (click)="addOrUpdate()" [disabled]="!sharesInvestmentsForm.valid"></p-button>
+    </div>
+</div>

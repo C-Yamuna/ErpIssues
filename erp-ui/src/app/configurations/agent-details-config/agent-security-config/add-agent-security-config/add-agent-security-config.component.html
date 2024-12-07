@@ -1,0 +1,76 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'AGENTDETAILSCONFIG.AGENT_SECURITY_CONFIG' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="agentSecurityConfigForm">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">
+                                <span class="red">*</span>{{'AGENTDETAILSCONFIG.AGENT_TYPE' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="agentList" formControlName="agentTypeName"
+                                [(ngModel)]="agentSecurityConfigModel.agentType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pt-4">
+                            <div class="form-label">
+                                <p-checkbox [binary]="true" inputId="binary" formControlName="isSecurityDepositRequire"
+                                [(ngModel)]="agentSecurityConfigModel.isSecurityDepositRequire" (onChange)="onSelectCheckBox($event)"></p-checkbox>
+                                <span class="mt-2">&nbsp;&nbsp;{{'AGENTDETAILSCONFIG.IS_SECURITY_DEPOSIT_REQUIRED' | translate}}</span>
+                         </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngIf="!showHideDropdown">
+                            <div class="form-label">
+                            <label for="code">
+                                {{'AGENTDETAILSCONFIG.SECURITY_TYPE' | translate}}
+                            </label>
+                            <p-dropdown [options]="securityTypeList" placeholder="Select" formControlName="securityType"
+                                [(ngModel)]="agentSecurityConfigModel.securityType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">{{'AGENTDETAILSCONFIG.SECURITY_VALUE_REQUIRED' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="securityValueRequire"
+                                [(ngModel)]="agentSecurityConfigModel.securityValueRequire">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">{{'AGENTDETAILSCONFIG.NO_OF_SURETIES_REQUIRED' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="noOfSuritiesRequire"
+                                [(ngModel)]="agentSecurityConfigModel.noOfSuritiesRequire">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code">
+                                <span class="red">*</span>{{'AGENTDETAILSCONFIG.STATUS' | translate}}
+                            </label>
+                            <p-dropdown [options]="statusList" formControlName="statusName"
+                                [(ngModel)]="agentSecurityConfigModel.status" placeholder="Select"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'AGENTDETAILSCONFIG.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'AGENTDETAILSCONFIG.SUBMIT' | translate}}" [disabled]="!agentSecurityConfigForm.valid"
+        *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'AGENTDETAILSCONFIG.SUBMIT' | translate}}" [disabled]="!agentSecurityConfigForm.valid"
+        *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

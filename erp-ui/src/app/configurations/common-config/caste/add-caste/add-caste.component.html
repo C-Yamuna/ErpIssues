@@ -1,0 +1,77 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'ERP.CASTE' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="casteForm">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'ERP.NAME' | translate}}
+                                </label>
+
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                    [(ngModel)]="casteModel.name">
+                                    <p-message severity="error" text="Enter Valid Name"
+                                    *ngIf="!casteForm.controls['name'].valid && casteForm.controls['name'].dirty">
+                                  </p-message>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pt-4">
+                            <div class="form-label">
+                                <p-checkbox [binary]="true" inputId="binary" formControlName="isParent"
+                                    [(ngModel)]="casteModel.isParent"
+                                    (onChange)="onSelectCheckBox($event)"></p-checkbox>
+                                <span class="mt-2" for="username">&nbsp;&nbsp;{{'ERP.IS_PARENT' | translate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngIf="showHideDropdown">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'ERP.PARENT' | translate}}
+                                </label>
+
+                                <p-dropdown [options]="casteDataList" placeholder="Select"
+                                    formControlName="parentIdName" [(ngModel)]="casteModel.parentId"></p-dropdown>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    {{'ERP.DESCRIPTION' | translate}}
+                                </label>
+
+                                <textarea type="text" class="form-control" pInputTextarea formControlName="discription"
+                                    [(ngModel)]="casteModel.discription" maxlength="150"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'ERP.STATUS' | translate}}
+                                </label>
+                                <p-dropdown [options]="statusList" formControlName="statusName"
+                                    [(ngModel)]="casteModel.status"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!casteForm.valid" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!casteForm.valid" *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

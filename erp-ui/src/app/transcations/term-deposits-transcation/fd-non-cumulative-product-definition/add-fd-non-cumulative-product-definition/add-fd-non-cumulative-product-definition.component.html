@@ -1,0 +1,35 @@
+
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'TERMDEPOSITSTRANSACTION.FD_NON_CUMMULATIVE_PRODUCT_DEFINATION' | translate}}</div>
+        </div>
+    </div>
+    
+    
+    <p-tabMenu [model]="items" [activeItem]="items[activeIndex]"
+    [class.disabled]="menuDisabled && activeItem !== items" styleClass="tab-menu-style"></p-tabMenu>
+  
+
+    <div class="col-12 bg-card min-hight65 mt-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<div class="col-12 btn-footer">
+    <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+        <p-button *ngIf="activeIndex > 0 && activeIndex <= 2" label="PREVIOUS" (click)="prevStep(activeIndex)"></p-button>
+        <p-button (click)="navigateToGrid()" *ngIf="activeIndex == 0" label="BACK"></p-button>
+        <p-button *ngIf="activeIndex > 0"(click)="cancel(activeIndex)" label="CANCEL"></p-button>
+        <p-button *ngIf="(activeIndex < 2)" label="SAVE & NEXT" (click)="saveAndNext(activeIndex)"  [disabled]="buttonDisbled"></p-button>
+    
+        <p-button *ngIf="activeIndex == 2" label="SAVE & PREVIEW" (click)="submit()" [disabled]="buttonDisbled"></p-button>
+    </div>
+</div>
+
+
+
+
+

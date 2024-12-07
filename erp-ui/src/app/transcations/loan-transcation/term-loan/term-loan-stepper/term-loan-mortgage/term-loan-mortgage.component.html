@@ -1,0 +1,400 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'ERP.MORTGAGE_DETAILS' | translate}}</h6>
+        <div class="stepper-top-section-strip">
+            <div class="row ">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-label">
+                    <span>{{'ERP.PRODUCT' | translate}} </span>
+                    <p class="mb-0">Term Loans</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-label">
+                    <span>{{'ERP.APPLICATION_TYPE' | translate}}</span>
+                    <p class="mb-0">Single</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-label">
+                    <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}} </span>
+                    <p class="mb-0">634545450</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-label">
+                    <span>{{'ERP.REQUEST_AMOUNT' | translate}} </span>
+                    <p class="mb-0">30,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12"></div>
+                <form [formGroup]="Collateralform">
+                    <div class="col-12 p-0">
+                        <div class="col-12 p-0 bg-label-colorfull">
+                            <div class="row g-3">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-label">
+                                <label for="paymentMethod"> {{'ERP.COLLATERAL_TYPE' | translate}}</label>
+                                    <p-dropdown id="collateraltype" name="collateraltype" [options]="collateraltypeoptions"
+                                    [(ngModel)]="selectcollateraltype" (onChange)="togglecollateralform($event)"
+                                    optionLabel="label" placeholder="{{'ERP.SELECT' | translate}}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </form>
+                    <div class="col-12"></div>
+                <div *ngIf="showgoldform" >
+                    <div class="mt-n1 bg-label-colorfull">
+                        <div class="row g-3">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.ITEM_NAME' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Item Name">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.NET_WEIGHT_IN_GRAMS' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Net Weight">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.GROSS_WEIGHT_IN_GRAMS' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Gross Weight">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.CARRATS' | translate}}
+                                    </label>
+                                <p-dropdown [options]="carrats" optionLabel="status" placeholder="Select"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.VALUE' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="Value" name="Value" placeholder="Enter Value">
+                                </div>
+                            </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                        <div class="form-label">
+                            <span for="username"> {{'ERP.UPLOAD' | translate}} 
+                            </span>
+                            <div class="uplodad-style align-items-center">
+                        <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" chooseLabel=" "
+                        accept="image/*" [auto]="true"></p-fileUpload>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                        <div class="form-label">
+                            <label for="code">
+                                {{'ERP.REMARKS' | translate}}
+                            </label>
+                            <textarea type="text" class="form-control" pInputTextarea id="narration" name="narration" placeholder="Enter Remarks Here"></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+                </div>
+    </div>
+    <div *ngIf="showlandform">
+        <div class="mt-n1 bg-label-colorfull">
+            <div class="row g-3">
+               <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.PASSBOOK_NUMBER' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Passbook Number">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.SURVEY_NO' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Survey No.">
+                    </div>
+                </div>
+               
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.LAND_TYPE' | translate}}
+                        </label>
+                    <p-dropdown [options]="carrats" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.LAND_IN_UNITS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Land in Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.LAND_IN_SUB_UNITS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Land in Sub Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.VALUE' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Value">
+                    </div>
+                </div>
+    
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username"> {{'ERP.UPLOAD' | translate}} 
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload  #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" chooseLabel=" "
+                    accept="image/*" [auto]="true"></p-fileUpload>
+                    </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.REMARKS' | translate}}
+                        </label>
+                        <textarea type="text" class="form-control" pInputTextarea id="narration" name="narration" placeholder="Enter Remarks Here"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showbondform">
+        <div class="mt-n1 bg-label-colorfull">
+           
+            <div class="row g-3">
+               
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.BOND_NO' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Bond No.">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.FACE_VALUE' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Face Value">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.SURRENDER_VALUE' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Surrender Value">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username"> {{'ERP.MATURITY_DATE' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+            
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username"> {{'ERP.UPLOAD' | translate}} 
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" chooseLabel=" "
+                    accept="image/*" [auto]="true"></p-fileUpload>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.REMARKS' | translate}}
+                        </label>
+                        <textarea type="text" class="form-control" pInputTextarea id="narration" name="narration" placeholder="Enter Remarks Here"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showstorageform">
+        <div class="mt-n1 bg-label-colorfull">
+            <div class="row g-3">
+               <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.NAME' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Name">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.NO_OF_UNITS_COUNT' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter No. Of Units Count">
+                    </div>
+                </div>
+            
+               
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.QUANTITY_IN_TONS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Quantity in Tons">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 "> 
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.TOTAL_WEIGHT_IN_KILOGRAMS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Total Weight">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.NET_WEIGHT_IN_GRAMS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Net Weight">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.VALUE' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Value">
+                    </div>
+                </div>
+           
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username"> {{'ERP.UPLOAD' | translate}} 
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" chooseLabel=" "
+                    accept="image/*" [auto]="true"></p-fileUpload>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.REMARKS' | translate}}
+                        </label>
+                        <textarea type="text" class="form-control" pInputTextarea id="narration" name="narration" placeholder="Enter Remarks Here"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showothersform">
+        <div class="mt-n1 bg-label-colorfull">
+           
+            <div class="row g-3">
+               
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.NAME' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Name">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.NO_OF_UNITS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter No. Of Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.TOTAL_UNITS' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Total Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.VALUE' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="nomineename" name="nomineename" placeholder="Enter Value">
+                    </div>
+                </div>
+            
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username"> {{'ERP.UPLOAD' | translate}} 
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" chooseLabel=" "
+                    accept="image/*" [auto]="true"></p-fileUpload>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.REMARKS' | translate}}
+                        </label>
+                        <textarea type="text" class="form-control" pInputTextarea id="narration" name="narration" placeholder="Enter Remarks Here"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

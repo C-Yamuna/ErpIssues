@@ -1,0 +1,9 @@
+person-image, img{
+    height: 65px;
+    width: 65px;
+    border-radius: 35px;
+}
+
+.disabled-input {
+    background-color: lightblue;
+  }

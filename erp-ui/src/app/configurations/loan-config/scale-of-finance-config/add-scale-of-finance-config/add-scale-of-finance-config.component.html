@@ -1,0 +1,85 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'LOANS.SCALE_OF_FINANCE_CONFIG' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="loancroptypeform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="financialYear">
+                                    <span class="red">*</span>{{'LOANS.FINANCIAL_YEAR' | translate}}
+                                </label>
+                                <p-dropdown formControlName="financialYear" [(ngModel)]="scaleOfFinanceConfigModel.financialYear"
+                                    [options]="financialYears" placeholder="Select a financial year"
+                                    id="financial-year" [showClear]="true">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code"><span class="red">*</span>
+                                    {{'LOANS.CROP_TYPES' | translate}}
+                                </label>
+                                <p-dropdown [options]="cropList" placeholder="Select" formControlName="cropTypeName"
+                                    [(ngModel)]="scaleOfFinanceConfigModel.cropId"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="limit">{{'LOANS.LIMIT' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" formControlName="maxAmount"
+                                    [(ngModel)]="scaleOfFinanceConfigModel.maxAmount" maxlength="40" type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="date"><span class="red">*</span>{{'LOANS.EFFECTIVE_START_DATE' |
+                                    translate}}</label>
+                                <p-calendar formControlName="effectiveStartDate" [monthNavigator]="true"
+                                    [yearNavigator]="true" yearRange="1970:2050" [showIcon]="true"
+                                    dateFormat="{{orgnizationSetting.calendar}}" id="eff_start_date"
+                                    [disabled]="!isEdit" [(ngModel)]="scaleOfFinanceConfigModel.effStartDateVal"
+                                    [minDate]="todayDate">
+                                </p-calendar>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="date"><span class="red">*</span>{{'LOANS.END_DATE' | translate}}
+                    </label>
+                    <p-calendar formControlName="endDate" [monthNavigator]="true" [yearNavigator]="true"
+                    yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                        id="work_flow_start_date"
+                    [(ngModel)]="scaleOfFinanceConfigModel.effEndDateVal" >
+                    </p-calendar>
+                </div>
+            </div> -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'LOANS.STATUS' | translate}}
+                                </label>
+
+                                <p-dropdown [options]="statusList" formControlName="statusName"
+                                    [(ngModel)]="scaleOfFinanceConfigModel.status" placeholder="Select"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateback()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!loancroptypeform.valid" *ngIf='!isEdit'
+        (click)="submit()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!loancroptypeform.valid" *ngIf='isEdit'
+        (click)="update()"> </p-button>
+</div>

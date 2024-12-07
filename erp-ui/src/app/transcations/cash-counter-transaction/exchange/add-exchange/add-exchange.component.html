@@ -1,0 +1,173 @@
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'CASH_COUNTER_TRANSACTIONS.EXCHANGE' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>ADD</div>
+        </div>
+    </div>
+    <div class="col-12 bg-card mt-1">
+        <div class="col-12 pt-0">
+                <form [formGroup]="exchangeform">
+                    <div class="bg-label-colorfull">
+                        <div class="row g-3 mt-n1">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label> {{'CASH_COUNTER_TRANSACTIONS.DATE' | translate}}</label>
+                                <p-calendar [showIcon]="true" formControlName="date" [yearNavigator]="true" yearRange="1970:2050"
+                                [showIcon]="true"  id="work_flow_start_date" [maxDate]="maxDate"  dateFormat="{{orgnizationSetting.calendar}}"
+                                formControlName="date" [(ngModel)]="exchangeModel.date" placeholder="DD/MM/YYYY"></p-calendar>          
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label> {{'CASH_COUNTER_TRANSACTIONS.FROM' | translate}}</label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="formCounterName" [(ngModel)]="exchangeModel.formCounterName" placeholder="Enter From">     
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label> {{'CASH_COUNTER_TRANSACTIONS.TO' | translate}}</label>
+                                <p-dropdown [options]=""  placeholder="Select"
+                            formControlName="toCounterName" [(ngModel)]="exchangeModel.toCounterName"></p-dropdown>       
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </form>
+        </div>
+        </div>
+        <div class="col-12 p-1"></div>
+        <div class="col-12 bg-card">
+            <div class="col-12">
+<div class="row">
+    <div class="col-lg-6 col-lg-6 col-sm-12 col-xs-12">
+        <h6 class="sub-heading">Denomination In</h6>
+        <div class="row g-3">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="globel-border-top-color"></div>
+                <p-table #dt [columns]="columns" [value]="currencyList" dataKey="id">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header | translate}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData 
+                        let-columns="columns">
+                        <tr>
+                            <td >{{rowData.name}}</td>
+                            <td class="width-15em"><input pInputText id="bunit_txt_name"
+                                    type="text"></td>
+                            <td ></td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <div class="col-12 margtop-3rem"></div>
+            </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="globel-border-top-color"></div>
+                <p-table #dt  [columns]="subColumns" [value]="coinList" dataKey="id">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of subColumns">
+                                {{col.header | translate}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData 
+                        let-columns="columns">
+                        <tr>
+                            <td >{{rowData.name}}</td>
+                            <td class="width-15em"><input pInputText id="bunit_txt_name"
+                                    type="text"></td>
+                            <td ></td>
+                        </tr>
+                    </ng-template>
+                   
+                </p-table>
+                <div class="col-12 margtop-3rem"></div>
+            </div>
+        </div>
+        <div class="col-12 globel-border bg-white shadow-sm rounded">
+            <!-- <p class="font-semibold text-break">{{ vaulttransactionanduserassignmentModel.transactionAmount}}</p> -->
+            <p>{{'CASH_COUNTER_TRANSACTIONS.GRAND_TOTAL' |translate}} : <span class="fw-semibold">0</span></p>
+            <p class="m-0">{{'CASH_COUNTER_TRANSACTIONS.AMOUNT_IN_WORDS' |translate}} : <span class="fw-semibold">0</span></p>
+             <!-- <p class="font-semibold text-break">{{ vaulttransactionanduserassignmentModel.transactionAmount}}</p> -->
+        </div>
+        </div>
+      
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <h6 class="sub-heading">Denomination Out</h6>
+            <div class="row g-3">
+                <div class="col-lg-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="globel-border-top-color"></div>
+                <p-table #dt [columns]="columns" [value]="currencyList" dataKey="id">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header | translate}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData 
+                        let-columns="columns">
+                        <tr>
+                            <td >{{rowData.name}}</td>
+                            <td class="width-15em"><input pInputText id="bunit_txt_name"
+                                    type="text"></td>
+                            <td ></td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <div class="col-12 margtop-3rem"></div>
+            </div>
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="globel-border-top-color"></div>
+                <p-table #dt  [columns]="subColumns" [value]="coinList" dataKey="id">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of subColumns">
+                                {{col.header | translate}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData 
+                        let-columns="columns">
+                        <tr>
+                            <td >{{rowData.name}}</td>
+                            <td class="width-15em"><input pInputText id="bunit_txt_name"
+                                    type="text"></td>
+                            <td ></td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <div class="col-12 margtop-3rem"></div>
+            </div>
+        </div>
+        <div class="col-12 globel-border bg-white shadow-sm rounded">
+            <!-- <p class="font-semibold text-break">{{ vaulttransactionanduserassignmentModel.transactionAmount}}</p> -->
+            <p>{{'CASH_COUNTER_TRANSACTIONS.GRAND_TOTAL' |translate}} : <span class="fw-semibold">0</span></p>
+            <p class="m-0">{{'CASH_COUNTER_TRANSACTIONS.AMOUNT_IN_WORDS' |translate}} : <span class="fw-semibold">0</span></p>
+             <!-- <p class="font-semibold text-break">{{ vaulttransactionanduserassignmentModel.transactionAmount}}</p> -->
+        </div>
+        </div>
+</div>
+</div>
+</div>
+
+    <div class="col-12 btn-footer px-0">
+        <div class="col-12 d-flex justify-content-end px-0 mt-1 group-button-bottom">
+            <!-- <button  pButton type="submit" (click)="navigateToBack()" label="Back"></button>
+            -->
+            <p-button label="{{'CASH_COUNTER_TRANSACTIONS.BACK' | translate}}" (click)="navigateToBack()" id="add_btn"></p-button>
+            <p-button label="{{'CASH_COUNTER_TRANSACTIONS.SUBMIT' | translate}}" (click)="addOrUpdate()" id="add_btn"></p-button>
+            <!-- <button  pButton type="submit" (click)="navigateToBack()" label="submit">Submit</button> -->
+        </div>
+    </div>
+</div>
+
+
+   

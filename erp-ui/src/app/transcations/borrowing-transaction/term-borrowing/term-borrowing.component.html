@@ -1,0 +1,127 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="col-12">
+
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'BORROWINGSTRANSACTIONS.TERM_BORROWING' | translate}}</div>
+        </div>
+        <div class="col-12 summary-carousel ">
+            <div class="main-summary">
+                <span class="box-text-summary">Summary</span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-12 p-0 filter-button">
+                <p-button icon="pi pi-filter" label="SEARCH FILTER" (click)="onChange()"></p-button>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-12 p-0">
+                <div class="d-flex justify-content-end search-input-style">
+                    <div class="input-group search-box d-flex justify-content-end">
+                        <div class="search">
+                            <span class="p-input-icon-right">
+                                <i class="pi pi-search global-search-icon"></i>
+                              
+                                <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                placeholder="Search" class="searchbox"
+                                #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                            </span>
+                        </div>
+                    </div>
+
+                   
+                            <p-button icon="fa fa-plus" label="New Borrowing" (click)="newBorrrowing()"></p-button>
+                           
+                      
+                        
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    </div>
+        <div class="col-12 p-0" *ngIf="showForm">
+            <div class="col-12 global-border search-filter-open">
+                <div class="row p-2 pt-0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.DCCB_BORROWING_ACCOUNT_NUMBER' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter DCCB Borrowing Account Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.FINANCIAL_BANK_TYPE' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Financial Bank Type">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.PURPOSE' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Purpose">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.SANCTIONED_AMOUNT' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-end pt-3 pr-2">
+                        <p-button label="Apply" (click)="onChange()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="globel-border-top-color"></div>
+    <p-table [value]="gridListData" #dt [columns]="termborrowings" dataKey="id" selectionMode="single"
+        styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+        [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+        <ng-template pTemplate="header">
+            <tr>
+                
+                <th *ngFor="let col of termborrowings">
+                    {{col.header | translate}}
+                </th>
+                <th class="width-15em">{{'BORROWINGSTRANSACTIONS.ACTION' | translate}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-membership>
+            <tr [pSelectableRow]="rowData">
+                
+                <td *ngFor="let col of termborrowings">
+                    <div *ngIf="col.field =='accountNumber'">
+                        <div class="d-block">
+                           
+                            <span class="account-number-style" (click)="editborrowing(rowData)">{{ rowData[col.field] }} </span>
+                        </div>
+                    </div>  
+                    <div  *ngIf="col.field !='accountNumber'"> {{rowData[col.field]}}</div>
+
+                </td>
+                <td>
+                    <div class="global-action-btn flex align-items-center justify-content-center">
+                        <p-button id="skill_category_btn_edit" (click)="view(rowData)" label="{{'ERP.VIEW' | translate}}" class="action-view"></p-button>
+                        <p-dropdown id="bunit_txt_status" placeholder="operations" [filter]="true" class="action-operation"
+                        [options]="operationslist" [(ngModel)]="operations" [appendTo]="'body'"></p-dropdown>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="col-12 margtop-3rem"></div>
+
+</div>
+
+

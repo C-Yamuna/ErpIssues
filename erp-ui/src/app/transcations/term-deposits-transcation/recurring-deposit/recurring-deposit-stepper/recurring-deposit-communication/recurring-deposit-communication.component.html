@@ -1,0 +1,142 @@
+<div class="col-12">
+    <form [formGroup]="communicationForm" id="exit_types_form">
+        <h6 class="sub-heading">{{'TERMDEPOSITSTRANSACTION.COMMUNICATION' | translate}}<span class="admission-text">(Admission
+                number:&nbsp;{{admissionNumber}})</span></h6>
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+                
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <h6 class="super-sub-heading">Registered</h6>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.STATE' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="statesList"
+                                        formControlName="stateName" [(ngModel)]="rdAccountCommunicationModel.stateId"
+                                        (onChange)="getAllDistrictsByStateId(rdAccountCommunicationModel.stateId,true)"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.DISTRICT' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="districtsList"
+                                        formControlName="districtName"
+                                        [(ngModel)]="rdAccountCommunicationModel.districtId"
+                                        (onChange)='getAllSubDistrictByDistrictId(rdAccountCommunicationModel.districtId,true)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.SUB_DISTRICT' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="subDistrictList"
+                                        formControlName="subDistrictName"
+                                        [(ngModel)]="rdAccountCommunicationModel.subDistrictId"
+                                        (onChange)='getAllVillagesBySubDistrictId(rdAccountCommunicationModel.subDistrictId,true)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.VILLAGE' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="villageList"
+                                        formControlName="villageName" (onChange)='getVillage(rdAccountCommunicationModel.villageId)'
+                                        [(ngModel)]="rdAccountCommunicationModel.villageId"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.ADDRESS' | translate}}</label>
+                                    <textarea type="text" class="form-control" pInputTextarea formControlName="address1"
+                                    (keyup)="RegAddressToComAddress()" [(ngModel)]="rdAccountCommunicationModel.address1" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.PINCODE' | translate}}</label>
+                                    <input pInputText id="bunit_txt_name" type="text"
+                                        formControlName="pinCode" placeholder="Enter Your Pincode"
+                                        (keyup)="RegAddressToComAddress()" [(ngModel)]="rdAccountCommunicationModel.pinCode">
+                                    <p-message severity="error" text="Enter Valid Pin Code"
+                                        *ngIf="!communicationForm.controls['pinCode'].valid && communicationForm.controls['pinCode'].dirty"></p-message>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                            <h6 class="super-sub-heading"><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.PERMANENT' | translate}}</h6>
+                            <div class="grid mr-3 d-flex">
+                                <p-inputSwitch formControlName="isSameAddress"
+                                    [(ngModel)]="rdAccountCommunicationModel.isSameAddress"
+                                    (click)="sameAsPerAddr(rdAccountCommunicationModel.isSameAddress)"></p-inputSwitch>
+                                <p class="pl-1 m-0">{{'TERMDEPOSITSTRANSACTION.SAME_AS_REGISTERED_ADDRESS' | translate}}</p>
+                            </div>
+                        </div>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.STATE' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="permanentStatesList"
+                                        formControlName="permanentStateName"
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentStateId"
+                                        (onChange)='getAllPermanentDistrictsByStateId(rdAccountCommunicationModel.permanentStateId,true)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.DISTRICT' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="permanentDistrictList"
+                                        formControlName="permanentDistrictName"
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentDistrictId"
+                                        (onChange)='getAllPermanentSubDistrictByDistrictId(rdAccountCommunicationModel.permanentDistrictId,true)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.SUB_DISTRICT' | translate}}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="permanentSubDistrictList"
+                                        formControlName="permanentSubDistrictName"
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentSubDistrictId"
+                                        (onChange)='getAllPermanentVillagesBySubDistrictId(rdAccountCommunicationModel.permanentSubDistrictId,true)'></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.VILLAGE' | translate}}</label>
+                                <div>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT' | translate}}" [options]="permanentVillageList"
+                                        formControlName="permanentVillageName" (onChange)='getPermanentVillage(rdAccountCommunicationModel.permanentVillageId)'
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentVillageId"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.ADDRESS' | translate}}</label>
+                                    <textarea class="form-control" type="text" pInputTextarea formControlName="permanentAddress1"
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentAddress1"
+                                        [disabled]="sameAsPermanentAddress" placeholder="House No., Door No., Landmark..etc"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.PINCODE' | translate}}</label>
+                                    <input pInputText id="bunit_txt_name" type="text"
+                                        formControlName="permanentPinCode" placeholder="Enter Your Pincode"
+                                        [(ngModel)]="rdAccountCommunicationModel.permanentPinCode">
+                                    <p-message severity="error" text="Enter Valid Pin Code"
+                                        *ngIf="!communicationForm.controls['permanentPinCode'].valid && communicationForm.controls['permanentPinCode'].dirty"></p-message>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,200 @@
+<div class="col-12">
+    <div class="stepper-top-section-strip">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.PRODUCT_NAME' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.productName}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.MIN_BALANCE_FOR_ACCOUNT_OPEN' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.minDepositAmountForAccountOpen}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.ACCOUNT_INACTIVATION_PERIOD_IN_DAYS' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.accInactiveDays}}</p>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <span>{{'DEMANDDEPOSITS.EFFECTIVE_START_DATE' | translate}}</span>
+                        <p class="m-0 font-semibold text-break">{{generalConfigModel.effectiveStartDate}}</p>
+                </div>
+            </div>
+            </div>
+    
+        </div>
+<div class="col-12"></div>
+    <form [formGroup]="transactionlimitconfigform">
+        <h6 class="sub-heading">{{'DEMANDDEPOSITS.TRANSACTION_LIMIT_CONFIG' | translate}}</h6>
+        <div class="mt-n1  bg-label-colorfull">
+                <div class="row g-3 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username" class="-ml-2"><span class="red">*</span>{{'DEMANDDEPOSITS.MIN_DEPOSIT_LIMIT_PER_DAY' | translate}}
+                            </label>
+                            <div class="subform-bgcolor p-2 mt-3">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.WITH_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="minDepositLimitPerDayWithPan" [(ngModel)]="transactionLimitConfigModel.minDepositLimitPerDayWithPan">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['minDepositLimitPerDayWithPan'].valid && transactionlimitconfigform.controls['minDepositLimitPerDayWithPan'].dirty">
+                            </p-message>
+                            </div>
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="minDepositLimitPerDayWithoutPan" [(ngModel)]="transactionLimitConfigModel.minDepositLimitPerDayWithoutPan">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['minDepositLimitPerDayWithoutPan'].valid && transactionlimitconfigform.controls['minDepositLimitPerDayWithoutPan'].dirty">
+                            </p-message>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username" class="-ml-2"><span class="red">*</span>{{'DEMANDDEPOSITS.MAX_DEPOSIT_LIMIT_PER_DAY' | translate}}
+                            </label>
+                            <div class="subform-bgcolor p-2 mt-3">
+                        <div class="row g-3">
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.WITH_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="maxDepositLimitPerDayWithPan" [(ngModel)]="transactionLimitConfigModel.maxDepositLimitPerDayWithPan">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['maxDepositLimitPerDayWithPan'].valid && transactionlimitconfigform.controls['maxDepositLimitPerDayWithPan'].dirty">
+                            </p-message>
+                            </div>
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="maxDepositLimitPerDayWithoutPan" [(ngModel)]="transactionLimitConfigModel.maxDepositLimitPerDayWithoutPan">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['maxDepositLimitPerDayWithoutPan'].valid && transactionlimitconfigform.controls['maxDepositLimitPerDayWithoutPan'].dirty">
+                            </p-message>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username" class="-ml-2">{{'DEMANDDEPOSITS.MIN_WITHDRAW_LIMIT_PER_DAY' | translate}}
+                            </label>
+                            <div class="subform-bgcolor p-2 mt-3">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-6 m-0">
+                                <label for="username">{{'DEMANDDEPOSITS.WITH_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="minWithdrawLimitPerDayWithPan" [(ngModel)]="transactionLimitConfigModel.minWithdrawLimitPerDayWithPan" >
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['minWithdrawLimitPerDayWithPan'].valid && transactionlimitconfigform.controls['minWithdrawLimitPerDayWithPan'].dirty">
+                            </p-message>
+                            </div>
+                            <div class="col-6 m-0">
+                                <label for="username">{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="minWithdrawLimitPerDayWithOutPan" [(ngModel)]="transactionLimitConfigModel.minWithdrawLimitPerDayWithoutPan">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['minWithdrawLimitPerDayWithOutPan'].valid && transactionlimitconfigform.controls['minWithdrawLimitPerDayWithOutPan'].dirty">
+                            </p-message>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username" class="-ml-2"><span class="red">*</span>{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_PER_DAY_WITH_ATM' | translate}}
+                            </label>
+                            <div class="subform-bgcolor p-2 mt-3">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.SAME_BRANCH_ATM' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="maxWithdrawLimitSameBranchAtmInDay" [(ngModel)]="transactionLimitConfigModel.maxWithdrawLimitSameBranchAtmInDay">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['maxWithdrawLimitSameBranchAtmInDay'].valid && transactionlimitconfigform.controls['maxWithdrawLimitSameBranchAtmInDay'].dirty">
+                            </p-message>
+                            </div>
+                            <div class="col-6 m-0">
+                                <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.OTHER_BRANCH_ATM' | translate}}
+                                </label>
+                                <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="maxWithdrawLimitOtherBranchAtmInDay" [(ngModel)]="transactionLimitConfigModel.maxWithdrawLimitOtherBranchAtmInDay">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!transactionlimitconfigform.controls['maxWithdrawLimitOtherBranchAtmInDay'].valid && transactionlimitconfigform.controls['maxWithdrawLimitOtherBranchAtmInDay'].dirty">
+                            </p-message>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.MAX_TRANSFER_LIMIT_PER_DAY' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                        formControlName="maxTransferLimitPerDay" [(ngModel)]="transactionLimitConfigModel.maxTransferLimitPerDay">
+                        <p-message severity="error" text="Enter Valid Numbers"
+                        *ngIf="!transactionlimitconfigform.controls['maxTransferLimitPerDay'].valid && transactionlimitconfigform.controls['maxTransferLimitPerDay'].dirty">
+                    </p-message>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_BY_CHEQUE' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                        formControlName="maxWithdrawLimitByCheque" [(ngModel)]="transactionLimitConfigModel.maxWithdrawLimitByCheque">
+                        <p-message severity="error" text="Enter Valid Numbers"
+                        *ngIf="!transactionlimitconfigform.controls['maxWithdrawLimitByCheque'].valid && transactionlimitconfigform.controls['maxWithdrawLimitByCheque'].dirty">
+                    </p-message>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span>{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_BY_DEBIT_CARD' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                        formControlName="maxWithdrawLimitByDebitCard" [(ngModel)]="transactionLimitConfigModel.maxWithdrawLimitByDebitCard">
+                        <p-message severity="error" text="Enter Valid Numbers"
+                        *ngIf="!transactionlimitconfigform.controls['maxWithdrawLimitByDebitCard'].valid && transactionlimitconfigform.controls['maxWithdrawLimitByDebitCard'].dirty">
+                    </p-message>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username"><span class="red">*</span> {{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_IN_BRANCH' | translate}} 
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                        formControlName="maxWithdrawLimitInBranch" [(ngModel)]="transactionLimitConfigModel.maxWithdrawLimitInBranch">
+                        <p-message severity="error" text="Enter Valid Numbers"
+                        *ngIf="!transactionlimitconfigform.controls['maxWithdrawLimitInBranch'].valid && transactionlimitconfigform.controls['maxWithdrawLimitInBranch'].dirty">
+                    </p-message>
+                    </div>
+                    </div>
+                </div>
+                 
+               
+        </div>
+</form>
+</div>

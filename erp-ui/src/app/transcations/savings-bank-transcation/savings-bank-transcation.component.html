@@ -1,0 +1,211 @@
+<!-- <router-outlet></router-outlet> -->
+<!-- <div class="card">
+    <p-tabMenu [model]="items" [activeItem]="activeItem" [scrollable]="true" >
+        <ng-template pTemplate="item" let-item>
+            <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+                <div>
+                    <span> {{ item.label }}</span>
+                    <span> {{ item.value }}</span>
+                    <p-progressBar [value]="value"></p-progressBar>
+
+                </div>
+           
+            </a>
+        </ng-template>
+    </p-tabMenu>
+</div> -->
+<div class="col-12 ">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.SAVINGS_BANK' | translate}}</div>
+            <!-- <div class="justify-content-end view-popup-top">
+                <p-button label="{{'ERP.RENEWAL_ACCOUNTS' | translate}}" [outlined]="true" badge="1"
+                    class="top-badge-btn btn-outline-0"></p-button>
+                <p-button label="{{'ERP.MATURED_ACCOUNTS' | translate}}" [outlined]="true" badge="3"
+                    class="top-badge-btn btn-outline-0"></p-button>
+            </div> -->
+        </div>
+
+        <div class="col-12 summary-carousel ">
+            <div class="main-summary">
+                <span class="box-text-summary">Summary</span>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-12 p-0 filter-button">
+                <p-button icon="pi pi-filter" label="SEARCH FILTER" (click)="onChange()"></p-button>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-12 p-0">
+                <div class="d-flex justify-content-end search-input-style">
+                    <div class="input-group search-box d-flex justify-content-end">
+                        <div class="search">
+                            <span class="p-input-icon-right">
+                                <i class="pi pi-search global-search-icon"></i>
+                                <input type="text" pInputText class="searchbox" placeholder="Search" />
+                            </span>
+                        </div>
+                    </div>
+                    <p-button (click)="createaccount()" label="create account" icon="fa fa-plus"
+                        iconPos="left"></p-button>
+                    <!-- <p-dropdown [options]="membershiplist" [(ngModel)]="addmembership" optionLabel="name" [showClear]="true" placeholder="+ ADD MEMBER" styleClass="application-dropdown">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="flex align-items-center gap-2" *ngIf="addmembership">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + addmembership.code.toLowerCase()" style="width: 18px"/>
+                                <div>{{ addmembership.name }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px"/>
+                                <div>{{ country.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown> -->
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="col-12 p-0" *ngIf="showForm">
+        <div class="col-12 global-border search-filter-open">
+              <div class="row p-2 pt-0">
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-label">
+                          <label for="username">Account Number
+                          </label>
+                          <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Account Number">
+                        </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-label">
+                          <label for="username">Name
+                          </label>
+                          <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Name">
+                        </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-label">
+                          <label for="username">Account Type
+                          </label>
+                          <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Account Type">
+                        </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-label">
+                          <label for="username">Admission Number
+                          </label>
+                          <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Admission Number">
+                        </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-end pt-3 pr-2">
+                      <p-button label="Apply" (click)="onChange()"></p-button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    <div class="globel-border-top-color"></div>
+
+    <p-table [columns]="savingsbank" [value]="gridList" dataKey="id" selectionMode="single"
+        styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+        [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of savingsbank">
+                    {{col.header | translate}}
+                </th>
+                <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gridList let-expanded="expanded" let-rowData>
+            <tr>
+                <td *ngFor="let col of savingsbank">
+                    <div *ngIf="col.field =='accountNumber'">
+                        <div class="d-block"
+                            *ngIf="rowData.multipartFileListForPhotoCopy != null && rowData.multipartFileListForPhotoCopy != undefined && rowData.multipartFileListForPhotoCopy.length > 0">
+                            <span *ngFor="let img of rowData.multipartFileListForPhotoCopy">
+                                <span class="{{img.imageValue}}" (click)="onClickMemberPhotoCopy(rowData)"
+                                    *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                    <!-- <a href="{{img.imageValue}}" ></a> -->
+                                    <img class="table-circle-image" src="{{img.imageValue}}">
+                                </span>
+                            </span>
+                            <span class="account-number-style" (click)="edit(rowData)">{{ rowData[col.field] }}</span>
+                        </div>
+                
+                        <div class="d-block"
+                            *ngIf="rowData.multipartFileListForPhotoCopy == null || rowData.multipartFileListForPhotoCopy == undefined || rowData.multipartFileListForPhotoCopy.length == 0">
+                            <span (click)="onClickMemberPhotoCopy(rowData)">
+                                <img class="table-circle-image" src="assets/images/no-image.jpg">
+                            </span>
+                            <span class="account-number-style" (click)="edit(rowData)">{{ rowData[col.field] }}</span>
+                        </div>
+                        <!-- <span class="status-circle"></span> -->
+                        <!-- <span> <img class="table-circle-image" src="assets/images/avata2r-table.png" /></span> -->
+                
+                
+                    </div>
+                    <div *ngIf="col.field !='accountNumber'"> {{rowData[col.field]}}</div>
+                
+                </td>
+                <td>
+                    <div class="global-action-btn flex align-items-center justify-content-center">
+                        <p-button label="view" class="action-view" (click)="view(rowData)"></p-button>
+                        <p-dropdown id="bunit_txt_status" class="action-operation" placeholder="operations"
+                            [filter]="true" [options]="operationslist" [(ngModel)]="operations"
+                            (onChange)="navigateToInfoDetails($event,rowData)" [appendTo]="'body'"></p-dropdown>
+                        <p-button label="Transaction" class="action-view" icon="fa fa-exchange" iconPos="left"
+                            (click)="transaction(rowData)"></p-button>
+                        <!-- <p-button label="edit" (click)="edit(rowData)"></p-button> -->
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="status-counts">
+        <span class="active-div">
+            <span class="status-circle active"></span>ACTIVE: {{ activeStatusCount }}
+        </span>
+        <span class="inactive-div">
+            <span class="status-circle inactive"></span>INACTIVE: {{ inactiveStatusCount }}
+        </span>
+    </div>
+    <div class="col-12 margtop-3rem"></div>
+</div>
+
+<!-- photo Copy dialog -->
+<p-dialog header="{{'ERP.PHOTO_COPY' | translate}}" [(visible)]="memberPhotoCopyZoom">
+    <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div 
+                            *ngFor="let img of memberphotCopyMultipartFileList">
+                            <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="popup-images">
+                                </a>
+                            </div>
+                        </div>
+                        <div *ngIf="memberphotCopyMultipartFileList == null || memberphotCopyMultipartFileList == undefined || memberphotCopyMultipartFileList.length == 0">
+                            <img src="assets/images/no-image.jpg" class="popup-images">
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+         <p-button class="action-edit" label="{{'ERP.CLOSE' | translate}}" (click)="closePhoto()"></p-button> 
+        </div>
+    </div>
+</p-dialog>

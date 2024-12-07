@@ -1,0 +1,245 @@
+<div class="col-12 bg-label-colorfull">
+    <h6 class="sub-heading">{{'AGENT_DETAILS_TRANSACTION.SECURITY' | translate}}<span
+        class="admission-text">(Application Number:&nbsp;501)</span></h6>
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.AGENT_TYPE' | translate}}</span>
+                <p class="m-0 font-semibold text-break">{{agentDetailsModel.agentType}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</span>
+                <p class="m-0 font-semibold text-break">{{agentDetailsModel.name}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.CONTACT' | translate}}</span>
+                <p class="m-0 font-semibold text-break">500</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</span>
+                <p class="m-0 font-semibold text-break"></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    
+    <form [formGroup]="securityForm" id="exit_types_form">
+
+        <div class="flex justify-content-between py-2">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                </span>
+                            </div>
+                        </div>
+                        <p-button (click)="addSecurity()" label="{{ 'ADD' | translate }}" icon="fa fa-plus"
+                            id="bunit_bt_submit" [disabled]="addButton"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="globel-border-top-color"></div>
+
+        <p-table #dt [value]="securityDetailsList" dataKey="id" editMode="row" [paginator]="true" [pageLinks]="1"
+            [rows]="10" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false"
+            [globalFilterFields]="['securityType', 'securityDepositAccountNumber', 'securityValue', 'securityAssetDocCopyPath']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{'AGENT_DETAILS_TRANSACTION.SECURITY_TYPE' | translate}}</th>
+                    <th>{{'AGENT_DETAILS_TRANSACTION.ACCOUNT_NUMBER' | translate}}</th>
+                    <th>{{'AGENT_DETAILS_TRANSACTION.SECURITY_VALUE' | translate}}</th>
+                    <th>{{'AGENT_DETAILS_TRANSACTION.PATH' | translate}}</th>
+                    <th class="width-15em">{{'AGENT_DETAILS_TRANSACTION.ACTION' | translate}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="rowData">
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="securityType" formControlName="securityType"
+                                    [(ngModel)]="rowData.securityType" placeholder="select"
+                                    [appendTo]="'body'"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.securityType}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="securityDepositAccountNumber"
+                                    [(ngModel)]="rowData.securityDepositAccountNumber">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.securityDepositAccountNumber}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="securityValue"
+                                    [(ngModel)]="rowData.securityValue">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.securityValue}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor class="table-uploadfilestyle">
+                            <ng-template pTemplate="input">
+                                <div class="uplodad-style align-items-center">
+                                    <!-- Upload Button Column -->
+                                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                            id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                            accept=".png,.jpg,.jpeg" (onRemove)="fileRemoveEvent()" 
+                                            (onSelect)="fileUploader($event,fileUpload,rowData)" >
+                                    </p-fileUpload>
+                                </div>
+                                <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of rowData.multipleFilesList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>  
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+
+                                <!-- Uploaded Files Display Column -->
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <div class="d-flex pt-1" *ngFor="let img of rowData.multipleFilesList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>  
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <div class="global-action-btn flex align-items-center justify-content-center">
+                            <p-button label="{{ 'SAVE' | translate }}" *ngIf="editing" [disabled]="!securityForm.valid"
+                                (click)="addOrUpdateSecurityDetails(rowData)" pSaveEditableRow
+                                id="prj_stakehlder_bt_cancel" class="action-save"></p-button>
+
+                            <p-button label="{{ 'CANCEL' | translate }}" *ngIf="editing"
+                                (click)="cancelSecurityDetails()" pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                class="action-cancel"></p-button>
+
+                            <p-button label="{{ 'EDIT' | translate }}" *ngIf="!editing"
+                                (click)="editSecurityDetailsRow(rowData)" pInitEditableRow id="prj_stakehlder_bt_edit"
+                                class="action-edit"></p-button>
+
+                            <p-button label="{{ 'DELETE' | translate }}" *ngIf="!editing"
+                                (click)="deleteSecurityDetails(rowData)" pInitEditableRow id="prj_stakehlder_bt_edit"
+                                class="action-delete"></p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="col-12 margtop-3rem"></div>
+    </form>
+    <div class="col-12"></div>
+    <h6 class="sub-heading">{{'AGENT_DETAILS_TRANSACTION.SURITY' | translate}}</h6>
+    <form [formGroup]="surityForm" id="exit_types_form">
+
+        <div class="row g-3 mt-n1">
+            <div class="col-lg-4 col-xl-3 col-md-4 col-sm-4 col-xs-6">
+                <label>Admission Number</label>
+                <div class="form-label">
+                    <p-multiSelect [options]="depositMembersList" (onChange)="OnChangeAdmissionNumber($event)"
+                        [selectAll]="false" (onRemove)="onRemoveItem($event)" [(ngModel)]="selectedAdmissionNumbers"
+                        placeholder="Please Select" display="chip" [showClear]="false"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-4 col-xs-6 pt-3">
+                <p-button icon="fa fa-download" label="Application" aria-hidden="true"></p-button>
+            </div>
+            <div class="col-lg-5 col-xl-4 col-md-5 col-sm-4 col-xs-6">
+                <span>{{'AGENT_DETAILS_TRANSACTION.UPLOAD_SIGNED_COPY' | translate}}</span>
+                <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload chooseLabel=" " name="docFilesList[]"
+                        accept=".png,.jpg,.jpeg,.pdf"></p-fileUpload>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 p-3 agentsuritystrip" *ngIf="showSurityList">
+            <div class="col-auto rounded bg-white mb-2" ngFor="let membershipBasicDetailsModel of surityDetailsList">
+                <div class="d-flex">
+                    <div class="col">
+                        <img class="agentsurity-image" src="assets/images/avatar-table.png" alt="Surity Holder Image" />
+                    </div>
+                    <div class="col"></div>
+                    <div class="w-100 mt-1 mb-2 h-90p">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.ADMISSION_NUMBER' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.admissionNumber}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.name}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.MEMBER_TYPE' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.memberTypeName}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.CLASS' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.subProductName}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.ADMISSION_DATE' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.admissionDate}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.aadharNumber}}</p>
+                            </div>
+                        </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 min-h-50px">
+                                <div class="col">
+                                <span>{{'AGENT_DETAILS_TRANSACTION.PAN_NUMBER' | translate}}</span>
+                                <p class="font-semibold text-break m-0">{{membershipBasicDetailsModel.panNumber}}</p>
+                            </div>
+                        </div>
+                            <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                    <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.KYC' | translate}}</h6>
+                                    <p class="label-input-text">{{membershipBasicDetailsModel.isKycApproved}}</p>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

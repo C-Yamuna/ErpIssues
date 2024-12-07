@@ -1,0 +1,69 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'ERP.KYC' | translate}}<span class="admission-text">(Admission
+            number:&nbsp;12457887</span></h6>
+
+            <form>
+                <p-button icon="fa fa-plus" label="{{'ADD ANOTHER DOCUMENT' | translate}}"
+                    
+                    class="kyc-btnm-0"></p-button>
+                <div class="col-12 px-0">
+                    <div class="row g-3">
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <div class="stepper-kyc-card p-3 mb-2">
+                                <!-- view card -->
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                        <div class="card-leftbody">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Type</h6>
+                                            <p class="label-input-text">Aadhar Card</p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Number</h6>
+                                            <p class="label-input-text">1445 2568 6788</p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Name</h6>
+                                            <p class="label-input-text docname-texteclipse" pTooltip="Aadhar Card.png" tooltipPosition="bottom">Aadhar Card.png</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                        <div class="text-right">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn"></p-button>
+                                            <p-button icon="fa fa-trash" class="kyc-edit-btn ml-3"></p-button>
+                                        </div>
+                                                <div class="col-12 px-0">
+                                                    <div class="col-12 px-0">
+                                                        <div class="col-12 p-0">
+                                                            <a href="#">
+                                                                <img src="assets/images/aadhar.png" class="upload-img img-fluid" pTooltip="Aadhar Card.png" tooltipPosition="bottom">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+</div>
+
+
+<!-- delete dialog box -->
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+
+        <p class="text-center popup-header">{{'ERP.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'ERP.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+
+    </div>
+    <div class="col-12 text-center p-2">
+        <p-button pRipple class="yes-button" label="{{'ERP.DELETE' | translate}}"></p-button>
+        <p-button pRipple class="no-button" label="{{'ERP.CANCEL' | translate}}"></p-button>
+    </div>
+</p-dialog>

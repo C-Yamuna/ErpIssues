@@ -1,0 +1,424 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'DEMANDDEPOSITS.SAVINGS_BANK _PRODUCT_DEFINITION' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'DEMANDDEPOSITS.VIEW' | translate}}</div>
+        </div>
+    </div>
+
+    <div class="col-12 p-0">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="d-flex">
+                                                <span class="card-icon"><i class="fa fa-id-badge"></i></span>
+                                                <h6 class="sub-heading">{{'DEMANDDEPOSITS.GENERAL_CONFIGURATION' | translate}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" *ngIf="editbtn">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                            (click)="editproductdefinition(generalConfigModel,0)"></p-button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.PRODUCT_TYPE' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.productName}}</p>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_DEPOSIT_AMOUNT_FOR_ACCOUNT_OPEN' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.minDepositAmountForAccountOpen}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_MAINTAIN_BALANCE_IN_ACCOUNT' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.minBalanceMaintainInAccount}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.PENALITY_FOR_NOT_MAINTAINING_MIN_BALANCE' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.minimumBalancePenalty}}</p>
+                                        </div>
+                                    <!-- </div>
+                                    <div class="row"> -->
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.ACCOUNT_INACTIVATION_PERIOD_IN_DAYS' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.accInactiveDays}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.ACCOUNT_DORMANT_PERIOD_IN_DAYS' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.accDormantDays}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.INTEREST_POSTING_REQUIRED' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.isInterestPostingAllowed ? 'Yes' : 'No'}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.IS_CHEQUE_BOOK_ISSUING_ALLOWED' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.isCheckBookIssuingAllowed ? 'Yes' : 'No'}}</p>
+                                        </div>
+                                    <!-- </div>
+                                    <div class="row"> -->
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.IS_CHEQUE_BOOK_OPERATIONS_ALLOWED' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.isChequeBookOperationsAllowed ? 'Yes' : 'No'}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.IS_DEBIT_CARD_ISSUING_ALLOWED' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.isDebitCardIssuingAllowed ? 'Yes' : 'No'}}</p>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_BALANCE_MAINTAIN_WITH_CHEQUE' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.minBalMaintainWithCheque}}</p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_BALANCE_MAINTAIN_WITHOUT_CHEQUE' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.minBalMaintainWithoutCheque}}</p>
+                                        </div>
+                                    <!-- </div>
+                                    <div class="row"> -->
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">{{'DEMANDDEPOSITS.EFFECTIVE_START_DATE' |translate}}</h6>
+                                            <p class="label-input-text">{{ generalConfigModel.effectiveStartDate}}</p>
+                                        </div>                                        
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-12 p-0">
+                                    <div class="global-card-bg-color view-carddata icon-size">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="d-flex">
+                                            <span class="card-icon"><i class="fa fa-newspaper-o"></i></span>
+                                            <h6 class="sub-heading">{{'DEMANDDEPOSITS.INTEREST_POLICY' | translate}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" *ngIf="editbtn">
+                                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                        (click)="editproductdefinition(generalConfigModel,1)"></p-button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.GENERAL_ROI' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.rateOfInterst}}</p>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.SENIOR_CITIZEN_ROI' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.seniorCitizenSpecificRoi}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.WOMEN_ROI' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.womenSpecificRoi}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.STAFF_ROI' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.staffRateOfInterest}}</p>
+                                    </div>
+                                <!-- </div>
+                                <div class="row"> -->
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_INTERESTING_POSTING_AMOUNT' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.minIntrestPostingAmount}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_BALANCE_REQUIRED_FOR_INTEREST_POSTING' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.minSbBalReqForPosting}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.INTERESTING_POSTING_DATE' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.interestPostingDate}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.INTEREST_POSTING_FREQUENCY' |translate}}</h6>
+                                        <p class="label-input-text">{{ interestPolicyModel.interestPostingFrequencyName}}</p>
+                                    </div>
+                                <!-- </div>
+                                <div class="row"> -->
+                                
+                                    
+
+                                   
+                                    
+                                </div>
+                              </div>
+                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-12 p-0">
+                                    <div class="global-card-bg-color view-carddata icon-size">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="d-flex">
+                                            <span class="card-icon"><i class="fa fa-exchange"></i></span>
+                                            <h6 class="sub-heading">{{'DEMANDDEPOSITS.TRANSACTION_LIMIT_CONFIG' | translate}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" *ngIf="editbtn">
+                                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                        (click)="editproductdefinition(generalConfigModel,2)"></p-button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                <div class="row">
+
+
+
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 min-h-50px">
+                                      
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_DEPOSIT_LIMIT_PER_DAY' |translate}}</h6>
+                                        <div class="viewsubform-bgcolor p-2 min-h-50px mb-3 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITH_PAN' |translate}}</h6>
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.minDepositLimitPerDayWithPan}}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}</h6>
+                                              
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.minDepositLimitPerDayWithoutPan}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 min-h-50px">
+                                      
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_DEPOSIT_LIMIT_PER_DAY' |translate}}</h6>
+                                        <div class="viewsubform-bgcolor p-2 min-h-50px mb-3 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITH_PAN' |translate}}</h6>
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.maxDepositLimitPerDayWithPan}}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}</h6>
+                                              
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.maxDepositLimitPerDayWithoutPan}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 min-h-50px">
+                                      
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MIN_WITHDRAW_LIMIT_PER_DAY' |translate}}</h6>
+                                        <div class="viewsubform-bgcolor p-2 min-h-50px mb-3 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITH_PAN' |translate}}</h6>
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.minWithdrawLimitPerDayWithPan}}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}</h6>
+                                              
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.minWithdrawLimitPerDayWithoutPan}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 min-h-50px">
+                                      
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_PER_DAY_WITH_ATM' |translate}}</h6>
+                                        <div class="viewsubform-bgcolor p-2 min-h-50px mb-3 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITH_PAN' |translate}}</h6>
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.maxWithdrawLimitSameBranchAtmInDay}}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="label-input-text">{{'DEMANDDEPOSITS.WITHOUT_PAN' | translate}}</h6>
+                                              
+                                                <p class="label-input-text">{{ transactionLimitConfigModel.maxWithdrawLimitOtherBranchAtmInDay}}</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_TRANSFER_LIMIT_PER_DAY' |translate}}</h6>
+                                        <p class="label-input-text">{{ transactionLimitConfigModel.maxTransferLimitPerDay}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_BY_CHEQUE' |translate}}</h6>
+                                        <p class="label-input-text">{{ transactionLimitConfigModel.maxWithdrawLimitByCheque}}</p>
+                                    </div>
+                                   
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_BY_DEBIT_CARD' |translate}}</h6>
+                                        <p class="label-input-text">{{ transactionLimitConfigModel.maxWithdrawLimitByDebitCard}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'DEMANDDEPOSITS.MAX_WITHDRAW_LIMIT_IN_BRANCH' |translate}}</h6>
+                                        <p class="label-input-text">{{ transactionLimitConfigModel.maxWithdrawLimitInBranch}}</p>
+                                    </div>
+                                <!-- </div>
+                                <div class="row"> -->
+                                  
+                                    
+
+                                   
+                                    
+                                </div>
+                              </div>
+                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                             <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-9">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-list-alt"></i></span>
+                                        <h6 class="sub-heading">{{'DEMANDDEPOSITS.SERVICE_CHARGES' |translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-3" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editproductdefinition(generalConfigModel,3)"></p-button>
+                                </div>
+                            </div>
+                          
+
+                            <div class="globel-border-top-color"></div>
+                            <p-table [value]="servicechargeslist" dataKey="id" selectionMode="single"
+                            styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5" [paginator]="false" [pageLinks]="1"
+                            [responsive]="true" rowExpandMode="single">
+                            <ng-template pTemplate="header">
+                                <tr>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_TYPE' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_CHARGES' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CHARGES_NOT_APPLICABLE_COUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SERVICE_CHARGES_COLLECTION_FREQUENCY' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.SGST_AMOUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.CGST_AMOUNT' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.IGST' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.IGST_AMOUNT' | translate}}</th>
+                       
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData>
+                                <tr>
+                                    <td>{{ rowData.serviceTypeName }}</td>
+                                    <td>{{ rowData.serviceCharges }}</td>
+                                    <td>{{ rowData.chargesNotApplicableCount }}</td>
+                                    <td>{{ rowData.chargesCollectionFrequencyName }}</td>
+                                    <td>{{ rowData.sgstPercentage }}</td>
+                                    <td>{{ rowData.sgstAmount }}</td>
+                                    
+                                    <td>{{ rowData.cgstPercentage }}</td>
+                                    <td>{{ rowData.cgstAmount }}</td>
+                                    <td>{{ rowData.igstPercentage }}</td>
+                                    <td>{{ rowData.igstAmount }}</td>
+                                    
+                                </tr>
+                            </ng-template>
+                            </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-9">
+                                    <div class="d-flex">
+                                        <span class="card-icon"><i class="fa fa-file-text"
+                                        ></i></span>
+                                        <h6 class="sub-heading">{{'DEMANDDEPOSITS.REQUIRED_DOCUMENTS' |translate}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-3" *ngIf="editbtn">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                    (click)="editproductdefinition(generalConfigModel,4)"></p-button>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+                            <p-table [value]="requireddocumentlist" dataKey="id" selectionMode="single"
+                            styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5" [paginator]="false" [pageLinks]="1"
+                        [responsive]="true" rowExpandMode="single">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>{{'DEMANDDEPOSITS.DOCUMENT_TYPE' | translate}}</th>
+                            <th>{{'DEMANDDEPOSITS.MANDATORY' | translate}}</th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData>
+                            <tr>
+                                <td>{{ rowData.documentTypeName }}</td>
+                                <td>{{ rowData.isRequired ? 'Yes' : 'No'}}</td>
+
+                               
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                                    <div class="col-12 margtop-3rem"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-scrollPanel> 
+
+                <div class="col-12 viewbottom-footer icon-size">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mt-4">
+                            <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top" ></p-button>
+                            <p-button  icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+                        </div>
+                        <!-- <div class="col-12 p-3 bottom-padding"></div> -->
+                        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-60px">
+                            <h6 class="label-view">Status</h6>
+                            <p class="status-style statusactive">Approved</p>
+                        </div> -->
+                        <!-- <div class="col-12 p-3 bottom-padding"></div> -->
+                        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-60px">
+                            <h6 class="label-view">Remarks</h6>
+                            <p class="label-input-text">Successfully Completed</p>
+                        </div> -->
+                        
+                        <div class="col-xl-9 col-lg-8 col-md-9 col-sm-12 mt-4">
+                            <div class="d-flex justify-content-end">
+                            <p-button (click)="navigateToBack()" label="{{'DEMANDDEPOSITS.BACK' | translate}}"></p-button>
+                            <p-button *ngIf="isShowSubmit" label="{{'DEMANDDEPOSITS.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 m-2"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'AGENTDETAILSCONFIG.AGENT_COMMISSION_POLICY' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="agentCommissionPolicyform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">
+                                <span class="red">*</span>{{'AGENTDETAILSCONFIG.AGENT_TYPE' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="agentList" formControlName="agentTypeName"
+                                [(ngModel)]="agentCommissionPolicyModel.agentType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">
+                                <span class="red">*</span>{{'AGENTDETAILSCONFIG.POLICY_CODE' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="policyCode" [(ngModel)]="agentCommissionPolicyModel.policyCode">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="taskTypeName">{{'AGENTDETAILSCONFIG.TASK_TYPE' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="taskTypeList" formControlName="taskTypeName"
+                                [(ngModel)]="agentCommissionPolicyModel.taskType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="username">{{'AGENTDETAILSCONFIG.COMMISSION_TYPE' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="commissionTypeList"
+                                formControlName="commissionTypeName"
+                                [(ngModel)]="agentCommissionPolicyModel.commissionType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code">
+                                {{'AGENTDETAILSCONFIG.COMMISSION_VALUE' | translate}}
+                            </label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="commissionValue"
+                                [(ngModel)]="agentCommissionPolicyModel.commissionValue" pKeyFilter="pint">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code">
+                                {{'AGENTDETAILSCONFIG.COMMISSION_PAYMENT_FREQUENCY' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="commissionPaymentFrequencyList"
+                                formControlName="commissionPaymentFrequencyName"
+                                [(ngModel)]="agentCommissionPolicyModel.commissionPaymentFrequency"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code"><span class="red">*</span>
+                                {{'AGENTDETAILSCONFIG.EFFECTIVE_START_DATE' | translate}}
+                            </label>
+                            <p-calendar [showIcon]="true" formControlName="effecriveStartDate"
+                                dateFormat="{{orgnizationSetting.calendar}}" id="start_date"
+                                [(ngModel)]="agentCommissionPolicyModel.effecriveStartDate" [maxDate]="maxDate"></p-calendar>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code"><span class="red">*</span>
+                                {{'AGENTDETAILSCONFIG.EFFECTIVE_END_DATE' | translate}}
+                            </label>
+                            <p-calendar [showIcon]="true" formControlName="effectiveEndDate"
+                                dateFormat="{{orgnizationSetting.calendar}}" id="end_date" [yearNavigator]="true"
+                                yearRange="1970:2050" [(ngModel)]="agentCommissionPolicyModel.effectiveEndDate"
+                                [minDate]="minDate"></p-calendar>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code">
+                                <span class="red">*</span>{{'AGENTDETAILSCONFIG.STATUS' | translate}}
+                            </label>
+                            <p-dropdown placeholder="Select" [options]="statusList" formControlName="statusName"
+                                [(ngModel)]="agentCommissionPolicyModel.status"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'AGENTDETAILSCONFIG.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'AGENTDETAILSCONFIG.SUBMIT' | translate}}" [disabled]="!agentCommissionPolicyform.valid"
+        *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'AGENTDETAILSCONFIG.SUBMIT' | translate}}" [disabled]="!agentCommissionPolicyform.valid"
+        *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

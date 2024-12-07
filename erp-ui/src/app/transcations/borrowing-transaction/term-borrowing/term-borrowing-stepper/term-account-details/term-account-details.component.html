@@ -1,0 +1,215 @@
+
+<div class="col-12">
+    <h6 class="sub-heading">{{'BORROWINGSTRANSACTIONS.APPLICATION_DETAILS' | translate}}</h6>
+    <form [formGroup]="accountdetailsform">
+        <div class="mt-n1  bg-label-colorfull">
+        <div class="row g-3">
+
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label> <span class="red">*</span>{{'BORROWINGSTRANSACTIONS.FINANCIAL_BANK_TYPE' | translate}}</label>
+                    <p-dropdown [options]="financiarbanktypeList"  placeholder="Select" [filter]="true"
+                        formControlName="financiarBank" 
+                        [(ngModel)]="termAccountDetailsModel.financiarBankType"></p-dropdown>    
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 pt-3">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.PRODUCT' | translate}}</label>
+                    <p-dropdown [options]="productList" [(ngModel)]="termAccountDetailsModel.productId"
+                    [filter]="true" placeholder="Select" formControlName ="product"
+                    (onChange)="onChangeProduct()" ></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.DCCB_BORROWING_ACCOUNT_NUMBER' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter DCCB Borrowing Account Number"
+                     formControlName="accountNumber" [(ngModel)]="termAccountDetailsModel.accountNumber">
+                     <p-message severity="error" text="Enter Valid Number"
+                *ngIf="!accountdetailsform.controls['accountNumber'].valid && accountdetailsform.controls['accountNumber'].dirty">
+              </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span> {{'BORROWINGSTRANSACTIONS.APPLICATION_DATE' | translate}}</label>
+                    <p-calendar [showIcon]="true" formControlName="applicationDate" [yearNavigator]="true" yearRange="1970:2050"
+                    [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" placeholder="DD/MM/YYYY"
+                    [(ngModel)]="termAccountDetailsModel.applicationDate" [maxDate]="maxDate"></p-calendar>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label> {{'BORROWINGSTRANSACTIONS.ROI' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter ROI"
+                     formControlName="roi" [(ngModel)]="termAccountDetailsModel.roi">
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label> {{'BORROWINGSTRANSACTIONS.PENAL_ROI' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Penal ROI"
+                    formControlName="penalRoi" [(ngModel)]="termAccountDetailsModel.penalRoi">
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label> {{'BORROWINGSTRANSACTIONS.IOD' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="IOD"
+                    formControlName="iodRate" [(ngModel)]="termAccountDetailsModel.iodRate">
+                    <p-message severity="error" text="Enter Valid IOD"
+                    *ngIf="!accountdetailsform.controls['iodRate'].valid && accountdetailsform.controls['iodRate'].dirty">
+                  </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.REPAYMENT_FREQUENCY' | translate}}</label>
+                    <p-dropdown [options]="repaymentlist"   placeholder="Select" 
+                    formControlName="repaymentFrequency" [(ngModel)]="termAccountDetailsModel.repaymentFrequency"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.BORROWING_PERIOD_IN_MONTHS' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text"  placeholder="Borrowing Period (In Months)"
+                    formControlName="borrowingPeriodInMonths" [(ngModel)]="termAccountDetailsModel.borrowingPeriodInMonths">
+                    <p-message severity="error" text="Enter Valid Numbers"
+                    *ngIf="!accountdetailsform.controls['borrowingPeriodInMonths'].valid && accountdetailsform.controls['borrowingPeriodInMonths'].dirty">
+                  </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.REQUESTED_AMOUNT' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                     formControlName="requestedAmount" [(ngModel)]="termAccountDetailsModel.requestedAmount">
+                     <p-message severity="error" text="Enter Valid Amount"
+                     *ngIf="!accountdetailsform.controls['requestedAmount'].valid && accountdetailsform.controls['requestedAmount'].dirty">
+                   </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label><span class="red">*</span> {{'BORROWINGSTRANSACTIONS.REQUESTED_DATE' | translate}}</label>
+                    <p-calendar [showIcon]="true" formControlName="requestedDate" [yearNavigator]="true" yearRange="1970:2050"
+                    [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" 
+                    [(ngModel)]="termAccountDetailsModel.requestedDate" [maxDate]="maxDate" placeholder="DD/MM/YYYY"></p-calendar>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.SANCTION_AMOUNT' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                     formControlName="sanctionedAmount" [(ngModel)]="termAccountDetailsModel.sanctionedAmount">
+                     <p-message severity="error" text="Enter Valid Amount"
+                     *ngIf="!accountdetailsform.controls['sanctionedAmount'].valid && accountdetailsform.controls['sanctionedAmount'].dirty">
+                   </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label><span class="red">*</span> {{'BORROWINGSTRANSACTIONS.SANCTION_DATE' | translate}}</label>
+                    <p-calendar [showIcon]="true" formControlName="sanctionedDate" [yearNavigator]="true" yearRange="1970:2050"
+  [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" placeholder="DD/MM/YYYY"
+  [(ngModel)]="termAccountDetailsModel.sanctionedDate" [maxDate]="maxDate"></p-calendar>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label> {{'BORROWINGSTRANSACTIONS.ON_DUE_DATE' | translate}}</label>
+                    <p-calendar [showIcon]="true" formControlName="borrowingDueDate" [yearNavigator]="true" yearRange="1970:2050"
+  [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date" placeholder="DD/MM/YYYY"
+  [(ngModel)]="termAccountDetailsModel.borrowingDueDate" [minDate]="minDate"></p-calendar>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.INSTALLMENT_AMOUNT_BASED_ON_FREQUENCY' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                     formControlName="installmentAmount" [(ngModel)]="termAccountDetailsModel.installmentAmount">
+                     <p-message severity="error" text="Enter Valid Amount"
+                     *ngIf="!accountdetailsform.controls['installmentAmount'].valid && accountdetailsform.controls['installmentAmount'].dirty">
+                   </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.TOTAL_INTEREST' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                    formControlName="totalInterest" [(ngModel)]="termAccountDetailsModel.totalInterest">
+                    <p-message severity="error" text="Enter Valid Number"
+                     *ngIf="!accountdetailsform.controls['totalInterest'].valid && accountdetailsform.controls['totalInterest'].dirty">
+                   </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.TOTAL_PAYOUT' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                    formControlName="totalPayout" [(ngModel)]="termAccountDetailsModel.totalPayout">
+                    <p-message severity="error" text="Enter Valid Amount"
+                    *ngIf="!accountdetailsform.controls['totalPayout'].valid && accountdetailsform.controls['totalPayout'].dirty">
+                  </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.PROCESSING_FEE' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount"
+                    formControlName="processingFee" [(ngModel)]="termAccountDetailsModel.processingFee">
+                    <p-message severity="error" text="Enter Valid Amount"
+                    *ngIf="!accountdetailsform.controls['processingFee'].valid && accountdetailsform.controls['processingFee'].dirty">
+                  </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.GST' | translate}}</label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter GST Number"
+                     formControlName="cgstAmount" [(ngModel)]="termAccountDetailsModel.cgstAmount">
+                     <p-message severity="error" text="Enter Valid Cgst"
+                     *ngIf="!accountdetailsform.controls['cgstAmount'].valid && accountdetailsform.controls['cgstAmount'].dirty">
+                   </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                    <span class=""> {{ 'BORROWINGSTRANSACTIONS.UPLOAD_DOCUMENT' | translate }} </span>
+                    <div class="uplodad-style align-items-center">
+                        <!-- Upload Button Column -->
+                        <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                            id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg"
+                            (onRemove)="fileRemoveEvent()"
+                            (onSelect)="fileUploader($event,fileUpload)">
+                        </p-fileUpload>
+                        <div class="col-12  d-flex p-1 contant-body"
+                            *ngFor="let img of termAccountDetailsModel.multipartFileList">
+                            <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                        height="22"></a>
+                            </div>
+                            <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                {{img.fileName}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                <label>{{'BORROWINGSTRANSACTIONS.REMARKS' | translate}}</label>
+                    <textarea pInputTextarea id="bunit_txt_name" maxlength="40" type="text" class="form-control" placeholder="Enter Remarks Here"
+                    formControlName="remarks" [(ngModel)]="termAccountDetailsModel.remarks" ></textarea>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+
+
+

@@ -1,0 +1,237 @@
+<div class="col-12">
+
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">{{ memberBasicDetailsModel.memberTypeName }}&nbsp;({{
+                        memberBasicDetailsModel.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.GENDER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.genderName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.QUALIFICATON' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.qualificationName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.mobileNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.aadharNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+
+    
+    <form [formGroup]="communicationform">
+        <h6 class="sub-heading">{{'ERP.COMMUNICATION' | translate}}<span class="admission-text">(Admission
+            number:&nbsp;{{memberBasicDetailsModel.admissionNumber}})</span></h6>
+           
+        
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <h6 class="super-sub-heading">Registered</h6>
+                        <div class="col-12 global-border">
+                            <div class="col-12">
+                                <div class="row  g-3  mt-n1">
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                            
+                                            <p-dropdown [filter]="true" [options]="stateList" placeholder="Select" formControlName="stateName"
+                                                [(ngModel)]="memberCommunicationDetailsModel.stateId"
+                                                (onChange)="getAllDistrictsByStateId(memberCommunicationDetailsModel.stateId,true)"></p-dropdown>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                            
+                                            <p-dropdown [filter]="true" [options]="districtList" placeholder="Select" formControlName="districtId"
+                                                [(ngModel)]="memberCommunicationDetailsModel.districtId"
+                                                (onChange)="getAllSubDistrictsByDistrictId(memberCommunicationDetailsModel.districtId,true)"></p-dropdown>
+                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}} </label>
+                            
+                                            <p-dropdown [filter]="true" [options]="subDistrictList" placeholder="Select"
+                                                formControlName="subDistrictId" [(ngModel)]="memberCommunicationDetailsModel.subDistrictId"
+                                                (onChange)="getAllVillagesBySubDistrictId(memberCommunicationDetailsModel.subDistrictId,true)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}} </label>
+                            
+                                            <p-dropdown [filter]="true" [options]="villageList" placeholder="Select" formControlName="villageId"
+                                            (onChange)='getVillage(memberCommunicationDetailsModel.villageId)'
+                                                [(ngModel)]="memberCommunicationDetailsModel.villageId"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label for="code"> <span class="red">*</span>{{'ERP.ADDRESS' | translate}} </label>
+                            
+                                            <textarea type="text" class="form-control" pInputTextarea formControlName="address1" placeholder="House No., Door No., Landmark..etc"
+                                            (keyup)="RegAddressToComAddress()" [(ngModel)]="memberCommunicationDetailsModel.address1"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-label">
+                                            <label for="code">
+                                                {{'ERP.ADDRESS2' | translate}}
+                                            </label>
+                            
+                                            <textarea type="text" class="form-control" pInputTextarea formControlName="address2"
+                                                [(ngModel)]="memberCommunicationDetailsModel.address2"></textarea>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-label">
+                                            <label for="username"><span class="red">*</span>{{'ERP.PINCODE' | translate}}
+                                            </label>
+                            
+                                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="pinCode"  placeholder="Enter Pincode"
+                                            (keyup)="RegAddressToComAddress()" [(ngModel)]="memberCommunicationDetailsModel.pinCode">
+                                            <p-message severity="error" text="Enter Valid PinCode"
+                                            *ngIf="!communicationform.controls['pinCode'].valid && communicationform.controls['pinCode'].dirty">
+                                        </p-message>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"> -->
+                                    <!-- <div class="col-3 pt-3">
+                                                                                <span>{{'ERP.SAME_AS_REGISTERED_ADDRESS' | translate}}</span>
+                                                                              
+                                                                                    <p-inputSwitch formControlName="isSameAddress"
+                                                                                    [(ngModel)]="memberCommunicationDetailsModel.isSameAddress" (click)="saveAsAddr(memberCommunicationDetailsModel.isSameAddress)" ></p-inputSwitch>
+                                                                               
+                                                                            </div>
+                                                                                </div>
+                                                                            </div> -->
+                            
+                            
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <!-- <div class="col-12"> -->
+                        <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                            <h6 class="super-sub-heading">{{'ERP.PERMANENT' | translate}}</h6>
+                            <div class="grid mr-3 d-flex">
+                
+                                <p-inputSwitch formControlName="isSameAddress"
+                                    [(ngModel)]="memberCommunicationDetailsModel.isSameAddress"
+                                    (click)="sameAsPerAddr(memberCommunicationDetailsModel.isSameAddress)"></p-inputSwitch>
+                                <p class="pl-1 m-0">{{'ERP.SAME_AS_REGISTERED_ADDRESS' | translate}}</p>
+                
+                            </div>
+                        </div>
+                        <div class="col-12 global-border">
+                            <div class="col-12">
+                            <div class="row  g-3  mt-n1">
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                
+                                        <p-dropdown [options]="perstateList" placeholder="Select" formControlName="permanentStateId"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permanentStateId"
+                                            (onChange)='getAllperDistrictsByStateId(memberCommunicationDetailsModel.permanentStateId,true)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                
+                                        <p-dropdown [options]="perdistrictList" placeholder="Select " formControlName="permanentDistrictId"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permanentDistrictId"
+                                            (onChange)='getAllPerSubDistrictsByDistrictId(memberCommunicationDetailsModel.permanentDistrictId,true)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span> {{'ERP.MANDAL/TESHIL' | translate}}</label>
+                
+                                        <p-dropdown [options]="persubDistrictList" placeholder="{{'ERP.SELECT' | translate}}"
+                                            formControlName="permanentSubDistrictId"[(ngModel)]="memberCommunicationDetailsModel.permanentSubDistrictId"
+                                            (onChange)='getAllPerVillagesBySubDistrictId(memberCommunicationDetailsModel.permanentSubDistrictId,true)'></p-dropdown>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}} </label>
+                
+                                        <p-dropdown [options]="pervillageList" placeholder="Select " formControlName="permanentVillageId"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permanentVillageId" (onChange)='getPerVillage(memberCommunicationDetailsModel.permanentVillageId)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label for="code"><span class="red">*</span>
+                                            {{'ERP.ADDRESS' | translate}}
+                                        </label>
+                
+                                        <textarea type="text" class="form-control" pInputTextarea formControlName="permanentAddress1" placeholder="House No., Door No., Landmark..etc"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permanentAddress1" [disabled]="sameAsPermanentAddress"></textarea>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-label">
+                                        <label for="code">
+                                            {{'ERP.ADDRESS2' | translate}}
+                                        </label>
+                
+                                        <textarea type="text" class="form-control" pInputTextarea formControlName="permenentAddress2"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permenentAddress2"></textarea>
+                                    </div>
+                                </div> -->
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-label">
+                                        <label for="username"><span class="red">*</span>{{'ERP.PINCODE' | translate}}
+                                        </label>
+                
+                                        <input pInputText id="bunit_txt_name" maxlength="40" type="text"  placeholder="Enter Pincode"
+                                            formControlName="permanentPinCode"
+                                            [(ngModel)]="memberCommunicationDetailsModel.permanentPinCode">
+                                            <p-message severity="error" text="Enter Valid pinCode"
+                                            *ngIf="!communicationform.controls['permanentPinCode'].valid && communicationform.controls['permanentPinCode'].dirty">
+                                        </p-message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </form>
+   
+</div>

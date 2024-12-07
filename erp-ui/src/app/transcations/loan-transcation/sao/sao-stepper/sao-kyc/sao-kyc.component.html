@@ -1,0 +1,193 @@
+<div class="row g-3">
+  
+    <div class="col-10">
+        <p-card class="main-card">
+            <p-messages label="Info" life="3000" [(value)]="msgs"></p-messages>
+        <form [formGroup]="kycForm" id="exit_types_form">
+            
+            <h6>  {{'ERP.KYC' | translate}}</h6>
+            <div class=" border  mt-4 p-3">
+              
+                <h6 class="main-heading mt-4 text-warning">Registered</h6>
+                <button pButton type="button" label="{{'ADD Kyc' | translate}}" (click)="addKyc($event)"
+                    [disabled]="buttonDisabled"></button>
+                    <div class="col-12">
+                        <div class="grid">
+                            <div class="col-4 mt-3" *ngFor="let document of kycModelList ; let i = index">
+                                <div class="summarycard" >
+                                    <!-- view card -->
+                                    <div class="col-12" *ngIf="editIndex != i || editDocumentOfKycFalg" >
+                                        
+                                        <div class="d-flex">
+                                            <div class="col-10 summarycard-leftside-text">
+                                                <div class="col-12 d-flex">
+                                                    <div>
+                                                        <div class="summarycard-cardheading">Document TypeName</div>
+                                                        <div class="summarycard-cardsub-heading">{{document.kycDocumentTypeName}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex">
+                                                    <div>
+                                                        <div class="summarycard-cardheading">Document Number</div>
+                                                        <div class="summarycard-cardsub-heading">{{document.documentNumber}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex">
+                                                    <div>
+                                                        <div class="summarycard-cardheading">Document Path</div>
+                                                        <div class="summarycard-cardsub-heading">{{document.kycFilePath}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="col-3">
+                                                <button pButton type="button" label="{{'edit' | translate}}"
+                                                    (click)="toggleEditForm(i ,document)"
+                                                    [disabled]="editButtonDisable"></button>
+
+                                                <div class="kyccard">
+                                                    <div class="kyc-name"></div>
+                                                    <div class="kyc-inner-card">
+                                                        <!-- <img src="./../assets/images/aadhar-card.png" /> -->
+                                                        <div class="col-12">
+
+                                                            <div class="col-12 m-auto">
+                                                                <div class="image-doc border border-round-md">
+                                                                    <div class="col-12"
+                                                                        *ngFor="let img of document.multipartFileList">
+                                                                        <div
+                                                                            *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                            <a href="{{img.imageValue}}"> <img
+                                                                                    src="{{img.imageValue}}"
+                                                                                    width="100%" height="100%"></a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <!-- Edit form -->
+                                <div class="col-4" class="document-display" *ngIf="editIndex === i  && !editDocumentOfKycFalg" >
+                                  
+                                    <div class="col-8">
+                                    <label>Document Type</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="kycDocumentTypeName"
+                                        [options]="documentNameList" id="kycDocumentTypeId"
+                                        [(ngModel)]="saoKycModel.kycDocumentTypeId">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-8">
+                                    <label>Document Number</label>
+                                    <input id="documentNumber" type="text"  formControlName="documentNumber" [(ngModel)]="saoKycModel.documentNumber"
+                                        placeholder="Document Number">
+                                </div>
+
+                                <div class="col-8">
+                                    <span class="size-16 pos-top-upload">
+                                        {{'ERP.UPLOAD_DOCUMENT'
+                                        |translate}}</span>
+                                    <div class="d-flex">
+                                        <div class="col-8">
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                                                name="myfile[]" id="apply-leave_fileUp_attach" chooseLabel=" "
+                                                name="file" accept=".png,.jpg,.jpeg" [customUpload]="true"
+                                                (uploadHandler)="imageUploader($event,fileUpload)"
+                                                formContralName="kycFilePath">
+                                            </p-fileUpload>
+                                        </div>
+                                        <div class="col border file-main-div p-0">
+                                            <div class="col-12 d-flex p-1 contant-body"
+                                                *ngFor="let img of saoKycModel.multipartFileList">
+                                                <div
+                                                    *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}"
+                                                            width="22" height="22"></a>
+                                                </div>&nbsp;&nbsp;
+                                                <div class="docname-texteclipse" pTooltip="{{img.fileName}}"
+                                                    tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <p-button  label="{{'cancle' | translate}}"
+                                        (onClick)="editCancle()"></p-button>
+                                    <p-button   label="{{'save' | translate}}"
+                                    [disabled] = "!kycForm.valid" (onClick)="editsave(saoKycModel)"></p-button>
+                                </div>
+                            
+                                </div>
+                            </div>
+                            <!-- add form -->
+                            <div class="col-4" class="document-display" *ngIf="addDocumentOfKycFalg">
+                                
+                                <div class="col-8">
+                                    <label>Document Type</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="kycDocumentTypeName"
+                                        [options]="documentNameList" id="kycDocumentTypeId"
+                                        [(ngModel)]="saoKycModel.kycDocumentTypeId">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-8">
+                                    <label>Document Number</label>
+                                    <input id="documentNumber" type="text"  formControlName="documentNumber" [(ngModel)]="saoKycModel.documentNumber"
+                                        placeholder="Document Number">
+                                </div>
+                                <!-- <div class="col-8">
+                                    <label for="fileUpload">+</label>
+                                    <input id="fileUpload" formControlName="kycFilePath" type="file" (change)="onFileSelected($event)">
+                                </div> -->
+
+                                <div class="col-8">
+                                    <span class="size-12 pos-top-upload">
+                                        {{'ERP.UPLOAD_DOCUMENT'
+                                        |translate}}</span>
+                                    <div class="d-flex">
+                                        <div class="col-8">
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                                                name="myfile[]" id="apply-leave_fileUp_attach" chooseLabel=" "
+                                                name="file" accept=".png,.jpg,.jpeg" [customUpload]="true"
+                                                (uploadHandler)="imageUploader($event,fileUpload)"
+                                                formContralName="kycFilePath">
+                                            </p-fileUpload>
+                                        </div>
+                                        <div class="col border file-main-div p-0">
+                                            <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of multipleFilesList">
+                                                <div
+                                                    *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}"
+                                                            width="22" height="22"></a>
+                                                </div>&nbsp;&nbsp;
+                                                <div class="docname-texteclipse" pTooltip="{{img.fileName}}"
+                                                    tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button pButton type="button" label="{{'cancle' | translate}}"
+                                        (click)="cancel()"></button>
+                                    <button pButton type="button"  label="{{'save' | translate}}"
+                                        (click)="saveKyc()"></button>
+                                        <!-- [disabled] = "!kycForm.valid" -->
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+         
+            </div>
+        </form>
+        </p-card>
+    </div>
+</div>

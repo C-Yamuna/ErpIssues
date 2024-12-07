@@ -1,0 +1,425 @@
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'AGENT_DETAILS_TRANSACTION.AGENT_DETAILS' | translate}} </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-25-right">
+
+            <div class="col-12 deposit-intrest border-light">
+                <div class="col-12">
+                    <h5 class="transaction-side-card-header">{{'ERP.ACCOUNT_DETAILS' | translate}}</h5>
+                </div>
+                
+                <div class="col-12 pic-sig-status">
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+                    </div>
+                </div>
+                <div class="col-12  min-h-50px text-break text-center">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADMISSION_NUMBER' | translate}}</p>
+                    <p class="font-semibold m-0"></p>            
+                </div>
+                <div class="col-12  min-h-50px text-break text-center">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</p>
+                    <p class="font-semibold m-0"></p>
+                </div>
+                <div class="col-12 min-h-50px text-break">
+                    <div class="grid">
+                    <div class="col-6 text-break">
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ACCOUNT_NUMBER' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADMISSION_DATE' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12 min-h-50px text-break">
+                    <div class="grid">
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ASSIGNED_PRODUCTS' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ASSIGNED_ACCOUNTS' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12 min-h-50px text-break">
+                    <div class="grid">
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.CONTACT' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.EMAIL' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12 min-h-50px text-break">
+                    <div class="grid">
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER' | translate}} </p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    <div class="col-6 text-break" >
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</p>
+                        <p class="font-semibold m-0"></p>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12 min-h-50px text-break" >
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADDRESS' | translate}}</p>
+                    <p class="font-semibold m-0"></p>
+                    
+                </div>
+                <div class="col-12 min-h-50px text-break">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-break">
+                            <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.KYC' | translate}}</p>
+                            <p class="font-semibold m-0">Approved</p>
+                        </div>
+                        <div class="kyc-done icon-size text-right">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-12 color-light justify-content-end text-right">
+                    <a class="fst-italic text-light" (click)="onClickMemberIndividualMoreDetails()">{{'AGENT_DETAILS_TRANSACTION.MORE_DETAILS' | translate}}</a>
+                </div>
+        </div>
+    </div>
+    <div class="col-75-fullmidd">
+        <div class="col-12 bg-card bg-label-colorfull p-3">
+            <div class=" col-12 pt-0">
+                <div class=" d-flex justify-content-end">
+                    <div class="basic-detaisl-btn view-popup-top"><a (click)="showBasicDetailsDialog('right')"  class="top-badge-btn btn-outline-0 ">Basic Details</a></div>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-label">
+                    <label>{{'AGENT_DETAILS_TRANSACTION.PRODUCT' | translate}}</label>
+                        <p-dropdown [options]=" "   placeholder="select" ></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-label">
+                    <label>{{'AGENT_DETAILS_TRANSACTION.START_DATE' | translate}}</label>
+                        <p-calendar  [showIcon]="true" ></p-calendar>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-label">
+                    <label>{{'AGENT_DETAILS_TRANSACTION.END_DATE' | translate}}</label>
+                        <p-calendar  [showIcon]="true" ></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-label">
+                    <label>{{'AGENT_DETAILS_TRANSACTION.TOTAL_NO_OF_ACCOUNTS' | translate}}</label>
+                        <input type="text" pInputText />                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="d-flex justify-content-end">
+                <div class="mr-3">
+                    <div class="p-inputgroup width-13rem">
+                        <input type="text" pInputText placeholder="search"
+                            class="searchbox" />
+                        <p><i class="fa fa-search"></i></p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<p-dialog header="{{'ERP.ACCOUNT_DETAILS' | translate}}" [modal]="true" [(visible)]="isBasicDetails" [style]="{ width: '80%'}">
+    <div class="col-12  deposit-intrest border-light text-center">
+        <div class="row ">
+            <div class="col-12 image-view-768p">
+               
+                    <img src="assets/images/avatar-table.png" alt="user-image" class="m-2">
+               
+                    <img src="assets/images/sign.png" alt="sign-image" class="m-2">
+             
+            </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                    <p class="font-semibold text-break m-0">664577</p>
+            </div>
+            <div class="col-md-6 col-sm-6  min-h-50px text-break">
+                <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADMISSION_NUMBER' | translate}}</p>
+                <p class="font-semibold text-break m-0"></p>            
+            </div>
+            <div class="col-md-6 col-sm-6  min-h-50px text-break">
+                <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</p>
+                <p class="font-semibold text-break m-0"></p>
+            </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ACCOUNT_NUMBER' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+            </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break" >
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADMISSION_DATE' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+                </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ASSIGNED_PRODUCTS' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+            </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break" >
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ASSIGNED_ACCOUNTS' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+                </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.CONTACT' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+            </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break" >
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.EMAIL' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+                </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER' | translate}} </p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+            </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break" >
+                    <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</p>
+                    <p class="font-semibold text-break m-0"></p>
+                    
+                </div>
+
+            <div class="col-md-6 col-sm-6 min-h-50px text-break" >
+                <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.ADDRESS' | translate}}</p>
+                <p class="font-semibold text-break m-0"></p>
+                
+            </div>
+            <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'AGENT_DETAILS_TRANSACTION.KYC' | translate}}</p>
+                        <p class="font-semibold text-break m-0">Approved</p>
+                    <!-- <div class="kyc-done icon-size text-right">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    </div> -->
+            </div>
+            <!-- <div class="col-12 color-light text-right pr-4">
+                <a class="fst-italic text-light">{{'AGENT_DETAILS_TRANSACTION.MORE_DETAILS' | translate}}</a>
+            </div> -->
+            </div>
+    </div>
+</p-dialog>
+</div>
+
+<p-dialog header="More Basic Details" [(visible)]="showForm" styleClass="moredetails-style">
+    <div class="popup-basic-details">
+        <div class="row">
+           <!--  <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-12 px-0">
+                        <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForMCRCopyPath">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                
+                        <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                </div> 
+               
+            </div>-->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                    <img src="assets/images/avatar-table.png" class="image-user">
+                    <p class="active-status"></p>
+                    <img src="assets/images/sign.png" class="image-sign">
+                </div>
+                </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="label-input-text">A-Class</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.SURNAME' | translate}}</span>
+                    <p class="label-input-text">Chatti</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.NAME' | translate}}</span>
+                    <p class="label-input-text">Raviteja</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.DATE_OF_BIRTH' | translate}}</span>
+                    <p class="label-input-text">01/07/1990</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.AGE' | translate}}</span>
+                    <p class="label-input-text">33</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.GENDER' | translate}}</span>
+                    <p class="label-input-text">Male</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MARITAL_STATUS' | translate}}</span>
+                    <p class="label-input-text">Unmarried</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.RELATION_WITH_APPLICANT' | translate}}</span>
+                    <p class="label-input-text">Father</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.RELATIVE_NAME' | translate}}</span>
+                    <p class="label-input-text">Appala Raju</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.QUALIFICATION' | translate}}</span>
+                    <p class="label-input-text">M.Tech</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.OCCUPATION' | translate}}</span>
+                    <p class="label-input-text">Software Engineer</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.AADHAR' | translate}}</span>
+                    <p class="label-input-text">546778898766556</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.PAN' | translate}}</span>
+                    <p class="label-input-text">ADFR4567U8</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.CONTACT' | translate}}</span>
+                    <p class="label-input-text">9876543210</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.EMAIL' | translate}}</span>
+                    <p class="label-input-text">ravi@gmail.com</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.CASTE' | translate}}</span>
+                    <p class="label-input-text">BC</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.COMMUNITYS' | translate}}</span>
+                    <p class="label-input-text">Hindu</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                    <p class="label-input-text">6677887</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm" >
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MANAGEMENT_COMMITTE_RESOLUTION_NO' | translate}}</span>
+                    <p class="label-input-text">544556</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm">
+                <div class="form-label">
+                    <span class="label-view">{{'ERP.MCR_DOCUMENT_TYPE' | translate}}</span>
+                    <!-- <div class="uplodad-style align-items-center"> -->
+                    <!-- <p class="label-input-text">{{membershipBasicRequiredDetails.mcrDocumentCopy }}</p> -->
+                    <!-- <div class="col-12 d-flex p-0">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse pl-2" pTooltip="{{img.fileName}}" tooltipPosition="bottom">{{img.fileName}}</div>
+                    </div> -->
+                    <!-- </div> -->
+                </div>
+                    
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="label-input-text">11/09/2023</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_FEE' | translate}}</span>
+                    <p class="label-input-text">500</p>
+                </div>
+            </div>
+            
+        </div>
+            <!-- <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button> -->
+    </div>
+</p-dialog>

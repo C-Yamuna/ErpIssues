@@ -1,0 +1,254 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+    [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'INVESTMENTS_TRANSACTIONS.INVESTMENTS' |
+                translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'ERP.VIEW' | translate}}</div>
+        </div>
+    </div>
+
+    <div class="col-12 p-0">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size pb-1">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-id-badge"></i></span>
+                                                    <h6 class="sub-heading">
+                                                        {{'INVESTMENTS_TRANSACTIONS.APPLICATION_DETAILS' | translate}}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbutton">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editDepositDetails(investmentApplicationDetailsModel,0)"></p-button>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-6" *ngIf="editbutton">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                (click)="editDepositDetails(investmentApplicationDetailsModel,0)"></p-button>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.PRODUCT' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.productName}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.bankName}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.ACCOUNT_NUMBER' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.accountNumber}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_AMOUNT' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.depositAmount}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.ROI' | translate}}
+                                                </h6>
+                                                <p class="label-input-text">{{investmentApplicationDetailsModel.roi}}
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_DATE' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.depositDate}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.DEPOSIT_TYPE' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.depositType}}</p>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.TENURE_IN_YEARS' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.tenureInYears}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.TENURE_IN_MONTHS' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.tenureInMonths}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.MATURITY_DATE' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.maturityDate}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">
+                                                    {{'INVESTMENTS_TRANSACTIONS.MATURITY_INTEREST_AMOUNT' | translate}}
+                                                </h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.maturityInterest}}</p>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.MATURITY_AMOUNT' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.maturityAmount}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">
+                                                    {{'INVESTMENTS_TRANSACTIONS.INTEREST_PAYMENT_FREQUENCY' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.interestOrInstallmentFrequencyName}}
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.AUTO_RENEWAL' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.isAutoRenewal}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.AUTO_RENEWAL_TYPE' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">
+                                                    {{investmentApplicationDetailsModel.autoRenewalType}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-12 p-1"></div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-12 p-0">
+                                    <div class=" global-card-bg-color view-carddata icon-size pb-2">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="d-flex">
+                                                        <span class="card-icon"><i class="fa fa-file-text"></i></span>
+                                                        <h6 class="sub-heading">
+                                                            {{'INVESTMENTS_TRANSACTIONS.INVESTMENT_ACCOUNT_DOCUMENTS' |
+                                                            translate}}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6" *ngIf="editbutton">
+                                                    <p-button icon="fa fa-pencil-square-o"
+                                                        class="kyc-edit-btn pull-right"
+                                                        (click)="editDepositDetails(investmentAccountDocumentsModel,1)"></p-button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let document of investmentAccountDocumentsList ; let i = index">
+                                                            <div class="stepper-kyc-card p-3 mb-2">
+                                                            <div class="row">
+                                                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                                                    <div class="card-leftbody">
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                        <h6 class="label-view">Document Type</h6>
+                                                                        <p class="label-input-text">{{document.requiredDocTypeName}}</p>
+                                                                    </div>
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                        <h6 class="label-view">Document Number</h6>
+                                                                        <p class="label-input-text">{{document.requiredDocNumber}}</p>
+                                                                    </div>
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                                                        <h6 class="label-view">Name As Per Document</h6>
+                                                                        <p class="label-input-text docname-texteclipse">{{document.nameAsPerDocument}}</p>
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                                </div>
+                                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                                                    <div class="kycview-done icon-size text-right"><i class="fa fa-check-circle mr-0" aria-hidden="true"></i></div>
+                                                                    <div class="col-12 px-0">
+                                                                        <div class="col-12 px-0" *ngFor="let img of document.multipartFileList">
+                                                                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                                                <a href="{{img.imageValue}}">
+                                                                                    <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12 viewbottom-footer icon-size">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mt-4">
+                                                <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf"
+                                                    tooltipPosition="top"></p-button>
+                                                <p-button icon="fa fa-print" iconPos="left" pTooltip="Print"
+                                                    tooltipPosition="top"></p-button>
+                                            </div>
+                                            <div class="col-12 p-3 bottom-padding"></div>
+                                            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-60px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.STATUS' | translate}}
+                                                </h6>
+                                                <p class="status-style statusactive">Approved</p>
+                                            </div>
+                                            <div class="col-12 p-3 bottom-padding"></div>
+                                            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-60px">
+                                                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.REMARKS' |
+                                                    translate}}
+                                                </h6>
+                                                <p class="label-input-text">Successfully Completed</p>
+                                            </div>
+                                        </div>
+                                    </div> -->                                   
+                                </div>
+                            </div>
+                        </div>
+                </p-scrollPanel>
+            </div>          
+        </div>
+    </div>
+    <div class="col-12 viewbottom-footer icon-size">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4">
+                <p-button icon="fa fa-download" iconPos="left"
+                    pTooltip="Filename.pdf" tooltipPosition="top"></p-button>
+                <p-button icon="fa fa-print" iconPos="left" pTooltip="Print"
+                    tooltipPosition="top"></p-button>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-9 col-sm-8">
+                <div class="d-flex justify-content-end">
+                    <p-button (click)="navigateToBack()"
+                        label="Back"></p-button>
+                    <p-button *ngIf="isShowSubmit"
+                        label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}"
+                        (click)="submit()"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-12"></div> -->
+</div>

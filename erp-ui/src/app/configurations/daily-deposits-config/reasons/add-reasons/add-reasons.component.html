@@ -1,0 +1,57 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'DAILYDEPOSITSCONFIG.REASONS' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="addreasonform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'DAILYDEPOSITSCONFIG.NAME' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                [(ngModel)]="reasonModel.name">
+                                <p-message severity="error" text="Enter Valid Name"
+                                *ngIf="!addreasonform.controls['name'].valid && addreasonform.controls['name'].dirty">
+                              </p-message>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    {{'DAILYDEPOSITSCONFIG.DESCRIPTION' | translate}}
+                                </label>
+                            
+                            <textarea type="text" class="form-control" pInputTextarea formControlName="description"
+                                [(ngModel)]="reasonModel.description" maxlength="150"></textarea>
+                        </div>
+                    </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'DAILYDEPOSITSCONFIG.STATUS' | translate}}
+                                </label>
+                            
+                            <p-dropdown [options]="statusList" formControlName="statusName"
+                                [(ngModel)]="reasonModel.status" placeholder="Select"></p-dropdown>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!addreasonform.valid" *ngIf='!isEdit' (click)="addOrUpdateReasons()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!addreasonform.valid" *ngIf='isEdit' (click)="addOrUpdateReasons()"> </p-button>
+</div>

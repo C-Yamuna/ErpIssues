@@ -1,0 +1,222 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <h6 class="sub-heading">{{'ERP.SERVICE' | translate}}<span class="admission-text">(Admission Number:&nbsp;{{admissionNumber}})</span></h6>
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.PRODUCT_NAME' | translate}}</span>
+                    <p class="mb-0">{{productName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.ACCOUNT_TYPE' | translate}}</span>
+                    <p class="mb-0">{{accountType}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.MIN_BALANCE' | translate}}</span>
+                    <p class="mb-0">{{minBalence}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.ACCOUNT_OPENING_DATE' | translate}}</span>
+                    <p class="mb-0">{{accountOpeningDateVal}}</p>
+                </div>
+            </div>
+        </div>
+    </div>      
+    <div class="col-12"></div>
+
+    <!-- <form [formGroup]="serviceForm" id="exit_types_form"> -->
+            <form [formGroup]="serviceForm" id="proj_stakeholder_form">
+                <div class="flex justify-content-between py-2">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <!-- <div class="main-heading mt-1">{{'ERP.CASTE' | translate}}</div> -->
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="col-12 p-0">
+                            <div class="d-flex justify-content-end search-input-style">
+                                <div class="input-group search-box d-flex justify-content-end">
+                                    <div class="search">
+                                        <span class="p-input-icon-right">
+                                            <i class="pi pi-search global-search-icon"></i>
+                                            <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                        </span>
+                                    </div>
+                                </div>
+            
+                                <p-button (click)="addService()" label="{{ 'ADD' | translate }}" icon="fa fa-plus" iconPos="left"
+                                    [disabled]="addButtonService" id="bunit_bt_submit"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="globel-border-top-color"></div>
+                <p-table #cv [columns]="servicesDetails" [value]="serviceList" dataKey="id" editMode="row"  styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+                [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single" [globalFilterFields]="['designationName', 'firstName', 'commMobile', 'commEmail', 'age']">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th><span class="red">*</span>{{'ERP.SERVICE_TYPE' | translate}}</th>
+                            <th>{{'ERP.IS_CHARGE_APPLICAPABLE' | translate}}</th>
+                             <th>{{'ERP.FREQUENCY_TYPE' | translate}}</th>
+                             <th>{{'ERP.SERVICE_CHARGES' | translate}}</th>
+                            <th>{{'ERP.FILE' | translate}}</th>
+                            <th><span class="red">*</span>{{'ERP.STATUS' | translate}}</th>
+                            <th class="width-15em">{{'ERP.ACTION'|translate }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                        <tr [pEditableRow]="row">
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="serviceType"
+                                            [options]="serviceTypesList" id="serviceTypeId" [(ngModel)]="savingsBankServiceModel.serviceTypeId" [appendTo]="'body'" (onChange)="serviceTypeDuplicateCheck(savingsBankServiceModel.serviceTypeId)">
+                                        </p-dropdown>
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{row.serviceTypeName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                            <div class="form-check">
+                                                <p-checkbox class="form-check-input mt-3" [binary]="true" formControlName="isChargeApplicable"
+                                                    [(ngModel)]="savingsBankServiceModel.isChargeApplicable"
+                                                    inputId="binary"></p-checkbox>
+                                            </div>
+            
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{row.isChargeApplicableName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="frequencyType"
+                                            [(ngModel)]="savingsBankServiceModel.chargesCollectionFrequencyName">
+            
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{row.chargesCollectionFrequencyName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" formControlName="serviceCharges"
+                                            [(ngModel)]="savingsBankServiceModel.serviceCharges">
+            
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{row.serviceCharges}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            
+                            <td>
+                                <p-cellEditor class="table-uploadfilestyle">
+                                    <ng-template pTemplate="input">
+                                        <div class="uplodad-style align-items-center">
+                                            <!-- Upload Button Column -->
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                                    id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                                    accept=".png,.jpg,.jpeg,.pdf" (onRemove)="fileRemoeEvent()" 
+                                                    (onSelect)="fileUploader($event,fileUpload)" >
+                                            </p-fileUpload>
+                                        </div>
+                                        <div  class="col-12  d-flex p-1 contant-body" *ngFor="let img of row.requestedDocPathMultipartFileList">
+                                            <span *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                        height="22"></a>
+                                            </span>
+                                            <span *ngIf="img.fileType=='pdf'">
+                                                <a href="{{img.imageValue}}"> <img src="assets/images/pdficon-img.png" width="22"
+                                                        height="22"></a>
+                                            </span>   
+                                            <span class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                {{img.fileName}}</span>
+                                        </div>
+
+                                        <!-- Uploaded Files Display Column -->
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        <div class="d-flex pt-1"  *ngFor="let img of row.requestedDocPathMultipartFileList">
+                                            <span *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                        height="22"></a>
+                                            </span>
+                                            <span *ngIf="img.fileType=='pdf'">
+                                                <a href="{{img.imageValue}}"> <img src="assets/images/pdficon-img.png" width="22"
+                                                        height="22"></a>
+                                            </span>  
+                                            <span class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                {{img.fileName}}</span>
+                                        </div>
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <p-dropdown placeholder="{{'DEMANDDEPOSITS.SELECT'| translate}}"
+                                            formControlName="status" 
+                                            [options]="statusList" id="" 
+                                            [(ngModel)]="savingsBankServiceModel.status" [appendTo]="'body'">
+                                        </p-dropdown>
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{row.statusName}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            
+                            <td>
+                                <div class="global-action-btn flex align-items-center justify-content-center">
+                                    <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"  [disabled]="!serviceForm.valid"
+                                        (click)="saveService(savingsBankServiceModel)" pSaveEditableRow id="prj_stakehlder_bt_cancel" class="action-save">
+                                    </p-button>
+                                   
+                                    <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing" 
+                                        pCancelEditableRow id="prj_stakehlder_bt_cancel" class="action-cancel"  (click)="cancelService()">
+                                </p-button>
+                                    <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"  pInitEditableRow [disabled]="editDeleteDisable"
+                                        (click)="getServiceTypesById(row)"  id="prj_stakehlder_bt_edit" class="action-edit"></p-button>
+                                
+                                    <p-button label="{{'ERP.DELETE' | translate}}"  *ngIf="!editing" [disabled]="editDeleteDisable" (click)="deletDilogBox(row)"
+                                        id="prj_stakehlder_bt_edit" class="action-delete"></p-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </form>
+    <!-- </form> -->
+</div>
+
+<!-- delete dialog box -->
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+    
+        <p class="text-center popup-header">{{'ERP.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'ERP.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+  
+    </div>
+    <div class="col-12 text-center p-2">
+            <p-button pRipple class="yes-button" label="{{'ERP.DELETE' | translate}}" (click)="submitDelete()"></p-button>
+            <p-button pRipple class="no-button" label="{{'ERP.CANCEL' | translate}}" (click)="cancelForDialogBox()"></p-button>
+    </div>
+  </p-dialog>
+
+    

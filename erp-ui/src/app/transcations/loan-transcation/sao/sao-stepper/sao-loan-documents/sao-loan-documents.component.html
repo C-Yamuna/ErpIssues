@@ -1,0 +1,223 @@
+<div class="col-12">
+    
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.PRODUCT' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicationModel.saoProductName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.OPERATION_TYPE' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicationModel.operationTypeName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicationModel.accountNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.REQUEST_AMOUNT' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicationModel.requestedAmount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+
+    <h6 class="sub-heading">Loan Documents</h6>
+
+    <form [formGroup]="documentForm" id="exit_types_form">
+        <p-button icon="fa fa-plus" label="{{'ADD ANOTHER DOCUMENT' | translate}}" (click)="addDocument($event)"
+            [disabled]="buttonDisabled" class="kyc-btnm-0"></p-button>
+        <div class="col-12 px-0">
+            <div class="row g-3">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let document of documentModelList ; let i = index">
+                   
+                        <!-- view card -->
+                        <div class="stepper-doc-card p-3 mb-2" *ngIf="editIndex != i || editDocumentOfKycFalg">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                    <div class="card-leftbody">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Type</h6>
+                                            <p class="label-input-text">{{document.documentTypeName}}</p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Document Number</h6>
+                                            <p class="label-input-text">{{document.documentNo}}</p>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                            <h6 class="label-view">Remarks</h6>
+                                            <p class="label-input-text docname-texteclipse">{{document.remarks}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                    <div class="text-right">
+                                        <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn" (click)="toggleEditForm(i ,document)"
+                                            [disabled]="editButtonDisable"></p-button>
+                                        <p-button icon="fa fa-delete" class="kyc-edit-btn ml-3" (click)="delete(document)"
+                                            [disabled]="editButtonDisable"></p-button>
+                        
+                                        
+                        
+                                    </div>
+                                            <div class="col-12 px-0">
+                                                <div class="col-12 px-0"  *ngFor="let img of document.multipartFileList">
+                                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                        <a href="{{img.imageValue}}">
+                                                            <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                                        <a href="{{img.imageValue}}">
+                                                            <img src="assets\images\pdf.png" class="pdf-img img-fluid" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit form -->
+                        <div class="col-12 global-border bg-label-colorfull p-3"
+                            *ngIf="editIndex === i  && !editDocumentOfKycFalg">
+                            <div class="row g-3 mt-n1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                <label>Document Type</label>
+                                <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="documentTypeName"
+                                    [options]="documentNameList" id="docTypeId"
+                                    [(ngModel)]="saoLoanDocumentModel.documentType">
+                                </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                <label>Document Number</label>
+                                <input id="documentNo" type="text" formControlName="documentNo"
+                                    [(ngModel)]="saoLoanDocumentModel.documentNo" placeholder="Enter Document Number">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                <span class=""> {{ 'ERP.UPLOAD_DOCUMENT' | translate }} </span>
+                                <div class="uplodad-style align-items-center">
+                                    <!-- Upload Button Column -->
+
+                                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                        chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                                        accept=".png,.jpg,.jpeg,.pdf" (onRemove)="fileRemoeEvent()"
+                                        [customUpload]="true" formContralName="filePath"
+                                        (onSelect)="imageUploader($event,fileUpload)">
+                                    </p-fileUpload>
+
+                                    <!-- Uploaded Files Display Column -->
+
+                                    <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of saoLoanDocumentModel.multipartFileList">
+                                        <!-- <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}">
+                                                        <img src="{{img.imageValue}}">
+                                                    </a>
+                                                </div>&nbsp;&nbsp; -->
+                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            {{img.fileName}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                <label>Remarks</label>
+                                    <textarea id="remarks" type="text" class="form-control" formControlName="remarks" pInputTextarea 
+                                        [(ngModel)]="saoLoanDocumentModel.remarks" placeholder="Enter Remarks Here"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="justify-content-end d-flex">
+                                    <p-button label="{{'cancle' | translate}}" (onClick)="editCancle()"></p-button>
+                                    <p-button label="{{'save' | translate}}" [disabled]="!documentForm.valid"
+                                        (onClick)="editsave(saoLoanDocumentModel)"></p-button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                   
+                </div>
+                <!-- add form -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngIf="addDocumentOfKycFalg">
+                    <div class="col-12  p-3 global-border bg-label-colorfull">
+                    <div class="row g-3 mt-n1">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                            <label>Document Type</label>
+                            <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="documentTypeName"
+                                [options]="documentNameList" id="docTypeId"
+                                [(ngModel)]="saoLoanDocumentModel.documentTypeName">
+                            </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                            <label>Document Number</label>
+                            <input id="documentNo" type="text" formControlName="documentNo"
+                                [(ngModel)]="saoLoanDocumentModel.documentNo" placeholder="Enter Document Number">
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                            <span class=""> {{ 'ERP.UPLOAD_DOCUMENT' | translate }} </span>
+                            <div class="uplodad-style align-items-center">
+                                <!-- Upload Button Column -->
+
+                                <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                    chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                                    accept=".png,.jpg,.jpeg,.pdf" (onRemove)="fileRemoeEvent()" [customUpload]="true"
+                                    formContralName="filePath" (onSelect)="imageUploader($event,fileUpload)">
+                                </p-fileUpload>
+
+                                <!-- Uploaded Files Display Column -->
+
+                                <div *ngFor="let img of saoLoanDocumentModel.multipartFileList">
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                        {{img.fileName}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-label">
+                            <label>Remarks</label>
+                            <input id="remarks" type="text" formControlName="remarks"
+                                [(ngModel)]="saoLoanDocumentModel.remarks" placeholder="Enter Remarks Here">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="justify-content-end d-flex">
+                                <p-button label="{{'cancle' | translate}}" (click)="cancel()"></p-button>
+                                <p-button label="{{'save' | translate}}" [disabled]="!documentForm.valid"
+                                    (click)="saveDocument(saoLoanDocumentModel)"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

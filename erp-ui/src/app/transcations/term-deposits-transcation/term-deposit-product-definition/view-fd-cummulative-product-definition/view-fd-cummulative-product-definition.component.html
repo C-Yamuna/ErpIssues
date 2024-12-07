@@ -1,0 +1,225 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">
+                {{'TERMDEPOSITSTRANSACTION.FD_CUMMULATIVE_PRODUCT_DEFINATION' | translate}}<i
+                    class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'TERMDEPOSITSTRANSACTION.VIEW' | translate}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 p-0">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-id-badge"></i></span>
+                                                    <h6 class="sub-heading">
+                                                        {{'TERMDEPOSITSTRANSACTION.GENERAL_CONFIGURATION' | translate}}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editFdCummlativeproductDefinationdetails(generalConfigModel,0)"></p-button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.PRODUCT_NAME'
+                                                        |translate}}</h6>
+                                                    <p class="label-input-text">{{ generalConfigModel.name}}</p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.IS_SPECIAL_SCHEME'
+                                                        |translate}}</h6>
+                                                    <p class="label-input-text">{{ generalConfigModel.isSpecialScheme ? 'Yes' : 'No'}}
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px viewcustom-input-number">
+                                                    <h6 class="label-view">
+                                                        {{'TERMDEPOSITSTRANSACTION.MIN_DEPOSIT_AMOUNT' |translate}}</h6>
+                                                        <p-inputNumber id="bunit_txt_name" [(ngModel)]="generalConfigModel.minDepositAmount" 
+                                                        mode="currency" inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text"> </p-inputNumber>
+
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px viewcustom-input-number">
+                                                    <h6 class="label-view">
+                                                        {{'TERMDEPOSITSTRANSACTION.MAX_DEPOSIT_AMOUNT' |translate}}</h6>
+                                                        <p-inputNumber id="bunit_txt_name" [(ngModel)]="generalConfigModel.maxDepositAmount" 
+                                                        mode="currency" inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text"> </p-inputNumber>
+
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.MIN_TENURE'
+                                                        |translate}}</h6>
+                                                    <p class="label-input-text">{{ generalConfigModel.minTenure}}</p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.MAX_TENURE'
+                                                        |translate}}</h6>
+                                                    <p class="label-input-text">{{ generalConfigModel.maxTenure}}</p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.IS_AUTO_RENEWAL'
+                                                        |translate}}</h6>
+                                                    <p class="label-input-text">{{ generalConfigModel.isAutoRenewal ? 'Yes' : 'No'}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                                                    <h6 class="label-view">
+                                                        {{'TERMDEPOSITSTRANSACTION.EFFECTIVE_START_DATE' |translate}}
+                                                    </h6>
+                                                    <p class="label-input-text">{{
+                                                        generalConfigModel.effectiveStartDate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-newspaper-o"></i></span>
+                                                    <h6 class="sub-heading">
+                                                        {{'TERMDEPOSITSTRANSACTION.INTEREST_POLICY' |translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-3" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editFdCummlativeproductDefinationdetails(generalConfigModel,1)"></p-button>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                <p class="label-input-text m-0 justify-content-end d-flex">No of Accounts Selected :<span> 0</span></p>
+                            </div> -->
+
+                                        <div class="globel-border-top-color"></div>
+                                        <p-table [value]="interestPolicyList" dataKey="id"
+                                            selectionMode="single" styleClass="p-datatable-striped"
+                                            [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                                            [paginator]="false" [pageLinks]="1" [responsive]="true"
+                                            rowExpandMode="single">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.GENERAL_ROI' | translate}}</th>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.STAFF_ROI' | translate}}</th>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.SENIOR_CITIZEN_ROI' | translate}}
+                                                    </th>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.PENAL_ROI' | translate}}</th>
+
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-rowData>
+                                                <tr>
+                                                    <td>{{ rowData.roi }}</td>
+                                                    <td>{{ rowData.staffRoi }}</td>
+                                                    <td>{{ rowData.seniorCitizenRoi }}</td>
+                                                    <td>{{ rowData.penaltyRoi }}</td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                        <div class="col-12 margtop-3rem"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-1"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class=" global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <div class="d-flex">
+                                                    <span class="card-icon"><i class="fa fa-file-text"></i></span>
+                                                    <h6 class="sub-heading">
+                                                        {{'TERMDEPOSITSTRANSACTION.REQUIRED_DOCUMENTS' |translate}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-3" *ngIf="editbtn">
+                                                <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                    (click)="editFdCummlativeproductDefinationdetails(generalConfigModel,2)"></p-button>
+                                            </div>
+                                        </div>
+
+                                        <div class="globel-border-top-color"></div>
+                                        <p-table [value]="requiredDocumentsList" dataKey="id" selectionMode="single"
+                                            styleClass="p-datatable-striped"
+                                            [showJumpToPageDropdown]="true" [showPageLinks]="false" [rows]="5"
+                                            [paginator]="false" [pageLinks]="1" [responsive]="true"
+                                            rowExpandMode="single">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.DOCUMENT_TYPE' | translate}}</th>
+                                                    <th>{{'TERMDEPOSITSTRANSACTION.IS_MANDATORY' | translate}}</th>
+                            
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-rowData>
+                                                <tr>
+                                                    <td>{{ rowData.documentTypeName }}</td>
+                                                    <td>{{ rowData.isRequired  ? 'Yes' : 'No' }}</td>
+
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                        <div class="col-12 margtop-3rem"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-scrollPanel>
+
+                <div class="col-12 viewbottom-footer icon-size">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mt-4">
+                            <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf"
+                                tooltipPosition="top"></p-button>
+                            <p-button icon="fa fa-print" iconPos="left" pTooltip="Print"
+                                tooltipPosition="top"></p-button>
+                        </div>
+                        <!-- <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-60px">
+                            <h6 class="label-view">Status</h6>
+                            <p class="status-style statusactive">Approved</p>
+                        </div>
+                        <div class="col-12 p-3 bottom-padding"></div>
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-50px">
+                            <h6 class="label-view">Remarks</h6>
+                            <p class="label-input-text">Successfully Completed</p>
+                        </div> -->
+
+                        <div class="col-xl-9 col-lg-8 col-md-9 col-sm-8 mt-4">
+                            <div class="d-flex justify-content-end">
+                                <p-button (click)="navigateToBack()"
+                                    label="{{'TERMDEPOSITSTRANSACTION.BACK' | translate}}"></p-button>
+                                    <p-button *ngIf="isShowSubmit" label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 m-2"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,196 @@
+<div class="col-12">
+            <div class="stepper-top-section-strip">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span>{{'ERP.PRODUCT' | translate}}</span>
+                            <p class="mb-0">{{saoLoanApplicatonModel.saoProductName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span>{{'ERP.OPERATION_TYPE' | translate}}</span>
+                            <p class="mb-0">{{saoLoanApplicatonModel.operationTypeName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}}</span>
+                            <p class="mb-0">{{saoLoanApplicatonModel.accountNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span>{{'ERP.REQUEST_AMOUNT' | translate}}</span>
+                            <p class="mb-0">{{saoLoanApplicatonModel.requestedAmount}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12"></div>
+            <!-- <h6 class="sub-heading">{{'ERP.NOMINEE_DETAILS' | translate}}<span class="admission-text">(Admission
+                Number:&nbsp;{{admissionNumber}})</span></h6> -->
+        <h6 class="sub-heading">{{'ERP.NOMINEE_DETAILS' | translate}}</h6>
+        <form [formGroup]="nomineeForm" id="exit_types_form">
+            <div class="col-12 p-0">
+            
+                <!-- Nominee section -->
+                <div class="col-12 p-0 bg-label-colorfull">
+                        <div class="row g-3">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label><span class="red">*</span>{{'ERP.TYPE_OF_NOMINEE' | translate}}</label>
+                                <!-- [disabled]="nomineeTypeDisable" -->
+                                <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" [options]="nomineeList"
+                                    [(ngModel)]="saoNomineeModel.nomineeType" formControlName="nomineeTypeName"
+                                    (onChange)="onChange($event.value,true)"></p-dropdown>
+                            </div>
+                            </div>
+                    <!-- Add new Nominee -->
+                    <div class="row" *ngIf="newNominee">
+                        <div class="col-12 mt-4 py-0">
+                            <h6 class="sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 global-border p-3">
+                                <div class="row g-3 mt-n1">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.RELATIONSHIP_TYPE' | translate}}</label>
+                                            <p-dropdown [options]="relationTypesList" placeholder="{{'ERP.SELECT' | translate}}"
+                                                formControlName="relationTypeName" [(ngModel)]="saoNomineeModel.relationTypeId">
+                                                (onChange)='onChangeNomineeRelationType(saoNomineeModel.relationTypeId)'
+                                            </p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.NOMINEE_NAME' | translate}}</label>
+                                            <input type="text" formControlName="nomineeName" pInputText
+                                                [(ngModel)]="saoNomineeModel.nomineeName" placeholder="Enter Nominee Name"/>
+                                            <p-message severity="error" text="Enter Valid nomineeName"
+                                                *ngIf="!nomineeForm.controls['nomineeName'].valid && nomineeForm.controls['nomineeName'].dirty">
+                                            </p-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.AADHAR_NUMBER' | translate}}</label>
+                                            <input type="text" formControlName="nomineeAadharNumber" pInputText
+                                                [(ngModel)]="saoNomineeModel.nomineeAadharNumber" placeholder="Enter Aadhar Number" />
+                                            <p-message severity="error" text="Enter Valid aadhaar"
+                                                *ngIf="!nomineeForm.controls['nomineeAadharNumber'].valid && nomineeForm.controls['nomineeAadharNumber'].dirty">
+                                            </p-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <label><span class="red">*</span>{{'ERP.MOBILE_NUMBER' | translate}}</label>
+                                            <input type="text" formControlName="nomineeMobileNumber" pInputText
+                                                [(ngModel)]="saoNomineeModel.nomineeMobileNumber" placeholder="Enter Mobile Number" />
+                                            <p-message severity="error" text="Enter Valid mobileNumber"
+                                                *ngIf="!nomineeForm.controls['nomineeMobileNumber'].valid && nomineeForm.controls['nomineeMobileNumber'].dirty">
+                                            </p-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <label>{{'ERP.EMAIL' | translate}}</label>
+                                            <input type="text" formControlName="nomineeEmailId" pInputText
+                                                [(ngModel)]="saoNomineeModel.nomineeEmailId" placeholder="Enter Email" />
+                                            <p-message severity="error" text="Enter Valid email"
+                                                *ngIf="!nomineeForm.controls['nomineeEmailId'].valid && nomineeForm.controls['nomineeEmailId'].dirty">
+                                            </p-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label">
+                                        <span>{{ 'ERP.SIGNED_DOCUMENT' | translate }}</span>
+                                        <div class="uplodad-style align-items-center">
+                                            <!-- Upload Button Column -->
+            
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                                chooseLabel=" " formControlName="nomineeFilePath" id="apply-leave_fileUp_attach"
+                                                name="file" accept=".png,.jpg,.jpeg,.pdf" (onRemove)="fileRemoeEvent('Nominee')"
+                                                (onSelect)="fileUploader($event,fileUpload,'Nominee')">
+                                            </p-fileUpload>
+            
+                                            <!-- Uploaded Files Display Column -->
+            
+                                            <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of saoNomineeModel.nomineeFilePathList">
+                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                            height="22"></a>
+                                                </div>
+                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- No nominee details -->
+                    <div class="row" *ngIf="noNominee">
+                        <div class="col-12 mt-4 py-0">
+                            <h6 class="sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 global-border p-3">
+                                <div class="row g-3 mt-n1 mb-3">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-4 pt-2">
+                                        <div class="form-label">
+                                            <p-button icon="fa fa-download p-2" label="unsigned letter format" class="kyc-btnm-0"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-label">
+                                        <span>{{ 'ERP.SIGNED_DOCUMENT' | translate }}</span>
+                                        <div class="uplodad-style align-items-center">
+                                            <!-- Upload Button Column -->
+            
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                                chooseLabel=" " formControlName="nomineeFilePath" id="apply-leave_fileUp_attach"
+                                                name="file" accept=".png,.jpg,.jpeg,.pdf" (onRemove)="fileRemoeEvent('Nominee')"
+                                                (onSelect)="fileUploader($event,fileUpload,'Nominee')">
+                                            </p-fileUpload>
+            
+                                            <!-- Uploaded Files Display Column -->
+            
+                                            <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of saoNomineeModel.nomineeFilePathList">
+                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                            height="22"></a>
+                                                </div>
+                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                    {{img.fileName}}</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-label">
+                                        <label>{{'ERP.REMARKS' | translate}}</label>
+            
+                                        <textarea type="text" class="form-control" formControlName="remarks" pInputTextarea
+                                            [(ngModel)]="saoNomineeModel.remarks" placeholder="Enter Remarks Here"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+           </div>
+        </form>
+   
+ 
+</div>

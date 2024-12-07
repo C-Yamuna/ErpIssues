@@ -1,0 +1,183 @@
+<div class="col-12">
+
+    <!-- <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="mb-0">{{ this.memberTypeName }}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">{{this.memberName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.QUALIFICATON' | translate}}</span>
+                    <p class="mb-0">{{this.qualificationName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{this.mobileNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{this.aadharNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <form [formGroup]="communicationForm" id="exit_types_form">
+        <h6 class="sub-heading">{{'ERP.COMMUNICATION' | translate}}<span class="admission-text">(Admission
+                number:&nbsp;{{admissionNumber}})</span></h6>
+       
+        <div class="col-12 bg-label-colorfull p-0">
+            <div class="row g-3">
+                
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                 
+                        <h6 class="super-sub-heading">{{'ERP.REGISTERED' | translate}}</h6>
+                  
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                            <div class="row g-3 mt-n1">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                                    
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="states" [options]="statesList"
+                                            [(ngModel)]="savingsBankCommunicationModel.stateId"
+                                            (onChange)="onChangeStates(savingsBankCommunicationModel.stateId)"></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="districts"
+                                            [options]="districtsList" [(ngModel)]="savingsBankCommunicationModel.districtId"
+                                            (onChange)='onChangeDistricts(savingsBankCommunicationModel.districtId)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}}</label>
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="mandal" [options]="mandalsList"
+                                            [(ngModel)]="savingsBankCommunicationModel.subDistrictId"
+                                            (onChange)='onChangeMandals(savingsBankCommunicationModel.subDistrictId)'></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}}</label>
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="village" [options]="villageList"
+                                        [(ngModel)]="savingsBankCommunicationModel.villageId" (onChange)='onChangeVillageId(savingsBankCommunicationModel.villageId)'  ></p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label>{{'ERP.ADDRESS' | translate}}</label>
+                        
+                                        <textarea type="text" class="form-control" pInputTextarea formControlName="regesteredAddressOne" placeholder="House No., Door No., Landmark..etc"
+                                        (keyup)="appendPinCodeToPermenent()"  [(ngModel)]="savingsBankCommunicationModel.address1"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                    <label><span class="red">*</span>{{'ERP.PINCODE' | translate}}</label>
+                                        <input pInputText type="text" formControlName="pinCode" placeholder="Enter Pincode"
+                                        (keyup)="appendPinCodeToPermenent()" [(ngModel)]="savingsBankCommunicationModel.pincode" [disabled]="sameAsPermanentAddress">
+                                        <p-message severity="error" text="Enter Valid Pin Code"
+                                        *ngIf="!communicationForm.controls['pinCode'].valid && communicationForm.controls['pinCode'].dirty">
+                            </p-message>
+                                    </div>
+                                </div>
+                               
+                               
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="d-flex justify-content-between mt-xl-0 mt-lg-0 mt-4">
+                            <h6 class="super-sub-heading">{{'ERP.PERMANENT' | translate}}</h6>
+                            <div class="grid mr-3 d-flex">
+                    
+                                <p-inputSwitch formControlName="checked" [(ngModel)]="savingsBankCommunicationModel.isSameAddress"
+                                    (click)="sameAsPerAddr(true)"></p-inputSwitch>
+                                <p class="pl-1 m-0">{{'ERP.SAME_AS_REGISTERED_ADDRESS' | translate}}</p>
+                    
+                            </div>
+                        </div>
+                    <div class="col-12 global-border">
+                        <div class="col-12">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'ERP.STATES' | translate}}</label>
+                                   
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="permenentState" [options]="statesList"
+                                         [(ngModel)]="savingsBankCommunicationModel.permntStateId" (onChange)='onChangePermenentDistricts(savingsBankCommunicationModel.permntStateId)'
+                                        ></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'ERP.DISTRICTS' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="permenentDistricts" [options]="permenentDistrictList"
+                                         [(ngModel)]="savingsBankCommunicationModel.permntDistrictId" (onChange)='onChangePermenentMandals(savingsBankCommunicationModel.permntDistrictId)'
+                                        ></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'ERP.MANDAL/TESHIL' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="permenentMandal" [options]="permenentMandalsList"
+                                         [(ngModel)]="savingsBankCommunicationModel.permntSubDistrictId" (onChange)='onChangePermenentVillagesByPermenentMandals(savingsBankCommunicationModel.permntSubDistrictId)'
+                                        ></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'ERP.VILLAGES' | translate}}</label>
+                                    <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" formControlName="permenentVillage" [options]="permenentVillagesList"
+                                        [(ngModel)]="savingsBankCommunicationModel.permntVillageId"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label>{{'ERP.ADDRESS' | translate}}</label>
+                                    <textarea type="text" class="form-control" pInputTextarea formControlName="permenentAddressOne"
+                                        [(ngModel)]="savingsBankCommunicationModel.permntAddress1" placeholder="House No., Door No., Landmark..etc"
+                                        ></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                <label><span class="red">*</span>{{'ERP.PINCODE' | translate}}</label>
+                                    <input pInputText type="text" formControlName="permenentPinCode" [disabled]="sameAsPermanentAddress"
+                                    [(ngModel)]="savingsBankCommunicationModel.permntPincode" placeholder="Enter Pincode">
+                                    <p-message severity="error" text="Enter Valid Pin Code"
+                                        *ngIf="!communicationForm.controls['permenentPinCode'].valid && communicationForm.controls['permenentPinCode'].dirty">
+                            </p-message>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

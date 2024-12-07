@@ -1,0 +1,52 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'MEMBERSHIPCONFIG.DOCUMENT_TYPES' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="doctypeform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'MEMBERSHIPCONFIG.NAME' | translate}}</label>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                [(ngModel)]="documentTypeModel.name">
+                                <p-message severity="error" text="Enter Valid Name"
+                                    *ngIf="!doctypeform.controls['name'].valid && doctypeform.controls['name'].dirty">
+                                  </p-message>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code">
+                                {{'MEMBERSHIPCONFIG.DESCRIPTION' | translate}}
+                            </label>
+
+                            <textarea type="text" class="form-control" pInputTextarea formControlName="description"
+                                [(ngModel)]="documentTypeModel.description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label><span class="red">*</span>{{'MEMBERSHIPCONFIG.STATUS' | translate}}</label>
+                                <p-dropdown [options]="statusList" placeholder="Select" formControlName="statusName"
+                                    [(ngModel)]="documentTypeModel.status"></p-dropdown>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'MEMBERSHIPCONFIG.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'MEMBERSHIPCONFIG.SUBMIT' | translate}}" [disabled]="!doctypeform.valid" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'MEMBERSHIPCONFIG.SUBMIT' | translate}}" [disabled]="!doctypeform.valid" *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

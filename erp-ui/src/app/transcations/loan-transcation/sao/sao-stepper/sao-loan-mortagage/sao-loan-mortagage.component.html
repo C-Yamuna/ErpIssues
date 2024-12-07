@@ -1,0 +1,234 @@
+<div class="col-12">
+
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.PRODUCT' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicatonModel.saoProductName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.OPERATION_TYPE' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicatonModel.operationTypeName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicatonModel.accountNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <span>{{'ERP.REQUEST_AMOUNT' | translate}}</span>
+                    <p class="mb-0">{{saoLoanApplicatonModel.requestedAmount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <h6 class="sub-heading">{{'ERP.MORTAGAGE_DETAILS' | translate}}</h6>
+
+    <form [formGroup]="Collateralform" id="exit_types_form">
+        <div class="flex justify-content-between py-2">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                    placeholder="Search" class="searchbox"
+                                    #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                                </span>
+                            </div>
+                        </div>
+                        <p-button (click)="addData()" label="{{ 'ADD' | translate }}" icon="fa fa-plus" iconPos="left"
+                            [disabled]="addButton" id="bunit_bt_submit"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="globel-border-top-color"></div>
+
+        <p-table #dt [value]="gridList" dataKey="id" editMode="row" styleClass="p-datatable-striped" [rows]="5"
+            [paginator]="true" [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+            [responsive]="true" rowExpandMode="single" [globalFilterFields]="['passbookNumber', 'surveyNo', 'landTypeName', 'declaredLandUnits','declaredLandSubUnits',
+                                'value','documentPath','remarks','statusName']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th><span class="red">*</span>{{'ERP.PASSBOOK_NUMBER' | translate}}</th>
+                    <th>{{'ERP.SURVEY_NO' | translate}}</th>
+                    <th><span class="red">*</span>{{'ERP.LAND_TYPE' | translate}}</th>
+                    <th><span class="red">*</span>{{'ERP.LAND_IN_UNITS' | translate}}</th>
+                    <th><span class="red">*</span>{{'ERP.LAND_IN_SUB_UNITS' | translate}}</th>
+                    <th>{{'ERP.VALUE' | translate}}</th>
+                    <th>{{'ERP.UPLOAD' | translate}}</th>
+                    <th>{{'ERP.REMARKS' | translate}}</th>
+                    <th><span class="red">*</span>{{'ERP.STATUS' | translate}}</th>
+                    <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="rowData">
+                    <td>
+
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="passbookNumber"
+                                    [(ngModel)]="rowData.passbookNumber">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.passbookNumber}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="surveyNo" [(ngModel)]="rowData.surveyNo">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.surveyNo}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="landTypeList" formControlName="landTypeName"
+                                    [(ngModel)]="rowData.landType" placeholder="select"
+                                    [appendTo]="'body'"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.landTypeName}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="declaredLandUnits"
+                                    [(ngModel)]="rowData.declaredLandUnits">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.declaredLandUnits}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="declaredLandSubUnits"
+                                    [(ngModel)]="rowData.declaredLandSubUnits">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.declaredLandSubUnits}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="value" [(ngModel)]="rowData.value">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.value}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <!-- <input pInputText type="text" formControlName="documentPath"
+                                                    [(ngModel)]="rowData.documentPath"> -->
+                                <div class="uplodad-style align-items-center">
+                                    <!-- Upload Button Column -->
+                                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                        id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                        accept=".png,.jpg,.jpeg" (onRemove)="fileRemoeEvent()"
+                                        (onSelect)="fileUploader($event,fileUpload)">
+                                    </p-fileUpload>
+                                </div>
+                                <div class="col-12 d-flex p-1 contant-body"
+                                    *ngFor="let img of rowData.requestedDocPathMultipartFileList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}"
+                                        tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+
+                                <!-- Uploaded Files Display Column -->
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <div class="d-flex pt-1" *ngFor="let img of rowData.requestedDocPathMultipartFileList">
+                                    <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                height="22"></a>
+                                    </div>
+                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}"
+                                        tooltipPosition="bottom">
+                                        {{img.fileName}}</div>
+                                </div>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="remarks" [(ngModel)]="rowData.remarks">
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.remarks}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="statusList" formControlName="statusName"
+                                    [(ngModel)]="rowData.status" placeholder="select" [appendTo]="'body'"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">{{rowData.statusName}}</ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <div class="global-action-btn flex align-items-center justify-content-center">
+                            <p-button label="{{ 'SAVE' | translate }}" *ngIf="editing"
+                                [disabled]="!Collateralform.valid" (click)="addOrUpdateLandDetails(rowData)"
+                                pSaveEditableRow id="prj_stakehlder_bt_cancel" class="action-save">
+                            </p-button>
+                            <p-button label="{{ 'CANCEL' | translate }}" *ngIf="editing" pCancelEditableRow
+                                id="prj_stakehlder_bt_cancel" class="action-cancel" (click)="cancelLandDetails()">
+                            </p-button>
+                            <p-button label="{{ 'EDIT' | translate }}" *ngIf="!editing" [disabled]="editDeleteDisable"
+                                pInitEditableRow (click)="editLandDetailsRow(rowData)" id="prj_stakehlder_bt_edit"
+                                class="action-edit">
+                            </p-button>
+                            <p-button label="{{ 'DELETE' | translate }}" *ngIf="!editing"
+                                (click)="deletDilogBox(rowData)" [disabled]="editDeleteDisable"
+                                id="prj_stakehlder_bt_edit" class="action-delete">
+                            </p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="col-12 margtop-3rem"></div>
+
+    </form>
+
+
+</div>
+
+<!-- delete dialog box -->
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+
+        <p class="text-center popup-header">{{'ERP.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'ERP.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+
+    </div>
+    <div class="col-12 text-center p-2">
+        <p-button pRipple class="yes-button" label="{{'ERP.DELETE' | translate}}" (click)="submitDelete()"></p-button>
+        <p-button pRipple class="no-button" label="{{'ERP.CANCEL' | translate}}"
+            (click)="cancelForDialogBox()"></p-button>
+    </div>
+</p-dialog>

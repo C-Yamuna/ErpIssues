@@ -1,0 +1,104 @@
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</h6>
+        <form [formGroup]="productform">
+            <div class="mt-n1 bg-label-colorfull">
+            <div class="row g-3 mb-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.PRODUCT_NAME' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                        [(ngModel)]="investmentsProductDefinitionModel.name">
+                    <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!productform.controls['name'].valid && productform.controls['name'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MIN_DEPOSIT_AMOUNT'
+                            | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="minDepositAmount"
+                        [(ngModel)]="investmentsProductDefinitionModel.minDepositAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()">
+                    </p-inputNumber>
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productform.controls['minDepositAmount'].valid && productform.controls['minDepositAmount'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MAX_DEPOSIT_AMOUNT'
+                            | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="maxDepositAmount"
+                        [(ngModel)]="investmentsProductDefinitionModel.maxDepositAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()">
+                    </p-inputNumber>
+
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productform.controls['maxDepositAmount'].valid && productform.controls['maxDepositAmount'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MIN_TENURE' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="minTenure"
+                        [(ngModel)]="investmentsProductDefinitionModel.minTenure" pKeyFilter="int"
+                        (keyup)="checkForAmount()">
+                    <p-message severity="error" text="Enter Valid Tenure"
+                        *ngIf="!productform.controls['minTenure'].valid && productform.controls['minTenure'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.MAX_TENURE' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="maxTenure"
+                        [(ngModel)]="investmentsProductDefinitionModel.maxTenure" pKeyFilter="int"
+                        (keyup)="checkForAmount()">
+                    <p-message severity="error" text="Enter Valid Tenure"
+                        *ngIf="!productform.controls['maxTenure'].valid && productform.controls['maxTenure'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.IS_AUTO_RENEWAL' | translate}}</label>
+                        <p-dropdown [options]="isAutoRenualList" placeholder="select" formControlName="isAutoRenual"
+                            [(ngModel)]="investmentsProductDefinitionModel.isAutoRenual"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span
+                                class="red">*</span>{{'INVESTMENTS_TRANSACTIONS.EFFECTIVE_START_DATE' | translate}}
+                        </label>
+                    <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true"
+                        yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                        id="work_flow_start_date"
+                        [(ngModel)]="investmentsProductDefinitionModel.effectiveStartDate"
+                        [maxDate]="maxDate"></p-calendar>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,82 @@
+    <div class="col-12">
+        <div class="stepper-top-section-strip">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'BORROWINGSTRANSACTIONS.FINANCIAL_BANK_TYPE' | translate}}</span>
+                        <p class="mb-0">{{siborrowingAccountDetailsModel.financiarBankTypeName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'BORROWINGSTRANSACTIONS.DCCB_BORROWING_ACCOUNT_NUMBER' | translate}}</span>
+                        <p class="mb-0">{{siborrowingAccountDetailsModel.accountNumber}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'BORROWINGSTRANSACTIONS.REQUESTED_AMOUNT' | translate}}</span>
+                        <p class="mb-0">{{siborrowingAccountDetailsModel.requestedAmount}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span>{{'BORROWINGSTRANSACTIONS.REQUESTED_DATE' | translate}}</span>
+                        <p class="mb-0">{{siborrowingAccountDetailsModel.requestedDate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="flex row justify-content-between py-2">
+            <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6">
+                <h6 class="sub-heading">{{'BORROWINGSTRANSACTIONS.BORROWING_ACCOUNT_MAPPING' | translate}}
+                    <span class="admission-text">({{'BORROWINGSTRANSACTIONS.ADMISSION_NUMBER' | translate}}: )</span></h6>
+            </div>
+            <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6">
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search mr-0">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                    placeholder="Search" class="searchbox"
+                                    #searchInput  (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+                <div class="globel-border-top-color"></div>
+                <p-table #dt [columns]= "borrowingsAccountMapping" [value]="siborrowingAccountMappedLoansDTOList" dataKey="id" selectionMode="multiple" styleClass="p-datatable-striped" [rows]="5"
+                    [paginator]="true" [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single" [(selection)]="borrowingsAccountMappinglist"
+                    [globalFilterFields]="['admissionNo']">
+                   
+                    <ng-template pTemplate="header">
+                        <tr>
+                        <th><p-checkbox  [binary]="true" inputId="selectAllCheckbox"
+                            (onChange)="selectAll($event)" ></p-checkbox></th>
+                            <th *ngFor="let col of borrowingsAccountMapping">
+                                {{col.header | translate}}
+                            </th>
+                         
+                        </tr>             
+                        </ng-template>
+                        <ng-template pTemplate="body" let-gridList let-expanded="expanded" let-rowData>
+                            <tr>
+                             
+                               <td><p-checkbox [binary]="true" inputId="binary_{{rowData.id}}"
+                        [(ngModel)]="rowData.selected" (onChange)="onSelectCheckBox($event, rowData)"></p-checkbox></td>
+                                <td *ngFor="let col of borrowingsAccountMapping">
+                                    {{rowData[col.field]}}
+                                </td>
+                              
+                        </tr>  
+                    </ng-template>
+                </p-table>
+    </div>

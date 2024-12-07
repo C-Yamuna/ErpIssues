@@ -1,0 +1,104 @@
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'INVESTMENTS_TRANSACTIONS.INVESTMENTS' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'ERP.VIEW' | translate}}</div>
+        </div>
+    </div>
+    
+    <div class="col-12 p-0">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <p-scrollPanel styleClass="scroll-class">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12 p-0">
+                                <div class="global-card-bg-color view-carddata icon-size">
+                                    <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="d-flex">
+                                                <span class="card-icon"><i class="fa fa-id-badge"></i></span>
+                                                <h6 class="sub-heading">{{'INVESTMENTS_TRANSACTIONS.APPLICATION_DETAILS' | translate}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" *ngIf="editbutton">
+                                            <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn pull-right"
+                                                (click)="editSharesDetails(sharesInvestmentsModel)"></p-button>
+                                        </div>
+                                    </div>
+        <div class="col-12 px-0">
+            <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.PRODUCT' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.productName}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.BANK_NAME' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.bankName}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.BRANCH' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.branchName}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.PURCHASE_DATE' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.sharesPurchasedDate}}</p>
+            </div>
+
+
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.SHARES_CERTIFICATE_NO' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.shareCertificateNumber}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.NO_OF_SHARES_PURCHASED' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.noOfSharesPurchased}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.EACH_SHARE_AMOUNT' | translate}}</h6>
+                <p class="label-input-text">{{sharesInvestmentsModel.eachShareAmount}}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.UPLOAD' | translate}}</h6>
+                <p class="label-input-text docname-texteclipse mt-1" pTooltip="{{sharesInvestmentsModel.shareCertificateCopyPath}}" tooltipPosition="bottom"><img src="assets/images/pdficon-img.png" class="viewicon-img"><span>{{sharesInvestmentsModel.shareCertificateCopyPath}}</span></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </p-scrollPanel>
+
+    <div class="col-12 viewbottom-footer icon-size">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4">
+                <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top" ></p-button>
+                <p-button  icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+            </div>
+            <!-- <div class="col-12 p-3 bottom-padding"></div>
+            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.STATUS' | translate}}</h6>
+                <p class="status-style statusactive">Approved</p>
+            </div>
+            <div class="col-12 p-3 bottom-padding"></div>
+            <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 min-h-50px">
+                <h6 class="label-view">{{'INVESTMENTS_TRANSACTIONS.REMARKS' | translate}}</h6>
+                <p class="label-input-text">Successfully Completed</p>
+            </div> -->
+            
+            <div class="col-xl-9 col-lg-8 col-md-9 col-sm-8">
+                <div class="d-flex justify-content-end">
+                <p-button (click)="navigateToBack()" label="Back"></p-button>
+                <p-button *ngIf="isShowSubmit" label="{{'TERMDEPOSITSTRANSACTION.SUBMIT' | translate}}" (click)="submit()" ></p-button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>

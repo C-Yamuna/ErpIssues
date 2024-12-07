@@ -1,0 +1,233 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'AGENT_DETAILS_TRANSACTION.NOMINEE_DETAILS' | translate}}<span
+        class="admission-text">(Application Number:&nbsp;501)</span></h6>
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.AGENT_TYPE' | translate}}</span>
+                <p class="m-0 font-semibold text-break">{{agentDetailsModel.agentType}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</span>
+                <p class="m-0 font-semibold text-break">{{agentDetailsModel.name}}</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.CONTACT' | translate}}</span>
+                <p class="m-0 font-semibold text-break">500</p>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</span>
+                <p class="m-0 font-semibold text-break"></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <form [formGroup]="nomineeForm" id="exit_types_form">
+        <div class="col-12 p-0">
+            <div class="col-12 p-0 bg-label-colorfull">
+                <div class="row g-3">
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                        <label>{{'AGENT_DETAILS_TRANSACTION.TYPE_OF_NOMINEE' | translate}}</label>
+                        <p-dropdown placeholder="select" formControlName="nomineeType" [options]="nomineeTypeList"
+                            [(ngModel)]="nomineeModel.nomineeType"
+                            (onChange)="onChange(nomineeModel.nomineeType)"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 mt-4 py-0">
+                            <h6 class="sub-heading" *ngIf="newNominee">{{'AGENT_DETAILS_TRANSACTION.REQUIRED_DETAILS'
+                                | translate}}</h6>
+                            <h6 class="sub-heading" *ngIf="sameAsMembershipNominee">Same as Membership Nominee</h6>
+                            <h6 class="sub-heading" *ngIf="noNominee">{{'AGENT_DETAILS_TRANSACTION.REQUIRED_DETAILS' |
+                                translate}}</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 global-border p-3" *ngIf="newNominee">
+                                <div class="row g-3 mt-n1">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label><span
+                                                    class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.RELATIONSHIP_TYPE'
+                                                | translate}}</label>
+                                            <p-dropdown [options]="relationTypeList" formControlName="relationTypeName"
+                                                [(ngModel)]="nomineeModel.relationTypeId"
+                                                placeholder="Select"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.NAME' |
+                                                translate}}</label>
+                                            <input type="text" pInputText formControlName="nomineeName"
+                                                [(ngModel)]="nomineeModel.nomineeName" placeholder="Enter Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER'
+                                                | translate}}</label>
+                                            <input type="text" pInputText formControlName="nomineeAadharNumber"
+                                                [(ngModel)]="nomineeModel.nomineeAadharNumber" placeholder="Enter Aadhar Number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.MOBILE_NUMBER'
+                                                | translate}}</label>
+                                            <input type="text" pInputText formControlName="nomineeMobileNumber"
+                                                [(ngModel)]="nomineeModel.nomineeMobileNumber" placeholder="Enter Mobile Number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <label><span class="red">*</span>{{'AGENT_DETAILS_TRANSACTION.EMAIL' |
+                                                translate}}</label>
+                                            <input type="text" pInputText formControlName="nomineeEmailId"
+                                                [(ngModel)]="nomineeModel.nomineeEmailId" placeholder="Enter Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-label">
+                                            <span class=""> {{ 'AGENT_DETAILS_TRANSACTION.UPLOAD_DOCUMENT' | translate
+                                                }} </span>
+                                            <div class="uplodad-style align-items-center">
+                                                <!-- Upload Button Column -->
+                                                <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                                                    name="myfile[]" id="apply-leave_fileUp_attach" chooseLabel=" "
+                                                    name="file" accept=".png,.jpg,.jpeg"
+                                                    (onRemove)="fileRemoveEventForNominee()"
+                                                    (onSelect)="imageUploader($event,fileUpload)">
+                                                </p-fileUpload>
+                                                <div class="col-12  d-flex p-1 contant-body"
+                                                    *ngFor="let img of nomineeModel.multipartFileList">
+                                                    <div
+                                                        *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                        <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}"
+                                                                width="22" height="22"></a>
+                                                    </div>
+                                                    <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}"
+                                                        tooltipPosition="bottom">
+                                                        {{img.fileName}}</div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 global-border p-3" *ngIf="sameAsMembershipNominee">
+                                <div class="row g-3">
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 min-h-50px">
+                                                <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.RELATIONSHIP_TYPE' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">{{nomineeModel.relationTypeName}}</p>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 min-h-50px">
+                                                <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.FULL_NAME' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">{{nomineeModel.nomineeName}}</p>
+                                            </div>
+
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 min-h-50px">
+                                                <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.AADHAR_NUMBER' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">{{nomineeModel.nomineeAadharNumber}}</p>
+                                            </div>
+
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 min-h-50px">
+                                                <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.MOBILE_NUMBER' |
+                                                    translate}}</h6>
+                                                <p class="label-input-text">{{nomineeModel.nomineeMobileNumber}}</p>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 min-h-50px">
+                                                <h6 class="label-view">{{'AGENT_DETAILS_TRANSACTION.EMAIL' | translate}}
+                                                </h6>
+                                                <p class="label-input-text">{{nomineeModel.nomineeEmailId}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 justify-content-end">
+                                        <div class="col-12 px-0">
+                                        <div class="col-12 px-0">
+                                            <div class="col-12 p-0">
+                                                <a href="">
+                                                    <img src="assets/images/pdf.png" class="pdf-img img-fluid" pTooltip="Download" tooltipPosition="top">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        </div>
+                            </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 global-border p-3" *ngIf="noNominee">
+                                            <div class="row g-3 mt-n1 mb-3">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-4 pt-2">
+                                                    <div class="form-label">
+                                      
+                                                <p-button icon="fa fa-plus p-2" label="Application" class="kyc-btnm-0"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-label">
+                                        <span class=""> {{ 'ERP.UPLOAD_DOCUMENT' | translate }} </span>
+                                        <div class="uplodad-style align-items-center">
+                                            <!-- Upload Button Column -->
+
+                                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                                                name="myfile[]" chooseLabel=" " id="apply-leave_fileUp_attach"
+                                                name="file" accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                                                formContralName="fileUpload"
+                                                (uploadHandler)="imageUploader($event,fileUpload)">
+                                            </p-fileUpload>
+
+                                            <!-- Uploaded Files Display Column -->
+
+                                            <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of nomineeModel.multipartFileList">
+                                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                            height="22"></a>
+                                                </div>
+                                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}"
+                                                    tooltipPosition="bottom">
+                                                    {{img.fileName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-label">
+                                        <label>{{'AGENT_DETAILS_TRANSACTION.REMARKS' | translate}}</label>
+                                            <textarea type="text" class="form-control" pInputTextarea
+                                                formControlName="text" placeholder="Enter Remarks Here"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>

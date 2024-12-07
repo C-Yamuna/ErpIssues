@@ -1,0 +1,262 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+    <form [formGroup]="memberBasicDetailsForm">
+        <div class="mt-n1  bg-label-colorfull">
+            
+            <div class="row g-3">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+               
+                <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.PRODUCT_TYPE' | translate}}</label>
+                
+                            <p-dropdown id="bunit_txt_status" placeholder="Select"
+                            [filter]="true" [options]="subProductList"
+                            formControlName="subProductId" [(ngModel)]="memberBasicDetailsModel.subProductId"
+                            (onChange)="onChangeProduct()">
+                        </p-dropdown>
+                   
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'ERP.SURNAME' | translate}}
+                    </label>
+                
+                <input pInputText id="bunit_txt_name"  type="text"  
+                formControlName="surname" [(ngModel)]="memberBasicDetailsModel.surname" placeholder="Enter Surname">
+                <p-message severity="error" text="Enter Valid Surname"
+                *ngIf="!memberBasicDetailsForm.controls['surname'].valid && memberBasicDetailsForm.controls['surname'].dirty">
+            </p-message>
+            
+            </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">  <span class="red">*</span>{{'ERP.NAME' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text"  formControlName="name" [(ngModel)]="memberBasicDetailsModel.name" placeholder="Enter Name">
+                    <p-message severity="error" text="Enter Valid Name"
+                    *ngIf="!memberBasicDetailsForm.controls['name'].valid && memberBasicDetailsForm.controls['name'].dirty">
+                </p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                <div class="form-label">
+                    <label for="username"> <span class="red">*</span>{{'ERP.DATE_OF_BIRTH' | translate}}
+                    </label>
+                    <!-- <p-calendar [showIcon]="true"  formControlName="dob" [(ngModel)]="memberBasicDetailsModel.memDobVal"></p-calendar> -->
+                    <p-calendar formControlName="dob" 
+                    [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                    [(ngModel)]="memberBasicDetailsModel.memDobVal" placeholder="DD/MM/YYYY">
+                </p-calendar>
+            </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                <div class="form-label">
+                    <label for="username"> <span class="red">*</span>{{'ERP.AGE' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="age" [(ngModel)]="memberBasicDetailsModel.age" placeholder="Enter Age">
+                   
+                </div>
+
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                    <label> <span class="red">*</span> {{'ERP.GENDER' | translate}}</label>
+                    <p-dropdown id="bunit_txt_status" placeholder="Select"
+                    [filter]="true" [options]="genderList"
+                    formControlName="genderId" [(ngModel)]="memberBasicDetailsModel.genderId">
+                </p-dropdown>
+            </div>
+
+        </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label>  <span class="red">*</span> {{'ERP.MARITAL_STATUS' | translate}}</label>
+                        <p-dropdown id="bunit_txt_status" placeholder="Select"
+                        [filter]="true" [options]="maritalStatusList"
+                        formControlName="martialId" [(ngModel)]="memberBasicDetailsModel.martialId">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label>  <span class="red">*</span> {{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}</label>
+                        <p-dropdown [filter]="true" [options]="relationshipTypeList" placeholder="Select"
+                        formControlName="relationId" (onChange)="onChangeRelationTypeChange()" [(ngModel)]="memberBasicDetailsModel.relationId"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">  <span class="red">*</span> {{'ERP.RELATION_NAME' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="relativeName" [(ngModel)]="memberBasicDetailsModel.relativeName" placeholder="Enter Relation Name">
+                    <p-message severity="error" text="Enter Valid Name"
+                    *ngIf="!memberBasicDetailsForm.controls['relativeName'].valid && memberBasicDetailsForm.controls['relativeName'].dirty">
+                </p-message>
+                </div>
+
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-label">
+                    <label>  <span class="red">*</span> {{'ERP.QUALIFICATON' | translate}}</label>
+                        <p-dropdown [filter]="true" [options]="qualificationLIst" placeholder="Select"
+                        formControlName="qualificationId" (onChange)="onChangeQualificationChange()" [(ngModel)]="memberBasicDetailsModel.qualificationId"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label> <span class="red">*</span> {{'ERP.OCCUPATION' | translate}}</label>
+                        <p-dropdown [filter]="true" [options]="occupationList" placeholder="Select"
+                        formControlName="occupationId" (onChange)="onChangeOccupationChange()" [(ngModel)]="memberBasicDetailsModel.occupationId"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">  <span class="red">*</span> {{'ERP.AADHAR_NUMBER' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="aadharNumber" [(ngModel)]="memberBasicDetailsModel.aadharNumber" placeholder="Enter Aadhar Number">
+                      <p-message severity="error" text="Enter Valid Aadhar Number"
+                    *ngIf="!memberBasicDetailsForm.controls['aadharNumber'].valid && memberBasicDetailsForm.controls['aadharNumber'].dirty"></p-message>
+                
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"> <span class="red">*</span> {{'ERP.PAN_NUMBER' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="panNumber" [(ngModel)]="memberBasicDetailsModel.panNumber" placeholder="Enter PAN Number">
+                      <p-message severity="error" text="Enter Valid Pan Number"
+                    *ngIf="!memberBasicDetailsForm.controls['panNumber'].valid && memberBasicDetailsForm.controls['panNumber'].dirty"></p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">  <span class="red">*</span> {{'ERP.MOBILE_NUMBER' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="mobileNumber" [(ngModel)]="memberBasicDetailsModel.mobileNumber" placeholder="Enter Mobile Number">
+                      <p-message severity="error" text="Enter Valid Mobile Number"
+                    *ngIf="!memberBasicDetailsForm.controls['mobileNumber'].valid && memberBasicDetailsForm.controls['mobileNumber'].dirty"></p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username"><span class="red">*</span>{{'ERP.EMAIL' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="emailId" [(ngModel)]="memberBasicDetailsModel.emailId" placeholder="Enter Email">
+                      <p-message severity="error" text="Enter Valid EmailId"
+                    *ngIf="!memberBasicDetailsForm.controls['emailId'].valid && memberBasicDetailsForm.controls['emailId'].dirty"></p-message>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label><span class="red">*</span>Caste</label>
+                        <p-dropdown [filter]="true" [options]="casteList" placeholder="Select"
+                        formControlName="casteId"  (onChange)="onChangeCasteChange()" [(ngModel)]="memberBasicDetailsModel.casteId"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.COMMUNITYS' | translate}}</label>
+                        <p-dropdown [filter]="true" [options]="communityList" placeholder="Select"
+                        formControlName="communityId"  (onChange)="onChangeCommunityChange()"[(ngModel)]="memberBasicDetailsModel.communityId"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="show">
+                <div class="form-label">
+                    <label for="username">{{'ERP.MANAGEMENT_COMMITTE_RESOLUTION NO' | translate}} 
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="mcrNumber" [(ngModel)]="memberBasicDetailsModel.mcrNumber">
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">  <span class="red">*</span> {{'ERP.ADMISSION_DATE' | translate}} 
+                    </label>
+                    <p-calendar formControlName="admissionDate" 
+                    [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                    [(ngModel)]="memberBasicDetailsModel.temAdmDate" placeholder="Enter Admission Date">
+                </p-calendar>
+            </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'ERP.ADMISSION_FEE' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="admissionFee" [(ngModel)]="memberBasicDetailsModel.admissionFee" placeholder="Enter Admission Fee">
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="show">
+                <div class="form-label">
+                <span class=""> {{ 'ERP.MCR_DOCUMENT_TYPE' | translate }} </span>
+                <div class="uplodad-style align-items-center">
+                    <!-- Upload Button Column -->
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                    id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg" (onRemove)="fileRemoveEvent('mcrDocumentCopy')"
+                    (onSelect)="fileUploader($event,fileUpload ,'mcrDocumentCopy')">
+                    </p-fileUpload>
+                    <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of memberBasicDetailsModel.multipartFileListForMCRCopyPath">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                            {{img.fileName}}</div>
+                        
+                    </div>
+                </div>
+                 </div>
+           
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <span class=""> {{ 'ERP.UPLOAD_IMAGE' | translate }} </span>
+                <div class="uplodad-style align-items-center">
+                    <!-- Upload Button Column -->
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                    id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg" (onRemove)="fileRemoveEvent('photoCopyPath')"
+                    (onSelect)="fileUploader($event,fileUpload ,'photoCopyPath')">
+                    </p-fileUpload>
+                    <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of memberBasicDetailsModel.multipartFileListForPhotoCopy">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                            {{img.fileName}}</div>
+                        
+                    </div>
+
+                </div>
+                 </div>
+           
+            </div>
+            
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-label">
+                <span class=""> {{ 'ERP.UPLOAD_SIGNATURE' | translate }} </span>
+                <div class="uplodad-style align-items-center">
+                    <!-- Upload Button Column -->
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                    id="apply-leave_fileUp_attach" chooseLabel=" " name="file" accept=".png,.jpg,.jpeg" (onRemove)="fileRemoveEvent('signatureCopyPath')"
+                    (onSelect)="fileUploader($event,fileUpload ,'signatureCopyPath')">
+                    </p-fileUpload>
+                    <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of memberBasicDetailsModel.multipartFileListForsignatureCopyPath">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                            {{img.fileName}}</div>
+                        
+                    </div>
+
+                </div>
+                 </div>
+           
+            </div>
+            
+            
+            </div>
+        </div>
+        
+    </form>
+</div>

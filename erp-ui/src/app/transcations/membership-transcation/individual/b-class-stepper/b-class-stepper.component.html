@@ -1,0 +1,29 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.MEMBERSHIP_CREATION' | translate}}</div>
+
+        </div>
+    </div>
+    <div class="col-12 p-0 mt-2">
+        <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex" styleClass="steper-style"></p-steps>
+    </div>
+    <div class="col-12 bg-card min-hight65 mt-1">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-12 btn-footer ">
+        <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+            <p-button *ngIf="activeIndex>0 &&  activeIndex<=4" label="{{'ERP.PREVIOUS'|translate }}"
+                (click)="prevStep(activeIndex)" icon="fa fa-chevron-left" iconPos="left"></p-button>
+            <p-button *ngIf="activeIndex==0" (click)="back()" label="{{'ERP.BACK'|translate }}"></p-button>
+            <p-button label="Cancel"></p-button>
+            <p-button *ngIf="(activeIndex!=4 && activeIndex<4)" label="{{'ERP.SAVE_AND_ NEXT'|translate }}"
+                (click)="saveAndNext(activeIndex)" icon="fa fa-chevron-right" iconPos="right"></p-button>
+            <p-button *ngIf="activeIndex==4" label="{{'ERP.SAVE_AND_PREVIEW'|translate }}" icon="fa fa-chevron-right"
+                iconPos="right"></p-button>
+        </div>
+    </div>
+    
+</div>

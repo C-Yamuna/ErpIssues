@@ -1,0 +1,143 @@
+<div class="col-12">
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'TERMDEPOSITSTRANSACTION.PRODUCT_NAME' | translate}} </span>
+                    <p class="m-0 font-semibold text-break">Product</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-6 viewcustom-input-number inputnumberht-5px">
+                <div class="form-group">
+                    <span>{{'TERMDEPOSITSTRANSACTION.MIN_DEPOSIT_AMOUNT' | translate}}</span>
+                    <p-inputNumber id="bunit_txt_name" 
+                            mode="currency" inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text">
+                        </p-inputNumber>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-6 viewcustom-input-number inputnumberht-5px">
+                <div class="form-group">
+                    <span>{{'TERMDEPOSITSTRANSACTION.MAX_DEPOSIT_AMOUNT' | translate}} </span>
+                    <p-inputNumber id="bunit_txt_name"
+                             mode="currency" inputId="currency-india"
+                            currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text"> </p-inputNumber>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <div class="form-group">
+                    <span>{{'TERMDEPOSITSTRANSACTION.EFFECTIVE_START_DATE' | translate}}</span>
+                    <p class="m-0 font-semibold text-break">01/01/2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="col-12 "></div>
+<div class="flex justify-content-between py-2">
+    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <h6 class="sub-heading mt-1">{{'ERP.PENALITY_CONFIG' | translate}}</h6>
+    </div>
+    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+        <div class="col-12 p-0">
+            <div class="d-flex justify-content-end search-input-style">
+                <div class="input-group search-box d-flex justify-content-end">
+                    <div class="search">
+                        <span class="p-input-icon-right">
+                            <i class="pi pi-search global-search-icon"></i>
+                            <input type="text" pInputText class="searchbox" placeholder="Search" />
+                        </span>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div class="globel-border-top-color"></div>
+<p-table #dt [value]="penalityconfig" dataKey="id" editMode="row"styleClass="p-datatable-striped" [rows]="5"
+[paginator]="true" [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+[responsive]="true" rowExpandMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{'ERP.MIN_AMOUNT' | translate}}</th>
+            <th>{{'ERP.MAX_AMOUNT' | translate}} </th>
+            <th>{{'ERP.PENALITY_AMOUNT' | translate}}</th>
+            <th>{{'ERP.EFFECTIVE_START_DATE' | translate}}</th>
+            <th>{{'ERP.EFFECTIVE_END_DATE' | translate}}</th>
+            <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+    </ng-template>
+    <ng-template pTemplate="body" let-penalityconfig let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="penalityconfig">
+          
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="penalityconfig.MinAmount">
+                    </ng-template>
+                  <ng-template pTemplate="output">{{penalityconfig.MinAmount}}</ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="penalityconfig.MaxAmount">
+                    </ng-template>
+                  <ng-template pTemplate="output">{{penalityconfig.MaxAmount}}</ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="penalityconfig.PenalityAmount">
+                    </ng-template>
+                  <ng-template pTemplate="output">{{penalityconfig.PenalityAmount}}</ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="penalityconfig.EffectiveStartDate">
+                    </ng-template>
+                  <ng-template pTemplate="output">{{penalityconfig.EffectiveStartDate}}</ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="penalityconfig.EffectiveEndDate">
+                    </ng-template>
+                  <ng-template pTemplate="output">{{penalityconfig.EffectiveEndDate}}</ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <div class="global-action-btn flex align-items-center justify-content-center">
+                    <p-button *ngIf="!editing" pInitEditableRow label="{{'TERMDEPOSITSTRANSACTION.EDIT' | translate}}" (click)="onRowEditInit()" class='action-edit'></p-button>
+                    <p-button *ngIf="editing" pSaveEditableRow label="{{'TERMDEPOSITSTRANSACTION.SAVE'|translate }}" (click)="onRowEditSave()" class="action-save"></p-button>
+                    <p-button *ngIf="editing" pSaveEditableRow label="{{'TERMDEPOSITSTRANSACTION.CANCEL'|translate }}" (click)="onRowEditSave()"   class="action-delete"></p-button>
+                    <p-button *ngIf="!editing" pCancelEditableRow label="DELETE" (click)="onRowEditCancel()"  class="action-delete"></p-button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<div class="col-12 margtop-3rem"></div>
+</div>
+<p-dialog header="Header" [(visible)]="displayDialog" [style]="{width: '30vw'}">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold"><i class="pi pi-times" style="font-size: 1.5rem"></i></span>
+    </ng-template>
+    <h6>{{'ERP.ARE_YOU_SURE' | translate}}</h6>
+    <p>{{'ERP.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS_THIS_PROCESS_CAN_NOT_BE_UNDONE' | translate}}</p>
+
+
+    <div class="col-12 p-0 mt-1">
+        <div class="d-flex">
+            <p-button pRipple label="Yes" (click)="submit"></p-button>
+            <p-button pRipple label="No" (click)="cancel"></p-button>
+        </div>
+
+    </div>
+
+</p-dialog>

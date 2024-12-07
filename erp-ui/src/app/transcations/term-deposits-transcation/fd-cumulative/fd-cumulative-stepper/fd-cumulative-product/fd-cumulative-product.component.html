@@ -1,0 +1,207 @@
+<div class="field grid">
+    <div class="col-2 border bg-primary">
+        <div class="p-2">{{'ERP.ADMISSION_DETAILS' | translate}}</div>
+        <div class="col-12 border-top color-light"></div>
+        <form>
+            <div class="col-12 p-2">
+                <p-dropdown [options]="fdCumulativeProduct" [(ngModel)]="fdCumulativeProduct" [filter]="true"  placeholder="Please Enter Admission Number" (click)="onChange()"></p-dropdown>
+            </div>
+            <div *ngIf="showForm">
+                <div class="col-12">
+                    <div class="d-flex">
+                        <img class="image" src="assets/images/people.jpg" alt=""/>
+                        <img class="image"src="assets/images/sign.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="font-semibold text-break">_ _</p>
+                    <div class="col-2 border-top color-light"></div>
+                </div>
+                <div class="field grid">
+                    <div class="col-6" >
+                        <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                    <div class="col-6" >
+                        <span>{{'ERP.ADMISSION_DATE' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-6" >
+                        <span>{{'ERP.GENDER' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                    <div class="col-6" >
+                        <span>{{'ERP.AGE' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-6" >
+                        <span>{{'ERP.AADHAR_NUMBER' | translate}} </span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                    <div class="col-6" >
+                        <span>{{'ERP.PAN_NUMBER' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-6" >
+                        <span>{{'ERP.CONTACT' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                    <div class="col-6" >
+                        <span>{{'ERP.EMAIL' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                        <div class="col-2 border-top color-light"></div>
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <span>{{'ERP.ADDRESS' | translate}}</span>
+                    <p class="font-semibold text-break">_ _</p>
+                    <div class="col-2 border-top color-light"></div>
+                </div>
+                <div class="field grid">
+                    <div class="col-6" >
+                        <span>{{'ERP.KYC' | translate}}</span>
+                        <p class="font-semibold text-break">_ _</p>
+                    </div>
+                    <div class="col-6" >
+                        <span class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                        <div class="col-6 border-bottom color-light">{{'ERP.MORE_DETAILS' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-10">
+        <div class="card p-2 m-2">
+            <div class="p-2">{{'ERP.PRODUCT_DETAILS' | translate}}(Application Number: )</div>
+            <form>
+                <div class="field grid">
+                    <div class="col-3">
+                        <label>{{'ERP.PRODUCT' | translate}}</label>
+                        <div>
+                            <p-dropdown [options]="fdCumulativeProductList" [(ngModel)]="fdCumulativeProduct"  placeholder="select" ></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.ACCOUNT_NUMBER' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.RATE_OF_INTEREST' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.DEPOSIT_DATE' | translate}}</label>
+                        <div>
+                            <p-calendar  [showIcon]="true" ></p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-3">
+                        <label>{{'ERP.MIN_IN_MONTHS' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.MAX_IN_MONTHS' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3 pt-4 text-primary">Product details</div>
+                </div>
+            </form>
+        </div>
+        <div class="card p-2 m-2">
+            <div class=" ">{{'ERP.DEPOSIT_AMOUNT_AND_MATURITY_DETAILS' | translate}}</div>
+            <form>
+                <div class="field grid">
+                    <div class="col-3">
+                        <label>{{'ERP.OPERATION_TYPE' | translate}}</label>
+                        <div>
+                            <p-dropdown [options]="operationTypeList" [(ngModel)]="fdCumulativeProduct" placeholder="Please Enter Admission Number"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.DEPOSIT_AMOUNT' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.TENURE_IN_MONTHS' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <label>{{'ERP.TENURE_IN_YEARS' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <label>{{'ERP.EFFECTIVE_ROI' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-3">
+                        <label>{{'ERP.MATURITY_DATE' | translate}}</label>
+                        <div>
+                            <p-calendar  [showIcon]="true" ></p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.MATURITY_INTEREST_AMOUNT' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{'ERP.MATURITY_AMOUNT' | translate}}</label>
+                        <div>
+                            <input type="text" pInputText />                       
+                        </div>
+                    </div>
+                    <div class="col-3 pt-4">
+                        <div class="d-flex">
+                            <p-inputSwitch [(ngModel)]="checked" (click)="onClick()"></p-inputSwitch>
+                            <h6>{{'ERP.AUTO_RENEWAL' | translate}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-3 ">
+                        <span>{{'ERP.UPLOAD' | translate}}</span>
+                        <div class="d-flex">
+                            <button  pButton type="submit" >+</button>
+                            <input type="text" pInputText />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

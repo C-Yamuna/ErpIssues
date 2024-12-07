@@ -1,0 +1,455 @@
+<!-- <div class="application-scroll"> -->
+<div class="col-12 stepper-app-scroll">
+    <h6 class="sub-heading">{{'ERP.REQUIRED_BASIC_DETAILS' | translate}}</h6>
+    <div class="col-12 p-0">
+        <form [formGroup]="Basicdetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.FULL_NAME' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Full Name">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.GENDER' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.DATE_OF_BIRTH' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.AGE' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Age">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.MARITAL_STATUS' | translate}}
+                        </label>
+                    <p-dropdown [options]="maritalstatus" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.RELATIONSHIP_WITH_MEMBER' | translate}}
+                        </label>
+                    <p-dropdown [options]="maritalstatus" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.RELATION_NAME' | translate}} 
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Relation Name">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.AADHAR_NUMBER' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Aadhar Number">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.PAN_NUMBER' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter PAN Number">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.MOBILE_NUMBER' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Mobile Number">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="Email">{{'ERP.EMAIL' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Email">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.ADMISSION_DATE' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pt-4">
+                    <div class="form-label">
+                    <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                    <span class="mt-2" for="username">&nbsp;&nbsp;{{'ERP.IS_STAFF' | translate}}</span>
+                </div>
+            </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username">{{'ERP.UPLOAD_IMAGE' | translate}}
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                    name="myfile[]" chooseLabel=" "
+                    id="apply-leave_fileUp_attach" name="file"
+                    accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                    formContralName="fileUpload"></p-fileUpload>
+
+                        <div class="col-12 d-flex p-1 contant-body">
+                            <div class="docname-texteclipse ml-3"  pTooltip="File"
+                                tooltipPosition="bottom">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username">{{'ERP.UPLOAD_SIGNATURE' | translate}}
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                    name="myfile[]" chooseLabel=" "
+                    id="apply-leave_fileUp_attach" name="file"
+                    accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                    formContralName="fileUpload"></p-fileUpload>
+                    <div class="col-12 d-flex p-1 contant-body">
+                        <div class="docname-texteclipse ml-3"  pTooltip="File"
+                            tooltipPosition="bottom">
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+<div class="col-12 px-0 mt-3">
+    <h6 class="sub-heading">{{'ERP.APPLICATION_DETAILS' | translate}}</h6>
+        <form [formGroup]="apllicationdetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.PRODUCT' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.OPERATION_TYPE' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.LOAN_ACCOUNT_NUMBER' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Loan Account Number">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.SCHEME' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.APPLICATION_DATE' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" [appendTo]="'body'" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.REQUEST_AMOUNT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.LOAN_PERIOD_IN_MONTHS' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Loan Period in Months">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.LOAN_DUE_DATE' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" [appendTo]="'body'" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.INSTALLMENT_AMOUNT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.FIRST_INSTALLMENT_DATE' | translate}} 
+                        </label>
+                    <p-calendar [showIcon]="true" [appendTo]="'body'" placeholder="DD/MM/YYYY"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.FIRST_INSTALLMENT_AMOUNT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <span class="mt-2" for="username">&nbsp;&nbsp;{{'ERP.IS_STAFF' | translate}}</span>
+                    </div>
+
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.ROI_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter ROI">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username"> {{'ERP.PENAL_ROI_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Penal ROI">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.IOD_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter IOD">
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.REPAYMENT_FREQUENCY' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Repayment Frequency">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.NO_OF_DISBURSEMENT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter No of Disbursement">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.OCCUPATION' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select" [appendTo]="'body'"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username"> {{'ERP.INCOME_PER_ANUM' | translate}} 
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </form>
+</div>
+
+
+<div class="col-12 px-0 mt-3">
+    <h6 class="sub-heading">{{'ERP.CHARGES_DETAILS' | translate}}</h6>
+
+        <form [formGroup]="chargesdetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.APPLICATION_FEE' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.PROCESSING_FEE' | translate}}e
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.CGST_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter CGST">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.SGST_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter SGST">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.IGST_PA' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter IGST">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.TOTAL_CHARGES_AMOUNT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 px-0 mt-3">
+    <h6 class="sub-heading">{{'ERP.LAND_AND_CROP_DETAILS' | translate}}</h6>
+
+        <form [formGroup]="chargesdetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.LAND_TYPE' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Land Type">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.TOTAL_LAND_IN_UNITS' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Total Land in Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.TOTAL_LAND_IN_SUB_UNITS' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Total Land in Sub Units">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.SEASON' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select" [appendTo]="'body'"></p-dropdown>
+                    </div>
+                </div>
+            
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.CROP' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select" [appendTo]="'body'"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 px-0 mt-3">
+    <h6 class="sub-heading">{{'ERP.INSURENCE_DETAILS' | translate}}</h6>
+
+        <form [formGroup]="insurencedetailsform">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class="form-label">
+                        <label for="code">
+                            {{'ERP.INSURENCE_COMPANY' | translate}}
+                        </label>
+                    <p-dropdown [options]="gender" optionLabel="status" placeholder="Select" [appendTo]="'body'"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.INSURENCE_NUMBER' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Insurance Number">
+                    </div>
+
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label for="username">{{'ERP.INSURENCE_AMOUNT' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span for="username">{{'ERP.UPLOAD_SIGNED_DOCUMENTS' | translate}}
+                        </span>
+                        <div class="uplodad-style align-items-center">
+                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold"
+                            name="myfile[]" chooseLabel=" "
+                            id="apply-leave_fileUp_attach" name="file"
+                            accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true"
+                            formContralName="fileUpload"></p-fileUpload>
+                            <div class="col-12 d-flex p-1 contant-body">
+                                <div class="text-ellipse" pTooltip="File"
+                                    tooltipPosition="bottom">
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+           </div>
+
+        </form>
+    </div>
+    </div>
+<!-- </div> -->

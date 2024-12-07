@@ -1,0 +1,175 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'TERMDEPOSITSTRANSACTION.APPLICATION_DETAILS' | translate}}</h6>
+
+    <form [formGroup]="rdApplicationForm" id="exit_types_form">
+        <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.OPERATION_TYPE' | translate}}</label>
+                        <p-dropdown [options]="operationTypeList" [(ngModel)]="rdAccount.accountType"
+                            formControlName="accountType" (onChange)="onChangeAccountType($event)"
+                            placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.PRODUCT' | translate}}</label>
+                        <p-dropdown [options]="productsList" [(ngModel)]="rdAccount.rdProductId"
+                            formControlName="rdProduct" (onChange)="getProductById()" placeholder="Select"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.ROI' | translate}}</label>
+                        <input pInputText type="text" formControlName="roi" [disabled]="true"
+                            [(ngModel)]="rdAccount.roi" placeholder="Enter ROI">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MIN_DEPOSIT' | translate}}</label>
+                        <input pInputText type="text" formControlName="minDepositAmount" [disabled]="true"
+                            [(ngModel)]="rdAccount.minDepositAmount" placeholder="Enter Minimum Deposit">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MAX_DEPOSIT' | translate}}</label>
+                        <input pInputText type="text" formControlName="maxDepositAmount" [disabled]="true"
+                            [(ngModel)]="rdAccount.maxDepositAmount" placeholder="Enter Maximum Deposit">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MIN_IN_MONTHS' | translate}}</label>
+                        <input pInputText type="text" formControlName="minTenure" [disabled]="true"
+                            [(ngModel)]="rdAccount.minTenure" placeholder="Enter Minimum (In Months)">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MAX_IN_MONTHS' | translate}}</label>
+                        <input pInputText type="text" formControlName="maxTenure" [disabled]="true"
+                            [(ngModel)]="rdAccount.maxTenure" placeholder="Enter Maximum (In Months)">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 pt-4">
+                    <div class="d-flex">
+                        <p-inputSwitch [(ngModel)]="rdAccount.isRenewal" formControlName="isAutoRenewal"
+                            [disabled]="true"></p-inputSwitch>
+                        <span class="ml-2">{{'TERMDEPOSITSTRANSACTION.AUTO_RENEWAL' | translate}}</span>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.DEPOSIT_DATE' | translate}}</label>
+                        <p-calendar [showIcon]="true" formControlName="depositDate"
+                        dateFormat="{{orgnizationSetting.calendar}}" id="start_date" placeholder="DD/MM/YYYY"
+                        [(ngModel)]="rdAccount.depositDate"></p-calendar>
+                        <!-- <p-calendar [showIcon]="true" formControlName="depositDate"
+                            dateFormat="{{orgnizationSetting.calendar}}" id="start_date" placeholder="DD/MM/YYYY"
+                            [(ngModel)]="rdAccount.tempDepositDate"
+                            (onSelect)="calculateDepositDetails($event)"></p-calendar> -->
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.TENURE_IN_YEARS' | translate}}</label>
+                        <input pInputText type="text" formControlName="tenureInYears"
+                            placeholder="Enter Tenure (In Years)" [(ngModel)]="rdAccount.tenureInYears">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.TENURE_IN_MONTHS' | translate}}</label>
+                        <input pInputText type="text" formControlName="tenureInMonths"
+                            placeholder="Enter Tenure (In Months)" [(ngModel)]="rdAccount.tenureInMonths"
+                            (onInput)="calculateDepositDetails($event)">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.TENURE_IN_DAYS' | translate}}</label>
+                        <input pInputText type="text" formControlName="tenureInDays"
+                            placeholder="Enter Tenure (In Days)" [(ngModel)]="rdAccount.tenureInDays">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.INSTALLMENT_AMOUNT' | translate}}</label>
+                        <input pInputText type="text" formControlName="depositAmount" placeholder="Enter Amount"
+                            [(ngModel)]="rdAccount.installmentAmount" (onInput)="calculateDepositDetails($event)">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.INSTALLMENT_FREQUENCY' | translate}}</label>
+                        <p-dropdown [options]="installmentFrequencyList" [(ngModel)]="rdAccount.installmentFrequency"
+                            type="text" formControlName="installmentFrequency" placeholder="Select"
+                            (onChange)="calculateDepositDetails($event)"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MATURITY_DATE' | translate}}</label>
+                        <p-calendar [showIcon]="true" formControlName="maturityDate"
+                            dateFormat="{{orgnizationSetting.calendar}}" id="start_date"
+                            [(ngModel)]="rdAccount.maturityDate" placeholder="Enter Maturity Date"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MATURITY_INTEREST_AMOUNT' | translate}}</label>
+                        <input pInputText type="text" formControlName="maturityInterest"
+                            [(ngModel)]="rdAccount.maturityInterest" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.MATURITY_AMOUNT' | translate}}</label>
+                        <input pInputText type="text" formControlName="maturityAmount"
+                            [(ngModel)]="rdAccount.maturityAmount" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <label>{{'TERMDEPOSITSTRANSACTION.NO_OF_INSTALLMENTS' | translate}}</label>
+                        <input pInputText type="text" formControlName="noOfInstallments"
+                            [(ngModel)]="rdAccount.noOfInstallments" placeholder="Enter No of Installments">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                    <div class="form-label">
+                        <span>{{ 'TERMDEPOSITSTRANSACTION.UPLOAD' | translate }}</span>
+                        <div class="uplodad-style align-items-center">
+                            <!-- Upload Button Column -->
+
+                            <!-- <p-fileUpload #fileUpload class="" name="myfile[]" chooseLabel=" "
+                                (onSelect)="uploadFile($event,fileUpload)" id="apply-leave_fileUp_attach" name="file"
+                                accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true" formContralName="fileUpload">
+                            </p-fileUpload> -->
+                            <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                            chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                            accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true" (onRemove)="fileRemoveEvent()"
+                            (onSelect)="uploadFile($event,fileUpload)">
+                            </p-fileUpload>
+
+                            <!-- Uploaded Files Display Column -->
+                            <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of rdAccount.multipartFileList">
+                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                                </div>
+                                <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                    {{img.fileName}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

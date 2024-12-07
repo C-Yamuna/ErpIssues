@@ -1,0 +1,701 @@
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.SAVINGS_BANK' | translate}} <i
+                    class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'ERP.CLOSURE' | translate}}</div>
+                    <div class="justify-content-end view-popup-top">
+                        <div class="d-flex">
+                        <p-button class="ml-3" icon="fa fa-download" label="Application"></p-button>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+
+        <div class="row">
+            <div class="col-25-right mt-2">
+            
+                <div class="col-12 sb-side-closure-card  border-light">
+                    <div class="col-12">
+                        <h5 class="transaction-side-card-header text-dark border-bottom border-secondary">{{'ERP.ACCOUNT_DETAILS' |
+                            translate}}</h5>
+                    </div>
+            
+                    <div class="col-12 pic-sig-status">
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+                        </div>
+            
+                    </div>
+                    <div class="col-12 min-h-50px text-break text-center">
+                        <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                        <p class="font-semibold m-0">664577</p>
+                    </div>
+                    
+                    <div class="col-12 min-h-50px text-break text-center">
+                        <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                    <p class="font-semibold m-0"><span
+                            class="border-bottom border-secondary">Saicharan</span>
+                    </p>
+                    </div>
+            
+                    <div class="col-12 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.PRODUCT_TYPE' | translate}}</p>
+                        <p class="font-semibold m-0">Regular Savings</p>
+            
+                    </div>
+            
+                    <div class="col-12 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ADMISSION_NO' | translate}} </p>
+                        <p class="font-semibold m-0">2022</p>
+                    </div>
+                    <div class="col-12 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}} </p>
+                        <p class="font-semibold m-0">23/02/2022</p>
+                    </div>
+                    <div class="col-12 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}} </p>
+                        <p class="font-semibold m-0">A-Class</p>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <p class="m-0">{{'ERP.AADHAR_NUMBER' | translate}} </p>
+                                <p class="font-semibold m-0">9789 5880 1999</p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <p class="m-0">{{'ERP.PAN_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0">BWSPD2446J</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <p class="m-0">{{'ERP.CONTACT' | translate}} </p>
+                                <p class="font-semibold m-0">9262625162</p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <p class="m-0">{{'ERP.EMAIL' | translate}} </p>
+                                <p class="font-semibold m-0">uru@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ADDRESS' | translate}} </p>
+                        <p class="font-semibold m-0">hyd</p>
+                    </div>
+            
+                    <div class="col-12 min-h-50px text-break">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-break">
+                                <span>{{'ERP.KYC' | translate}}</span>
+                                <p class="font-semibold m-0">Approved</p>
+                            </div>
+                            <div class="kyc-done icon-size text-right">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+            
+                            </div>
+            
+                        </div>
+            
+                    </div>
+                    <div class="col-12 justify-content-end text-right">
+                        <a class="fst-italic text-dark" (click)="onClickMemberIndividualMoreDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                    </div>
+            
+            
+            
+                </div>
+            </div>
+            
+            <div class="col-50-midd mt-2">
+                <div class="col-12 border border border-light-subtle p-3">
+                    <div class="col-12">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                        <h6 class=" sub-heading">{{'ERP.ALL_ACCOUNTS_AND_SERVICES' | translate}}</h6>
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6">
+                        <div class=" d-flex justify-content-end">
+                            <div class="basic-detaisl-btn view-popup-top"><a (click)="showBasicDetailsDialog('right')"  class="top-badge-btn btn-outline-0 ">Basic Details</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        <div class="row g-3">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-12 border-top border-primary border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Money Box .png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.SAVINGS_ACCOUNT' | translate}} </h6>
+                                    </div>
+                                    <div class="col-12">
+                                        <div>
+                                            <span>{{'ERP.ACCOUNT_NO' | translate}}:575783443899 </span>
+        
+                                        </div>
+                                        <div>
+                                            <span>{{'ERP.ACCOUNT_BALANCE' | translate}}:1000 </span>
+        
+                                        </div>
+                                        <div>
+                                            <span>{{'ERP.ADMISSION_DATE' | translate}}:21/02/2023 </span>
+        
+                                        </div>
+                                        <div>
+                                            <span>{{'ERP.ACCOUNT_BALANCE' | translate}}:5899 </span>
+        
+                                        </div>
+                                        <div>
+                                            <span>{{'ERP.STATUS' | translate}}:Inactive </span>
+        
+                                        </div>
+                                        <p-button class="rounded-pill" label="Go"></p-button>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div
+                                    class="col-12 border-top border-danger-subtle border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Deposit.png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.TERM_DEPOSIT_CUMULATIVE' | translate}} </h6>
+                                    </div>
+        
+                                    <div>
+                                        <span>{{'ERP.ACCOUNT_NO' | translate}}:TD-575783443899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.ROI' | translate}}:3% </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.MATURITY_AMOUNT' | translate}}:10600 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.MATURITY_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.OVERDUE_MONTHS' | translate}}:0 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.STATUS' | translate}}:Close </span>
+        
+                                    </div>
+                                    <p-button label="Go"></p-button>
+                                </div>
+                            </div>
+        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div
+                                    class="col-12 border-top border-warning-subtle border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Packing.png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.RECURRING_DEPOSIT' | translate}} </h6>
+                                    </div>
+        
+                                    <div>
+                                        <span>{{'ERP.ACCOUNT_NO' | translate}}:RD-575783443899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.ROI' | translate}}:3%(Monthly) </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.MATURITY_AMOUNT' | translate}}:10600 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.MATURITY_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.OVERDUE_MONTHS' | translate}}:0 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.STATUS' | translate}}:Close </span>
+        
+                                    </div>
+                                    <p-button label="Go"></p-button>
+                                </div>
+        
+                            </div>
+        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-12 border-top border-info border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Receive Cash.png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.TERM_LOAN_DHANALAKSHMI_SCHEME' | translate}}
+                                        </h6>
+                                    </div>
+        
+                                    <div>
+                                        <span>{{'ERP.ACCOUNT_NO' | translate}}:TL-575783443899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.ROI' | translate}}:3%(monthly) </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.SANCTION_AMOUNT' | translate}}:10600 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.SANCTION_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.DUE_AMOUNT' | translate}}:20,000 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.STATUS' | translate}}:Close </span>
+        
+                                    </div>
+                                    <p-button label="Go"></p-button>
+                                </div>
+        
+                            </div>
+        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-12 border-top border-success border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Warehouse.png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.GODOWN' | translate}} </h6>
+                                    </div>
+        
+                                    <div>
+                                        <span>{{'ERP.REG_NO' | translate}}:575783443899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.FROM_DATE' | translate}} :21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.DUE_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.RENT' | translate}}:5899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.DUE' | translate}}:5899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.STATUS' | translate}}:Inactive </span>
+        
+                                    </div>
+                                    <p-button label="Go"></p-button>
+                                </div>
+                            </div>
+        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div
+                                    class="col-12 border-top border-dark-subtle border-5 bg-body-tertiary text-center text-break">
+                                    <div class="col-12">
+                                        <img src="assets/images/icons/Locker.png">
+                                        <h6 class="text-secondary mt-1">{{'ERP.LOCKER' | translate}} </h6>
+                                    </div>
+        
+                                    <div>
+                                        <span>{{'ERP.LOCKER_NO' | translate}}:TD-575783443899 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.RENT_FREQUENCY' | translate}}:Quaterly </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.FROM_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.TO_DATE' | translate}}:21/02/2023 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.RENT' | translate}}:560 </span>
+        
+                                    </div>
+                                    <div>
+                                        <span>{{'ERP.STATUS' | translate}}:Close </span>
+        
+                                    </div>
+                                    <p-button label="Go"></p-button>
+                                </div>
+        
+                            </div>
+                        </div>
+                </div>
+            </div>
+        
+            <div class="col-25-left mt-2">
+                <div class="col-12 rightside-form-style">
+                    <form [formGroup]="closureform">
+                            <div class="col-12">
+                                <h5 class="transaction-side-card-header text-dark border-bottom border-secondary">{{'ERP.CLOSURE_DETAILS' | translate}}</h5>
+                            </div>
+                            <div class="col-12  mt-n1">
+                                <div class="row g-3 bg-label-colorfull">
+                                <div class="col-lg-12 col-md-12 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="username">{{'ERP.CLOSURE_DATE' | translate}} </label>
+                                        <p-calendar [showIcon]="true" placeholder="DD/MM/YYYY"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-6">
+                                    <div class="form-label">
+                                    <label for="username">{{'ERP.CLOSURE_CHARGES' | translate}} </label>
+                                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-6">
+                                    <div class="form-label">
+                                    <label for="username">{{'ERP.FINAL_BALANCE' | translate}} </label>
+                                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-6">
+                                    <div class="form-label">
+                                    <span class=""> {{ 'ERP.SIGNED_COPY_UPLOAD' | translate }} </span>
+                                    <div class="uplodad-style align-items-center">
+                                        <!-- Upload Button Column -->
+        
+                                        <p-fileUpload #fileUpload class="" name="myfile[]" chooseLabel=" "
+                                            id="apply-leave_fileUp_attach" name="file" accept=".png,.jpg,.jpeg,.pdf"
+                                            [customUpload]="true" formContralName="fileUpload">
+                                        </p-fileUpload>
+        
+                                        <!-- Uploaded Files Display Column -->
+        
+                                        <div class="col-12 d-flex p-1 contant-body" *ngFor="let img">
+                                            <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                                <a href="{{img.imageValue}}">
+                                                    <img src="{{img.imageValue}}">
+                                                </a>
+                                            </div>&nbsp;&nbsp;
+                                            <div class="text-ellipse" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                                {{img.fileName}}
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-6 mb-2">
+                                        <label for="code">{{'ERP.REMARKS' | translate}} </label>
+                                        <textarea class="form-control" type="text" pInputTextarea placeholder="Enter Remarks Here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+        
+                </div>
+                <div class="col-12 btn-footer px-0">
+                    <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+                        <p-button label="{{'ERP.BACK' | translate}}" (click)="backbutton()"></p-button>
+                        <p-button label="{{'ERP.CANCEL' | translate}}" (click)="backbutton()"></p-button>
+                        <p-button label="{{'ERP.SUBMIT' | translate}}" (click)="backbutton()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- 1024px basic details start -->
+    <p-dialog header="{{'ERP.ACCOUNT_DETAILS' | translate}}" [modal]="true" [(visible)]="isBasicDetails" [style]="{ width: '80%'}">
+        <div class="col-12 sb-side-closure-card border-light text-center">
+            <div class="row ">
+                <div class="col-12 image-view-768p">
+                   
+                        <img src="assets/images/avatar-table.png" alt="user-image" class="m-2">
+                   
+                        <img src="assets/images/sign.png" alt="sign-image" class="m-2">
+                 
+                </div>
+                <!-- <div class="col-12 pic-sig-status">
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/images/avatar-table.png" class="image-user">
+                        <p class="active-status"></p>
+                        <img src="assets/images/sign.png" class="image-sign">
+
+                    </div>
+                    <p class="name-border-bottom"></p>
+                </div> -->
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                    <p class="font-semibold text-break m-0">664577</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                    <p class="font-semibold text-break m-0">Saicharan </p>
+                   
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.PRODUCT_TYPE' | translate}}</p>
+                    <p class="font-semibold text-break m-0">Regular Savings</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ADMISSION_NO' | translate}} </p>
+                    <p class="font-semibold text-break m-0">2022</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}} </p>
+                    <p class="font-semibold text-break m-0">23/02/2022</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}} </p>
+                    <p class="font-semibold text-break m-0">A-Class</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.AADHAR_NUMBER' | translate}} </p>
+                    <p class="font-semibold text-break m-0">9789 5880 1999</p>
+                </div>
+                <!-- <div class="col-6 text-white text-break">
+                                                                                        <span>{{'ERP.AGE' | translate}}</span>
+                                                                                        <p class="font-semibold text-break"> {{membershipBasicRequiredDetails.age}}35</p>
+                                                                                        
+                                                                                    </div> -->
+            
+            
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.PAN_NUMBER' | translate}}</p>
+                    <p class="font-semibold text-break m-0">BWSPD2446J</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.CONTACT' | translate}} </p>
+                    <p class="font-semibold text-break m-0">9262625162</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.EMAIL' | translate}} </p>
+                    <p class="font-semibold text-break m-0">uru@gmail.com</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ADDRESS' | translate}}</p>
+                    <p class="font-semibold text-break m-0">Address-1, Address-2</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    
+                    <p class="m-0">{{'ERP.KYC' | translate}}</p>
+                    <p class="font-semibold text-break m-0">Approved</p>
+                       
+                        <!-- <div class="kyc-done icon-size text-right">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            
+                        </div> -->
+            
+                 
+            
+                </div>
+                </div>
+            <!-- <div class="col-md-6 col-sm-12 min-h-50px text-break">
+                <a class="fst-italic text-light">{{'ERP.MORE_DETAILS' | translate}}</a>
+            </div> -->
+        </div>
+    </p-dialog>
+     <!-- 1024px basic details start -->
+        </div>
+
+        <p-dialog header="More Basic Details" [(visible)]="showForm" styleClass="moredetails-style">
+            <div class="popup-basic-details">
+                <div class="row">
+                   <!--  <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="col-12 px-0">
+                                <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForMCRCopyPath">
+                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                        <a href="{{img.imageValue}}">
+                                            <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                        <a href="{{img.imageValue}}">
+                                            <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                        
+                                <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                                    <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                        <a href="{{img.imageValue}}">
+                                            <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                        <a href="{{img.imageValue}}">
+                                            <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                        </div> 
+                       
+                    </div>-->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                            <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+                        </div>
+                        </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                            <p class="label-input-text">A-Class</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.SURNAME' | translate}}</span>
+                            <p class="label-input-text">Chatti</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.NAME' | translate}}</span>
+                            <p class="label-input-text">Raviteja</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.DATE_OF_BIRTH' | translate}}</span>
+                            <p class="label-input-text">01/07/1990</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.AGE' | translate}}</span>
+                            <p class="label-input-text">33</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.GENDER' | translate}}</span>
+                            <p class="label-input-text">Male</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.MARITAL_STATUS' | translate}}</span>
+                            <p class="label-input-text">Unmarried</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.RELATION_WITH_APPLICANT' | translate}}</span>
+                            <p class="label-input-text">Father</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.RELATIVE_NAME' | translate}}</span>
+                            <p class="label-input-text">Appala Raju</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.QUALIFICATION' | translate}}</span>
+                            <p class="label-input-text">M.Tech</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.OCCUPATION' | translate}}</span>
+                            <p class="label-input-text">Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.AADHAR' | translate}}</span>
+                            <p class="label-input-text">546778898766556</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.PAN' | translate}}</span>
+                            <p class="label-input-text">ADFR4567U8</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.CONTACT' | translate}}</span>
+                            <p class="label-input-text">9876543210</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.EMAIL' | translate}}</span>
+                            <p class="label-input-text">ravi@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.CASTE' | translate}}</span>
+                            <p class="label-input-text">BC</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.COMMUNITYS' | translate}}</span>
+                            <p class="label-input-text">Hindu</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                            <p class="label-input-text">6677887</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm" >
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.MANAGEMENT_COMMITTE_RESOLUTION_NO' | translate}}</span>
+                            <p class="label-input-text">544556</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm">
+                        <div class="form-label">
+                            <span class="label-view">{{'ERP.MCR_DOCUMENT_TYPE' | translate}}</span>
+                            <!-- <div class="uplodad-style align-items-center"> -->
+                            <!-- <p class="fw-semibold">{{membershipBasicRequiredDetails.mcrDocumentCopy }}</p> -->
+                            <!-- <div class="col-12 d-flex p-0">
+                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                    <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                                </div>
+                                <div class="docname-texteclipse pl-2" pTooltip="{{img.fileName}}" tooltipPosition="bottom">{{img.fileName}}</div>
+                            </div> -->
+                            <!-- </div> -->
+                        </div>
+                            
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                            <p class="label-input-text">11/09/2023</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                        <div class="form-group">
+                            <span class="label-view">{{'ERP.ADMISSION_FEE' | translate}}</span>
+                            <p class="label-input-text">500</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                    <!-- <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button> -->
+            </div>
+        </p-dialog>

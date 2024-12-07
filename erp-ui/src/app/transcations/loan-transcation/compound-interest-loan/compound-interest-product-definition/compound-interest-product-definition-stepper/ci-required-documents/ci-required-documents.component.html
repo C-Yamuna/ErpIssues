@@ -1,0 +1,114 @@
+<div class="col-12">
+<p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="stepper-top-section-strip">
+    <div class="row ">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+            <span>{{'LOANS.PRODUCT_NAME' | translate}} </span>
+            <p class="m-0 font-semibold text-break">{{compoundInterestProductDefinitionModel.name}}</p>
+        </div>
+    </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12 viewcustom-input-number inputnumberht-5px">
+            <div class="form-group">
+            <span>{{'LOANS.MIN_DEPOSIT_AMOUNT' | translate}}</span>
+            <p-inputNumber id="bunit_txt_name" [(ngModel)]="compoundInterestProductDefinitionModel.eligibleMInAmount" mode="currency"
+                inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text"> </p-inputNumber>
+        </div>
+    </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12 viewcustom-input-number inputnumberht-5px">
+            <div class="form-group">
+            <span>{{'LOANS.MAX_DEPOSIT_AMOUNT' | translate}} </span>
+            <p-inputNumber id="bunit_txt_name" [(ngModel)]="compoundInterestProductDefinitionModel.eligibleMaxAmount" mode="currency"
+                inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true" styleClass="label-input-text"> </p-inputNumber>
+        </div>
+    </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+            <span>{{'LOANS.EFFECTIVE_START_DATE' | translate}} </span>
+            <p class="m-0 font-semibold text-break">{{compoundInterestProductDefinitionModel.effectiveStartDate}}</p>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="col-12"></div>
+        <form [formGroup]="requiredDocumentsForm" id="proj_stakeholder_form">
+            <div class="flex justify-content-between py-2">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="sub-heading mt-1">{{'LOANS.REQUIRED_DOCUMENTS' | translate}}</div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end search-input-style">
+                            <div class="input-group search-box d-flex justify-content-end">
+                                <div class="search">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search global-search-icon"></i>
+                                        <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                        placeholder="Search" class="searchbox"
+                                        #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                                    </span>
+                                </div>
+                            </div>
+        
+                            <p-button (click)="addInlineRow()" label="Add" icon="fa fa-plus" iconPos="left"
+                                id="add_btn" [disabled]="addButton"> </p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="globel-border-top-color"></div>
+            <p-table #dt [value]="requiredDocumentsList"  dataKey="id" editMode="row"
+            styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single"
+             [globalFilterFields]="['documentTypeName','isRequired']">
+            <ng-template pTemplate="header">
+                    <tr>
+                        <th><span class="red">*</span> {{'LOANS.DOCUMENT_TYPE' | translate}}</th>
+                        <th><span class="red">*</span> {{'LOANS.IS_MANDATORY' | translate}}</th>
+                        <th class="width-15em">{{'LOANS.ACTION' | translate}}</th>
+                    </tr>
+                    
+                </ng-template>
+                <ng-template pTemplate="body" let-ciRequiredDocumentsModel let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="ciRequiredDocumentsModel">
+                                          
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}" formControlName="documentType"
+                                            [options]="docTypeList" [(ngModel)]="ciRequiredDocumentsModel.documentType"
+                                            [appendTo]="'body'" (onChange)="documenttypeDuplicateCheck(ciRequiredDocumentsModel.documentType)" >
+                                        </p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{ciRequiredDocumentsModel.documentTypeName}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                <p-dropdown [options]="requiredlist" formControlName="isRequired" 
+                                            [(ngModel)]="ciRequiredDocumentsModel.isRequired" [appendTo]="'body'" 
+                                            placeholder="select"></p-dropdown>
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                {{ ciRequiredDocumentsModel.isRequired ? 'Yes' : 'No' }}
+                              </ng-template>
+                            </p-cellEditor>
+                          </td>
+                        <td>
+                            <div class="global-action-btn flex align-items-center justify-content-center">
+                            <p-button *ngIf="editing"   [disabled]="!requiredDocumentsForm.valid" (click)="saveInlineRow(ciRequiredDocumentsModel)" pSaveEditableRow id="prj_stakehlder_bt_cancel"  label="{{'TERMDEPOSITSTRANSACTION.SAVE'|translate }}" class="action-save">
+                            </p-button>
+                            <p-button *ngIf="editing" (click)="onRowEditCancel()" pCancelEditableRow id="prj_stakehlder_bt_cancel" label="{{'TERMDEPOSITSTRANSACTION.CANCEL'|translate }}" class="action-delete">
+                            </p-button>
+                            <p-button *ngIf="!editing"  (click)="editInlineRow(ciRequiredDocumentsModel)" pInitEditableRow  id="prj_stakehlder_bt_edit" [disabled]="editDeleteDisable" label="{{'TERMDEPOSITSTRANSACTION.EDIT' | translate}}" 
+                                class='action-edit'></p-button>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+            <div class="col-12 margtop-3rem"></div>
+        </form>
+</div>

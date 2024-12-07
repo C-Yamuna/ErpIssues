@@ -1,0 +1,160 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+      <div class="main-heading mt-1">{{'LOCKERCONFIG.COMMON_CATEGORYS' | translate}}</div>
+  </div>
+  <div class="col-12 bg-card bg-label-colorfull px-1">
+      <form [formGroup]="commomCategoryForm">
+          <div class="col-12">
+              <div class="col-12">
+                <div class="col-12 global-border p-3">
+              <div class="row mt-n1">
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label><span class="red">*</span>{{'LOCKERCONFIG.NAME' | translate}}</label>
+                      <input pInputText #expense_approval_state id="edit_categories_name" type="text"
+                        [(ngModel)]="commonCategoryModel.name" maxlength="30" formControlName='name'  />
+                        <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!commomCategoryForm.controls['name'].valid && commomCategoryForm.controls['name'].dirty">
+                      </p-message>
+              </div>
+            </div>
+          </div>
+
+
+      <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-label">
+              <label>{{'LOCKERCONFIG.DESCRIPTION' | translate}}</label>
+                  <textarea type="text" class="form-control" pInputTextarea  maxlength="150" [(ngModel)]="commonCategoryModel.description" formControlName='description'></textarea>
+          </div>
+        </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-label">
+              <label><span class="red">*</span>{{'LOCKERCONFIG.STATUS' | translate}}</label>
+                  <p-dropdown placeholder="{{'LOCKERCONFIG.SELECT' | translate}}"
+                  [options]="statusList" formControlName="status"
+                  [(ngModel)]="commonCategoryModel.status"></p-dropdown>
+          </div>
+      </div>
+      <div class="col-12 d-flex justify-content-end">
+        <p-button label="{{'LOCKERCONFIG.BACK' | translate}}" [disabled]="backButtonDisables" (click)="navigateback()"></p-button>
+        <!-- <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!commomCategoryForm.valid || submitButtonDisabled" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button> -->
+        <p-button label="{{'LOCKERCONFIG.SUBMIT' | translate}}" [disabled]="!commomCategoryForm.valid || submitButtonDisabled" (click)="addOrUpdate()"> </p-button>
+    </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </form>
+    <div class="col-12">
+          <div class="col-12">
+          <div class="row justify-content-between py-2">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div class="sub-heading mt-2">{{'LOCKERCONFIG.COMMON_STATUS' | translate}}</div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div class="col-12 p-0 responsive-search">
+                    <div class="d-flex justify-content-end search-input-style">
+                        <div class="input-group search-box d-flex justify-content-end">
+                            <div class="search">
+                                <span class="p-input-icon-right">
+                                    <i class="pi pi-search global-search-icon"></i>
+                                    <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                    placeholder="Search" class="searchbox"
+                                    #searchInput (input)="cv.filterGlobal(searchInput.value, 'contains')">
+                                </span>
+                            </div>
+                        </div>
+                        
+                       <p-button (click)="isAddButtonDiabled()" [disabled]=" addButtonDisabled " label="Add" icon="fa fa-plus" iconPos="left"
+                    id="bunit_bt_submit"></p-button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="categoriesStatusForm">
+        <div class="globel-border-top-color"></div>
+        <p-table #cv [columns]="commomStatus" [value]="commonstatuslist" dataKey="id" editMode="row" [paginator]="true"
+        [pageLinks]="1" [globalFilterFields]="['name', 'discription', 'status']" [responsive]="true" [rows]="5" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th><span class="red">*</span>{{'LOCKERCONFIG.NAME' | translate}}</th>
+                <th>{{'LOCKERCONFIG.DESCRIPTION' | translate}}</th>
+                <th><span class="red">*</span>{{'LOCKERCONFIG.STATUS' | translate}}</th>
+                <th class="width-15em">{{'LOCKERCONFIG.ACTION'|translate }}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="row">
+              
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text"  formControlName='name' 
+                                formControlName="name" [(ngModel)]="row.name">
+                          
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{row.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                 <p-cellEditor>
+                     <ng-template pTemplate="input">
+                         <input pInputText type="text" formControlName='description'
+                             formControlName="description"  maxlength="150" [(ngModel)]="row.description">
+                       
+                     </ng-template>
+                     <ng-template pTemplate="output">
+                         {{row.description}}
+                     </ng-template>
+                 </p-cellEditor>
+             </td>
+             <td>
+                 <p-cellEditor>
+                     <ng-template pTemplate="input">
+                         <p-dropdown placeholder="{{'LOCKERCONFIG.SELECT'| translate}}"
+                             formControlName="status" 
+                             [options]="statusList" id="" [appendTo]="'body'"
+                             [(ngModel)]="row.status" >
+                         </p-dropdown>
+                     </ng-template>
+                     <ng-template pTemplate="output">
+                         {{row.statusName}}
+                     </ng-template>
+                 </p-cellEditor>
+             </td>
+             <td>
+              <div class="global-action-btn flex align-items-center justify-content-center">
+                <p-button *ngIf="editing" pSaveEditableRow  class="action-save" label="{{'LOCKERCONFIG.SAVE'|translate }}" [disabled]="!categoriesStatusForm.valid || inlineEditButtonDisabled" (click)="saveCategoriesStatus(row)" id="prj_stakehlder_bt_cancel"></p-button>
+                <p-button *ngIf="editing" pCancelEditableRow  class="action-cancel" label="{{'LOCKERCONFIG.CANCEL'|translate }}" (click)="cancelCommonStatus()" id="prj_stakehlder_bt_cancel"></p-button>
+                <p-button *ngIf="!editing" pInitEditableRow  class="action-edit" label="{{'LOCKERCONFIG.EDIT'|translate }}" [disabled]="btnEditDeleteDisable" (click)="editCommonStatus(row)" id="prj_stakehlder_bt_edit"></p-button>
+                <p-button *ngIf="!editing"  class="action-delete" label="{{'LOCKERCONFIG.DELETE'|translate }}" [disabled]="btnEditDeleteDisable" (click)="delete(row)" id="prj_stakehlder_bt_edit"></p-button>
+              </div>
+            </td>
+            </tr>
+        </ng-template>
+     </p-table>
+      <div class="col-12 margtop-3rem"></div>
+    </form>
+      </div>
+      </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="displayDialog" [closable]="false" styleClass="delete-popup" [responsive]="true">
+    <div class="col-12">
+        <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+    
+        <p class="text-center popup-header">{{'LOCKERCONFIG.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+        <p class="text-center pop-subheader">{{'LOCKERCONFIG.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+
+    </div>
+    <div class="col-12 text-center p-2">
+            <p-button pRipple class="yes-button" label="{{'LOCKERCONFIG.DELETE' | translate}}" (click)="submit()"></p-button>
+            <p-button pRipple class="no-button" label="{{'LOCKERCONFIG.CANCEL' | translate}}" (click)="cancel()"></p-button>
+    </div>
+</p-dialog>

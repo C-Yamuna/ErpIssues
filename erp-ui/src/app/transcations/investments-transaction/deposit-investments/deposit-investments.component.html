@@ -1,0 +1,49 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'INVESTMENTS_TRANSACTIONS.INVESTMENTS' | translate}}<i class="fa fa-angle-right font-bold mr-3 ml-3"></i>{{'INVESTMENTS_TRANSACTIONS.DEPOSIT' | translate}}</div>
+            <!-- <div class="justify-content-end view-popup-top">
+                <div class="d-flex">
+                    <div class="col-auto">
+                        <p-inputSwitch [(ngModel)]="showForm" (onChange)="onChange()"
+                            [disabled]="isNewMemberCreation"></p-inputSwitch>
+                    </div>
+                    <div class="col-auto">
+                        <p class="mt-1 px-2">{{'DEMANDDEPOSITS.ADD_B_CLASS_MEMBERSHIP' | translate}}</p>
+                    </div>
+                    <p-button class="ml-3" icon="fa fa-download" label="Application"></p-button>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="col-12 p-0 mt-2">
+    <p-tabMenu [model]="items" [(activeItem)]="activeItem" (onChange)="onActiveIndexChange($event)" styleClass="tab-menu-style"></p-tabMenu>
+        </div>
+    <div class="col-12 bg-card min-hight65 mt-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div class="col-12 btn-footer">
+    <div class="col-12 d-flex justify-content-end p-0 pt-1 group-button-bottom">
+            
+                <p-button  *ngIf="activeIndex==0" label="{{'INVESTMENTS_TRANSACTIONS.BACK' | translate }}"
+                (click)="back(activeIndex)"></p-button>
+
+                <p-button *ngIf="activeIndex>0 &&  activeIndex<=1"
+                label="{{'INVESTMENTS_TRANSACTIONS.PREVIOUS' | translate }} " (click)="prevStep(activeIndex)" icon="fa fa-chevron-left" iconPos="left"></p-button>
+
+                <p-button  *ngIf=" activeIndex<=1" label="{{'INVESTMENTS_TRANSACTIONS.CANCEL' | translate }}"
+                (click)="cancel(activeIndex)"></p-button>
+            
+
+                <p-button *ngIf="(activeIndex!=1 && activeIndex<1)" 
+                label="{{'INVESTMENTS_TRANSACTIONS.SAVE_AND_ NEXT' | translate }}" (click)="nextStep(activeIndex)" [disabled]="buttonDisabled" icon="fa fa-chevron-right" iconPos="right"></p-button>
+               
+                <p-button *ngIf="activeIndex==1" 
+                label="{{'INVESTMENTS_TRANSACTIONS.SAVE_AND_PREVIEW' | translate }}" (click)="submit(activeIndex)" [disabled]="buttonDisabled" icon="fa fa-chevron-right" iconPos="right"></p-button>
+
+            
+    </div>
+</div>

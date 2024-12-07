@@ -1,0 +1,205 @@
+<div class="col-12">
+    <p-messages label="Info" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'BORROWINGSTRANSACTIONS.PRODUCT_CONFIGURATION' | translate}}</h6>
+        <form [formGroup]="productionDefinitionForm">
+            <div class="mt-n1  bg-label-colorfull">
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.PRODUCT_NAME' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                        [(ngModel)]="siProductDefinitionModel.name">
+                    <p-message severity="error" text="Enter Valid Name"
+                        *ngIf="!productionDefinitionForm.controls['name'].valid && productionDefinitionForm.controls['name'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.EFFECTIVE_START_DATE' | translate}}
+                        </label>
+                    <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true"
+                        yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                        id="work_flow_start_date" [(ngModel)]="siProductDefinitionModel.effectiveStartDate"
+                        [maxDate]="maxDate"></p-calendar>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.MINIMUM_AMOUNT' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="minAmount"
+                        [(ngModel)]="siProductDefinitionModel.minAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()"> </p-inputNumber>
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productionDefinitionForm.controls['minAmount'].valid && productionDefinitionForm.controls['minAmount'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.MAXIMUM_AMOUNT' | translate}}
+                        </label>
+                    <p-inputNumber id="bunit_txt_name" formControlName="maxAmount"
+                        [(ngModel)]="siProductDefinitionModel.maxAmount" mode="currency"
+                        inputId="currency-india" currency="INR" locale="en-IN" (keyup)="checkForAmount()"> </p-inputNumber>
+
+                    <p-message severity="error" text="Enter Valid Amount"
+                        *ngIf="!productionDefinitionForm.controls['maxAmount'].valid && productionDefinitionForm.controls['maxAmount'].dirty">
+                    </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.MINIMUM_BORROWING_PERIOD_IN_MONTHS' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="minBorrowingPeriodInMonths"
+                        [(ngModel)]="siProductDefinitionModel.minBorrowingPeriodInMonths" (keyup)="checkForAmount()">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username"><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.MAX_BORROWING_PERIOD_IN_MONTHS' |
+                            translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="maxBorrowingPeriodInMonths"
+                        [(ngModel)]="siProductDefinitionModel.maxBorrowingPeriodInMonths" (keyup)="checkForAmount()">
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.BORROWING_TYPE' | translate}}</label>
+                        <p-dropdown [options]="borrowingTypeList" placeholder="select"
+                            formControlName="borrowingType"
+                            [(ngModel)]="siProductDefinitionModel.borrowingType"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'BORROWINGSTRANSACTIONS.SCHEME_TYPE' | translate}}</label>
+                        <p-dropdown [options]="" placeholder="select"
+                            formControlName="borrowingSchemeType"
+                            [(ngModel)]="siProductDefinitionModel.borrowingSchemeType"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'BORROWINGSTRANSACTIONS.DEMAND_ALERT_DAYS' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="demandAlertDays"
+                        [(ngModel)]="siProductDefinitionModel.demandAlertDays">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.INTEREST_CALCULATION_TYPE' | translate}}</label>
+                        <p-dropdown [options]="interestCalculationTypeList" placeholder="select"
+                            formControlName="interestCalculationType"
+                            [(ngModel)]="siProductDefinitionModel.interestCalculationType"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.REPAYMENT_FREQUENCY' | translate}}</label>
+                        <p-dropdown [options]="repaymentFrequencyList" placeholder="select"
+                            formControlName="repaymentFrequency"
+                            [(ngModel)]="siProductDefinitionModel.repaymentFrequency"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'BORROWINGSTRANSACTIONS.DEFAULTER_ALERT_DAYS' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="defaulterAlertDays"
+                        [(ngModel)]="siProductDefinitionModel.defaulterAlertDays">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'BORROWINGSTRANSACTIONS.MAX_BORROWING_ACCOUNTS_ALLOWED' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="maxBorrowingAccountsAllowed"
+                        [(ngModel)]="siProductDefinitionModel.maxBorrowingAccountsAllowed">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.LINK_SHARE_CAPITAL_APPLICABLE' | translate}}</label>
+                        <p-dropdown [options]="linkShareCapitalList" placeholder="select"
+                            formControlName="linkSharecapitalApplicable"
+                            [(ngModel)]="siProductDefinitionModel.linkSharecapitalApplicable"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'BORROWINGSTRANSACTIONS.INSTITUTION_NAME' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="institutionName"
+                        [(ngModel)]="siProductDefinitionModel.institutionName">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                        <label for="username">{{'BORROWINGSTRANSACTIONS.MINIMUM_DAYS_FOR_RENEWAL' | translate}}
+                        </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="minDaysForRenewel"
+                        [(ngModel)]="siProductDefinitionModel.minDaysForRenewel">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.IS_NPA_APPLICABLE' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="isNpaExceptional"
+                            [(ngModel)]="siProductDefinitionModel.isNpaExceptional"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'BORROWINGSTRANSACTIONS.INTEREST_TYPE' | translate}}</label>
+                        <p-dropdown [options]="" placeholder="select"
+                            formControlName="interestType"
+                            [(ngModel)]="siProductDefinitionModel.interestType"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'BORROWINGSTRANSACTIONS.INTEREST_CALCULATION_FREQUENCY' | translate}}</label>
+                        <p-dropdown [options]="" placeholder="select"
+                            formControlName="interestCalculationFrequency"
+                            [(ngModel)]="siProductDefinitionModel.interestCalculationFrequency"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.IF_FORECLOSURE_ALLOWED' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="isForeclosureAllowed"
+                            [(ngModel)]="siProductDefinitionModel.isForeclosureAllowed"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'BORROWINGSTRANSACTIONS.IS_GESTATION_PERIOD_REQUIRED' | translate}}</label>
+                        <p-dropdown [options]="isSpecialSchemelist" placeholder="select"
+                            formControlName="isGestationPeriodRequired"
+                            [(ngModel)]="siProductDefinitionModel.isGestationPeriodRequired"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>

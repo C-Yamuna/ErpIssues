@@ -1,0 +1,410 @@
+<div class="container-fluid">
+    <div class="justify-content-between">
+        <div>
+            <h3 style="color: rgb(37, 91, 207);">{{'ERP.SAO_LOAN' | translate}} </h3>
+        </div>
+    </div>
+
+    <div class="field grid row">
+        <!-- <div class="row"> -->
+        <!-- <div class="col-2 border bg-primary element">
+            <div class="p-2 pb-2">{{'ERP.ACCOUNT_DETAILS' | translate}}</div>
+            <div class="col-12 border-top color-light"></div>
+            <form class="pt-2">
+                <div class="person-image justify-content-center">
+                    <div class="d-flex">
+                        <img src="assets/download.jpeg" style="align-items: center;" alt="person" />
+                        <img src="assets/download.png" style="align-items: center;" alt="signature" />
+                    </div>
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="font-semibold text-break">Donthamshetty Bhaskar </p>
+
+                </div>
+                <div class="col-12  p-2">
+                    <span>{{'ERP.APPLICATION_NUMBER' | translate}}</span>
+                    <p class="font-semibold text-break">556657</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.PRODUCT' | translate}} </span>
+                    <p class="font-semibold text-break">KCC Loans</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.SANCTIONED_AMOUNT' | translate}} </span>
+                    <p class="font-semibold text-break">30,00,000</p>
+
+                </div>
+
+                <div class="field grid col-12 p-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <span>{{'ERP.DISBURSEMENT' | translate}}</span>
+                            <p class="font-semibold text-break">10,00,00,000 </p>
+
+                        </div>
+                        <div class="col-6">
+                            <span>{{'ERP.UNITS_NO' | translate}}</span>
+                            <p class="font-semibold text-break">1 </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.DISBURSEMENT_DUE_AMOUNT' | translate}} </span>
+                    <p class="font-semibold text-break">10,00,000</p>
+
+                </div>
+                <div class="col-12 p-2">
+                    <span>{{'ERP.NEXT_DISBURSEMENT_DATE' | translate}} </span>
+                    <p class="font-semibold text-break">15/04/2024</p>
+
+                </div>
+                <div class="field grid   p-2">
+                    <div class="col-6">
+                        <span>{{'ERP.LOAN_APPROVED_DATE' | translate}}</span>
+                        <p class="font-semibold text-break">12/05/2023 </p>
+
+                    </div>
+                    <div class="col-6">
+                        <span>{{'ERP.LOAN_DUE_DATE' | translate}}</span>
+                        <p class="font-semibold text-break"> 13/05/2024 </p>
+
+                    </div>
+                </div>
+                <div class="float-end">
+                    <span class="text-success"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                    <div class="col-6">{{'ERP.MORE_DETAILS' | translate}}</div>
+                </div>
+            </form>
+        </div> -->
+
+
+        <div class="col-12">
+            <!-- <div class=" border  p-3">
+                <div>
+                    <h3>{{'ERP.DISBURSEMENT' | translate}}</h3>
+                </div>
+                <form [formGroup]="loanDisubursementForm">
+                    <div class="row g-3">
+                        <div class="col-3">
+                            <div class="field-row">
+                                <label for="username">{{'ERP.DISBURSEMENT_AMOUNT' | translate}}
+                                </label>
+                            </div>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                        </div>
+
+                        <div class="col-3">
+                            <div class="field-row">
+                                <label for="username">{{'ERP.ACCOUNT_NUMBER' | translate}}
+                                </label>
+                            </div>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" [disabled]="true"
+                                [ngClass]="{'disabled-input': true}">
+
+                        </div>
+                        <div class="col-3">
+                            <div class="field-row">
+                                <label for="username">{{'ERP.DISBURSEMENT_DATE' | translate}}
+                                </label>
+                            </div>
+                            <p-calendar [showIcon]="true" [disabled]="true"
+                                [ngClass]="{'disabled-input': true}"></p-calendar>
+
+
+                        </div>
+                        <div class="col-3">
+                            <div class="field-row">
+                                <label for="username">{{'ERP.TRANSACTION_DATE' | translate}}
+                                </label>
+                            </div>
+                            <p-calendar [showIcon]="true" [disabled]="true" [ngClass]="{'disabled-input': true}">
+                            </p-calendar>
+
+
+                        </div>
+
+
+                        <div class="row g-3 pt-4">
+
+                            <div class="col-3 justify-content-between ">
+                                <div class="field-row">
+                                    <label for="username">{{'ERP.DISBURSEMENT_DUE_DATE' | translate}}
+                                    </label>
+                                </div>
+                                <p-calendar [showIcon]="true" [disabled]="true"
+                                    [ngClass]="{'disabled-input': true}"></p-calendar>
+
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex justify-content-end mb-1">
+                            <p-button class="p-2" label="Back" (click)="back()"></p-button>
+                            <p-button class="p-2" label="Cancel" (click)="cancel()"></p-button>
+                            <p-button (click)="showDialog()" *ngIf="showSubmitButton" class="p-2" label="Submit"
+                                (click)="submit()"></p-button>
+                            <p-button *ngIf="showSaveButton" class="p-2" label="Save" (click)="save()"></p-button>
+
+                            <p-dialog header="Confirm Details" [(visible)]="visible" [style]="{width: '50vw'}">
+                                <div class="p-1">
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                            <div class="col-3">
+                                                <p>{{'ERP.UNITS_NO' | translate}}</p>
+                                                <h6>2</h6>
+
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.DISBURSEMENT_AMOUNT' | translate}}</p>
+                                                <h6>20,00,000</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                                                <h6>7765588</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.DISBURSEMENT_DATE' | translate}}</p>
+                                                <h6>22/09/2022</h6>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-12">
+                                        <div class="row">
+                                            
+                                                <div class="col-3">
+                                                    <p>{{'ERP.TRANSACTION_DATE' | translate}}</p>
+                                                    <h6>22/09/2022</h6>
+                                                </div>
+                                                <div class="col-3">
+                                                    <p>{{'ERP.DISBURSEMENT_DUE_AMOUNT' | translate}}</p>
+                                                    <h6>22/09/2022</h6>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="float-end">
+                                            <p-button class="p-2" label="Confirm"  (click)="confirm()"></p-button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </p-dialog>
+
+                            <p-dialog header="View" [(visible)]="visible">
+                                <div class="p-1">
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                            <div class="col-3">
+                                                <p>{{'ERP.UNITS_NO' | translate}}</p>
+                                                <h6>2</h6>
+
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.DISBURSEMENT_AMOUNT' | translate}}</p>
+                                                <h6>20,00,000</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                                                <h6>7765588</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <p>{{'ERP.DISBURSEMENT_DATE' | translate}}</p>
+                                                <h6>22/09/2022</h6>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-12">
+                                        <div class="row">
+                                            
+                                                <div class="col-3">
+                                                    <p>{{'ERP.TRANSACTION_DATE' | translate}}</p>
+                                                    <h6>22/09/2022</h6>
+                                                </div>
+                                                <div class="col-3">
+                                                    <p>{{'ERP.DISBURSEMENT_DUE_DATE' | translate}}</p>
+                                                    <h6>22/09/2022</h6>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="float-end">
+                                            <p-button class="p-2" label="Confirm"  (click)="confirm()"></p-button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </p-dialog>
+
+                        </div>
+
+
+                    </div>
+
+
+                </form>
+            </div> -->
+            <div class=" border mt-3  p-3" *ngIf="showTable">
+                <div>
+                    <h3>{{'ERP.DISBURSEMENT' | translate}}</h3>
+                </div>
+
+                <div class="float-end mb-1">
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText class="searchbox" />
+                    </span>
+                </div>
+
+                <div class="mt-5">
+                    <p-table [value]="gridList" dataKey="id"  editMode="row" selectionMode="single" [rowsPerPageOptions]="[5,10,20]"
+                        [rows]="5" [paginator]="true" [pageLinks]="1" [responsive]="true" rowExpandMode="single"
+                        [globalFilterFields]="['units', 'disbursementAmount', 'accountNumber','disbursementDate','transactionDate','statusName']">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <!-- <th>{{'ERP.UNITS' | translate}}</th> -->
+                                <th>{{'ERP.DISBURSEMENT_AMOUNT' | translate}}</th>
+                                <th>{{'ERP.ACCOUNT_NUMBER' | translate}}</th>
+                                <th>{{'ERP.DISBURSEMENT_DATE' | translate}}</th>
+                                <th>{{'ERP.TRANSACTION_DATE' | translate}}</th>
+                                <th>{{'ERP.STATUS' | translate}}</th>
+                                <th>{{'ERP.ACTION' | translate}}</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                            <tr [pEditableRow]="rowData">
+                                
+                                <!-- <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="units" [(ngModel)]="rowData.units">
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.units}}</ng-template>
+                                    </p-cellEditor>
+                                </td> -->
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="disbursementAmount" [(ngModel)]="rowData.disbursementAmount">
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.disbursementAmount}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                             
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="accountNumber" [(ngModel)]="rowData.accountNumber"
+                                            [disabled]="true" >
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.accountNumber}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="disbursementDate" [(ngModel)]="rowData.disbursementDate"
+                                            [disabled]="true" >
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.disbursementDate}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="transactionDate" [(ngModel)]="rowData.transactionDate"
+                                            [disabled]="true" >
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.transactionDate}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td>
+                                    <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                                            <input pInputText type="text" formControlName="statusName" [(ngModel)]="rowData.statusName"
+                                            [disabled]="true" >
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="output">{{rowData.statusName}}</ng-template>
+                                    </p-cellEditor>
+                                </td>
+                                <td style="text-align:start">
+                                    <div class="flex align-items-center justify-content-center gap-2">
+                                        <!-- <button label="{{ 'SAVE' | translate }}" *ngIf="editing" pButton type="button" 
+                                            (click)="addOrUpdateGenealogyDetails(rowData)" pSaveEditableRow
+                                            id="prj_stakehlder_bt_cancel" tooltipPosition="top"
+                                            pTooltip="{{'ERP.SAVE'|translate }}" class="action-save">
+                                        </button> -->
+                                        <button label="{{ 'CANCEL' | translate }}" *ngIf="editing" pButton type="button" 
+                                            icon="fa fa-times" pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                            class="action-times ml-2" tooltipPosition="top" (click)="cancelDisbursmentDetails()"
+                                            pTooltip="{{'ERP.CANCEL'|translate }}">
+                                        </button>
+                                        <button label="{{ 'EDIT' | translate }}" *ngIf="!editing" pButton type="button" pInitEditableRow
+                                            (click)="editDisbursmentDetailsRow(rowData)" tooltipPosition="top"
+                                             pTooltip="{{'ERP.EDIT' | translate}}" 
+                                            id="prj_stakehlder_bt_edit" class='action-pencil'>
+                                        </button>
+                                        <!-- <button label="{{ 'DELETE' | translate }}" pButton type="button" *ngIf="!editing"
+                                            (click)="deleteGenealogyDetails(rowData)" tooltipPosition="top"
+                                             pTooltip="{{'ERP.DELETE' | translate}}" 
+                                            id="prj_stakehlder_bt_edit" class='action-pencil ml-2'>
+                                        </button> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <!-- <ng-template pTemplate="body" let-disbursement>
+                            <tr>
+                                <td>{{ disbursement.units }}</td>
+                                <td>{{ disbursement.disbursementAmount }}</td>
+                                <td>{{ disbursement.accountNumber }}</td>
+                                <td>{{ disbursement.disbursementDate }}</td>
+                                <td>{{ disbursement.transactionDate }}</td>
+                                <td>{{ disbursement.statusName }}</td>
+                                <td>
+                                    <button pButton type="button" label="Edit" (click)="edit()"></button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ disbursement.units }}</td>
+                                <td>{{ disbursement.disbursementAmount }}</td>
+                                <td>{{ disbursement.accountNumber }}</td>
+                                <td>{{ disbursement.disbursementDate }}</td>
+                                <td>{{ disbursement.transactionDate }}</td>
+                                <td>{{ disbursement.statusName }}</td>
+                                <td>
+                                    <button pButton type="button" label="View" (click)="showDialog()" (click)="view()"></button>
+                                </td>
+                            </tr>
+                            <div class="pt-1">
+                                <h6>{{'ERP.TOTAL_DISBURSEMENT_AMOUNT' | translate}} : </h6>
+                    
+                            </div>
+
+                        </ng-template> -->
+                    </p-table>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>

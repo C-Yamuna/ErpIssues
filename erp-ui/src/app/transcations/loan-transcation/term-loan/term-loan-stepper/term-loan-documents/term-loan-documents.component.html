@@ -1,0 +1,124 @@
+<div class="col-12">
+    <h6 class="sub-heading">{{'ERP.DOCUMENT_DETAILS' | translate}}</h6>
+    <div class="stepper-top-section-strip">
+        <div class="row ">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'ERP.PRODUCT' | translate}} </span>
+                <p class="mb-0">Term Loans</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'ERP.APPLICATION_TYPE' | translate}}</span>
+                <p class="mb-0">Single</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}} </span>
+                <p class="mb-0">634545450</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                <span>{{'ERP.REQUEST_AMOUNT' | translate}} </span>
+                <p class="mb-0">30,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="flex justify-content-between">
+        <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+        </div>
+        <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+            <div class="col-12 p-0">
+                <div class="d-flex justify-content-end search-input-style">
+                    <div class="input-group search-box d-flex justify-content-end">
+                        <div class="search">
+                            <span class="p-input-icon-right">
+                                <i class="pi pi-search global-search-icon"></i>
+                                <input type="text" pInputText class="searchbox"
+                                    placeholder="Search" />
+                            </span>
+                        </div>
+                    </div>
+                    <p-button label="{{ 'ADD' | translate }}"
+                        icon="fa fa-plus" iconPos="left"
+                        ></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="globel-border-top-color"></div>
+    <p-table #dt [value]="documentdetails" dataKey="id" editMode="row" tyleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+    [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+    [responsive]="true" rowExpandMode="single">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{'ERP.DOCUMENT_TYPE' | translate}}</th>
+                <th>{{'ERP.DOCUMENT_NO' | translate}}</th>
+                <th>{{'ERP.FILE_PATH' | translate}} </th>
+                <th>{{'ERP.REMARKS' | translate}}</th>
+                <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+        </ng-template>
+        <ng-template pTemplate="body" let-documentdetails let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="documentdetails">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="documentdetails.DocumentType">
+                        </ng-template>
+                        <ng-template pTemplate="output">{{documentdetails.DocumentType}}</ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="documentdetails.DocumentNo">
+                        </ng-template>
+                      <ng-template pTemplate="output">{{documentdetails.DocumentNo}}</ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="documentdetails.FilePath">
+                        </ng-template>
+                      <ng-template pTemplate="output">{{documentdetails.FilePath}}</ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="documentdetails.Remarks">
+                        </ng-template>
+                      <ng-template pTemplate="output">{{documentdetails.Remarks}}</ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <div class="global-action-btn flex align-items-center justify-content-center">
+                                            <p-button label="{{'ERP.EDIT'|translate }}" *ngIf="!editing"
+                                                (click)="onRowEditInit()" pSaveEditableRow
+                                                class="action-edit">
+                                            </p-button>
+                                            <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                pSaveEditableRow 
+                                                class="action-save" (click)="onRowEditSave()">
+                                            </p-button>
+                                            <p-button label="{{'ERP.CANCEL' | translate}}" *ngIf="editing"
+                                                pInitEditableRow
+                                                (click)="onRowEditSave()" 
+                                                class="action-cancel"></p-button>
+                                            <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                 (click)="onRowEditCancel()" pCancelEditableRow
+                                                class="action-delete"></p-button>
+                    </div>
+                </td>
+
+
+            </tr>
+        </ng-template>
+    </p-table> 
+</div>

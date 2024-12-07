@@ -1,0 +1,214 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+    [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="stepper-top-section-strip">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                     <p class="mb-0">{{ memberBasicDetailsModel.memberTypeName }}&nbsp;({{ memberBasicDetailsModel.subProductName }})</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.NAME' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.GENDER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.genderName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.QUALIFICATON' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.qualificationName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.MOBILE_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.mobileNumber}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}}</span>
+                    <p class="mb-0">{{memberBasicDetailsModel.aadharNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12"></div>
+    
+        <form [formGroup]="landForm" id="proj_stakeholder_form">
+            <div class="flex row justify-content-between py-2">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                    <h6 class="sub-heading mt-1">{{'ERP.LAND_DETAILS' | translate}}<span class="admission-text">(Admission number:&nbsp;{{memberBasicDetailsModel.admissionNumber}})</span></h6>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                    <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end search-input-style">
+                            <div class="input-group search-box d-flex justify-content-end">
+                                <div class="search">
+                                    <span class="p-input-icon-right">
+                                        <i class="pi pi-search global-search-icon"></i>
+                                        <input type="text" pInputText class="searchbox" placeholder="Search" />
+                                    </span>
+                                </div>
+                            </div>
+        
+                            <p-button (click)="onRowEditSave()" label="Add" icon="fa fa-plus" iconPos="left"
+                                id="add_btn" [disabled]="addButton"> </p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="globel-border-top-color"></div>
+            <p-table #dt [columns]="promoterColumns" [value]="memberLandDetailsModelList"  dataKey="id" editMode="row"
+            styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single"
+             [globalFilterFields]="['passbookNumber','surveyNumber','landInUnits','landInSubUnits','soilTypeName','waterSourceName']">
+            <ng-template pTemplate="header">
+                    <tr>
+                        <th><span class="red">*</span> {{'ERP.PASSBOOK_NUMBER' | translate}}</th>
+                        <th><span class="red">*</span> {{'ERP.SURVEY_NO' | translate}}</th>
+                        <th><span class="red">*</span> {{'ERP.LAND_IN_ACRS' | translate}}</th>
+                        <th><span class="red">*</span> {{'ERP.LAND_IN_CENTS' | translate}}</th>
+                        <th><span class="red">*</span> {{'ERP.SOIL_TYPE' | translate}}</th>
+                        <th><span class="red">*</span> {{'ERP.WATER_SOURCE_TYPE' | translate}}</th>
+                        <th>{{'ERP.FILE' | translate}}</th>
+                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                        <!-- <th>Land</th> -->
+                    </tr>
+                    
+                </ng-template>
+                <ng-template pTemplate="body" let-memberLandDetailsModel let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="memberLandDetailsModel">
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="memberLandDetailsModel.passbookNumber" formControlName="passbookNumber" >
+                                    <p-message severity="error" text="Enter Valid Passbook Number"
+                                    *ngIf="!landForm.controls['passbookNumber'].valid && landForm.controls['passbookNumber'].dirty">
+                                </p-message>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{memberLandDetailsModel.passbookNumber}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="memberLandDetailsModel.surveyNumber" formControlName="surveyNumber">
+                                    <p-message severity="error" text="Enter Valid Survey Number"
+                                    *ngIf="!landForm.controls['surveyNumber'].valid && landForm.controls['surveyNumber'].dirty">
+                                </p-message>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{memberLandDetailsModel.surveyNumber}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="memberLandDetailsModel.landInUnits" formControlName="landInUnits">
+                                    <p-message severity="error" text="Enter Valid LandIn Units"
+                                    *ngIf="!landForm.controls['landInUnits'].valid && landForm.controls['landInUnits'].dirty">
+                                </p-message>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{memberLandDetailsModel.landInUnits}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="memberLandDetailsModel.landInSubUnits" formControlName="landInSubUnits">
+                                    <p-message severity="error" text="Enter Valid LandIn SubUnits"
+                                    *ngIf="!landForm.controls['landInSubUnits'].valid && landForm.controls['landInSubUnits'].dirty">
+                                </p-message>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{memberLandDetailsModel.landInSubUnits}}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                <p-dropdown [options]="soilTypeList" placeholder="select"
+                                  formControlName="soilTypeId" [(ngModel)]="memberLandDetailsModel.soilTypeId" 
+                                  id="edit_category_status_dropdown_category" [appendTo]="'body'"></p-dropdown>
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                {{memberLandDetailsModel.soilTypeName}}
+                              </ng-template>
+                            </p-cellEditor>
+                          </td>
+                          <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [options]="waterSourceTypeList" [(ngModel)]="memberLandDetailsModel.waterSourceId"
+                                        placeholder="Select" formControlName="waterSourceId" [appendTo]="'body'"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">{{ memberLandDetailsModel.waterSourceName }}</ng-template>
+                            </p-cellEditor>
+                        </td>
+                
+                        <!-- File Upload Cell Editor -->
+                       
+                        <td>
+                            <p-cellEditor class="table-uploadfilestyle">
+                                <ng-template pTemplate="input">
+                                    <!-- <input pInputText type="text" formControlName="documentPath"
+                                    [(ngModel)]="rowData.documentPath"> -->
+                                    <div class="uplodad-style align-items-center">
+                                        <!-- Upload Button Column -->
+                                        <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                                id="apply-leave_fileUp_attach" chooseLabel=" " name="file"
+                                                accept=".png,.jpg,.jpeg" (onRemove)="fileRemoveEvent(memberLandDetailsModel)"
+                                                (onSelect)="fileUploader($event,fileUpload,memberLandDetailsModel)" >
+                                        </p-fileUpload>
+                                    </div>
+                                    <div class="col-12 d-flex p-1 contant-body" *ngFor="let img of memberLandDetailsModel.multipleFilesList">
+                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                    height="22"></a>
+                                        </div>  
+                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            {{img.fileName}}</div>
+                                    </div>
+
+                                    <!-- Uploaded Files Display Column -->
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    <div class="d-flex pt-1"  *ngFor="let img of memberLandDetailsModel.multipleFilesList">
+                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22"
+                                                    height="22"></a>
+                                        </div>  
+                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            {{img.fileName}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <div class="global-action-btn flex align-items-center justify-content-center">
+                            <p-button *ngIf="editing"   [disabled]="!landForm.valid" (click)="saveLandDetails(memberLandDetailsModel)" pSaveEditableRow id="prj_stakehlder_bt_cancel"  label="{{'ERP.SAVE'|translate }}" class="action-save">
+                            </p-button>
+                            <p-button *ngIf="editing" (click)="onRowEditCancel()" pCancelEditableRow id="prj_stakehlder_bt_cancel" label="{{'ERP.CANCEL'|translate }}" class="action-delete">
+                            </p-button>
+                            <p-button *ngIf="!editing"  (click)="editVillageRow(memberLandDetailsModel)" pInitEditableRow  id="prj_stakehlder_bt_edit" [disabled]="editDeleteDisable" label="{{'ERP.EDIT' | translate}}" 
+                                class='action-edit'></p-button>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+            
+   
+            <div class="col-12 margtop-3rem"></div>
+        </form>
+    </div>
+

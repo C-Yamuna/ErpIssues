@@ -1,0 +1,1569 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'ERP.SAVINGS_BANK_TRANSACTION' | translate}} </div>
+        </div>
+    </div>
+    
+        <div class="row">
+            <div class="col-25-right">
+    
+                <div class="col-12 sb-side-card" *ngIf="memberTypeName == 'Individual'">
+                    <div class="col-12">
+                        <h5 class="transaction-side-card-header">{{'ERP.ADMISSION_DETAILS' | translate}}</h5>
+                    </div>
+                        <div class="col-12 pic-sig-status">
+                            <div class="d-flex justify-content-center" *ngIf ="photoCopyFlag">
+                                <div *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForPhotoCopy">
+                                   
+                                        <span class="{{img.imageValue}}" (click)="onClickMemberPhotoCopy()" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <!-- <a href="{{img.imageValue}}" (clicl)="onClickMemberPhotoCopy()"></a> -->
+                                            <img src="{{img.imageValue}}" class="image-user">
+                                        </span>
+                                    
+                                </div>
+                                <p class="active-status"></p>
+                                <div  *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                                        <span class="{{img.imageValue}}" (click)="onClickMemberPhotoCopy()" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                        <!-- <a href="{{img.imageValue}}" (clicl)="onClickMemberPhotoCopy()"></a> -->
+                                            <img src="{{img.imageValue}}" class="image-user">
+                                        </span>
+                                        
+                                   
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center" *ngIf ="!photoCopyFlag">
+                                <div>
+                                    <img src="assets/images/no-image.jpg" class="image-user">
+                                </div>
+                                <p class="active-status"></p>
+                                <div>
+                                    <img src="assets/images/no-image.jpg" class="image-sign">
+                                </div>
+                            </div>
+                            </div>
+                               
+                        <div class="col-12 min-h-50px d-flex justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-keyboard-o fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                                <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 min-h-50px d-flex justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-briefcase fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                                <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                        aria-hidden="true"></i>{{minBalence}}</p>
+                            </div>
+                        </div>
+    
+                    <div class="col-12 min-h-50px text-white text-break ">
+                        <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                        <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.name}}</p>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.admissionNumber}}</p>
+                            </div>
+                            <div class="col-6 text-white  text-break">
+                                <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipBasicRequiredDetails.admissionDateVal}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.memberTypeName}}</p>
+                            </div>
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.OPERATION_TYPE' | translate}}</p>
+                                <p class="font-semibold m-0"> Single</p>
+                            </div>
+                            <!-- <div class="col-6 text-white text-break">
+                                                                    <span>{{'ERP.AGE' | translate}}</span>
+                                                                    <p class="font-semibold text-break"> {{membershipBasicRequiredDetails.age}}35</p>
+                                                                    
+                                                                </div> -->
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.GENDER' | translate}}</span>
+                                <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.genderName}}</p>
+                            </div>
+                            <div class="col-6  text-break">
+                                <span>{{'ERP.AGE' | translate}}</span>
+                                <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.age}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.AADHAR_NUMBER' | translate}} </span>
+                                <p class="font-semibold m-0">{{membershipBasicRequiredDetails.aadharNumber}}</p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.PAN_NUMBER' | translate}}</span>
+                                <p class="font-semibold m-0">{{membershipBasicRequiredDetails.panNumber}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.CONTACT' | translate}}</span>
+                                <p class="font-semibold">{{membershipBasicRequiredDetails.mobileNumber}}</p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.EMAIL' | translate}}</span>
+                                <p class="font-semibold m-0">{{membershipBasicRequiredDetails.emailId}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px text-break">
+                        <span>{{'ERP.ADDRESS' | translate}}</span>
+                        <p class="font-semibold m-0">{{membershipBasicRequiredDetails.name}}</p>
+    
+                    </div>
+    
+                    <div class="col-12 min-h-50px text-break">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-break">
+                                <span>{{'ERP.KYC' | translate}}</span>
+                                <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.isKycApproved}}</p>
+                            </div>
+                            <div class="kyc-done icon-size text-right">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                    <div class="col-12 color-light justify-content-end text-right">
+                        <a class="fst-italic text-light cursor-pointer" (click)="onClickMemberIndividualMoreDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                    </div>
+                    <!-- <div class="col-12 min-viewlablebox-hight4">
+                                <div class=" grid">
+                                    <div class="col-6 text-break">
+                                        <span>{{'ERP.KYC' | translate}}</span>
+                                        <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.isKycApproved}}</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="col-6">
+                                                                                                <span class="text-success"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                                                                                                <div class="col-6 border-bottom color-light">{{'ERP.MORE_DETAILS' | translate}}</div>
+                                                                                            </div> -->
+                    <!-- </div>
+                            </div> -->
+    
+                </div>
+                <div class="col-12 sb-side-card" *ngIf="memberTypeName == 'Group'">
+                    <div class="col-12">
+                        <h5 class="transaction-side-card-header">{{'ERP.ADMISSION_DETAILS' | translate}}</h5>
+                    </div>
+                    <div class="col-12 pic-sig-status">
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+                        </div>
+                        </div>
+                        <div class="col-12 min-h-50px d-flex mt-2 justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-keyboard-o fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                                <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 min-h-50px d-flex justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-briefcase fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                                <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                        aria-hidden="true"></i>{{minBalence}}</p>
+                            </div>
+                        </div>
+
+                    <div class="col-12 min-h-50px text-white text-break ">
+                        <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.name}}</p>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0"> {{memberGroupDetailsModel.admissionNumber}}</p>
+                            </div>
+                            <div class="col-6 text-white  text-break">
+                                <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                <p class="font-semibold m-0">{{memberGroupDetailsModel.admissionDateVal}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- <div class="field grid">
+                                                <div class="col-6">
+                                                    <span>{{'ERP.MEMBER_TYPE' | translate}}</span>
+                                                    <p class="font-semibold text-break"> {{memberGroupDetailsModel.memberTypeName}}</p>
+                                                    
+                                                </div>
+                                                <div class="col-6">
+                                                    <span>{{'ERP.ADMISSION_DATE' | translate}}</span>
+                                                    <p class="font-semibold text-break"> {{memberGroupDetailsModel.admissionDateVal}}</p>
+                                                    
+                                                </div>
+                                            </div> -->
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                <p class="font-semibold m-0"> {{memberGroupDetailsModel.memberTypeName}}</p>
+                            </div>
+                            <!-- <div class="col-6 text-white text-break">
+                                                                                    <span>{{'ERP.AGE' | translate}}</span>
+                                                                                    <p class="font-semibold text-break"> {{membershipBasicRequiredDetails.age}}35</p>
+                                                                                    
+                                                                                </div> -->
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6  text-break">
+                                <span>{{'ERP.REGISTATION_NUMBER' | translate}}</span>
+                                <p class="font-semibold m-0"> {{memberGroupDetailsModel.registrationNumber}}</p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.REGISTRATION_DATE' | translate}}</span>
+                                <p class="font-semibold m-0"> {{memberGroupDetailsModel.registrationDateVal}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.PAN_NUMBER' | translate}} </span>
+                                <p class="font-semibold m-0">{{memberGroupDetailsModel.panNumber}} </p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.TAN_NUMBER' | translate}}</span>
+                                <p class="font-semibold m-0">{{memberGroupDetailsModel.tanNumber}} </p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class=" grid">
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.CONTACT' | translate}}</span>
+                                <p class="font-semibold m-0">{{memberGroupDetailsModel.mobileNumber}} </p>
+                            </div>
+                            <div class="col-6 text-break">
+                                <span>{{'ERP.EMAIL' | translate}}</span>
+                                <p class="font-semibold m-0">{{memberGroupDetailsModel.emailId}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12">
+                                                                                    <span>{{'ERP.ADDRESS' | translate}}</span>
+                                                                                    <p class="font-semibold text-break"> {{memberGroupDetailsModel.name}}</p>
+                                                                                    
+                                                                                </div> -->
+    
+                    <div class="col-12 min-h-50px text-break">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-break">
+                                <span>{{'ERP.KYC' | translate}}</span>
+                                <p class="font-semibold m-0"> {{memberGroupDetailsModel.isKycApproved}}</p>
+                            </div>
+                            <div class="kyc-done icon-size text-right">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                    <div class="col-12 color-light justify-content-end text-right">
+                        <a class="fst-italic text-light cursor-pointer" (click)="onClickOfGroupPromotes()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                    </div>
+                </div>
+                <div class="col-12 sb-side-card" *ngIf="memberTypeName == 'Institution'">
+                    <div class="col-12">
+                        <h5 class="transaction-side-card-header">{{'ERP.ADMISSION_DETAILS' | translate}}</h5>
+                    </div>
+    
+                    <div class="col-12 pic-sig-status">
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+                        </div>
+                        </div>
+                        <div class="col-12 min-h-50px d-flex justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-keyboard-o fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                                <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 min-h-50px d-flex justify-content-left">
+                            <span class="basicdata-icons mx-2"><i class="fa fa-briefcase fa-2x text-left"
+                                    aria-hidden="true"></i></span>
+                            <div class="text-left text-white">
+                                <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                                <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                        aria-hidden="true"></i>{{minBalence}}</p>
+                            </div>
+                        </div>
+    
+                    <div class="col-12 min-h-50px text-white text-break ">
+                        <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                        <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.name}}</p>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.admissionNumber}} </p>
+                            </div>
+                            <div class="col-6 text-white  text-break">
+                                <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.admissionDateVal}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px text-white text-break ">
+                        <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                        <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.memberTypeName}}</p>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.REGISTRATION_DATE' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.registrationDateVal}}</p>
+                            </div>
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.REGISTRATION_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.registrationNumber}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.PAN_NUMBER' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.panNumber}}</p>
+                            </div>
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.TAN_NUMBER' | translate}} </p>
+                                <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.tanNumber}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 min-h-50px text-white text-break ">
+                        <p class="m-0">{{'ERP.GST' | translate}}</p>
+                        <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.gstNumber}}</p>
+                    </div>
+    
+                    <div class="col-12 min-h-50px">
+                        <div class="grid">
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.CONTACT' | translate}}</p>
+                                <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.mobileNumber}}</p>
+                            </div>
+                            <div class="col-6 text-white text-break">
+                                <p class="m-0">{{'ERP.EMAIL' | translate}}</p>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.emailId}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12">
+                                                                                    <span>{{'ERP.ADDRESS' | translate}}</span>
+                                                                                    <p class="font-semibold text-break">{{membershipInstitutionDetailsModel.}} </p>
+                                                                                    
+                                                                                </div> -->
+    
+                    <div class="col-12 min-h-50px text-break">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-break">
+                                <span>{{'ERP.KYC' | translate}}</span>
+                                <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.isKycApproved}}</p>
+                            </div>
+                            <div class="kyc-done icon-size text-right">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                    <div class="col-12 color-light justify-content-end text-right">
+                        <a class="fst-italic text-light cursor-pointer" (click)="onClick()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-75-fullmidd">
+                <form [formGroup]="sbTransactionFrom">
+                    <div class="col-12 p-2 bg-card bg-label-colorfull">
+                        <div class="col-12 p-1">
+                            <div class=" d-flex justify-content-end">
+                                <div class="basic-detaisl-btn view-popup-top mr-2 mb-2" *ngIf="memberTypeName == 'Individual'"><a (click)="showBasicDetailsDialog('right')"  class="top-badge-btn btn-outline-0 ">Basic Details</a></div>
+                                <div class="basic-detaisl-btn view-popup-top mr-2 mb-2" *ngIf="memberTypeName == 'Group'"><a (click)="showBasicDetailsDialog('right')"  class="top-badge-btn btn-outline-0 ">Basic Details</a></div>
+                                <div class="basic-detaisl-btn view-popup-top mr-2 mb-2" *ngIf="memberTypeName == 'Institution'"><a (click)="showBasicDetailsDialog('right')"  class="top-badge-btn btn-outline-0 ">Basic Details</a></div>
+                            </div>
+                        </div>
+                        <div class="mt-n1 p-2">
+                            <div class="row g-3 mb-3">
+                                <!-- Account Type -->
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.ACCOUNT_TYPE' | translate}}</label>
+                                        <input type="text" class="form-control" formControlName="accountType"
+                                            [(ngModel)]="accountType" placeholder="Enter Account Type">
+                                    </div>
+                                </div>
+                                <!-- Transaction Type -->
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="paymentMethod">{{'ERP.TRANSACTION_TYPE' | translate}}</label>
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                            [options]="transactionTypeOptions" formControlName="trnsactionType"
+                                            [(ngModel)]="sbTransactionModel.transactionType"
+                                            (onChange)="transactionType(sbTransactionModel.transactionType)"></p-dropdown>
+    
+                                    </div>
+                                </div>
+                                <!-- Payment Method -->
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="paymentMethod">{{'ERP.PAYMENT_METHOD' | translate}}</label>
+                                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}"
+                                            [options]="paymentMethodOptions" formControlName="transactionMode"
+                                            [(ngModel)]="sbTransactionModel.transactionMode"
+                                            (onChange)="toggleCashForm(sbTransactionModel.transactionMode)"></p-dropdown>
+    
+                                    </div>
+                                </div>
+                                <!-- Calendar -->
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="calendar">{{'ERP.TRANSACTION_DATE' | translate}}</label>
+                                        <p-calendar [showIcon]="true"  id="calendar" name="calendar" [dateFormat]="orgnizationSetting.calendar" formControlName="transactionDate"
+                                            [(ngModel)]="sbTransactionModel.trnasactionDateVal" placeholder="DD/MM/YYYY"></p-calendar>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Cash-->
+                            <div class="row g-3" *ngIf="showCashForm">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.ACCOUNT_NUMBER' | translate}}</label>
+                                        <input type="text" class="form-control" id="accountNumber" placeholder="Enter Account Number"
+                                            formControlName="accountNumber" [(ngModel)]="sbTransactionModel.accountNumber">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.ACCOUNT_HOLDER_NAME' | translate}}</label>
+                                        <input type="text" class="form-control" id="accountHolderName"
+                                            formControlName="accountHolderName" placeholder="Enter Account Holder Name"
+                                            [(ngModel)]="sbTransactionModel.particulars">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.AMOUNT' | translate}}</label>
+                                        <input type="text" class="form-control" 
+                                            formControlName="amount" placeholder="Enter Amount"
+                                            [(ngModel)]="sbTransactionModel.transactionAmount">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.AMOUNT_IN_WORDS' | translate}}</label>
+                                        <input type="text" class="form-control" id="amountInWords"
+                                            formControlName="amountInWords" placeholder="Enter Amount in Words"
+                                            [(ngModel)]="sbTransactionModel.transactionAmountInWords">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label>{{'ERP.NARRATION' | translate}}</label>
+                                        <textarea class="form-control" type="text" pInputTextarea id="narration" name="narration" placeholder="Enter Narration Here"></textarea>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                                            <div class="form-label">
+                                                                <p-button class="action-edit" label="{{'ERP.ADD_DENOMINATION_LIST' | translate}}" (click)="addDenominationDetails()"></p-button>
+                                                            </div>
+                                                        </div> -->
+                            </div>
+
+                        <!-- Cheque-->
+                            <div class="row g-3" *ngIf="showChequeForm">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAccountNumber">{{'ERP.ACCOUNT_NUMBER' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAccountNumber"
+                                            name="chequeAccountNumber" formControlName="accountNumber"
+                                            [(ngModel)]="sbTransactionModel.accountNumber" placeholder="Enter Account Number">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeHolderName">{{'ERP.HOLDER_NAME' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeHolderName"
+                                            name="chequeHolderName" formControlName="chequeHolderName"
+                                            [(ngModel)]="chequeDetails.beneficiaryName" placeholder="Enter Holder Name">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmount">{{'ERP.BRANCH' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAmount" name="chequeAmount" formControlName="branch"
+                                        [(ngModel)]="chequeDetails.beneficiaryName">
+                                    </div>
+                                </div> -->
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmount">{{'ERP.CHEQUE_NUMBER' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAmount" name="chequeAmount" formControlName="chequeNumber"
+                                        [(ngModel)]="chequeDetails.chequeNumber" placeholder="Enter Cheque Number">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="validFrom">{{'DEMANDDEPOSITS.CHEQUE_VALID_FROM' | translate}}</label>
+                                        <p-calendar [showIcon]="true" [dateFormat]="orgnizationSetting.calendar" id="calendar" name="calendar" formControlName="chequeValidDate"
+                                        [(ngModel)]="chequeDetails.chequeIssueDateVal" placeholder="DD/MM/YYYY"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmountInWords">{{'ERP.AMOUNT' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAmountInWords"
+                                            name="chequeAmountInWords" formControlName="chequeAmount" placeholder="Enter Amount"
+                                            [(ngModel)]="chequeDetails.amount">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmountInWords">{{'ERP.AMOUNT_IN_WORDS' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAmountInWords"
+                                            name="chequeAmountInWords" formControlName="amountInWords"
+                                            [(ngModel)]="chequeDetails.transactionAmountInWords" placeholder="Enter Amount in Words">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeNarration">{{'ERP.NARRATION' | translate}}</label>
+                                        <textarea class="form-control" id="chequeNarration" type="text"
+                                            name="chequeNarration" formControlName="narration" pInputTextarea
+                                            [(ngModel)]="chequeDetails.transactionAmountInWords" placeholder="Enter Narration Here"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+    
+
+                        <!-- Transfer Transaction-->
+
+                            <div class="row g-3 mt-n1" *ngIf="transferForShow">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAccountNumber">{{'ERP.AMOUNT' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAccountNumber"
+                                        formControlName="amount"
+                                        [(ngModel)]="transferTransactionDetails.transactionAmount" placeholder="Enter Amount">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeHolderName">{{'ERP.AMOUNT_IN_WORDS' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeHolderName"
+                                        formControlName="amountInWords"
+                                        [(ngModel)]="transferTransactionDetails.amountInWords" placeholder="Enter Amount in Words">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmount">{{'ERP.NARRATION' | translate}}</label>
+                                        <textarea type="text" class="form-control" id="chequeAmount" formControlName="transferNarration"
+                                        [(ngModel)]="transferTransactionDetails.narration" pInputTextarea placeholder="Enter Narration Here"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col-12 p-0 mt-3" *ngIf="transferForShow">
+                                <h6 class="sub-heading">{{'DEMANDDEPOSITS.TO_ACCOUNT_DETAILS' | translate}}</h6>
+                                <div class="row g-3 mt-n1">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="transactionId">{{'ERP.ACCOUNT_NUMBER' | translate}}</label>
+                                        <input type="text" class="form-control" id="transactionId" formControlName="accountNumber"
+                                        [(ngModel)]="sbTransactionModel.accountNumber" placeholder="Enter Account Number">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="validFrom">{{'ERP.ACCOUNT_HOLDER_NAME' | translate}}</label>
+                                        <input type="text" class="form-control" id="transactionId" formControlName="transferAccountHolderName"
+                                        [(ngModel)]="transferTransactionDetails.beneficiaryName" placeholder="Enter Holder Name">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeAmountInWords">{{'ERP.BRANCH' | translate}}</label>
+                                        <input type="text" class="form-control" id="chequeAmountInWords"
+                                        formControlName="transaferBranch"
+                                        [(ngModel)]="transferTransactionDetails.branchName" placeholder="Enter Branch">
+                                    </div>
+                                </div>
+    
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                    <div class="form-label">
+                                        <label for="chequeNarration">{{'ERP.AMOUNT' | translate}}</label>
+                                        <input class="form-control" id="chequeNarration"
+                                        formControlName="transferAmount" pInputText type="text"
+                                        [(ngModel)]="transferTransactionDetails.transactionAmount" placeholder="Enter Amount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        
+                    <div class="row mt-3">
+                    <!-- BOTTON GROUP -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 btn-footer">
+                        <div class="col-12 d-flex justify-content-end p-0 group-button-bottom">
+                            <p-button label="{{'ERP.BACK' | translate}}" (click)="back()"></p-button>
+                            <p-button label="{{'ERP.CANCEL' | translate}}" (click)="cancel()"></p-button>
+                            <p-button label="{{'ERP.SUBMIT' | translate}}" (click)="submit()"></p-button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-12 p-1"></div>
+                    <!-- grid for top 5 reocrds of transaction list -->
+                    <div class="col-12 bg-light-card">
+                        <div class="col-12">
+                            <h6 class="sub-heading">{{'ERP.LAST_5_TRANSACTIONS' | translate}}</h6>
+                            <div class="globel-border-top-color"></div>
+                            <p-table [value]="transactions" dataKey="id" selectionMode="single"
+                                [columns]="transactionColumns" styleClass="p-datatable-striped" [rows]="5"
+                                [showJumpToPageDropdown]="true" [paginator]="true" [responsive]="true"
+                                rowExpandMode="single" [showPageLinks]="false" [pageLinks]="1">
+    
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th *ngFor="let col of transactionColumns">
+                                            {{col.header | translate}}
+                                        </th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-accounttypes>
+                                    <tr [pSelectableRow]="rowData">
+    
+                                        <td *ngFor="let col of transactionColumns">
+                                            {{rowData[col.field]}}
+                                        </td>
+    
+    
+                                        <td>
+                                <div class="global-action-btn flex align-items-center justify-content-center">
+                                    <p-button class="action-edit" label="{{'ERP.EDIT' | translate}}" (click)="getSbTranasactionById(rowData)"></p-button>
+                                    <p-button class="action-delete" label="{{'ERP.DELETE' | translate}}" (click)="deleteTransaction(rowData)"></p-button>
+                                </div>
+                            </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+                    <!-- 1024px basic details start -->
+ <div class="col-12 p-0" *ngIf="memberTypeName == 'Individual'">
+    <p-dialog header="{{'ERP.ACCOUNT_DETAILS' | translate}}" [modal]="true" [(visible)]="isBasicDetails" [style]="{ width: '80%'}">
+        <div class="col-12 sb-side-services-card border-light text-center">
+            <div class="row ">
+                <div class="col-12 image-view-768p">
+                   
+                        <img src="assets/images/avatar-table.png" alt="user-image" class="m-2">
+                   
+                        <img src="assets/images/sign.png" alt="sign-image" class="m-2">
+                 
+                </div>
+                <!-- <div class="col-12 pic-sig-status">
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/images/avatar-table.png" class="image-user">
+                        <p class="active-status"></p>
+                        <img src="assets/images/sign.png" class="image-sign">
+    
+                    </div>
+                    <p class="name-border-bottom"></p>
+                </div> -->
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                    <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                    <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                        aria-hidden="true"></i>{{minBalence}}</p>
+                   
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                        <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.name}}</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                    <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.admissionNumber}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                    <p class="font-semibold m-0">{{membershipBasicRequiredDetails.admissionDateVal}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                    <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.memberTypeName}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <p class="m-0">{{'ERP.OPERATION_TYPE' | translate}}</p>
+                    <p class="font-semibold m-0"> Single</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.GENDER' | translate}}</span>
+                    <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.genderName}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.AGE' | translate}}</span>
+                    <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.age}}</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.AADHAR_NUMBER' | translate}} </span>
+                    <p class="font-semibold m-0">{{membershipBasicRequiredDetails.aadharNumber}}</p>
+                </div>
+            
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.PAN_NUMBER' | translate}}</span>
+                    <p class="font-semibold m-0">{{membershipBasicRequiredDetails.panNumber}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.CONTACT' | translate}}</span>
+                    <p class="font-semibold">{{membershipBasicRequiredDetails.mobileNumber}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.EMAIL' | translate}}</span>
+                    <p class="font-semibold m-0">{{membershipBasicRequiredDetails.emailId}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.ADDRESS' | translate}}</span>
+                    <p class="font-semibold m-0">{{membershipBasicRequiredDetails.name}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                    <span>{{'ERP.KYC' | translate}}</span>
+                    <p class="font-semibold m-0"> {{membershipBasicRequiredDetails.isKycApproved}}</p>
+                </div>
+                </div>
+            <!-- <div class="col-md-6 col-sm-12 min-h-50px text-break">
+                <a class="fst-italic text-light">{{'ERP.MORE_DETAILS' | translate}}</a>
+            </div> -->
+        </div>
+    </p-dialog>
+    </div>
+    <div class="col-12 p-0" *ngIf="memberTypeName == 'Group'">
+        <p-dialog header="{{'ERP.ACCOUNT_DETAILS' | translate}}" [modal]="true" [(visible)]="isBasicDetails" [style]="{ width: '80%'}">
+            <div class="col-12 sb-side-services-card border-light text-center">
+                <div class="row ">
+                    <div class="col-12 image-view-768p">
+                       
+                            <img src="assets/images/avatar-table.png" alt="user-image" class="m-2">
+                       
+                            <img src="assets/images/sign.png" alt="sign-image" class="m-2">
+                     
+                    </div>
+                    <!-- <div class="col-12 pic-sig-status">
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/images/avatar-table.png" class="image-user">
+                            <p class="active-status"></p>
+                            <img src="assets/images/sign.png" class="image-sign">
+        
+                        </div>
+                        <p class="name-border-bottom"></p>
+                    </div> -->
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                        <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                        <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                aria-hidden="true"></i>{{minBalence}}</p>
+                       
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.name}}</p>
+                    </div>
+                
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.admissionNumber}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                        <p class="font-semibold m-0">{{memberGroupDetailsModel.admissionDateVal}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.memberTypeName}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.REGISTATION_NUMBER' | translate}}</span>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.registrationNumber}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.REGISTRATION_DATE' | translate}}</span>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.registrationDateVal}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.PAN_NUMBER' | translate}} </span>
+                        <p class="font-semibold m-0">{{memberGroupDetailsModel.panNumber}} </p>
+                    </div>
+                
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.TAN_NUMBER' | translate}}</span>
+                        <p class="font-semibold m-0">{{memberGroupDetailsModel.tanNumber}} </p>
+                    </div>
+                
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.CONTACT' | translate}}</span>
+                        <p class="font-semibold m-0">{{memberGroupDetailsModel.mobileNumber}} </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.EMAIL' | translate}}</span>
+                        <p class="font-semibold m-0">{{memberGroupDetailsModel.emailId}} </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                        <span>{{'ERP.KYC' | translate}}</span>
+                        <p class="font-semibold m-0"> {{memberGroupDetailsModel.isKycApproved}}</p>
+                    </div>
+                
+                    </div>
+                <!-- <div class="col-md-6 col-sm-12 min-h-50px text-break">
+                    <a class="fst-italic text-light">{{'ERP.MORE_DETAILS' | translate}}</a>
+                </div> -->
+            </div>
+        </p-dialog>
+        </div>
+        <div class="col-12 p-0" *ngIf="memberTypeName == 'Institution'">
+            <p-dialog header="{{'ERP.ACCOUNT_DETAILS' | translate}}" [modal]="true" [(visible)]="isBasicDetails" [style]="{ width: '80%'}">
+                <div class="col-12 sb-side-services-card border-light text-center">
+                    <div class="row ">
+                        <div class="col-12 image-view-768p">
+                           
+                                <img src="assets/images/avatar-table.png" alt="user-image" class="m-2">
+                           
+                                <img src="assets/images/sign.png" alt="sign-image" class="m-2">
+                         
+                        </div>
+                        <!-- <div class="col-12 pic-sig-status">
+                            <div class="d-flex justify-content-center">
+                                <img src="assets/images/avatar-table.png" class="image-user">
+                                <p class="active-status"></p>
+                                <img src="assets/images/sign.png" class="image-sign">
+            
+                            </div>
+                            <p class="name-border-bottom"></p>
+                        </div> -->
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.ACCOUNT_NUMBER' | translate}}</p>
+                            <p class="font-semibold text-break m-0">{{sbTransactionModel.accountNumber}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.ACCOUNT_BALANCE' | translate}}</p>
+                            <p class="font-semibold text-break m-0"><i class="fa fa-inr mr-1"
+                                    aria-hidden="true"></i>{{minBalence}}</p>
+                           
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.NAME' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.name}}</p>
+                        </div>
+                    
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.ADMINSSION_NUMBER' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.admissionNumber}} </p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.admissionDateVal}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.memberTypeName}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.REGISTRATION_DATE' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.registrationDateVal}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.REGISTRATION_NUMBER' | translate}}</p>
+                            <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.registrationNumber}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.PAN_NUMBER' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.panNumber}}</p>
+                        </div>
+                    
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.TAN_NUMBER' | translate}} </p>
+                            <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.tanNumber}}</p>
+                        </div>
+                    
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.GST' | translate}}</p>
+                            <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.gstNumber}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.CONTACT' | translate}}</p>
+                            <p class="font-semibold m-0"> {{membershipInstitutionDetailsModel.mobileNumber}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <p class="m-0">{{'ERP.EMAIL' | translate}}</p>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.emailId}}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6 min-h-50px text-break">
+                            <span>{{'ERP.KYC' | translate}}</span>
+                            <p class="font-semibold m-0">{{membershipInstitutionDetailsModel.isKycApproved}}</p>
+                        </div>
+                    
+                        </div>
+                    <!-- <div class="col-md-6 col-sm-12 min-h-50px text-break">
+                        <a class="fst-italic text-light">{{'ERP.MORE_DETAILS' | translate}}</a>
+                    </div> -->
+                </div>
+            </p-dialog>
+            </div>
+     <!-- 1024px basic details start -->
+        </div>
+
+
+    <!-- <p-dialog header="Edit Profile" [(visible)]="confirmDialog"> -->
+    <p-dialog header="{{'DEMANDDEPOSITS.CONFIRM_DETAILS' | translate}}" [modal]="true" [(visible)]="confirmDialog"
+        [style]="{ width: '60vw' }">
+    
+        <div class="popup-basic-details">
+            <div class="row g-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.ACCOUNT_TYPE' | translate}}</span>
+                        <p class="fw-semibold">Savings</p>
+    
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'DEMANDDEPOSITS.TRANSACTION_TYPE' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.transactionTypeName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'DEMANDDEPOSITS.TRANSACTION_MODE' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.transactionModeName}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div *ngIf="showCashForm">
+            <div class="d-flex">
+                <h6 class="super-sub-heading">{{'DEMANDDEPOSITS.CASH_DETAILS' | translate}}</h6>
+            </div>
+            <div class="row g-3 popup-basic-details">
+                
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.ACCOUNT_NUMBER' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.accountNumber}}</p>
+    
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-label">
+                        <div class="form-group">
+                        <span class="fw-light">{{'ERP.ACCOUNT_HOLDER_NAME' | translate}}</span>
+                            <p class="fw-semibold">{{sbTransactionModel.accountNumber}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.AMOUNT' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.transactionAmount}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                    <span class="fw-light">{{'ERP.AMOUNT_IN_WORDS' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.transactionAmount}}</p>
+                    </div>
+                </div>
+    
+            </div>
+                <p-button class="pull-right" label="{{'DEMANDDEPOSITS.CONFIRM' | translate}}"
+                    (click)="saveOrUpdateTransactionDetails()"></p-button>
+        </div>
+    
+        <div *ngIf="transferForShow">
+                <div class="row g-3 popup-basic-details">
+                    <!-- Fields for Transfer -->
+                    <div class="d-flex">
+                        <h6 class="super-sub-heading">{{'DEMANDDEPOSITS.TO_ACCOUNT_DETAILS' | translate}}</h6>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'DEMANDDEPOSITS.AMOUNT' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.transactionAmount}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'DEMANDDEPOSITS.AMOUNT_IN_WORDS' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.amountInWords}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'ERP.NARRATION' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.narration}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'ERP.ACCOUNT_NUMBER' | translate}}</span>
+                            <p class="fw-semibold">{{sbTransactionModel.accountNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'ERP.ACCOUNT_HOLDER_NAME' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.beneficiaryName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'ERP.BRANCH' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.branchName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <span class="fw-light">{{'ERP.AMOUNT' | translate}}</span>
+                            <p class="fw-semibold">{{transferTransactionDetails.transactionAmount}}</p>
+                        </div>
+                    </div>
+                    <p-button class="pull-right" label="{{'DEMANDDEPOSITS.CONFIRM' | translate}}"
+                    (click)="saveOrUpdateTransactionDetails()"></p-button>
+                </div>
+        </div>
+    
+        <div *ngIf="showChequeForm">
+            <div class="d-flex">
+                <h6 class="super-sub-heading">{{'DEMANDDEPOSITS.CHEQUE_DETAILS' | translate}}</h6>
+            </div>
+            <div class="row g-3 popup-basic-details">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.ACCOUNT_NUMBER' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.accountNumber}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.HOLDER_NAME' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.beneficiaryName}}</p>
+                        <!-- <p class="fw-light">{{sbTransactionModel.holdeName}}</p> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.BRANCH' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.beneficiaryName}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.CHEQUE_NUMBER' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.chequeNumber}}</p>
+                    </div>
+                </div>
+                <!-- Transaction ID -->
+                <!-- <div class="col-md-4">
+                    <div class="form-label">
+                        <label for="transactionId">{{'ERP.TRANSACTION_ID' | translate}}</label>
+                        <input type="text" class="form-control" id="transactionId" name="transactionId">
+                
+                        <span>{{'DEMANDDEPOSITS.TRANSACTION_ID' | translate}}</span>
+                        <p class="fw-semibold">{{sbTransactionModel.amount}}</p>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.VALID_FROM' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.amountTransferedDateVal}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.AMOUNT' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.amount}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <span class="fw-light">{{'ERP.NARRATION' | translate}}</span>
+                        <p class="fw-semibold">{{chequeDetails.transactionAmountInWords}}</p>
+                        <!-- <p class="fw-light">{{sbTransactionModel.narration}}</p> -->
+                    </div>
+                </div>
+                <p-button class="pull-right" label="{{'DEMANDDEPOSITS.CONFIRM' | translate}}"
+                    (click)="saveOrUpdateTransactionDetails()"></p-button>
+            </div>
+        </div>
+    
+    
+    
+    </p-dialog>
+
+<!-- Voucher popup -->
+    <p-dialog header="VOUCHER_DETAILS" [modal]="true" [(visible)]="voucherDeiloge">
+    
+        <div class="globel-border-top-color"></div>
+    
+        <p-table #dt [columns]="columns" [value]="transactionModelList" dataKey="id">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th>
+                        {{'DEMANDDEPOSITS.TRANSACTION_MODE' | translate}}
+                    </th>
+                    <th>
+                        {{'DEMANDDEPOSITS.TRANSACTION_TYPE' | translate}}
+                    </th>
+                    <th>
+                        {{'DEMANDDEPOSITS.TRANSACTION_DATE' | translate}}
+                    </th>
+                    <th>
+                        {{'DEMANDDEPOSITS.TRANSACTION_AMOUNT' | translate}}
+                    </th>
+                    <th>
+                        {{'DEMANDDEPOSITS.STATUS' | translate}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td>{{sbTransactionModel.transactionModeName}}</td>
+                    <td>{{sbTransactionModel.transactionTypeName}}</td>
+                    <td>{{sbTransactionModel.trnasactionDateVal}}</td>
+                    <td>{{sbTransactionModel.transactionAmount}}</td>
+                    <td>success</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="col-12"></div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p-button icon="fa fa-download" iconPos="left" pTooltip="Filename.pdf" tooltipPosition="top"></p-button>
+                <p-button icon="fa fa-print" iconPos="left" pTooltip="Print" tooltipPosition="top"></p-button>
+            </div>
+            <div>
+                <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button>
+            </div>
+        </div>
+    
+    </p-dialog>
+
+<!-- Individual details dialog -->
+<p-dialog header="More Basic Details" [(visible)]="membreIndividualFlag" styleClass="moredetails-style">
+    <h6 class="super-sub-heading">{{'ERP.MEMBERSHIP_CREATION' | translate}}</h6>
+    <div class="popup-basic-details">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+            <div class="d-flex justify-content-start px-3 py-0 mb-2" *ngIf ="photoCopyFlag">
+                <div *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForPhotoCopy">
+                   
+                        <span class="{{img.imageValue}}" (click)="onClickMemberPhotoCopy()" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                        <!-- <a href="{{img.imageValue}}" (clicl)="onClickMemberPhotoCopy()"></a> -->
+                            <img src="{{img.imageValue}}" class="image-user">
+                        </span>
+                    
+                </div>
+                <p class="active-status"></p>
+                <div  *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                        <span class="{{img.imageValue}}" (click)="onClickMemberPhotoCopy()" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                        <!-- <a href="{{img.imageValue}}" (clicl)="onClickMemberPhotoCopy()"></a> -->
+                            <img src="{{img.imageValue}}" class="image-user">
+                        </span>
+                        
+                   
+                </div>
+            </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.GROUP_NAAME' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.name }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                    <p class="label-input-text">{{admissionNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.memberTypeName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.admissionDateVal }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.DATE_OF_BIRTH' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.dobVal }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.AGE' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.age }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.RELATION_WITH_APPLICANT' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.relationTypeName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.RELATIVE_NAME' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.relativeName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MARITAL_STATUS' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.maritalStatusName }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.CONTACT' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.mobileNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.EMAIL' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.emailId }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.AADHAR' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.aadharNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.PAN' | translate}}</span>
+                    <p class="label-input-text">{{membershipBasicRequiredDetails.panNumber }}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.KYC' | translate}}</span>
+                    <p class="label-input-text">{{isKycApproved}}</p>
+                </div>
+            </div>
+        </div>
+            <!-- <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button> -->
+    </div>
+</p-dialog>
+
+<!-- institution Promoter details dialog -->
+<p-dialog header="More Basic Details" [(visible)]="institutionPromoterFlag" styleClass="moredetails-style">
+    <h6 class="super-sub-heading">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+    <div class="popup-basic-details">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.INSTITUTION_NAME' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.name}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.admissionNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.memberTypeName}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.admissionDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.REGISTERED_DATE' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.registrationDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.CONTACT' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.registrationDateVal}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.EMAIL' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.emailId}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.PAN' | translate}}</span>
+                    <p class="label-input-text">{{membershipInstitutionDetailsModel.panNumber}}</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="label-view">{{'ERP.KYC' | translate}}</span>
+                    <p class="label-input-text">{{isKycApproved}}</p>
+                </div>
+            </div>
+               
+           
+        </div>
+    </div>
+    <div class="col-12"></div>
+    <h6 class="super-sub-heading">{{'ERP.INSTITUTION_PROMOTER_DETAILS' | translate}}</h6>
+   
+        <div class="globel-border-top-color"></div>
+        <p-table #dt [columns]="columns" [value]="institionPromotersList" dataKey="id" styleClass="p-datatable-striped"
+            [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+            [responsive]="true" rowExpandMode="single">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let promoter of columns ">{{promoter.header | translate}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let promoter of columns ">{{rowData[promoter.field]}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- <ng-template pTemplate="footer">
+            <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button>
+        </ng-template> -->
+
+        <div class="col-12"></div>
+
+    
+</p-dialog>
+
+<!-- group prmoter details dialog -->
+<p-dialog header="More Basic Details" [(visible)]="groupPromotersPopUpFlag" styleClass="moredetails-style" >
+                    <h6 class="super-sub-heading">{{'ERP.BASIC_DETAILS' | translate}}</h6>
+                    <div class="popup-basic-details">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.GROUP_NAAME' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.name}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.name}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.memberTypeName}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.name}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.REGISTERED_DATE' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.registrationDateVal}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.admissionDateVal}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.CONTACT' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.mobileNumber}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.EMAIL' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.emailId}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.TAN_NUMBER' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.tanNumber}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.PAN' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.panNumber}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.GST' | translate}}</span>
+                                    <p class="label-input-text">{{memberGroupDetailsModel.gstNumber}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                                <div class="form-group">
+                                    <span class="label-view">{{'ERP.KYC' | translate}}</span>
+                                    <p class="label-input-text">{{isKycApproved}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12"></div>
+                    <h6 class="super-sub-heading">{{'ERP.GROUP_PROMOTER_DETAILS' | translate}}</h6>
+                    <div class="globel-border-top-color"></div>
+                    <p-table #dt [columns]="groupPrmoters" [value]="groupPrmotersList" editMode="row"
+                    styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true" 
+                    [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single"  
+                    [globalFilterFields]="['surname', 'name', 'operatorTypeName', 'dob', 'age', 'genderName', 'maritalStatusName', 'mobileNumber', 'aadharNumber', 'emailId', 'startDate']">
+                    <ng-template pTemplate="header">
+                        <tr >
+                            <th *ngFor="let promoter of groupPrmoters ">{{promoter.header | translate}}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                        <tr >
+                            <td *ngFor="let promoter of groupPrmoters ">{{row[promoter.field]}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <!-- <ng-template pTemplate="footer">
+                    <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}"(click)="close()"></p-button>
+                </ng-template> -->
+            
+            <div class="col-12"></div>
+        
+    
+</p-dialog>
+
+<!--photo Copy dialog -->
+<p-dialog header="{{'ERP.PHOTO_COPY' | translate}}" [(visible)]="memberPhotoCopyZoom">
+    <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div 
+                            *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForPhotoCopy">
+                            <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="popup-images">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div 
+                            *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                            <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="popup-images">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+        <p-button class="action-edit" label="{{'ERP.CLOSE' | translate}}" (click)="closePhoto()"></p-button>
+        </div>
+    </div>
+</p-dialog>

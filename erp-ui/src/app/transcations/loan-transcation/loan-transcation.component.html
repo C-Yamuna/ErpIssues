@@ -1,0 +1,89 @@
+<div>
+    <h6>{{'ERP.LOANS' | translate}}</h6>
+    <div class="d-flex justify-content-end ">
+        <div class="border">{{'ERP.DISBURSEMENTS' | translate}} :2</div>
+        <div class="border">{{'ERP.COLLECTIONS' | translate}} :2</div>
+    </div>
+
+    <!-- <div class="card">
+        <p-tabMenu [scrollable]="true" [model]="items" [activeItem]="activeItem"></p-tabMenu>
+    </div> -->
+
+    <div class="card">
+        <p-tabMenu [model]="items" [activeItem]="activeItem" [scrollable]="true">
+            <ng-template pTemplate="item" let-item>
+                <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+                    <div>
+                        <span> {{ item.label }}</span>
+                        <span> {{ item.value }}</span>
+                        <p-progressBar [value]="value"></p-progressBar>
+                    </div>
+                </a>
+            </ng-template>
+        </p-tabMenu>
+    </div>
+
+    <div class="col-12 p-0 pt-2 ">
+        <button type="button" class=" btn btn-sm buttons m-0 mt-2">
+            <i class="fa fa-filter" aria-hidden="true"></i> &nbsp;&nbsp;SEARCH FILTER</button>
+    </div>
+
+    <div class="d-flex justify-content-end mb-1">
+        <div class="mr-3">
+            <div class="p-inputgroup width-13rem">
+                <input type="text" pInputText placeholder="search" class="searchbox" />
+                <span><i class="fa fa-search"></i></span>
+            </div>
+        </div>
+        <!-- <p-button label="create account" (click)="createaccount()"></p-button> -->
+        <div class="d-flex">
+            <p-dropdown id="bunit_txt_status" placeholder="NEW LOAN" [filter]="true" [options]="loanslist"
+                [(ngModel)]="newdepositer" (onChange)="navigateToNewLoans($event)"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="border-style"></div>
+
+    <div class="col-12 ">
+        <div class="mb-1">
+            <p-table [value]="loans" dataKey="id" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [rows]="5"
+                [paginator]="true" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th></th>
+                        <th>{{'ERP.ADMISSION_NO' | translate}}</th>
+                        <th>{{'ERP.NAME' | translate}}</th>
+                        <th>{{'ERP.ACCOUNT_NUMBER' | translate}}</th>
+                        <th>{{'ERP.APPLICATION' | translate}}</th>
+                        <th>{{'ERP.PRODUCT' | translate}}</th>
+                        <th>{{'ERP.SANCTIONED_AMOUNT' | translate}}</th>
+                        <th>{{'ERP.ROI' | translate}}</th>
+                        <th>{{'ERP.STATUS' | translate}}</th>
+                        <th>{{'ERP.ACTION' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-loans>
+                    <tr>
+                        <td><img src="./../assets/images/photo.jpg" /></td>
+                        <td>{{ loans.AdmissionNo }}</td>
+                        <td>{{ loans.Name }}</td>
+                        <td>{{ loans.AccountNumber }}</td>
+                        <td>{{ loans.Application }}</td>
+                        <td>{{ loans.Product }}</td>
+                        <td>{{ loans.SanctionedAmount}}</td>
+                        <td>{{ loans.ROI}}</td>
+                        <td>{{ loans.Status }}</td>
+                        <td class="text-center p-2 pb-1">
+                            <div class="d-flex">
+                                <p-button label="Edit" (click)="edit()"></p-button>
+                                <p-button label="View" (click)="view()"></p-button>
+                                <p-dropdown id="bunit_txt_status" placeholder="operations" [filter]="true"
+                                    [options]="operationslist" [(ngModel)]="operations"
+                                    (onChange)="navigateToOperations($event)"></p-dropdown>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>

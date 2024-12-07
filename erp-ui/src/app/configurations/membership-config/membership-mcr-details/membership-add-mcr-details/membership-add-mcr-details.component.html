@@ -1,0 +1,98 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'MEMBERSHIPCONFIG.MCR_DETAILS' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="mcrDetailsform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'MEMBERSHIPCONFIG.NAME' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                                [(ngModel)]="mcrDetailsModel.name">
+                                <p-message severity="error" text="Enter Valid Name"
+                                *ngIf="!mcrDetailsform.controls['name'].valid && mcrDetailsform.controls['name'].dirty">
+                              </p-message>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'MEMBERSHIPCONFIG.MCR_NUMBER' | translate}}
+                                </label>
+                           
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="mcrNumber"
+                                [(ngModel)]="mcrDetailsModel.mcrNumber">
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 uplodad-style align-items-center">
+                            <div class="form-label">
+                                <span for="username">{{'MEMBERSHIPCONFIG.MCR_FILE_PATH' | translate}}
+                                </span>
+                            
+                            <!-- <p-button icon="pi pi-plus" class="p-2"></p-button>
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text"
+                                formControlName="mcrFilePath" [(ngModel)]="mcrDetailsModel.mcrFilePath"> -->
+                                
+                                <!-- Upload Button Column -->
+                            <p-fileUpload #fileUpload class="" name="myfile[]" chooseLabel=" "
+                            id="apply-leave_fileUp_attach" name="file" accept=".png,.jpg,.jpeg,.pdf"
+                            formContralName="fileUpload">
+                            </p-fileUpload>
+                            <!-- Uploaded Files Display Column -->
+                            <div class="col-12 d-flex p-1 contant-body"  *ngFor="let img ">
+                                <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                    <a href="{{img.imageValue}}">
+                                        <img src="{{img.imageValue}}">
+                                    </a>
+                                </div>&nbsp;&nbsp;
+                                <div class="text-ellipse" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                    {{img.fileName}}
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'MEMBERSHIPCONFIG.DATE' | translate}}
+                                </label>
+                            
+                            <p-calendar [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" [yearNavigator]="true" yearRange="1970:2050"
+                                formControlName="date"  id="work_flow_start_date" [(ngModel)]="mcrDetailsModel.date" [minDate]="minDate"></p-calendar>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'MEMBERSHIPCONFIG.STATUS' | translate}}
+                                </label>
+                            
+                            <p-dropdown [options]="statusList" formControlName="statusName"
+                                [(ngModel)]="mcrDetailsModel.status" placeholder="Select"></p-dropdown>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'MEMBERSHIPCONFIG.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'MEMBERSHIPCONFIG.SUBMIT' | translate}}" [disabled]=!mcrDetailsform.valid *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'MEMBERSHIPCONFIG.SUBMIT' | translate}}" [disabled]=!mcrDetailsform.valid *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

@@ -1,0 +1,279 @@
+<div class="app-head d-flex">
+    <h5 class="main-heading pt-3">{{'ERP.SAVINGS_BANK' | translate}}</h5>
+    <span class="icon"><i class="pi pi-angle-right" style="font-size: 1rem"></i></span>
+    <h5 class="main-heading pt-3">{{'ERP.CHEQUE_BOOK' | translate}}</h5>
+</div>
+<div class="row g-3">
+    <div class="col-2">
+        <p-card class="side-card">
+            <h6>{{'ERP.ACCOUNT_DETAILS' | translate}}</h6>
+            <div class="border"></div>
+            <div>
+                <span>{{'ERP.ACCOUNT_NUMBER' | translate}}</span>
+                <p class="font-semibold text-break">664577</p>
+
+            </div>
+            <div class="images">
+                <img src="/assets/images/smily.jpeg" width="90px" height="auto" class="responsive-logo">
+            </div>
+            <div>
+                <span>{{'ERP.NAME' | translate}}</span>
+                <p class="font-semibold text-break">saicharan</p>
+                <div class="border"></div>
+            </div>
+
+            <div>
+                <span>{{'ERP.PRODUCT_TYPE' | translate}}</span>
+                <p class="font-semibold text-break pl-2">Regular Savings</p>
+
+            </div>
+
+            <div class="d-flex">
+                <div>
+                    <span>{{'ERP.ADMISSION_NO' | translate}} </span>
+                    <p class="font-semibold text-break pl-2">2022</p>
+                </div>&nbsp;&nbsp;
+                <div>
+                    <span>{{'ERP.ADMISSION_DATE' | translate}} </span>
+                    <p class="font-semibold text-break pl-2">23/02/2022</p>
+                </div>
+            </div>
+
+            <div>
+                <span>{{'ERP.MEMBER_TYPE' | translate}} </span>
+                <p class="font-semibold text-break pl-2">A-Class</p>
+            </div>
+
+            <div class="d-flex">
+                <div>
+                    <span>{{'ERP.CONTACT' | translate}} </span>
+                    <p class="font-semibold text-break pl-2">9262625162</p>
+                </div>&nbsp;&nbsp;
+                <div>
+
+                    <span>{{'ERP.EMAIL' | translate}} </span>
+                    <p class="font-semibold text-break pl-2">uru@gmail.com</p>
+                </div>
+            </div>
+            <div>
+                <span>{{'ERP.ADDRESS' | translate}} </span>
+                <p class="font-semibold text-break pl-2">hyd</p>
+            </div>
+            <div>
+                <span>{{'ERP.KYC' | translate}} </span>
+                <p class="font-semibold text-break pl-2">Approved</p>
+            </div>
+        </p-card>
+    </div>
+
+    <div class="col-10">
+        <div class=" border  mt-4 p-3">
+            <form [formGroup]="chequebokissueform">
+                <div class="row g-3">
+                    <div class="col-3 ">
+                        <div class="field-row">
+                            <label>{{'ERP.NUMBER_OF_LEAFS' | translate}}</label>
+                            <div>
+                                <p-dropdown id="bunit_txt_status" placeholder="select" [filter]="true"
+                                    [options]="numberoflefslist" [(ngModel)]="numberofleafs"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.CHEQUE_NUMBER' | translate}}
+                            </label>
+                        </div>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.STARTING_NUMBER' | translate}}
+                            </label>
+                        </div>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.ENDING_NUMBER' | translate}}
+                            </label>
+                        </div>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-3 pt-4">
+
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.CHEQUE_BOOK_ISSUE_DATE' | translate}}
+                            </label>
+                        </div>
+                        <p-calendar [showIcon]="true"></p-calendar>
+
+
+                    </div>
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.SERVICE_CHARGES' | translate}}
+                            </label>
+                        </div>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.SERVICE_CHARGE_DEBIT_FROM' | translate}}
+                            </label>
+                        </div>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+
+
+                </div>
+                <div class="row g-3 pt-4">
+
+                    <div class="col-3 ">
+                        <div class="field-row">
+                            <label>{{'ERP.DELIVERY_MODE_CHEQUEBOOK_DELIVERY' | translate}}</label>
+                            <div>
+                                <p-dropdown id="bunit_txt_status" placeholder="select" [filter]="true"
+                                    [options]="deliverymodelist" [(ngModel)]="deliverymode"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 ">
+                        <div class="field-row">
+                            <label for="code">
+                                {{'ERP.ADDRESS' | translate}}
+                            </label>
+                        </div>
+
+                        <textarea type="text" class="form-control" pInputTextarea placeholder="House No., Door No., Landmark..etc"></textarea>
+                    </div>
+
+
+                    <div class="col-3">
+                        <div class="field-row">
+                            <label for="username">{{'ERP.MCR_DOCUMENT_COPY' | translate}}
+                            </label>
+                        </div>
+                        <p-fileUpload mode="basic" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                            accept="image/*" [auto]="true"></p-fileUpload>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+
+                    </div>
+                    <div class="col-3 ">
+                        <div class="field-row">
+                            <label for="code">
+                                {{'ERP.REMARKS' | translate}}
+                            </label>
+                        </div>
+
+                        <textarea type="text" class="form-control" pInputTextarea placeholder="Enter Remarks Here"></textarea>
+                    </div>
+
+                </div>
+
+            </form>
+
+
+        </div>
+        <div class="d-flex justify-content-end mb-1">
+            <p-button class="p-2" label="Back" (click)="backbutton()"></p-button>
+            <p-button class="p-2" label="Cancel" (click)="backbutton()"></p-button>
+            <p-button class="p-2" label="Submit"></p-button>
+
+        </div>
+        <h6>{{'ERP.ALL_DETAILS' | translate}}</h6>
+
+        <p-table [value]="chequebookissue" dataKey="id" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [rows]="5"
+            [paginator]="true" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 5rem"></th>
+                    <th>{{'ERP.CHEQUE_BOOK_NUMBER' | translate}}</th>
+                    <th>{{'ERP.NUMBER_OF_LEAFS' | translate}} </th>
+                    <th>{{'ERP.NUMBER_OF_USED_LEAFS' | translate}} </th>
+                    <th>{{'ERP.STARTING_NUMBER' | translate}} </th>
+                    <th>{{'ERP.ENDING_NUMBER' | translate}} </th>
+                    <th>{{'ERP.ISSUED_DATE' | translate}}</th>
+                    <th>{{'ERP.VALID_DATE' | translate}} </th>
+                    <th>{{'ERP.STATUS' | translate}}</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-chequebookissue let-expanded="expanded">
+                <tr>
+                    <td>
+                        <a href=" ">
+                            <i
+                                [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+                        </a>
+                    </td>
+                    <td>{{ chequebookissue.ChequebookNumber }}</td>
+                    <td>{{ chequebookissue.NumberOfLeafs }}</td>
+                    <td>{{ chequebookissue.NumberOfUsedLeafs }}</td>
+                    <td>{{ chequebookissue.StartingNumber }}</td>
+                    <td>{{ chequebookissue.EndingNumber }}</td>
+                    <td>{{ chequebookissue.IssuedDate }}</td>
+                    <td>{{ chequebookissue.ValidDate }}</td>
+                    <td>{{ chequebookissue.Status }}</td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-product>
+                <tr>
+                    <td colspan="7">
+                        <div class="p-3">
+                            <p-table [value]="chequebookissuetypes" dataKey="id" selectionMode="single" [rowsPerPageOptions]="[5,10,20]" [rows]="5"
+                            [paginator]="true" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                                <ng-template pTemplate="header">
+                <tr>
+                    <th>{{'ERP.CHEQUE_NUMBER' | translate}} </th>
+                    <th>{{'ERP.VALID_FROM' | translate}} </th>
+                    <th>{{'ERP.VALID_TILL' | translate}} </th>
+                    <th>{{'ERP.TRANSFER_TO' | translate}} </th>
+                    <th>{{'ERP.TO_ACCOUNT_NUMBER' | translate}}</th>
+                    <th>{{'ERP.AMOUNT' | translate}} </th>
+                    <th>{{'ERP.TRANSACTION_DATE' | translate}}</th>
+                    <th>{{'ERP.BANK_NAME' | translate}} </th>
+                    <th>{{'ERP.BANK_CODE' | translate}} </th>
+                    <th>{{'ERP.STATUS' | translate}} </th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-chequebookissuetypes>
+                <tr>
+                    <td>{{ chequebookissuetypes.ChequeNumber }}</td>
+                    <td>{{ chequebookissuetypes.ValidForm }}</td>
+                    <td>{{ chequebookissuetypes.ValidTill }}</td>
+                    <td>{{ chequebookissuetypes.TransferTo }}</td>
+                    <td>{{ chequebookissuetypes.ToAccountNumber }}</td>
+                    <td>{{ chequebookissuetypes.Amount }}</td>
+                    <td>{{ chequebookissuetypes.TransactionDate }}</td>
+                    <td>{{ chequebookissuetypes.BankName }}</td>
+                    <td>{{ chequebookissuetypes.BankCode }}</td>
+                    <td>{{ chequebookissuetypes.Status }}</td>
+
+
+
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+    </td>
+    </tr>
+    </ng-template>
+    </p-table>
+</div>
+
+</div>

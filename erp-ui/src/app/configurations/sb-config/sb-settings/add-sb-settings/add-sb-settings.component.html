@@ -1,0 +1,70 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'DEMANDDEPOSITS.ADD_SB_SETTINGS' | translate}}</div>
+    </div>
+
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="sbSettingsForm">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>  <span class="red">*</span>{{'ERP.KEY' | translate}}</label>
+                        <input pInputText id="state_txt_name" type="text" formControlName="key" [(ngModel)]="sbSettingsModel.settingsKey" 
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>  <span class="red">*</span>{{'ERP.VALUE' | translate}}</label>
+                        <input pInputText id="state_txt_name" type="text" formControlName="settingsValue" [(ngModel)]="sbSettingsModel.settingsValue" 
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'ERP.PREFIX' | translate}}</label>
+                        <input pInputText id="state_txt_name" type="text" formControlName="prefix" [(ngModel)]="sbSettingsModel.prefix" 
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'ERP.SUFFIX' | translate}}</label>
+                        <input pInputText id="state_txt_name" type="text" formControlName="suffix" [(ngModel)]="sbSettingsModel.suffix" 
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label>{{'ERP.SEQUENCE_NUMBER' | translate}}</label>
+                        <input pInputText id="state_txt_name" type="text" formControlName="seqNumber" [(ngModel)]="sbSettingsModel.seqNumber" 
+                        >
+                    </div>
+                </div>
+            
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-label">
+                    <label><span class="red">*</span>{{'ERP.STATUS' | translate}}</label>
+                        <p-dropdown placeholder="{{'ERP.SELECT' | translate}}" [options]="statusList"
+                         formControlName="statusName" [(ngModel)]="sbSettingsModel.status"
+                        ></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </form>
+        </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled] = "!sbSettingsForm.valid" *ngIf='!isEdit' (click)="submit()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled] = "!sbSettingsForm.valid" *ngIf='isEdit' (click)="update()"> </p-button>
+</div>
+
+
+

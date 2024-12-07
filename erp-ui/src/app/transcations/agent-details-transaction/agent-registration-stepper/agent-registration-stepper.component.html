@@ -1,0 +1,308 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+    <div class="row justify-content-between top-header-section px-0">
+        <div class="main-heading mt-1 mb-3 justify-content-start">{{'AGENT_DETAILS_TRANSACTION.AGENT_REGISTRATION' | translate}}</div>
+    </div>
+    <div class="col-12 p-0 mt-2">
+        <div class="row g-3">
+            <!-- <div class="col-12 p-1 py-0">
+                <p-tabMenu [model]="items" [(activeItem)]="activeItem" (onChange)="onActiveIndexChange($event)"
+                 styleClass="tab-menu-style"></p-tabMenu>
+            </div> -->
+            <!-- left side menu -->
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 left-sidecard">
+
+                <div class="col-12 membership-side-card">
+                    <div class="col-12">
+                        <h5 class="transaction-side-card-header">{{'ERP.BASIC_DETAILS' | translate}}</h5>
+                    </div>
+                    <form [formGroup]="membershipForm" id="exit_types_form">
+                        <div class="col-12 py-0">
+                            <p class="text-fontwt mb-2">{{'ERP.ADMISSION_DETAILS' | translate}}</p>
+                            <p-dropdown [options]="depositMembersList" [filter]="true" placeholder="Please Enter Admission Number"
+                            formControlName="admissionNumber" [(ngModel)]="membershipBasicDetailsModel.admissionNumber"
+                            (onChange)="OnChangeAdmissionNumber(membershipBasicDetailsModel.admissionNumber)"></p-dropdown>
+                        </div>
+                        <div class="col-12 individual-basic">
+                            <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-3 col-sm-4 col-xs-4">
+                            
+                            <div class="col-12 pic-sig-status">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <img src="assets/images/avatar-table.png" class="image-user">
+                                    <p class="active-status"></p>
+                                    <img src="assets/images/sign.png" class="image-sign">
+                                </div>
+                            </div>
+                            <div class="text-center min-h-50px">
+                                <span class="text-fontwt">{{'ERP.ADMISSION_DETAILS' | translate}}</span>
+                                <p class="font-semibold text-break">{{membershipBasicDetailsModel.admissionNumber}}</p>
+                            </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-8 col-xs-8 mt-2">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                        <p class="label-view text-fontwt">{{'ERP.NAME' | translate}}</p>
+                                        <p class="label-input-text">{{membershipBasicDetailsModel.name}}</p>
+                                    </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.MEMBER_TYPE' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.memberTypeName}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.ADMISSION_DATE' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.admissionDate}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.DATE_OF_BIRTH' | translate}} & {{'ERP.AGE' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.dob}} & {{membershipBasicDetailsModel.age}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.CONTACT' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.mobileNumber}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.EMAIL' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.emailId}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.AADHAR' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.aadharNumber}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 basicdata-card">
+                                <p class="label-view text-fontwt">{{'ERP.PAN' | translate}}</p>
+                                <p class="label-input-text">{{membershipBasicDetailsModel.panNumber}}</p>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-6 col-xs-12 d-flex basicdata-card">
+                                <div class="col-10 p-0">
+                                    <p class="label-view text-fontwt">{{'ERP.KYC' | translate}}</p>
+                                    <p class="label-input-text">Approved</p>
+                                </div>
+                                <div class="col-2 kyc-done icon-size text-right"><i class="fa fa-check-circle text-white"
+                                    aria-hidden="true"></i></div>
+                            </div>
+                            <div class="col-12 color-light justify-content-end text-right">
+                                <a class="fst-italic text-light cursor-pointer" (click)="onClickMemberIndividualMoreDetails()">{{'ERP.MORE_DETAILS' | translate}}</a>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>   
+                    </form>            
+                </div>
+            </div>
+            <!-- Right side menu -->
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 right-sidecard">
+                <p-tabMenu [model]="items" [(activeItem)]="activeItem" (onChange)="onActiveIndexChange($event)"
+                 styleClass="tab-menu-style"></p-tabMenu>
+                <div class="col-12 p-2 bg-card min-hight65">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div class="col-12 btn-footer px-0">
+                <div class="col-12 d-flex justify-content-end px-0 mt-1 group-button-bottom">
+                    <p-button *ngIf="activeIndex==0" label="Back" (click)="back(activeIndex)"></p-button>
+
+                    <p-button *ngIf="activeIndex>0 &&  activeIndex<=4" label="PREVIOUS "  icon="fa fa-chevron-left" iconPos="left"
+                        (click)="prevStep(activeIndex)"></p-button>
+
+                    <p-button *ngIf=" activeIndex<=4 && activeIndex !=0" label="CANCEL" (click)="cancel(activeIndex)"></p-button>
+
+                    <p-button *ngIf="(activeIndex!=4 && activeIndex<4)" label="SAVE & NEXT" [disabled]="buttonDisabled" icon="fa fa-chevron-right" iconPos="right"
+                        (click)="nextStep(activeIndex)"></p-button>
+
+                    <p-button *ngIf="activeIndex==4" label="SAVE & PREVIEW" (click)="submit(activeIndex)" [disabled]="buttonDisabled" icon="fa fa-chevron-right" iconPos="right"></p-button>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="More Basic Details" [(visible)]="showForm" [style]="{ width: '70vw' }" >
+    <div class="popup-basic-details">
+        <div class="row">
+           <!--  <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-12 px-0">
+                        <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForMCRCopyPath">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                
+                        <div class="px-0" *ngFor="let img of membershipBasicRequiredDetails.multipartFileListForsignatureCopyPath">
+                            <div class="col-12 p-0" *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png' ">
+                                <a href="{{img.imageValue}}">
+                                    <img src="{{img.imageValue}}" class="upload-img img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-12 p-0" *ngIf=" img.fileType =='pdf'">
+                                <a href="{{img.imageValue}}">
+                                    <img src="assets\images\pdf.png" class="pdf-img img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                </div> 
+               
+            </div>-->
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="d-flex justify-content-start px-3 py-0 mb-2">
+                    <img src="assets/images/avatar-table.png" class="image-user">
+                    <p class="active-status"></p>
+                    <img src="assets/images/sign.png" class="image-sign">
+                </div>
+                </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MEMBER_TYPE' | translate}}</span>
+                    <p class="fw-semibold">A-Class</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.SURNAME' | translate}}</span>
+                    <p class="fw-semibold">Chatti</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.NAME' | translate}}</span>
+                    <p class="fw-semibold">Raviteja</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.DATE_OF_BIRTH' | translate}}</span>
+                    <p class="fw-semibold">01/07/1990</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.AGE' | translate}}</span>
+                    <p class="fw-semibold">33</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.GENDER' | translate}}</span>
+                    <p class="fw-semibold">Male</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MARITAL_STATUS' | translate}}</span>
+                    <p class="fw-semibold">Unmarried</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.RELATION_WITH_APPLICANT' | translate}}</span>
+                    <p class="fw-semibold">Father</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.RELATIVE_NAME' | translate}}</span>
+                    <p class="fw-semibold">Appala Raju</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.QUALIFICATION' | translate}}</span>
+                    <p class="fw-semibold">M.Tech</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.OCCUPATION' | translate}}</span>
+                    <p class="fw-semibold">Software Engineer</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.AADHAR' | translate}}</span>
+                    <p class="fw-semibold">546778898766556</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.PAN' | translate}}</span>
+                    <p class="fw-semibold">ADFR4567U8</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.CONTACT' | translate}}</span>
+                    <p class="fw-semibold">9876543210</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.EMAIL' | translate}}</span>
+                    <p class="fw-semibold">ravi@gmail.com</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.CASTE' | translate}}</span>
+                    <p class="fw-semibold">BC</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.COMMUNITYS' | translate}}</span>
+                    <p class="fw-semibold">Hindu</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_NUMBER' | translate}}</span>
+                    <p class="fw-semibold">6677887</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm" >
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.MANAGEMENT_COMMITTE_RESOLUTION_NO' | translate}}</span>
+                    <p class="fw-semibold">544556</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px" *ngIf="showForm">
+                <div class="form-label">
+                    <span class="fw-light">{{'ERP.MCR_DOCUMENT_TYPE' | translate}}</span>
+                    <!-- <div class="uplodad-style align-items-center"> -->
+                    <!-- <p class="fw-semibold">{{membershipBasicRequiredDetails.mcrDocumentCopy }}</p> -->
+                    <!-- <div class="col-12 d-flex p-0">
+                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                        </div>
+                        <div class="docname-texteclipse pl-2" pTooltip="{{img.fileName}}" tooltipPosition="bottom">{{img.fileName}}</div>
+                    </div> -->
+                    <!-- </div> -->
+                </div>
+                    
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_DATE' | translate}}</span>
+                    <p class="fw-semibold">11/09/2023</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 min-h-50px">
+                <div class="form-group">
+                    <span class="fw-light">{{'ERP.ADMISSION_FEE' | translate}}</span>
+                    <p class="fw-semibold">500</p>
+                </div>
+            </div>
+            
+        </div>
+            <!-- <p-button class="pull-right" label="{{'ERP.CLOSE' | translate}}" (click)="close()"></p-button> -->
+    </div>
+</p-dialog>

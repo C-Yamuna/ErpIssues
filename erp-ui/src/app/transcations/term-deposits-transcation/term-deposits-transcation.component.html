@@ -1,0 +1,117 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div class="col-12">
+    <div class="row">
+    <div class="d-flex justify-content-between top-header-section">
+        <div class="main-heading mt-1 justify-content-start">{{'ERP.TERM_DEPOSITS' | translate}}</div>
+        <div class="justify-content-end view-popup-top">
+            <p-button label="{{'ERP.RENEWAL_ACCOUNTS' | translate}}" [outlined]="true" badge="1"
+                class="top-badge-btn btn-outline-0"></p-button>
+            <p-button label="{{'ERP.MATURED_ACCOUNTS' | translate}}" [outlined]="true" badge="3"
+                class="top-badge-btn btn-outline-0"></p-button>
+        </div>
+    </div>
+    <div class="col-12 summary-carousel ">
+        <div class="main-summary">
+            <span class="box-text-summary">Summary</span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="col-12 p-0 filter-button">
+            <p-button icon="pi pi-filter" label="SEARCH FILTER"></p-button>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="col-12 p-0">
+    
+    
+    
+    
+            <!-- <div class="card">
+                <p-tabMenu [scrollable]="true" [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div> -->
+    
+    
+    
+            <!-- <p-tabMenu [model]="items" [activeItem]="activeItem" [scrollable]="true" >
+                    <ng-template pTemplate="item" let-item>
+                        <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+                            <div>
+                                <span> {{ item.label }}</span>
+                                <span> {{ item.value }}</span>
+                                <p-progressBar [value]="value"></p-progressBar>
+            
+                            </div>
+                       
+                        </a>
+                    </ng-template>
+                </p-tabMenu> -->
+    
+    
+    
+    
+            <div class="d-flex justify-content-end search-input-style">
+                <div class="input-group search-box d-flex justify-content-end">
+                    <div class="search">
+                        <span class="p-input-icon-right">
+                            <i class="pi pi-search global-search-icon"></i>
+                            <input type="text" pInputText class="searchbox" placeholder="Search" />
+                        </span>
+                    </div>
+                </div>
+    
+                <p-dropdown [options]="termdepositlist" [(ngModel)]="newdepositer" [filter]="true"
+                    placeholder="+ ADD MEMBER" icon="fa fa-plus" iconPos="left" id="bunit_txt_status"
+                    styleClass="application-dropdown" (onChange)="navigateToNewDepositer($event)"></p-dropdown>
+    
+            </div>
+        </div>
+    </div>
+</div>       
+ 
+<div class="globel-border-top-color"></div>
+            <p-table [value]="termdeposits" dataKey="id" selectionMode="single" styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+            [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th></th>
+                        <th>{{'ERP.ACCOUNT_NUMBER' | translate}}</th>
+                        <th>{{'ERP.NAME' | translate}}</th>
+                        <th>{{'ERP.APPLICATION_TYPE' | translate}}</th>
+                        <th>{{'ERP.PRODUCT_NAME' | translate}}</th>
+                        <th>{{'ERP.OPERATION_TYPE' | translate}}</th>
+                        <th>{{'ERP.DEPOSIT_DATE' | translate}}</th>
+                        <th>{{'ERP.DEPOSIT_DATE_TILL_DATE' | translate}}</th>
+                        <th>{{'ERP.ROI_PA' | translate}}</th>
+                        <th>{{'ERP.APPLIED_FOR_LOAN' | translate}}</th>
+                        <th>{{'ERP.STATUS' | translate}}</th>
+                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-termdeposits>
+                    <tr>
+                        <td><img src="./../assets/images/photo.jpg" /></td>
+                        <td>{{ termdeposits.AccountNumber }}</td>
+                        <td>{{ termdeposits.Name }}</td>
+                        <td>{{ termdeposits.Applicationtype }}</td>
+                        <td>{{ termdeposits.ProductName }}</td>
+                        <td>{{ termdeposits.OperationType}}</td>
+                        <td>{{ termdeposits.DepositDate }}</td>
+                        <td>{{ termdeposits.DepositDateTillDate}}</td>
+                        <td>{{ termdeposits.ROI}}</td>
+                        <td>{{ termdeposits.AppliedForLoan}}</td>
+                        <td>{{ termdeposits.Status }}</td>
+    
+    
+                        <td>
+                            <div class="global-action-btn global-action-btn flex align-items-center justify-content-center">    
+                                <p-button label="{{'ERP.VIEW' | translate}}" (click)="view()" class="action-view"></p-button>
+                                <p-dropdown id="bunit_txt_status" class="action-operation" placeholder="operations" [filter]="true" [options]="operationslist" [(ngModel)]="operations"  (onChange)="navigateToOperations($event)" [appendTo]="'body'"></p-dropdown>   
+                              
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+</div>
+    

@@ -1,0 +1,226 @@
+<div class="col-12">
+  <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+    <div class="main-heading mt-1">{{'AGENTDETAILSCONFIG.WORK_FLOW' | translate}}</div>
+  </div>
+
+  <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+    <form [formGroup]="workFlowStepsForm">
+      <div class="col-12">
+        <div class="col-12">
+          <div class="col-12 global-border p-3">
+            <div class="row mt-n1">
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="username"><span class="red">*</span>{{'AGENTDETAILSCONFIG.WORK_FLOW_NAME' | translate}}
+                  </label>
+                  <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="name"
+                    [(ngModel)]="workFlowCategoryModel.name">
+                  <p-message severity="error" text="Enter Valid Name"
+                    *ngIf="!workFlowStepsForm.controls['name'].valid && workFlowStepsForm.controls['name'].dirty">
+                  </p-message>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="username">{{'AGENTDETAILSCONFIG.CODE' | translate}}
+                  </label>
+                  <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="code"
+                    [(ngModel)]="workFlowCategoryModel.code">
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="code"><span class="red">*</span>
+                    {{'AGENTDETAILSCONFIG.COMMON_CATEGORYS' | translate}}
+                  </label>
+                  <p-dropdown [options]="commonCategoryList" placeholder="Select" formControlName="cmncategory"
+                    [(ngModel)]="workFlowCategoryModel.categoryId"
+                    (onChange)="getCommonStatusByCategory($event)" [appendTo]="'body'"></p-dropdown>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="username">{{'AGENTDETAILSCONFIG.NO_OF_STEPS' | translate}}
+                  </label>
+                  <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="noOfSteps"
+                    [(ngModel)]="workFlowCategoryModel.noOfSteps">
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="code"><span class="red">*</span>
+                    {{'AGENTDETAILSCONFIG.EFFECTIVE_START_DATE' | translate}}
+                  </label>
+                  <p-calendar [showIcon]="true" formControlName="effStartDate" [yearNavigator]="true"
+                    yearRange="1970:2050" [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}"
+                    id="work_flow_start_date" [(ngModel)]="workFlowCategoryModel.effStartDateVal"
+                    [maxDate]="maxDate"></p-calendar>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                  <label for="code"><span class="red">*</span>
+                    {{'AGENTDETAILSCONFIG.EFFECTIVE_END_DATE' | translate}}
+                  </label>
+                  <p-calendar [showIcon]="true" formControlName="effEndDate" [monthNavigator]="true"
+                    [yearNavigator]="true" yearRange="1970:2050" [showIcon]="true"
+                    dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date"
+                    [(ngModel)]="workFlowCategoryModel.effEndDateVal" [minDate]="minDate"></p-calendar>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pt-4">
+                <div class="form-label">
+                  <p-checkbox [binary]="true" inputId="binary" formControlName="isExceptional"
+                    [(ngModel)]="workFlowCategoryModel.isExceptional"></p-checkbox>
+                  <span class="mt-2">&nbsp;&nbsp;{{'AGENTDETAILSCONFIG.EXCEPTIONAL' | translate}}</span>
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <p-button label="{{'AGENTDETAILSCONFIG.BACK' | translate}}" (click)="backToWorkFlowStep()"></p-button>
+                <p-button label="{{'AGENTDETAILSCONFIG.SUBMIT' | translate}}" id="bunit_bt_submit"
+                  [disabled]="!workFlowStepsForm.valid || buttonDisabled" (click)="addOrUpdate()"> </p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="col-12">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <div class="row justify-content-between py-2">
+              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div class="sub-heading mt-2">{{'AGENTDETAILSCONFIG.WORK_FLOW_STEPS' | translate}}</div>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div class="col-12 p-0 responsive-search">
+                  <div class="d-flex justify-content-end search-input-style">
+                    <div class="input-group search-box d-flex justify-content-end">
+                      <div class="search">
+                        <span class="p-input-icon-right">
+                          <i class="pi pi-search global-search-icon"></i>
+                          <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                          placeholder="Search" class="searchbox"
+                          #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                        </span>
+                      </div>
+                    </div>
+                    <p-button [disabled]=" addButtonDisabled " (click)="isAddButtonDiabled()" label="{{'ADD' | translate}}" icon="fa fa-plus" iconPos="left"
+                  id="payment_info_button_payment_add"></p-button>
+                    <!-- <button pButton type="button" label="{{'ADD' | translate}}"
+                      class="pull-right size-14 border-none h-2rem ml-3" id="payment_info_button_payment_add"
+                      icon="fa fa-plus" [disabled]=" addButtonDisabled " (click)="isAddButtonDiabled()"></button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form [formGroup]="projectTaskForm">
+              <div class="globel-border-top-color"></div>
+              <p-table #dt [columns]="workFlowColumns" [value]="workFlowList" dataKey="id" editMode="row" [paginator]="true"
+              [pageLinks]="1" [globalFilterFields]="['commonStatusName', 'activityName','prevStepName','statusName']" [responsive]="true" [rows]="5" styleClass="p-datatable-striped" [showJumpToPageDropdown]="true" [showPageLinks]="false">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th><span class="red">*</span>{{'AGENTDETAILSCONFIG.COMMON_STATUS' | translate}}</th>
+                  <th><span class="red">*</span>{{'AGENTDETAILSCONFIG.ACTOR' | translate}}</th>
+                  <th>{{'AGENTDETAILSCONFIG.PREV_STEP' | translate}}</th>
+                  <th><span class="red">*</span>{{'AGENTDETAILSCONFIG.STATUS' | translate}}</th>
+                  <th class="width-15em">{{'AGENTDETAILSCONFIG.ACTION' | translate}}</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                  <tr [pEditableRow]="row">
+                    
+                      <td>
+                        <p-cellEditor>
+                          <ng-template pTemplate="input">
+                            <p-dropdown [options]="commonStatusNameList"
+                              placeholder="{{'AGENTDETAILSCONFIG.SELECT' | translate}}" 
+                              [(ngModel)]="row.commonStatusId" formControlName="cmnStatusId" 
+                              (onChange)="checkDuplicatePreviousSteps(row.commonStatusId)" [appendTo]="'body'"
+                             ></p-dropdown>
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                            {{row.commonStatusName}}
+                          </ng-template>
+                        </p-cellEditor>
+                      </td>
+                      <td>
+                        <p-cellEditor>
+                          <ng-template pTemplate="input">
+                            <p-dropdown [options]="levelList" placeholder="{{'AGENTDETAILSCONFIG.SELECT' | translate}}"
+                              formControlName="level" [(ngModel)]="row.level" 
+                               id="edit_category_status_dropdown_category" [appendTo]="'body'"></p-dropdown>
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                            {{row.levelName}}
+                          </ng-template>
+                        </p-cellEditor>
+                   </td>
+                   <td>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown [options]="workFlowStepsList" placeholder="{{'AGENTDETAILSCONFIG.SELECT' | translate}}"
+                          formControlName="prevStepId" [(ngModel)]="row.previousStep" [appendTo]="'body'"
+                          ></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{row.prevStepName}}
+                      </ng-template>
+                    </p-cellEditor>
+                   </td>
+                   <td>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown [options]="statusList" id="edit_job_titles_status" 
+                        placeholder="{{'AGENTDETAILSCONFIG.SELECT' | translate}}"
+                          [(ngModel)]="row.isActive" formControlName="isActive" [appendTo]="'body'"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{row.statusName}}
+                      </ng-template>
+                    </p-cellEditor>
+                   </td>
+                   <td>
+                    <div class="global-action-btn flex align-items-center justify-content-center">
+                      <p-button *ngIf="editing" pSaveEditableRow  class="action-save" label="{{'AGENTDETAILSCONFIG.SAVE'|translate }}" [disabled]="!projectTaskForm.valid" (click)="saveWorkFlowProject(row)" id="prj_stakehlder_bt_cancel"></p-button>
+                      <p-button *ngIf="editing" pCancelEditableRow  class="action-cancel" label="{{'AGENTDETAILSCONFIG.CANCEL'|translate }}" (click)="cancelProjectRow(row)" id="prj_stakehlder_bt_cancel"></p-button>
+                      <p-button *ngIf="!editing" pInitEditableRow  class="action-edit" label="{{'AGENTDETAILSCONFIG.EDIT'|translate }}" [disabled]="btnEditDeleteDisable" (click)="editWorkFlowSteps(row)" id="prj_stakehlder_bt_edit"></p-button>
+                      <p-button *ngIf="!editing"  class="action-delete" label="{{'AGENTDETAILSCONFIG.DELETE'|translate }}" [disabled]="btnEditDeleteDisable" (click)="deleteWorkFlowSteps(row)" id="prj_stakehlder_bt_edit"></p-button>
+                    </div>
+                  </td>
+                  </tr>
+              </ng-template>
+           </p-table>
+            <div class="col-12 margtop-3rem"></div>
+          </form>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-12 flex justify-content-center workflow-chart p-3">
+              <p-organizationChart [value]="orgData" selectionMode="single" styleClass="ui-person">
+                <ng-template let-node pTemplate="ui-person">
+                  <div class="node-header p-corner-top">{{node.label}}</div>
+                  <div class="node-content">{{node.type}}</div>
+                </ng-template>
+              </p-organizationChart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-dialog [closable]="false" [(visible)]="requiredSkillPopup" [responsive]="true" styleClass="delete-popup">
+
+        <div class="col-12">
+            <i class="fa fa-times-circle text-center" aria-hidden="true"></i>
+        
+            <p class="text-center popup-header">{{'AGENTDETAILSCONFIG.ARE_YOU_SURE_TO_DELETE' | translate}}</p>
+            <p class="text-center pop-subheader">{{'AGENTDETAILSCONFIG.DO_YOU_REALLY_TO_DELETE_THESE_RECORDS' | translate}}</p>
+      
+        </div>
+        <div class="col-12 text-center p-2">
+                <p-button pRipple class="yes-button" label="{{'AGENTDETAILSCONFIG.DELETE' | translate}}" (click)="yesDeleteWorkFlowStep()"></p-button>
+                <p-button pRipple class="no-button" label="{{'AGENTDETAILSCONFIG.CANCEL' | translate}}" (click)="noDeleteWorkFlowStep()"></p-button>
+        </div>
+      </p-dialog>

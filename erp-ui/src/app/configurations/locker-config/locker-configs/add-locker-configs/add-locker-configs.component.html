@@ -1,0 +1,292 @@
+<div class="col-12">
+    <p-messages label="Info" life="4000" [(value)]="msgs"></p-messages>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 py-2">
+        <div class="main-heading mt-1">{{'LOCKERCONFIG.LOCKER_CONFIG' | translate}}</div>
+    </div>
+    <div class="col-12 bg-card bg-label-colorfull px-1 pb-0">
+        <form [formGroup]="lockerconfigform">
+            <div class="col-12">
+                <div class="col-12">
+                    <div class="row mt-n1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.LOCKER_TYPE' | translate}}
+                                </label>
+                            
+                            <p-dropdown [options]="lockerlist" formControlName="lockerType"
+                                [(ngModel)]="lockerConfigModel.lockerType" placeholder="Select"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.LOCKER_SIZE' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="lockerSize"
+                                [(ngModel)]="lockerConfigModel.lockerSize">
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.LOCKER_NO' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="lockerNumber"
+                                [(ngModel)]="lockerConfigModel.lockerNumber">
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.LOCKER_SERIAL_NO' | translate}}
+                                </label>
+                           
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="lockerSerialNumber"
+                                [(ngModel)]="lockerConfigModel.lockerSerialNumber">
+                              
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.KEY_NO' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="keyNumber"
+                                [(ngModel)]="lockerConfigModel.keyNumber">
+                           
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.KEY_SERIAL_NO' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="keySerialNumber"
+                                [(ngModel)]="lockerConfigModel.keySerialNumber">
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.LOCKER_RENT' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="lockerRent"
+                                [(ngModel)]="lockerConfigModel.lockerRent">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['lockerRent'].valid && lockerconfigform.controls['lockerRent'].dirty">
+                              </p-message>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    {{'LOCKERCONFIG.LATE_PAYMENT_PENALITY_TYPE' | translate}}
+                                </label>
+                           
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="latePaymentPenaltyType"
+                                [(ngModel)]="lockerConfigModel.latePaymentPenaltyType">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    {{'LOCKERCONFIG.RENT_PAYMENT_FREQUENCY' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="rentPaymentFrequency"
+                                [(ngModel)]="lockerConfigModel.rentPaymentFrequency">
+                           
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                   {{'LOCKERCONFIG.NO_OF_FREE_VISITS' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="noOfFreeVisits"
+                                [(ngModel)]="lockerConfigModel.noOfFreeVisits">
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                  {{'LOCKERCONFIG.EXTRA_VISIT_PAYMENT' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="extraVisitPayment"
+                                [(ngModel)]="lockerConfigModel.extraVisitPayment">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['extraVisitPayment'].valid && lockerconfigform.controls['extraVisitPayment'].dirty">
+                              </p-message>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    {{'LOCKERCONFIG.BROKEN_PERIOD' | translate}}
+                                </label>
+                           
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="brokenPeriodInMonths"
+                                [(ngModel)]="lockerConfigModel.brokenPeriodInMonths">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['brokenPeriodInMonths'].valid && lockerconfigform.controls['brokenPeriodInMonths'].dirty">
+                              </p-message>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                   {{'LOCKERCONFIG.BREAKING_CHARGES' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="breakingCharges"
+                                [(ngModel)]="lockerConfigModel.breakingCharges">
+                           
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                   {{'LOCKERCONFIG.NON_MAINTAINANCE_ALERT_DAYS' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="nonMaintainanceAlertDays"
+                                [(ngModel)]="lockerConfigModel.nonMaintainanceAlertDays">
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                   {{'LOCKERCONFIG.SURRENDER_CHARGES' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="surrenderCharges"
+                                [(ngModel)]="lockerConfigModel.surrenderCharges">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['surrenderCharges'].valid && lockerconfigform.controls['surrenderCharges'].dirty">
+                              </p-message>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pt-4">
+                            <div class="form-label">
+                            <p-checkbox [binary]="true" inputId="binary" formControlName="isSecurityRequired" (onChange)="onSelectCheckBox($event)" 
+                              [(ngModel)]="lockerConfigModel.isSecurityRequired"></p-checkbox>
+                            <span class="mt-2">&nbsp;&nbsp;{{'LOCKERCONFIG.IS_SECURITY_REQUIRED' | translate}}</span>
+                          </div>
+                          </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                    {{'LOCKERCONFIG.CGST' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="cgst"
+                                [(ngModel)]="lockerConfigModel.cgst">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['cgst'].valid && lockerconfigform.controls['cgst'].dirty">
+                              </p-message>
+                           
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                  {{'LOCKERCONFIG.SGST' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="sgst"
+                                [(ngModel)]="lockerConfigModel.sgst">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['sgst'].valid && lockerconfigform.controls['sgst'].dirty">
+                              </p-message>
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="username">
+                                   {{'LOCKERCONFIG.IGST' | translate}}
+                                </label>
+                            
+                            <input pInputText id="bunit_txt_name" maxlength="40" type="text" formControlName="igst"
+                                [(ngModel)]="lockerConfigModel.igst">
+                                <p-message severity="error" text="Enter Valid Numbers"
+                                *ngIf="!lockerconfigform.controls['igst'].valid && lockerconfigform.controls['igst'].dirty">
+                              </p-message>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                            <label for="code"><span class="red">*</span>
+                              {{'LOCKERCONFIG.EFFECTIVE_START_DATE' | translate}}
+                            </label>
+                            <p-calendar [showIcon]="true" formControlName="effectiveStartDate" [yearNavigator]="true" yearRange="1970:2050"
+                              [showIcon]="true" dateFormat="{{orgnizationSetting.calendar}}" id="work_flow_start_date"
+                              [(ngModel)]="lockerConfigModel.effectiveStartDate"></p-calendar>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="field-row">
+                                <label for="code">
+                                    {{'LOCKERCONFIG.DESCRIPTION' | translate}}
+                                </label>
+                            </div>
+
+                            <textarea type="text" class="form-control" pInputTextarea formControlName="description"
+                            [(ngModel)]="lockerConfigModel.description"  ></textarea>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-label">
+                                <label for="code">
+                                    <span class="red">*</span>{{'LOCKERCONFIG.STATUS' | translate}}
+                                </label>
+                            
+                            <p-dropdown [options]="statusList" formControlName="statusName"
+                                [(ngModel)]="lockerConfigModel.status" placeholder="Select"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-end">
+    <p-button label="{{'ERP.BACK' | translate}}" (click)="navigateToBack()"></p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!lockerconfigform.valid" *ngIf='!isEdit' (click)="addOrUpdate()"> </p-button>
+    <p-button label="{{'ERP.SUBMIT' | translate}}" [disabled]="!lockerconfigform.valid" *ngIf='isEdit' (click)="addOrUpdate()"> </p-button>
+</div>

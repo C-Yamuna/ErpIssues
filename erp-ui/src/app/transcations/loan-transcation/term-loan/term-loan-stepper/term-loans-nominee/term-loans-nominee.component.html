@@ -1,0 +1,202 @@
+<div class="col-12">
+
+    <h6 class="sub-heading">{{'ERP.NOMINEE_DETAILS' | translate}}</h6>
+
+        <div class="stepper-top-section-strip">
+            <div class="row ">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                    <span>{{'ERP.PRODUCT' | translate}} </span>
+                    <p class="mb-0">Term Loans</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                    <span>{{'ERP.APPLICATION_TYPE' | translate}}</span>
+                    <p class="mb-0">Single</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                    <span>{{'ERP.LOAN_ACCOUNT_NO' | translate}} </span>
+                    <p class="mb-0">634545450</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="form-group">
+                    <span>{{'ERP.REQUEST_AMOUNT' | translate}} </span>
+                    <p class="mb-0">30,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12"></div>
+                <form [formGroup]="guarantorform">
+                    <div class="col-12 p-0">
+                        <div class="col-12 p-0 bg-label-colorfull">
+                            <div class="row g-3">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="paymentMethod">{{'ERP.TYPE_OF_NOMINEE' | translate}}</label>
+                                    <p-dropdown id="typeofnominee" name="typeofnominee" [options]="typeofnomineeoptions"
+                                    [(ngModel)]="selectetypeofnominee" (onChange)="togglenomineeForm($event)"
+                                    optionLabel="label" placeholder="{{'ERP.SELECT' | translate}}"></p-dropdown>
+
+        
+                        </div>
+                     
+                    </div>
+                    
+                <div class="row" *ngIf="shownewnomineeform">
+                    <div class="col-12 mt-4 py-0">
+                        <h6 class="sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-12 global-border p-3">
+                        <div class="row  g-3 mt-n1">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.RELATIONSHIP_TYPE' | translate}}
+                                    </label>
+                                <p-dropdown [options]="relationshiptype" optionLabel="status" placeholder="Select"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.NOMINEE_NAME' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename"
+                                        name="nomineename" placeholder="Enter Name">
+                                </div>
+                            </div>
+                        
+                            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.AADHAR_NUMBER' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename"
+                                        name="nomineename" placeholder="Enter Aadhar Number">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.MOBILE_NUMBER' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename"
+                                        name="nomineename" placeholder="Enter Mobile Number">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.EMAIL' | translate}}
+                                    </label>
+                                    <input type="text" class="form-control" id="nomineename"
+                                        name="nomineename" placeholder="Enter Email">
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="showmembernominee">
+                    <div class="col-12 mt-4 py-0">
+                        <h6 class="sub-heading">Same as Membership Nominee</h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-12 global-border p-3">
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 pr-3 mt-3">
+                                    <div class="row g-3 mt-n1">
+            
+                                        <div class="col-xl-6 col-lg-12 col-md-6 col-sm-6 min-h-50px">
+                                            <h6 class="label-view">{{'ERP.RELATIONSHIP_TYPE' | translate}}</h6>
+                                            <p class="label-input-text">Wife</p>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-12 col-md-6 col-sm-6 min-h-50px">
+                                            <h6 class="label-view">{{'ERP.FULL_NAME' | translate}}</h6>
+                                            <p class="label-input-text">Ramani</p>
+                                        </div>
+            
+                                        <div class="col-xl-6 col-lg-12 col-md-6 col-sm-6 min-h-50px">
+                                            <h6 class="label-view">{{'ERP.MOBILE_NUMBER' | translate}}</h6>
+                                            <p class="label-input-text">567890543216</p>
+                                        </div>
+            
+                                        <div class="col-xl-6 col-lg-12 col-md-6 col-sm-6 min-h-50px">
+                                            <h6 class="label-view">{{'ERP.EMAIL' | translate}}</h6>
+                                            <p class="label-input-text">diff@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="global-border text-center bg-white">
+                                                <div class="col-12 upload-box">
+                                                    <img src="assets/images/pdf.png" class="uploaded-img" pTooltip="Download" tooltipPosition="top">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="shownonomineeform">
+                    <div class="col-12 mt-4 py-0">
+                        <h6 class="sub-heading">{{'ERP.REQUIRED_DETAILS' | translate}}</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 global-border p-3">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="mt-2 form-label">
+                                    <p-button icon="fa fa-download p-2" label="unsigned letter format" class="kyc-btnm-0"></p-button>
+
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-label">
+                                    <span>{{ 'ERP.UPLOAD_SIGNED_COPY' | translate }}</span>
+                                <div class="uplodad-style align-items-center">
+                                <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="demo[]" chooseLabel=" " url="https://www.primefaces.org/cdn/api/upload.php"
+                                accept="image/*" [auto]="true"
+                                [customUpload]="true" formContralName="fileUpload"></p-fileUpload>
+                                <div class="col-12 d-flex p-1 contant-body">
+                                    <div class="docname-texteclipse ml-3" pTooltip="File"
+                                                tooltipPosition="bottom">
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-label">
+                                    <label for="code">
+                                        {{'ERP.REMARKS' | translate}}
+                                    </label>
+                                    <textarea type="text" class="form-control" id="narration" name="narration"  pInputTextarea placeholder="Enter Remarks Here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </form>
+
+
+    </div>

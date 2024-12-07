@@ -1,0 +1,159 @@
+<div class="col-12">
+    <div class="row">
+        <div class="d-flex justify-content-between top-header-section">
+            <div class="main-heading mt-1 justify-content-start">{{'BORROWINGSTRANSACTIONS.SAO_PRODUCT_DEFINATION' | translate}}</div>
+        </div>
+        <div class="col-12">
+            <div class="row g-3">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-12 productsummary-card p-3">
+                        <div class="row">
+                            <div class="col-8 d-inline-flex">
+                                <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                                <p class="label-name">{{'BORROWINGSTRANSACTIONS.NO_OF_PRODUCTS' | translate}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="label-value">01</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="col-12 productsummary-card p-3">
+                    <div class="row">
+                        <div class="col-8 d-inline-flex">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                            <p class="label-name">{{'BORROWINGSTRANSACTIONS.APPROVED' | translate}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="label-value">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="col-12 productsummary-card p-3">
+                <div class="row">
+                    <div class="col-8 d-inline-flex">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <p class="label-name">{{'BORROWINGSTRANSACTIONS.REJECTED' | translate}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="label-value">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="col-12 productsummary-card p-3">
+                    <div class="row">
+                        <div class="col-8 d-inline-flex">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <p class="label-name">{{'BORROWINGSTRANSACTIONS.PENDING' | translate}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="label-value">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+<div class="col-12 px-0">
+    <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-12 p-0 pb-1 filter-button">
+                <p-button icon="pi pi-filter" label="SEARCH FILTER" (click)="onChange()"></p-button>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-12 p-0">
+                <div class="d-flex justify-content-end search-input-style">
+                    <div class="input-group search-box d-flex justify-content-end">
+                        <div class="search">
+                            <span class="p-input-icon-right">
+                                <i class="pi pi-search global-search-icon"></i>
+                              
+                                <input autocomplete="off" type="text" id="skill_category_txt_search" pInputText
+                                placeholder="Search" class="searchbox"
+                                #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')">
+                            </span>
+                        </div>
+                    </div>
+                    <p-button icon="pi pi-plus" label="ADD" (click)="addsaoproductdefinition()"></p-button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 p-0" *ngIf="showForm">
+            <div class="col-12 offset-xl-2 offset-lg-2 offset-md-0 offset-sm-0 offset-xs-0 global-border search-filter-open">
+                <div class="row p-2 pt-0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.PRODUCT_NAME' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.RATE_OF_INTEREST' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-label">
+                            <label for="username">{{'BORROWINGSTRANSACTIONS.EFFECTIVE_START_DATE' | translate}}
+                            </label>
+                        <input pInputText id="bunit_txt_name" maxlength="40" type="text">
+                        </div>
+                    </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-end pt-3">
+                    <p-button label="Apply"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="globel-border-top-color"></div>
+        <p-table [value]="gridListData" #dt [columns]="saoBorrowingproductdefinition" dataKey="id" selectionMode="single"
+        styleClass="p-datatable-striped" [rows]="5" [paginator]="true" [showJumpToPageDropdown]="true"
+        [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{'BORROWINGSTRANSACTIONS.PRODUCT_NAME' | translate}}</th>
+                <th>{{'BORROWINGSTRANSACTIONS.RATE_OF_INTEREST' | translate}}</th>
+                <th>{{'BORROWINGSTRANSACTIONS.MINIMUM_AMOUNT' | translate}}</th>
+                <th>{{'BORROWINGSTRANSACTIONS.MAXIMUM_AMOUNT' | translate}}</th>
+                <th>{{'BORROWINGSTRANSACTIONS.EFFECTIVE_START_DATE' | translate}}</th>
+                <th>{{'BORROWINGSTRANSACTIONS.STATUS' | translate}}</th>
+                <th class="width-15em">{{'BORROWINGSTRANSACTIONS.ACTION' | translate}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-membership>
+            <tr [pSelectableRow]="rowData">
+                <td><span class="account-number-style" (click)="editsaoproductdefinition(rowData)">{{rowData.name}} </span></td>
+                <td></td>
+                <td class="viewcustom-input-number">
+                    <p-inputNumber id="bunit_txt_name" [(ngModel)]="rowData.minAmount" mode="currency" 
+                    inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true"> </p-inputNumber>
+                </td>
+                <td class="viewcustom-input-number">
+                    <p-inputNumber id="bunit_txt_name" [(ngModel)]="rowData.maxAmount" mode="currency" 
+                    inputId="currency-india" currency="INR" locale="en-IN" [disabled]="true"> </p-inputNumber>
+                </td>
+                <td>{{rowData.effectiveStartDate}}</td>
+                <td>{{rowData.statusName}}</td>
+                <td>
+                    <div class="global-action-btn flex align-items-center justify-content-center">
+                        <p-button id="skill_category_btn_edit" (click)="viewsaoproductdefinition(rowData)" label="{{'BORROWINGSTRANSACTIONS.VIEW' | translate}}" class="action-view"></p-button> 
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </div>

@@ -1,0 +1,83 @@
+<div class="field grid">
+    <div class="col-12">
+        <div class="p-2">
+            <p-card>
+                <div class="card m-0">
+                    <div class="field grid p-2 m-0">
+                        <div class="col-3">
+                            <span>{{'AGENT_DETAILS_TRANSACTION.AGENT_TYPE' | translate}}</span>
+                            <p class="m-0 font-semibold text-break">{{agentDetailsModel.agentType}}</p>
+                        </div>
+                        <div class="col-3">
+                            <span>{{'AGENT_DETAILS_TRANSACTION.NAME' | translate}}</span>
+                            <p class="font-semibold text-break">{{agentDetailsModel.name}}</p>
+                        </div>
+                        <div class="col-3">
+                            <span>{{'AGENT_DETAILS_TRANSACTION.CONTACT' | translate}}</span>
+                            <p class="font-semibold text-break">500</p>
+                        </div>
+                        <div class="col-3">
+                            <span>{{'AGENT_DETAILS_TRANSACTION.VILLAGE' | translate}}</span>
+                            <p class="font-semibold text-break"></p>
+                        </div>
+                    </div>
+                </div>
+                <form [formGroup]="kycForm" id="exit_types_form">
+                    <h6 class=" text-warning pt-2">{{'AGENT_DETAILS_TRANSACTION.KYC' | translate}}</h6>
+                    <div class="col-12 field grid">
+                        <div class="col-3 card m-2 p-2">
+                            <div class="field grid m-0">
+                                <div class="col-6" >
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.DOCUMENT_TYPE' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                </div>
+                                <div class="col-6" >
+                                    <span class="text-success float-end"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                                </div>
+                            </div>    
+                            <div class="field grid m-0">
+                                <div class="col-6" >
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.DOCUMENT_NUMBER' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.NAME_AS_PER_DOCUMENT' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                </div>
+                                <div class="card-border border col-6 p-0" >
+                                    <div calss="m-0">
+                                        <h6 class="m-0 p-2 text-center bg-primary">{{'AGENT_DETAILS_TRANSACTION.AADHAR' | translate}}</h6>
+                                        <img class="card-image" src="assets/images/aadhar-card.png" alt=""/>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-3 card m-2 p-2">
+                            <div class="field grid m-0">
+                                <div class="col-6" >
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.DOCUMENT_TYPE' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                </div>
+                                <div class="col-6" >
+                                    <span class="text-success float-end"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                                </div>
+                            </div>    
+                            <div class="field grid m-0">
+                                <div class="col-6" >
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.DOCUMENT_TYPE' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                    <span>{{'AGENT_DETAILS_TRANSACTION.NAME_AS_PER_DOCUMENT' | translate}}</span>
+                                    <p class="font-semibold text-break">_ _</p>
+                                </div>
+                                <div class="card-border border col-6 p-0" >
+                                    <div calss="m-0">
+                                        <h6 class="m-0 p-2 text-center bg-primary">{{'AGENT_DETAILS_TRANSACTION.PAN' | translate}}</h6>
+                                        <img class="card-image" src="assets/images/aadhar-card.png" alt=""/>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>            
+                </form>
+            </p-card>
+        </div>
+    </div>
+</div>

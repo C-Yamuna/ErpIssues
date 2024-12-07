@@ -1,0 +1,165 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="col-12">
+    <div class="row">
+    <div class="d-flex justify-content-between top-header-section">
+        <div class="main-heading mt-1 justify-content-start">{{'ERP.COMPOUND_INTEREST_LOANS' | translate}}</div>
+        <div class="justify-content-end view-popup-top">
+            <p-button label="{{'ERP.DISBURSEMENTS' | translate}}" [outlined]="true" badge="2"
+                class="top-badge-btn btn-outline-0"></p-button>
+            <p-button label="{{'ERP.COLLECTIONS' | translate}}" [outlined]="true" badge="2"
+                class="top-badge-btn btn-outline-0"></p-button>
+        </div>
+    </div>
+    <div class="col-12 summary-carousel ">
+        <div class="main-summary">
+            <span class="box-text-summary">Summary</span>
+        </div>
+    </div>
+    
+    <!-- <div class="card">
+        <p-tabMenu [scrollable]="true" [model]="items" [activeItem]="activeItem"></p-tabMenu>
+    </div> -->
+    
+    
+    <!-- <div class="card">
+        <p-tabMenu [model]="items" [activeItem]="activeItem" [scrollable]="true" >
+            <ng-template pTemplate="item" let-item>
+                <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+                    <div>
+                        <span> {{ item.label }}</span>
+                        <span> {{ item.value }}</span>
+                        <p-progressBar [value]="value"></p-progressBar>
+    
+                    </div>
+               
+                </a>
+            </ng-template>
+        </p-tabMenu>
+    </div> -->
+    
+    
+    <div class="col-12">
+        <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-12 p-0 filter-button">
+            <p-button icon="pi pi-filter" label="SEARCH FILTER" (click)="onChange()"></p-button>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-12 p-0">
+    <div class="d-flex justify-content-end search-input-style">
+        <div class="input-group search-box d-flex justify-content-end">
+            <div class="search">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search global-search-icon"></i>
+                    <input type="text" pInputText class="searchbox" placeholder="Search" />
+                </span>
+            </div>
+        </div>
+        <p-button label="create account" (click)="createaccount()" icon="fa fa-plus"></p-button>
+        <!-- <div class="d-flex">
+
+            <p-dropdown id="bunit_txt_status" placeholder="NEW LOAN" [filter]="true"
+                [options]="loanslist" [(ngModel)]="newdepositer" (onChange)="navigateToNewLoans($event)"></p-dropdown>
+        </div> -->
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-12 p-0" *ngIf="showForm">
+    <div class="col-12 global-border search-filter-open">
+          <div class="row p-2 pt-0">
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-label">
+                      <label for="username">{{'MEMBERSHIP_TRANSACTION.MEMBER_TYPE' | translate}}
+                      </label>
+                      <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Member Type">
+                    </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-label">
+                      <label for="username">{{'MEMBERSHIP_TRANSACTION.NAME' | translate}}
+                      </label>
+                      <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Name">
+                    </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-label">
+                      <label for="username">{{'MEMBERSHIP_TRANSACTION.AADHAR_NUMBER' | translate}}
+                      </label>
+                      <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Aadhar Number">
+                    </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-label">
+                    <label for="username">{{'MEMBERSHIP_TRANSACTION.PAN_NUMBER' | translate}}
+                    </label>
+                    <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter PAN Number">
+                  </div>
+            </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-label">
+                      <label for="username">{{'MEMBERSHIP_TRANSACTION.MOBILE_NUMBER' | translate}}
+                      </label>
+                      <input pInputText id="bunit_txt_name" maxlength="40" type="text" placeholder="Enter Mobile Number">
+                    </div>
+              </div>
+              <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-end pt-3 pr-2">
+                  <p-button label="Apply" (click)="onChange()"></p-button>
+              </div>
+          </div>
+      </div>
+  </div>
+    <div class="globel-border-top-color"></div>
+            <p-table [columns]= "loans" [value]="gridList" dataKey="id" selectionMode="single" styleClass="p-datatable-striped" [rows]="5"
+                [paginator]="true" [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1" [responsive]="true" rowExpandMode="single">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of loans">
+                            {{col.header | translate}}
+                        </th>
+                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-gridList let-expanded="expanded" let-rowData>
+                    <tr>
+                        <td>
+                            <div class="d-block">
+                            <!-- <span class="status-circle"></span> -->
+                            <span> <img class="table-circle-image" src="assets/images/avata2r-table.png" /></span>
+                            <span class="account-number-style">1414148752</span>
+                        </div>
+                    </td>
+                        <td *ngFor="let col of loans">
+                            {{rowData[col.field]}}
+                        </td>
+    
+    
+                        <td>
+                            <div class="global-action-btn flex align-items-center justify-content-center">    
+                                <p-button label="Edit" (click)="edit()" class="action-edit"></p-button>
+                                <p-button label="View" (click)="view(rowData)" class="action-view"></p-button>
+                                <p-dropdown id="bunit_txt_status" class="action-operation" placeholder="operations"
+                                [filter]="true" [options]="operationslist" [(ngModel)]="operations"  (onChange)="navigateToOperations($event)" [appendTo]="'body'"></p-dropdown>   
+                              
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <div class="status-counts">
+       
+                <span class="active-div">
+                    <span class="status-circle active"></span>ACTIVE : {{ activeStatusCount }}
+                </span>
+                <span class="inactive-div">
+                    <span class="status-circle inactive"></span>INACTIVE: {{ inactiveStatusCount }}
+                </span>
+            
+          
+            </div>
+            <div class="col-12 margtop-3rem"></div>
+</div>    

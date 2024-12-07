@@ -1,0 +1,115 @@
+<div class="col-12">
+    <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"></p-messages>
+    <h6 class="sub-heading">{{'TERMDEPOSITSTRANSACTION.KYC' | translate}}<span class="admission-text">(Admission
+            number:&nbsp;{{admissionNumber}})</span></h6>
+
+    <form [formGroup]="kycForm" id="exit_types_form">
+        <div class="col-12 px-0">
+        <div class="col-12 p-0 pt-2">
+            <div class="row g-3">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12"
+                    *ngFor="let document of rdKycModelList ; let i = index">
+                    <div class="stepper-kyc-card p-3 mb-2" *ngIf="editIndex != i || editDocumentOfKycFalg">
+                        <!-- view card -->
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6 d-flex align-items-center">
+                                <div class="card-leftbody">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{ 'TERMDEPOSITSTRANSACTION.DOCUMENT_TYPE' | translate }}</h6>
+                                        <p class="label-input-text">{{document.kycDocumentTypeName}}</p>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{'TERMDEPOSITSTRANSACTION.DOCUMENT_NUMBER' | translate }}</h6>
+                                        <p class="label-input-text">{{document.documentNumber}}</p>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 min-h-50px">
+                                        <h6 class="label-view">{{ 'TERMDEPOSITSTRANSACTION.UPLOAD_DOCUMENT' | translate }}</h6>
+                                        <p class="label-input-text docname-texteclipse" pTooltip="{{document.kycFilePath}}"
+                                            tooltipPosition="bottom">{{document.kycFilePath}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6 justify-content-end">
+                                <div class="text-right">
+                                    <p-button icon="fa fa-pencil-square-o" class="kyc-edit-btn"
+                                        (click)="toggleEditForm(i ,document)" [disabled]="editButtonDisable"></p-button>
+                                </div>
+
+                                <div class="col-12 px-0">
+                                    <div class="col-12 px-0" *ngFor="let img of document.multipartFileList">
+                                        <div class="col-12 p-0"
+                                            *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                            <a href="{{img.imageValue}}">
+                                                <img src="{{img.imageValue}}" class="upload-img img-fluid" pTooltip="Download" tooltipPosition="top">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit form -->
+                    <div class="col-12 global-border bg-label-colorfull p-3"
+                        *ngIf="editIndex === i  && !editDocumentOfKycFalg">
+                        <div class="row g-3 mt-n1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{ 'TERMDEPOSITSTRANSACTION.DOCUMENT_TYPE' | translate }}</label>
+                                    <p-dropdown placeholder="{{'TERMDEPOSITSTRANSACTION.SELECT'| translate}}" formControlName="kycDocumentTypeName"
+                                        [options]="documentNameList" id="docTypeId"
+                                        [(ngModel)]=" rdKycModel.kycDocumentTypeId"
+                                        (onChange)="rdKycModelDuplicateCheck(rdKycModel.kycDocumentTypeId)">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                    <label><span class="red">*</span>{{'TERMDEPOSITSTRANSACTION.DOCUMENT_NUMBER' | translate }}</label>
+                                    <input id="documentNumber" type="text" formControlName="docNumber"
+                                        [(ngModel)]=" rdKycModel.documentNumber" pInputText
+                                        placeholder="Enter Document Number">
+                                    <p-message severity="error" text="Enter Valid Doc Number"
+                                        *ngIf="!kycForm.controls['docNumber'].valid && kycForm.controls['docNumber'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-label">
+                                <span class="">{{ 'TERMDEPOSITSTRANSACTION.UPLOAD_DOCUMENT' | translate }} </span>
+                                <div class="uplodad-style align-items-center">
+                                    <!-- Upload Button Column -->
+
+                                    <p-fileUpload #fileUpload class="qua-upld file-attach semi-bold" name="myfile[]"
+                                        chooseLabel=" " id="apply-leave_fileUp_attach" name="file"
+                                        accept=".png,.jpg,.jpeg,.pdf" [customUpload]="true" (onRemove)="fileRemoveEvent()"
+                                        (onSelect)="imageUploader($event,fileUpload)"
+                                       >
+                                    </p-fileUpload>
+                                    <div class="col-12  d-flex p-1 contant-body" *ngFor="let img of rdKycModel.multipartFileList">
+                                        <div *ngIf="img.fileType=='jpg' || img.fileType=='jpeg' || img.fileType=='png'">
+                                            <a href="{{img.imageValue}}"> <img src="{{img.imageValue}}" width="22" height="22"></a>
+                                        </div>
+                                        <div class="docname-texteclipse ml-3" pTooltip="{{img.fileName}}" tooltipPosition="bottom">
+                                            {{img.fileName}}</div>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <div class="justify-content-end d-flex">
+                                    <p-button label="{{'cancle' | translate}}" (onClick)="editCancle()"></p-button>
+                                    <p-button label="{{'save' | translate}}" [disabled]="!kycForm.valid"
+                                        (onClick)="editsave( rdKycModel)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>

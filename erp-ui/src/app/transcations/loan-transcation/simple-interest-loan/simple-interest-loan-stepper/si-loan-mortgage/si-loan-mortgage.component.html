@@ -1,0 +1,840 @@
+        <div class="col-12">
+            <!-- <p-card class="m-4"> -->
+            <h6 class="sub-heading">{{'ERP.MORTGAGE_DETAILS' | translate}}</h6>
+            <p-messages label="Info" life="3000" [(value)]="msgs" [showTransitionOptions]="'500ms'"
+                [hideTransitionOptions]="'500ms'"></p-messages>
+                <div class="stepper-top-section-strip">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <span>{{'ERP.PRODUCT_NAME' | translate}}</span>
+                                <p class="mb-0">{{productName}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <span>{{'ERP.ACCOUNT_TYPE' | translate}}</span>
+                                <p class="mb-0">{{accountType}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <span>{{'ERP.MIN_BALANCE' | translate}}</span>
+                                <p class="mb-0">{{minBalence}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <span>{{'ERP.ACCOUNT_OPENING_DATE' | translate}}</span>
+                                <p class="mb-0">{{accountOpeningDateVal}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-12"></div>
+                <!-- <form [formGroup]="collateralForm"> -->
+                    <div class="col-12 p-0">
+                        <div class="col-12 p-0 bg-label-colorfull">
+                            <div class="row g-3">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-label">
+                                   <label> {{'ERP.COLLATERAL_TYPE' | translate}}</label>
+                            <p-dropdown id="collateraltype" placeholder="{{'ERP.SELECT' | translate}}"
+                                [options]="collateraltypeOptionsList" [(ngModel)]="collateralType"
+                                (onChange)="onChange($event.value)"
+                                [disabled]="(siLoanApplicationModel.collateralType != undefined && siLoanApplicationModel.collateralType != null) || (addButtonService)">
+                            </p-dropdown>
+                            <!-- <p-dropdown *ngIf="isEdit" id="collateraltype" placeholder="{{'erp.SELECT' | translate}}"
+                                [options]="collateraltypeOptionsList" [(ngModel)]="collateralType"
+                                (onChange)="onChange($event.value)" [disabled]="true">
+                            </p-dropdown> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <!-- </form> -->
+
+                <!-- GOLD Form -->
+                <div *ngIf="showGoldform">
+                        <form [formGroup]="siGoldMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button (click)="addGoldLoanMortgage()" label="{{ 'ADD' | translate }}"
+                                                icon="fa fa-plus" iconPos="left" [disabled]="addButtonService"
+                                                id="bunit_bt_submit"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #gold [value]="siGoldLoanMortgageList" dataKey="id" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['itemName', 'netWeight', 'grossWeight', 'carats', 'value', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.ITEM_NAME' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.NET_WEIGHT_IN_GRAMS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.GROSS_WEIGHT_IN_GRAMS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.CARATS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.VALUE' | translate}}</th>
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="itemName"
+                                                        [(ngModel)]="row.itemName">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.itemName}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="netWeight"
+                                                        [(ngModel)]="row.netWeight">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.netWeight}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="grossWeight"
+                                                        [(ngModel)]="row.grossWeight">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.grossWeight}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}"
+                                                        formControlName="carats" [options]="carratsList" id="carats"
+                                                        [(ngModel)]="row.carats" [appendTo]="'body'">
+                                                    </p-dropdown>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">
+                                                    {{row.carats}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="value"
+                                                        [(ngModel)]="row.value">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.value}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="remarks"
+                                                        [(ngModel)]="row.remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+
+                                        <td>
+                                            <div class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siGoldMortgageForm.valid"
+                                                    (click)="saveGoldLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelGoldLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editGoldLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable" (click)="deleteGoldLoanMortgage(row)"
+                                                    id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                </div>
+
+                <!-- LAND Form -->
+                <div *ngIf="showLandform">
+                        <form [formGroup]="siLandMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button type="submit" (click)="addLandLoanMortgage()" label="Add"
+                                                icon="fa fa-plus" iconPos="left" id="add_btn"
+                                                [disabled]="addButtonService"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #land [value]="siLandLoanMortgageList" dataKey="uniqueId" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['passbookNumber', 'surveyNo', 'landUnits', 'landSubUnits', 'value', 'declaredLandUnits', 'declaredLandSubUnits', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.PASSBOOK_NUMBER' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.SURVEY_NO' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.LAND_TYPE' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.LAND_IN_UNITS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.LAND_IN_SUB_UNITS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.VALUE' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.DECLARED_LAND_IN_UNITS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.DECLARED_LAND_IN_SUB_UNITS' | translate}}
+                                        </th>
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.passbookNumber"
+                                                        formControlName="passbookNumber">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.passbookNumber}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.surveyNo"
+                                                        formControlName="surveyNo">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.surveyNo}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <p-dropdown placeholder="{{'ERP.SELECT'| translate}}"
+                                                        formControlName="landType" [options]="landTypesList"
+                                                        id="landType" [(ngModel)]="row.landType" [appendTo]="'body'"
+                                                        >
+                                                    </p-dropdown>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">
+                                                    {{row.landType}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.landUnits"
+                                                        formControlName="landUnits">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.landUnits}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.landSubUnits"
+                                                        formControlName="landSubUnits">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.landSubUnits}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.value"
+                                                        formControlName="value">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.value}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.declaredLandUnits"
+                                                        formControlName="declaredLandUnits">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.declaredLandUnits}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.declaredLandSubUnits"
+                                                        formControlName="declaredLandSubUnits">
+                                                </ng-template>
+                                                <ng-template
+                                                    pTemplate="output">{{row.declaredLandSubUnits}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.remarks"
+                                                        formControlName="remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+
+                                        <td>
+                                            <div
+                                                class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siLandMortgageForm.valid"
+                                                    (click)="saveLandLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelLandLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editLandLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable" (click)="deleteLandLoanMortgage(row)"
+                                                    id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                    </div>
+
+                <!-- BOND Form -->
+                <div *ngIf="showBondform">
+                        <form [formGroup]="siBondMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button type="submit" (click)="addBondLoanMortgage()" label="Add"
+                                                icon="fa fa-plus" iconPos="left" id="add_btn"
+                                                [disabled]="addButtonService"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #bond [value]="siBondLoanMortgageList" dataKey="uniqueId" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['bondNumber', 'faceValue', 'surrenderValue', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.BOND_NO' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.FACE_VALUE' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.SURRENDER_VALUE' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.MATURITY_DATE' | translate}}</th>
+                                        <!-- <th><span class="red">*</span>{{'ERP.UPLOAD' | translate}}</th> -->
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.bondNumber"
+                                                        formControlName="bondNumber">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.bondNumber}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.faceValue"
+                                                        formControlName="faceValue">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.faceValue}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.surrenderValue"
+                                                        formControlName="surrenderValue">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.surrenderValue}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <p-calendar formControlName="maturityDate" [showIcon]="true"
+                                                        dateFormat="{{orgnizationSetting.calendar}}"
+                                                        [(ngModel)]="row.maturityDateVal" [appendTo]="'body'">
+                                                    </p-calendar>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.maturityDateVal}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" formControlName="remarks"
+                                                        [(ngModel)]="row.remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siBondMortgageForm.valid"
+                                                    (click)="saveBondLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelBondLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editBondLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable" (click)="deleteBondLoanMortgage(row)"
+                                                    id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                </div>
+
+                <!-- VEHICLE Form -->
+                <div *ngIf="showVehicleform">
+                        <form [formGroup]="siVehicleMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button type="submit" (click)="addVehicleLoanMortgage()" label="Add"
+                                                icon="fa fa-plus" iconPos="left" id="add_btn"
+                                                [disabled]="addButtonService"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #vehicle [value]="siVehicleLoanMortgageList" dataKey="uniqueId" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['vechileName', 'rcNumber', 'value', 'brand', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.VEHICLE_NAME' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.RC_NUMBER' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.VALUE' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.BRAND' | translate}}</th>
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.vechileName"
+                                                        formControlName="vechileName">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.vechileName}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.rcNumber"
+                                                        formControlName="rcNumber">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.rcNumber}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.value"
+                                                        formControlName="value">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.value}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.brand"
+                                                        formControlName="brand">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.brand}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.remarks"
+                                                        formControlName="remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+
+                                        <td>
+                                            <div
+                                                class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siVehicleMortgageForm.valid"
+                                                    (click)="saveVehicleLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelVehicleLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editVehicleLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable"
+                                                    (click)="deleteVehicleLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                </div>
+
+                <!-- STORAGE Form -->
+                <div *ngIf="showStorageform">
+                        <form [formGroup]="siStorageMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button type="submit" (click)="addStorageLoanMortgage()" label="Add"
+                                                icon="fa fa-plus" iconPos="left" id="add_btn"
+                                                [disabled]="addButtonService"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #storage [value]="siStorageLoanMortgageList" dataKey="uniqueId" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['name', 'quantity', 'totalWeight', 'netWeight', 'value', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.NAME' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.QUANTITY_IN_TONS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.TOTAL_WEIGHT_IN_KILOGRAMS' | translate}}
+                                        </th>
+                                        <th><span class="red">*</span>{{'ERP.NET_WEIGHT_IN_GRAMS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.VALUE' | translate}}</th>
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.name"
+                                                        formControlName="name">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.name}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.quantity"
+                                                        formControlName="quantity">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.quantity}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.totalWeight"
+                                                        formControlName="totalWeight">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.totalWeight}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.netWeight"
+                                                        formControlName="netWeight">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.netWeight}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.value"
+                                                        formControlName="value">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.value}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.remarks"
+                                                        formControlName="remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siStorageMortgageForm.valid"
+                                                    (click)="saveStorageLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelStorageLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editStorageLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable"
+                                                    (click)="deleteStorageLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                </div>
+
+                <!-- OTHER Form -->
+                <div *ngIf="showOtherform">
+                        <form [formGroup]="siOtherMortgageForm" id="proj_stakeholder_form">
+                            <div class="flex justify-content-between">
+                                <div class="xl:col-5 lg:col-5 md:col-12 sm:col-12 pl-0">
+                                </div>
+                                <div class="xl:col-7 lg:col-7 md:col-12 sm:col-12 pr-0">
+                                    <div class="col-12 p-0">
+                                        <div class="d-flex justify-content-end search-input-style">
+                                            <div class="input-group search-box d-flex justify-content-end">
+                                                <div class="search">
+                                                    <span class="p-input-icon-right">
+                                                        <i class="pi pi-search global-search-icon"></i>
+                                                        <input type="text" pInputText class="searchbox"
+                                                            placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p-button type="submit" (click)="addOtherLoanMortgage()" label="Add"
+                                                icon="fa fa-plus" iconPos="left" id="add_btn"
+                                                [disabled]="addButtonService"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="globel-border-top-color"></div>
+
+                            <p-table #other [value]="siOtherLoanMortgageList" dataKey="uniqueId" editMode="row"
+                                styleClass="p-datatable-striped" [rows]="5" [paginator]="true"
+                                [showJumpToPageDropdown]="true" [showPageLinks]="false" [pageLinks]="1"
+                                [responsive]="true" rowExpandMode="single"
+                                [globalFilterFields]="['name', 'noOfUnits', 'value', 'remarks']">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th><span class="red">*</span>{{'ERP.NAME' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.NO_OF_UNITS' | translate}}</th>
+                                        <th><span class="red">*</span>{{'ERP.VALUE' | translate}}</th>
+                                        <th>{{'ERP.REMARKS' | translate}}</th>
+                                        <th class="width-15em">{{'ERP.ACTION' | translate}}</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex">
+                                    <tr [pEditableRow]="row">
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.name"
+                                                        formControlName="name">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.name}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.noOfUnits"
+                                                        formControlName="noOfUnits">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.noOfUnits}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.value"
+                                                        formControlName="value">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.value}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" [(ngModel)]="row.remarks"
+                                                        formControlName="remarks">
+                                                </ng-template>
+                                                <ng-template pTemplate="output">{{row.remarks}}</ng-template>
+                                            </p-cellEditor>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="global-action-btn flex align-items-center justify-content-center">
+                                                <p-button label="{{'ERP.SAVE'|translate }}" *ngIf="editing"
+                                                    [disabled]="!siOtherMortgageForm.valid"
+                                                    (click)="saveOtherLoanMortgage(row)" pSaveEditableRow
+                                                    id="prj_stakehlder_bt_cancel" class="action-save">
+                                                </p-button>
+                                                <p-button label="{{'ERP.CANCEL'|translate }}" *ngIf="editing"
+                                                    pCancelEditableRow id="prj_stakehlder_bt_cancel"
+                                                    class="action-cancel" (click)="cancelOtherLoanMortgage()">
+                                                </p-button>
+                                                <p-button label="{{'ERP.EDIT' | translate}}" *ngIf="!editing"
+                                                    pInitEditableRow [disabled]="editDeleteDisable"
+                                                    (click)="editOtherLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-edit"></p-button>
+                                                <p-button label="{{'ERP.DELETE' | translate}}" *ngIf="!editing"
+                                                    [disabled]="editDeleteDisable"
+                                                    (click)="deleteOtherLoanMortgage(row)" id="prj_stakehlder_bt_edit"
+                                                    class="action-delete"></p-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                </div>
+
+            </div>
+        </div>
