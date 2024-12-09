@@ -74,6 +74,7 @@ export class GroupCommunicationComponent {
     });
   }
   ngOnInit() {
+    this.orgnizationSetting = this.commonComponent.orgnizationSettings();
     // Initialize other necessary variables and components
     this.activateRoute.queryParams.subscribe(params => {
       if (params['id'] != undefined) {
@@ -110,6 +111,10 @@ export class GroupCommunicationComponent {
       if (this.responseModel.status == applicationConstants.STATUS_SUCCESS && this.responseModel.data[0] !=null) {
         this.memberGroupBasicDetails = this.responseModel.data[0];
         this.groupCommunicationModel.groupId = this.memberGroupBasicDetails.id;
+        if (this.memberGroupBasicDetails.admissionDate != null && this.memberGroupBasicDetails.admissionDate != undefined) {
+          this.memberGroupBasicDetails.admissionDateVal = this.datePipe.transform(this.memberGroupBasicDetails.admissionDate, this.orgnizationSetting.datePipe);
+        }
+
         if(this.memberGroupBasicDetails.groupCommunicationList != null && this.memberGroupBasicDetails.groupCommunicationList != undefined && this.memberGroupBasicDetails.groupCommunicationList.length > 0){
             this.groupCommunicationModel = this.memberGroupBasicDetails.groupCommunicationList[0];
 

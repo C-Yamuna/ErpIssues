@@ -73,6 +73,7 @@ export class InstitutionCommunicationComponent implements OnInit{
   }
   ngOnInit() {
     // Initialize other necessary variables and components
+    this.orgnizationSetting = this.commonComponent.orgnizationSettings();
     this.activateRoute.queryParams.subscribe(params => {
       if (params['id'] != undefined) {
         this.commonComponent.startSpinner();
@@ -107,6 +108,10 @@ export class InstitutionCommunicationComponent implements OnInit{
       this.commonComponent.stopSpinner();
       if (this.responseModel.status == applicationConstants.STATUS_SUCCESS && this.responseModel.data[0] !=null) {
         this.institutionBasicDetailsModel = this.responseModel.data[0];
+        if (this.institutionBasicDetailsModel.admissionDate != null && this.institutionBasicDetailsModel.admissionDate != undefined) {
+          this.institutionBasicDetailsModel.admissionDateVal = this.datePipe.transform(this.institutionBasicDetailsModel.admissionDate, this.orgnizationSetting.datePipe);
+        }
+
         this.instituteCommunicationModel.institutionId = this.institutionBasicDetailsModel.id;
         if(this.institutionBasicDetailsModel.institutionCommunicationDTOList != null && this.institutionBasicDetailsModel.institutionCommunicationDTOList != undefined && this.institutionBasicDetailsModel.institutionCommunicationDTOList.length > 0){
             this.instituteCommunicationModel = this.institutionBasicDetailsModel.institutionCommunicationDTOList[0];

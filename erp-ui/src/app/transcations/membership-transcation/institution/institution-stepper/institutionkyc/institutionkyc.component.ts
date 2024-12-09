@@ -14,6 +14,7 @@ import { MemberBasicDetailsStepperService } from '../../../individual/shared/mem
 import { InstitutionKycDetailsService } from '../../../shared/institution-kyc-details.service';
 import { FileUploadService } from 'src/app/shared/file-upload.service';
 import { KycDocumentTypesService } from 'src/app/configurations/common-config/kyc-document-types/shared/kyc-document-types.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -79,7 +80,7 @@ export class InstitutionkycComponent implements OnInit{
     private activateRoute: ActivatedRoute,
     private encryptService: EncryptDecryptService,
     private documentTypeService:KycDocumentTypesService,private fileUploadService :FileUploadService,
-    private memberBasicDetailsStepperService: MemberBasicDetailsStepperService) {
+    private memberBasicDetailsStepperService: MemberBasicDetailsStepperService,private datePipe: DatePipe) {
       this.kycForm = this.formBuilder.group({
         'kycDocumentTypeId': new FormControl('', Validators.required),
         'documentNumber': new FormControl('',Validators.required),
@@ -89,6 +90,7 @@ export class InstitutionkycComponent implements OnInit{
     }
   
     ngOnInit(): void {
+      this.orgnizationSetting = this.commonComponent.orgnizationSettings();
       if (this.documentsData.length >= 1) {
         this.uploadFlag = true;
       }
@@ -122,6 +124,10 @@ export class InstitutionkycComponent implements OnInit{
         this.commonComponent.stopSpinner();
         if (this.responseModel.status == applicationConstants.STATUS_SUCCESS && this.responseModel.data[0] != null) {
           this.institutionModel = this.responseModel.data[0];
+
+          if (this.institutionModel.admissionDate != null && this.institutionModel.admissionDate != undefined) {
+            this.institutionModel.admissionDateVal = this.datePipe.transform(this.institutionModel.admissionDate, this.orgnizationSetting.datePipe);
+          }
           if (this.institutionModel && this.institutionModel.institutionKycDetailsDTOList != null && this.institutionModel.institutionKycDetailsDTOList != undefined &&
             this.institutionModel.institutionKycDetailsDTOList.length > 0) {
               this.showButton = true;

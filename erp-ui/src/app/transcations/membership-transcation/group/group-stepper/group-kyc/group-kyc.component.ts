@@ -101,6 +101,7 @@ export class GroupKYCComponent implements OnInit{
 
   }
   ngOnInit(): void {
+    this.orgnizationSetting = this.commonComponent.orgnizationSettings();
     if (this.documentsData.length >= 1) {
       this.uploadFlag = true;
     }
@@ -128,12 +129,16 @@ export class GroupKYCComponent implements OnInit{
 
   }
   getMembershipGroupDetailsById(id: any) {
+    debugger
     this.isEdit = true;
     this.membershipGroupDetailsService.getMembershipGroupDetailsById(id).subscribe(res => {
       this.responseModel = res;
       this.commonComponent.stopSpinner();
       if (this.responseModel.status == applicationConstants.STATUS_SUCCESS && this.responseModel.data[0] != null) {
         this.memberGroupBasicDetails = this.responseModel.data[0];
+        if (this.memberGroupBasicDetails.admissionDate != null && this.memberGroupBasicDetails.admissionDate != undefined) {
+          this.memberGroupBasicDetails.admissionDateVal = this.datePipe.transform(this.memberGroupBasicDetails.admissionDate, this.orgnizationSetting.datePipe);
+        }
         if (this.memberGroupBasicDetails && this.memberGroupBasicDetails.groupKycList != null && this.memberGroupBasicDetails.groupKycList != undefined &&
           this.memberGroupBasicDetails.groupKycList.length > 0) {
             this.showButton = true;
