@@ -324,7 +324,7 @@ export class InstitutionStepperComponent implements OnInit {
     if(this.institutionBasicDetailsModel.registrationDateVal != undefined && this.institutionBasicDetailsModel.registrationDateVal != null)
     this.institutionBasicDetailsModel.registrationDate = this.commonFunctionService.getUTCEpochWithTime(this.institutionBasicDetailsModel.registrationDateVal);
     if(this.institutionBasicDetailsModel.admissionDateVal != undefined && this.institutionBasicDetailsModel.admissionDateVal != null)
-    this.institutionBasicDetailsModel.admissionDate = this.commonFunctionService.getUTCEpochWithTime(new Date(this.institutionBasicDetailsModel.admissionDateVal));
+    this.institutionBasicDetailsModel.admissionDate = this.commonFunctionService.getUTCEpoch(new Date(this.institutionBasicDetailsModel.admissionDateVal));
 
     if (this.institutionBasicDetailsModel.id != null) {
    

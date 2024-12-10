@@ -322,7 +322,8 @@ export class GroupStepperComponent implements OnInit {
     if(this.memberGroupBasicDetails.registrationDateVal != undefined && this.memberGroupBasicDetails.registrationDateVal != null)
     this.memberGroupBasicDetails.registrationDate = this.commonFunctionsService.getUTCEpochWithTime(this.memberGroupBasicDetails.registrationDateVal);
     if(this.memberGroupBasicDetails.admissionDateVal != undefined && this.memberGroupBasicDetails.admissionDateVal != null)
-    this.memberGroupBasicDetails.admissionDate = this.commonFunctionsService.getUTCEpochWithTime(new Date(this.memberGroupBasicDetails.admissionDateVal));
+      this.memberGroupBasicDetails.admissionDate = this.commonFunctionsService.getUTCEpoch(new Date(this.memberGroupBasicDetails.admissionDateVal));
+  
 
     if (this.memberGroupBasicDetails.id != null) {
    
@@ -332,7 +333,7 @@ export class GroupStepperComponent implements OnInit {
 
         this.memberGroupBasicDetails = response.data[0];
         if(null != this.memberGroupBasicDetails.admissionDate)
-        this.memberGroupBasicDetails.admissionDateVal=this.datePipe.transform(this.memberGroupBasicDetails.admissionDate, this.orgnizationSetting.datePipe);
+          this.memberGroupBasicDetails.admissionDateVal=this.datePipe.transform(this.memberGroupBasicDetails.admissionDate, this.orgnizationSetting.datePipe);
         if(null != this.memberGroupBasicDetails.registrationDate)
         this.memberGroupBasicDetails.registrationDateVal=this.datePipe.transform(this.memberGroupBasicDetails.registrationDate, this.orgnizationSetting.datePipe);
 
